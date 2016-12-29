@@ -1,5 +1,4 @@
-## Welcome to GitHub Pages
-
+## Welcome to Django REST framework documentation
 You can use the [editor on GitHub](https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
