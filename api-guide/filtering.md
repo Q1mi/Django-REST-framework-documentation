@@ -55,6 +55,15 @@ pip install django-crispy-forms
 
 ## 指定筛选字段（Specifying filter fields）
 
+如果你的需求都是些简单相等类型的筛选，那么你可以在你的view或viewSet里面设置一个`filter_fields`属性，列出所有你想依靠筛选的字段集合。
+
+```
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filter_fields = ('category', 'in_stock')
+```
 
 
 
