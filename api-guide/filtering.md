@@ -53,6 +53,8 @@ pip install django-crispy-forms
 安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：
 ![django filter](/assets/django-filter.png)
 
+## 指定筛选字段（Specifying filter fields）
+
 
 
 
