@@ -1,17 +1,15 @@
 # Filtering
 
+> “ 由Django Manager提供的根QuerySet描述了数据库表中的所有对象。可是通常你需要的只是选择完整对象中的一个子集而已。
+>
+> —— Django文档  
+> ”
 
-> “ 由Manager提供的根QuerySet描述了数据库表中的所有对象。通常，可是你只需要选择完整对象的一个子集而已。
-> 
-—— Django文档
->”
- 
- REST framework列表视图的默认行为是返回一个model的全部queryset。通常你却想要你的API来限制queryset返回的数据。
+REST framework列表视图的默认行为是返回一个model的全部queryset。通常你却想要你的API来限制queryset返回的数据。
 
 最简单的删选一个`GenericAPIView`子视图的queryset的方法就是复写他的`.get_queryset()`方法。
 
 重写这个方法允许你使用很多不同的方式来定制视图返回的queryset。
-
 
 # API Guide
 
@@ -45,12 +43,11 @@ class UserListView(generics.ListAPIView):
 
 如果你正在使用 browsable API或 admin API，你还需要安装`django-crispy-forms`，通过使用Bootstarp3渲染来提高filter form在浏览器中的展示效果。
 
-
 ```
 pip install django-crispy-forms
 ```
 
-安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：
+安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：  
 ![django filter](/assets/django-filter.png)
 
 ## 指定筛选字段（Specifying filter fields）
@@ -67,19 +64,11 @@ class ProductList(generics.ListAPIView):
 
 这将为你列出来的字段自动创建一个filterSet，允许你想下面这样请求筛选结果：
 
-
 ```
 http://example.com/api/products?category=clothing&in_stock=True
 ```
 
 ## 指定一个filterSet（Specifying a FilterSet）
-
-
-
-
-
-
-
 
 
 
