@@ -21,19 +21,30 @@
 
 要使用`DjangoFilterBackend`，首先要先安装`django-filter`。
 
-
 ```
 pip install django-filter
 ```
 
-现在，你需要将filter backend 添加到你django project的settings.py文件中：
-
+现在，你需要将filter backend 添加到你django project的settings中：
 
 ```
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
 }
 ```
+
+或者你也可以将filter backend添加到一个单独的view或viewSet中：
+
+```
+from django_filters.rest_framework import DjangoFilterBackend
+
+class UserListView(generics.ListAPIView):
+    ...
+    filter_backends = (DjangoFilterBackend,)
+```
+
+如果你正在使用 browsable API或 admin API，你还需要安装`django-crispy-forms`，通过使用Bootstarp3渲染来提高filter form在浏览器中的展示效果。
+
 
 
 
