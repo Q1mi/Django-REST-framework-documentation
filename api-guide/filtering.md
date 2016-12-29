@@ -46,6 +46,16 @@ class UserListView(generics.ListAPIView):
 如果你正在使用 browsable API或 admin API，你还需要安装`django-crispy-forms`，通过使用Bootstarp3渲染来提高filter form在浏览器中的展示效果。
 
 
+```
+pip install django-crispy-forms
+```
+
+安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`呈现出如下的样式：
+
+
+
+
+
 
 
 
