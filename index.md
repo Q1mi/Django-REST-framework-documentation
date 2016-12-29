@@ -1,4 +1,5 @@
-## Welcome to Django REST framework documentation
+## 欢迎来到 Django REST framework 中文文档项目
+
 
 如果本文对您有帮助，请在github上star该项目或直接联系加入我们。
 
@@ -8,7 +9,7 @@
 
 ## 版本相关
 
-This is the documentation for the version 3 of REST framework.
+这是Django REST framework v3 版本的中文文档。
 
 * django-rest-framework
   * v3.5.3
