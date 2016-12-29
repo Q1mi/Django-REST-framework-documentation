@@ -65,6 +65,17 @@ class ProductList(generics.ListAPIView):
     filter_fields = ('category', 'in_stock')
 ```
 
+这将为你列出来的字段自动创建一个filterSet，允许你想下面这样请求筛选结果：
+
+
+```
+http://example.com/api/products?category=clothing&in_stock=True
+```
+
+## 指定一个filterSet（Specifying a FilterSet）
+
+
+
 
 
 
