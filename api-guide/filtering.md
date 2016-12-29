@@ -18,3 +18,24 @@
 ## DjangoFilterBackend
 
 `django-filter`库包含一个为REST framework提供高度可定制字段过滤的`DjangoFilterBackend`类。
+
+要使用`DjangoFilterBackend`，首先要先安装`django-filter`。
+
+
+```
+pip install django-filter
+```
+
+现在，你需要将filter backend 添加到你django project的settings.py文件中：
+
+
+```
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
+```
+
+
+
+
+
