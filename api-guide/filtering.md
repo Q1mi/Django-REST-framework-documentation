@@ -1,9 +1,9 @@
 # Filtering
 
-“ 由Manager提供的根QuerySet描述了数据库表中的所有对象。通常，可是你只需要选择完整对象的一个子集而已。
-
+> “ 由Manager提供的根QuerySet描述了数据库表中的所有对象。通常，可是你只需要选择完整对象的一个子集而已。
+> 
 —— Django文档
- ”
+>”
  
  REST framework列表视图的默认行为是返回一个model的全部queryset。通常你却想要你的API来限制queryset返回的数据。
 
