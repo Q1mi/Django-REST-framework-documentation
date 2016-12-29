@@ -1,7 +1,9 @@
 ## Welcome to Django REST framework documentation
 
-如果本文对你有帮助，请star或联系加入我们。
-十分感谢。
+如果本文对您有帮助，请在github上star该项目或直接联系加入我们。
+
+
+我们对您的支持深表感谢。
 
 
 ## 版本相关
