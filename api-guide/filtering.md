@@ -13,9 +13,9 @@ REST framework列表视图的默认行为是返回一个model的全部queryset�
 
 ## Filtering against the current user（根据当前用户进行过滤）
 
-您可能想要过滤queryset确保那些只与当前被认证的请求用户有关的结果被返回。
+您可能想要过滤queryset，以确保只返回与发出请求的当前已验证用户相关的结果。
 
-你可以通过使用`request.user`的值来过滤实现。
+您可以通过基于request.user的值进行过滤来实现。
 
 比如：
 
@@ -39,7 +39,7 @@ class PurchaseList(generics.ListAPIView):
 
 ## Filtering against the URL（根据URL进行过滤）
 
-另一个风格的过滤可能涉及限制queryset基于URL中的某些参数。
+另一种过滤方式可能包括基于URL的某些部分来限制queryset。
 
 例如，如果你的URL配置包含一个参数如下:
 
@@ -64,8 +64,9 @@ class PurchaseList(generics.ListAPIView):
         return Purchase.objects.filter(purchaser__username=username)
 ```
 
-## Filtering against query parameters（根据query 参数进行过滤）
+## Filtering against query parameters（根据查询参数进行过滤）
 
+过滤初始查询集的最后一个示例是基于url中的查询参数确定初始查询集。
 
 
 # API Guide
