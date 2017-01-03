@@ -123,7 +123,7 @@ class UserListView(generics.ListAPIView):
 
 ## Filtering and object lookups（过滤和对象查找）
 
-请注意，如果为视图配置过滤器后端，并且用于过滤列表视图，则它也将用于过滤用于返回单个对象的查询集。
+请注意，如果为view配置过滤器后端，并且用于过滤list views，则它也将用于过滤用于返回单个对象的queryset。
 
 
 
