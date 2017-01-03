@@ -134,6 +134,25 @@ http://example.com/api/products/4675/?category=clothing&max_price=10.00
 
 ## Overriding the initial queryset（覆盖初始queryset）
 
+请注意，你可以同时使用覆盖的`.get_queryset()`和通用过滤，并且一切都将按预期生效。 例如，如果`Product`与`User`（名为`purchase`）具有多对多关系，则可能需要编写如下所示的view：
+
+
+```
+class PurchasedProductsList(generics.ListAPIView):
+    """
+    Return a list of all the products that the authenticated
+    user has ever purchased, with optional filtering.
+    """
+    model = Product
+    serializer_class = ProductSerializer
+    filter_class = ProductFilter
+
+    def get_queryset(self):
+        user = self.request.user
+        return user.purchase_set.all()
+```
+
+
 
 
 # API Guide
