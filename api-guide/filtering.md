@@ -87,6 +87,8 @@ class PurchaseList(generics.ListAPIView):
         return queryset
 ```
 
+---
+
 # Generic Filtering（通用过滤）
 
 除了能够覆盖默认queryset，REST框架还包括对通用过滤后端的支持，允许你轻松构建复杂的检索器和过滤器。
