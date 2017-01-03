@@ -152,7 +152,7 @@ class PurchasedProductsList(generics.ListAPIView):
         return user.purchase_set.all()
 ```
 
-
+---
 
 
 # API Guide
