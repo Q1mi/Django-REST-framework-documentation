@@ -261,4 +261,12 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
         fields = ['category', 'in_stock', 'manufacturer__name']
 ```
 
+这使我们能够进行如下查询：
+
+
+```
+http://example.com/api/products?manufacturer__name=foo
+```
+
+
 
