@@ -15,7 +15,7 @@ REST framework列表视图的默认行为是返回一个model的全部queryset�
 
 您可能想要过滤queryset，以确保只返回与发出请求的当前已验证用户相关的结果。
 
-您可以通过基于request.user的值进行过滤来实现。
+你可以通过基于request.user的值进行过滤来实现。
 
 比如：
 
@@ -67,6 +67,26 @@ class PurchaseList(generics.ListAPIView):
 ## Filtering against query parameters（根据查询参数进行过滤）
 
 过滤初始查询集的最后一个示例是基于url中的查询参数确定初始查询集。
+
+我们可以覆盖`.get_queryset()`来处理像`http://example.com/api/purchases?username=denvercoder9`这样的网址，并且只有在URL中包含`username`参数时，才过滤queryset：
+
+
+```
+class PurchaseList(generics.ListAPIView):
+    serializer_class = PurchaseSerializer
+
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        queryset = Purchase.objects.all()
+        username = self.request.query_params.get('username', None)
+        if username is not None:
+            queryset = queryset.filter(purchaser__username=username)
+        return queryset
+```
+
 
 
 # API Guide
