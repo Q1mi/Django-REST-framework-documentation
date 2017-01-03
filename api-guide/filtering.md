@@ -305,3 +305,36 @@ http://example.com/api/products?manufacturer=foo
 
 ---
 
+## SearchFilter
+
+`SearchFilter`类支持基于简单单查询参数的搜索，并且基于[Django admin的搜索功能](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)。
+
+在使用时， browsable API将包括一个`SearchFilter`控件：
+![search-filter.png](/assets/search-filter.png)
+
+仅当view中设置了`search_fields`属性时，才应用`SearchFilter`类。`search_fields`属性应该是model中文本类型字段的名称列表，例如`CharField`或`TextField`。
+
+
+```
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('username', 'email')
+```
+
+这将允许客户端通过进行以下查询来过滤列表中的项目：
+
+
+```
+http://example.com/api/users?search=russell
+```
+
+你还可以在查找API中使用双下划线符号对ForeignKey或ManyToManyField执行相关查找：
+
+
+```
+search_fields = ('username', 'email', 'profile__profession')
+```
+
+
