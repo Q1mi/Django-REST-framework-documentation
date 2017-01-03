@@ -284,5 +284,13 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
         model = Product
         fields = ['category', 'in_stock', 'manufacturer']
 ```
+现在你可以下面这样执行：
 
 
+```
+http://example.com/api/products?manufacturer=foo
+```
+
+有关使用过滤器集的更多详细信息，请参阅[django-filter文档](https://django-filter.readthedocs.io/en/latest/index.html)。
+
+---
