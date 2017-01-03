@@ -125,6 +125,13 @@ class UserListView(generics.ListAPIView):
 
 请注意，如果为view配置过滤器后端，并且用于过滤list views，则它也将用于过滤用于返回单个对象的queryset。
 
+例如，给定前面的示例以及一个ID为`4675`的产品，以下URL将返回相应的对象或者返回404，具体取决于给定的产品实例是否满足筛选条件。
+
+
+```
+http://example.com/api/products/4675/?category=clothing&max_price=10.00
+```
+
 
 
 
