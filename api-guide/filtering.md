@@ -132,6 +132,7 @@ class UserListView(generics.ListAPIView):
 http://example.com/api/products/4675/?category=clothing&max_price=10.00
 ```
 
+## Overriding the initial queryset（覆盖初始queryset）
 
 
 
