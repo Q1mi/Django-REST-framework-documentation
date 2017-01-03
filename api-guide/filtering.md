@@ -64,6 +64,8 @@ class PurchaseList(generics.ListAPIView):
         return Purchase.objects.filter(purchaser__username=username)
 ```
 
+## Filtering against query parameters（根据query 参数进行过滤）
+
 
 
 # API Guide
