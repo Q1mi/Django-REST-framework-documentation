@@ -356,6 +356,9 @@ search_fields = ('username', 'email', 'profile__profession')
 search_fields = ('=username', '=email')
 ```
 
+默认情况下，搜索参数名为`'search'`，但这可以在`SEARCH_PARAM`中设置。
 
+有关更多详细信息，请参阅[Django文档](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)。
 
+---
 
