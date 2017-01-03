@@ -11,6 +11,45 @@ REST framework列表视图的默认行为是返回一个model的全部queryset�
 
 重写这个方法允许你使用很多不同的方式来定制视图返回的queryset。
 
+## Filtering against the current user（根据当前用户进行过滤）
+
+您可能想要过滤queryset确保那些只与当前被认证的请求用户有关的结果被返回。
+
+你可以通过使用`request.user`的值来过滤实现。
+
+比如：
+
+
+```
+from myapp.models import Purchase
+from myapp.serializers import PurchaseSerializer
+from rest_framework import generics
+
+class PurchaseList(generics.ListAPIView):
+    serializer_class = PurchaseSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        user = self.request.user
+        return Purchase.objects.filter(purchaser=user)
+```
+
+## Filtering against the URL（根据URL进行过滤）
+
+另一个风格的过滤可能涉及限制queryset基于URL的一部分。
+
+例如,如果你的URL配置包含一个条目如下:
+
+
+```
+url('^purchases/(?P<username>.+)/$', PurchaseList.as_view()),
+```
+
+
+
 # API Guide
 
 ## DjangoFilterBackend
