@@ -390,3 +390,18 @@ http://example.com/api/users?ordering=-username
 http://example.com/api/users?ordering=account,username
 ```
 
+## Specifying which fields may be ordered against（指定可以针对哪些字段排序）
+
+建议你明确指定API应在ordering filter中允许哪些字段。您可以通过在view中设置`ordering_fields`属性来实现这一点，如下所示：
+
+
+```
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = (filters.OrderingFilter,)
+    ordering_fields = ('username', 'email')
+```
+
+这有助于防止意外的数据泄漏，例如允许用户针对密码哈希字段或其他敏感数据进行排序。
+
