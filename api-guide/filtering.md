@@ -268,5 +268,21 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 http://example.com/api/products?manufacturer__name=foo
 ```
 
+这很好，但它将Django的双下划线约定作为API的一部分暴露出来。如果你想显式地命名过滤器参数，你可以显式地将它包含在`FilterSet`类中：
+
+
+```
+import django_filters
+from myapp.models import Product
+from myapp.serializers import ProductSerializer
+from rest_framework import generics
+
+class ProductFilter(django_filters.rest_framework.FilterSet):
+    manufacturer = django_filters.CharFilter(name="manufacturer__name")
+
+    class Meta:
+        model = Product
+        fields = ['category', 'in_stock', 'manufacturer']
+```
 
 
