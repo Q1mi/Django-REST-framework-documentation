@@ -95,6 +95,18 @@ class PurchaseList(generics.ListAPIView):
 
 ![filter-controls.png](/assets/filter-controls.png)
 
+## Setting filter backends（设置通用过滤后端）
+
+可以使用`DEFAULT_FILTER_BACKENDS`设置全局设置默认过滤器后端。例如。
+
+
+```
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
+```
+
+
 
 # API Guide
 
