@@ -405,4 +405,4 @@ class UserListView(generics.ListAPIView):
 
 这有助于防止意外的数据泄漏，例如允许用户针对密码哈希字段或其他敏感数据进行排序。
 
-如果不在视图上指定`ordering_fields`属性，过滤器类将默认允许用户对serializer_class属性指定的序列化器上的任何可读字段进行过滤。
+如果不在视图上指定`ordering_fields`属性，过滤器类将默认允许用户对`serializer_class`属性指定的serializer上的任何可读字段进行过滤。
