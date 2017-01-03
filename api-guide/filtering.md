@@ -337,4 +337,25 @@ http://example.com/api/users?search=russell
 search_fields = ('username', 'email', 'profile__profession')
 ```
 
+默认情况下，搜索将使用不区分大小写的部分匹配。 搜索参数可以包含多个搜索项，其应该是空格和/或逗号分隔。 如果使用多个搜索术语，则仅当所有提供的术语都匹配时才在列表中返回对象。
+
+可以通过在`search_fields`前面添加各种字符来限制搜索行为。
+
+* '^' 以指定内容开始.
+
+* '=' 完全匹配
+
+* '@' 全文搜索（目前只支持Django的MySQL后端）
+
+* '$' 正则搜索
+
+例如：
+
+
+```
+search_fields = ('=username', '=email')
+```
+
+
+
 
