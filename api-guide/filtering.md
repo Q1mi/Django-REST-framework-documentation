@@ -214,7 +214,51 @@ class ProductList(generics.ListAPIView):
 http://example.com/api/products?category=clothing&in_stock=True
 ```
 
-## 指定一个filterSet（Specifying a FilterSet）
+## Specifying a FilterSet（指定FilterSet）
 
+对于更高级的过滤要求，你可以指定在view中应该使用的`FilterSet`类。例如：
+
+
+```
+import django_filters
+from myapp.models import Product
+from myapp.serializers import ProductSerializer
+from rest_framework import generics
+
+class ProductFilter(django_filters.rest_framework.FilterSet):
+    min_price = django_filters.NumberFilter(name="price", lookup_expr='gte')
+    max_price = django_filters.NumberFilter(name="price", lookup_expr='lte')
+    class Meta:
+        model = Product
+        fields = ['category', 'in_stock', 'min_price', 'max_price']
+
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_class = ProductFilter
+```
+
+这将允许你向下面一样发出请求，如：
+
+
+```
+http://example.com/api/products?category=clothing&max_price=10.00
+```
+
+你也可以使用`django-filter`跨越关系，让我们假设每个产品都有`Manufacturer`模型的外键，所以我们创建过滤器使用`Manufacturer`名称过滤。例如：
+
+
+```
+import django_filters
+from myapp.models import Product
+from myapp.serializers import ProductSerializer
+from rest_framework import generics
+
+class ProductFilter(django_filters.rest_framework.FilterSet):
+    class Meta:
+        model = Product
+        fields = ['category', 'in_stock', 'manufacturer__name']
+```
 
 
