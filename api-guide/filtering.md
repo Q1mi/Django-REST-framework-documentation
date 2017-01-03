@@ -294,3 +294,14 @@ http://example.com/api/products?manufacturer=foo
 有关使用过滤器集的更多详细信息，请参阅[django-filter文档](https://django-filter.readthedocs.io/en/latest/index.html)。
 
 ---
+
+### 提示（Hints & Tips）
+
+* 默认情况下未启用过滤。如果你想使用`DjangoFilterBackend`记得确保它是通过使用`DEFAULT_FILTER_BACKENDS`设置安装的。
+
+* 使用布尔字段时，您应该在网址查询参数中使用`True`和`False`值，而不是`0`，`1`，`true`或`false`。 （允许的布尔值目前硬连线在Django的[NullBooleanSelect实现中](https://github.com/django/django/blob/master/django/forms/widgets.py)。）
+
+* `django-filter`支持使用Django的双下划线语法对关系进行过滤。
+
+---
+
