@@ -97,7 +97,7 @@ class PurchaseList(generics.ListAPIView):
 
 ## Setting filter backends（设置通用过滤后端）
 
-可以使用`DEFAULT_FILTER_BACKENDS`设置全局设置默认过滤器后端。例如。
+默认过滤器后端可以在全局设置中使用`DEFAULT_FILTER_BACKENDS`来配置。例如。
 
 
 ```
