@@ -106,6 +106,21 @@ REST_FRAMEWORK = {
 }
 ```
 
+你还可以使用基于`GenericAPIView`类的视图在每个view或每个viewset基础上设置过滤器后端。
+
+
+```
+import django_filters.rest_framework
+from django.contrib.auth.models import User
+from myapp.serializers import UserSerializer
+from rest_framework import generics
+
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+```
+
 
 
 # API Guide
