@@ -356,9 +356,37 @@ search_fields = ('username', 'email', 'profile__profession')
 search_fields = ('=username', '=email')
 ```
 
-默认情况下，搜索参数名为`'search'`，但这可以在`SEARCH_PARAM`中设置。
+默认情况下，搜索参数名为`'search'`，但这可以通过使用`SEARCH_PARAM`设置覆盖。
 
 有关更多详细信息，请参阅[Django文档](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)。
 
 ---
+
+## OrderingFilter（排序筛选）
+
+`OrderingFilter`类支持简单的查询参数控制结果排序。
+![ordering-filter.png](/assets/ordering-filter.png)
+
+默认情况下，查询参数名为`'ordering'`，但这可以通过使用`ORDERING_PARAM`设置覆盖。
+
+例如，按用户名排序用户：
+
+
+```
+http://example.com/api/users?ordering=username
+```
+
+客户端还可以通过为字段名称加上'-'来指定反向排序，如下所示：
+
+
+```
+http://example.com/api/users?ordering=-username
+```
+
+还可以指定多个排序：
+
+
+```
+http://example.com/api/users?ordering=account,username
+```
 
