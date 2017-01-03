@@ -87,7 +87,7 @@ class PurchaseList(generics.ListAPIView):
         return queryset
 ```
 
-# Generic Filtering（标准过滤）
+# Generic Filtering（通用过滤）
 
 
 
