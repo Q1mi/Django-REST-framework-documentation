@@ -39,13 +39,29 @@ class PurchaseList(generics.ListAPIView):
 
 ## Filtering against the URL（根据URL进行过滤）
 
-另一个风格的过滤可能涉及限制queryset基于URL的一部分。
+另一个风格的过滤可能涉及限制queryset基于URL中的某些参数。
 
-例如,如果你的URL配置包含一个条目如下:
+例如，如果你的URL配置包含一个参数如下:
 
 
 ```
 url('^purchases/(?P<username>.+)/$', PurchaseList.as_view()),
+```
+
+你就可以写一个view，返回基于URL中的username参数进行过滤的结果。
+
+
+```
+class PurchaseList(generics.ListAPIView):
+    serializer_class = PurchaseSerializer
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        username = self.kwargs['username']
+        return Purchase.objects.filter(purchaser__username=username)
 ```
 
 
