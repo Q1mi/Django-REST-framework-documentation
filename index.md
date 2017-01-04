@@ -28,5 +28,5 @@
 
 ### API Guide
 
-* [filtering](Django-REST-framework-documentation/api-guide/filtering.md)
+* [filtering](/api-guide/filtering.md)
 
