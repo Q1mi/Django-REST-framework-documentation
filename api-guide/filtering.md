@@ -95,7 +95,7 @@ class PurchaseList(generics.ListAPIView):
 
 通用过滤器也可以在browsable API和admin API中显示为HTML控件。
 
-![filter-controls.png](/assets/filter-controls.png)
+![filter-controls.png](../assets/filter-controls.png)
 
 ## Setting filter backends（设置通用过滤后端）
 
@@ -365,7 +365,7 @@ search_fields = ('=username', '=email')
 ## OrderingFilter（排序筛选）
 
 `OrderingFilter`类支持简单的查询参数控制结果排序。
-![ordering-filter.png](/assets/ordering-filter.png)
+![ordering-filter.png](../assets/ordering-filter.png)
 
 默认情况下，查询参数名为`'ordering'`，但这可以通过使用`ORDERING_PARAM`设置覆盖。
 
