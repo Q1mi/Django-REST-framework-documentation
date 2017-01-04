@@ -159,7 +159,7 @@ class PurchasedProductsList(generics.ListAPIView):
 
 # API Guide
 
-## DjangoFilterBackend
+## DjangoFilterBackend（Django过滤后端）
 
 `django-filter`库包含一个为REST framework提供高度可定制字段过滤的`DjangoFilterBackend`类。
 
@@ -196,7 +196,7 @@ pip install django-crispy-forms
 安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：  
 ![django filter](../assets/django-filter.png)
 
-## 指定筛选字段（Specifying filter fields）
+## Specifying filter fields（指定筛选字段）
 
 如果你的需求都是些简单相等类型的筛选，那么你可以在你的view或viewSet里面设置一个`filter_fields`属性，列出所有你想依靠筛选的字段集合。
 
@@ -295,7 +295,7 @@ http://example.com/api/products?manufacturer=foo
 
 ---
 
-### 提示（Hints & Tips）
+### Hints & Tips（提示）
 
 * 默认情况下未启用过滤。如果你想使用`DjangoFilterBackend`记得确保它是通过使用`DEFAULT_FILTER_BACKENDS`设置安装的。
 
@@ -305,7 +305,7 @@ http://example.com/api/products?manufacturer=foo
 
 ---
 
-## SearchFilter
+## SearchFilter（搜索过滤）
 
 `SearchFilter`类支持基于简单单查询参数的搜索，并且基于[Django admin的搜索功能](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)。
 
@@ -390,7 +390,7 @@ http://example.com/api/users?ordering=-username
 http://example.com/api/users?ordering=account,username
 ```
 
-## Specifying which fields may be ordered against（指定可以针对哪些字段排序）
+## Specifying which fields may be ordered against（指定支持排序的字段）
 
 建议你明确指定API应在ordering filter中允许哪些字段。您可以通过在view中设置`ordering_fields`属性来实现这一点，如下所示：
 
