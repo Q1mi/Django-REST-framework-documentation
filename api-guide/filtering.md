@@ -418,5 +418,22 @@ class BookingsListView(generics.ListAPIView):
     ordering_fields = '__all__'
 ```
 
+## Specifying a default ordering（指定默认排序）
+
+如果在view中设置了`ordering`属性，则将把它用作默认排序。
+
+通常，你可以通过在初始queryset上设置`order_by`来控制此操作，但是使用view中的`ordering`参数允许你以某种方式指定排序，然后可以将其作为上下文自动传递到呈现的模板。如果它们用于排序结果的话就能使自动渲染不同的列标题成为可能。
 
 
+```
+class UserListView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = (filters.OrderingFilter,)
+    ordering_fields = ('username', 'email')
+    ordering = ('username',)
+```
+
+`ordering`属性可以是字符串或字符串的列表/元组。
+
+---
