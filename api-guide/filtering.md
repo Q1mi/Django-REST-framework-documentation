@@ -95,7 +95,7 @@ class PurchaseList(generics.ListAPIView):
 
 通用过滤器也可以在browsable API和admin API中显示为HTML控件。
 
-![filter-controls.png](assets/filter-controls.png)
+![filter-controls.png](/assets/filter-controls.png)
 
 ## Setting filter backends（设置通用过滤后端）
 
@@ -194,7 +194,7 @@ pip install django-crispy-forms
 ```
 
 安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：  
-![django filter](assets/django-filter.png)
+![django filter](/assets/django-filter.png)
 
 ## 指定筛选字段（Specifying filter fields）
 
