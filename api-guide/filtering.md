@@ -437,3 +437,6 @@ class UserListView(generics.ListAPIView):
 `ordering`属性可以是字符串或字符串的列表/元组。
 
 ---
+
+# DjangoObjectPermissionsFilter
+
