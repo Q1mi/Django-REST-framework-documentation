@@ -194,7 +194,7 @@ pip install django-crispy-forms
 ```
 
 安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：  
-![django filter](/assets/django-filter.png)
+![django filter](../assets/django-filter.png)
 
 ## 指定筛选字段（Specifying filter fields）
 
@@ -310,7 +310,7 @@ http://example.com/api/products?manufacturer=foo
 `SearchFilter`类支持基于简单单查询参数的搜索，并且基于[Django admin的搜索功能](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)。
 
 在使用时， browsable API将包括一个`SearchFilter`控件：
-![search-filter.png](/assets/search-filter.png)
+![search-filter.png](../assets/search-filter.png)
 
 仅当view中设置了`search_fields`属性时，才应用`SearchFilter`类。`search_fields`属性应该是model中文本类型字段的名称列表，例如`CharField`或`TextField`。
 
