@@ -409,3 +409,14 @@ class UserListView(generics.ListAPIView):
 
 如果你确信视图正在使用的queryset不包含任何敏感数据，则还可以通过使用特殊值`'__all__'`来明确指定view应允许对任何model字段或queryset进行排序。
 
+
+```
+class BookingsListView(generics.ListAPIView):
+    queryset = Booking.objects.all()
+    serializer_class = BookingSerializer
+    filter_backends = (filters.OrderingFilter,)
+    ordering_fields = '__all__'
+```
+
+
+
