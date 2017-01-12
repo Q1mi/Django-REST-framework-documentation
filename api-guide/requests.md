@@ -8,7 +8,7 @@ REST framework的`Request`类扩展了标准的`HttpRequest`，添加对REST框�
 
 ---
 
-# Request parsing
+# Request parsing（请求解析）
 
 REST framework's Request objects provide flexible request parsing that allows you to treat requests with JSON data or other media types in the same way that you would normally deal with form data.
 
