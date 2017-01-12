@@ -16,7 +16,7 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 ## .data
 
-`request.data` returns the parsed content of the request body.  This is similar to the standard `request.POST` and `request.FILES` attributes except that:
+`request.data` 返回请求正文的解析内容。这与标准的 `request.POST` and `request.FILES` 类似。attributes except that:
 
 * It includes all parsed content, including *file and non-file* inputs.
 * It supports parsing the content of HTTP methods other than `POST`, meaning that you can access the content of `PUT` and `PATCH` requests.
