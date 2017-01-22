@@ -32,7 +32,7 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 ## .parsers
 
-`APIView`类或`@api_view`装饰器将根据视图上设置的`parser_classes`或基于`DEFAULT_PARSER_CLASSES`设置，确保此属性自动设置为`Parser`实例列表。
+`APIView`类或`@api_view`装饰器将根据view中设置的`parser_classes`集合或基于`DEFAULT_PARSER_CLASSES`设置，确保此属性自动设置为`Parser`实例列表。
 
 你通常并不需要访问这个属性。
 
