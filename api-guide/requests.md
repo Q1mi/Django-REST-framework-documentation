@@ -109,7 +109,7 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 如果你确实需要访问请求的内容类型，你应该使用 `.content_type` 属性，而不是使用 `request.META.get('HTTP_CONTENT_TYPE')`, 因为它为基于浏览器的非表单内容提供了透明的支持。
 
-For more information see the [browser enhancements documentation].
+更多详细信息请查阅 [browser enhancements documentation].
 
 ## .stream
 
