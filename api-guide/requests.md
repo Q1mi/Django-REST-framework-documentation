@@ -22,7 +22,7 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 * 它支持解析除`POST`之外的HTTP方法的内容，这意味着你可以访问`PUT`和`PATCH`请求的内容。
 * 它支持REST框架灵活的请求解析，而不仅仅支持表单数据。 例如，你可以以与处理传入表单数据相同的方式处理传入的JSON数据。
 
-For more details see the [parsers documentation].
+ 更多详细信息请参阅[parsers documentation].
 
 ## .query_params
 
