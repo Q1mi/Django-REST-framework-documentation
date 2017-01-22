@@ -113,9 +113,10 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 ## .stream
 
-`request.stream` returns a stream representing the content of the request body.
+`request.stream` 返回一个表示请求主体内容的流。
 
-You won't typically need to directly access the request's content, as you'll normally rely on REST framework's default request parsing behavior.
+你通常不需要直接访问请求的内容类型，因为你通常将依赖于REST framework的默认请求解析行为。
+
 
 ---
 
