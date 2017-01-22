@@ -105,9 +105,9 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 `request.content_type` 返回表示HTTP请求正文的媒体类型的字符串对象，如果未提供媒体类型，则返回空字符串。
 
-You won't typically need to directly access the request's content type, as you'll normally rely on REST framework's default request parsing behavior.
+你通常不需要直接访问请求的内容类型，因为你通常将依赖于REST framework的默认请求解析行为。
 
-If you do need to access the content type of the request you should use the `.content_type` property in preference to using `request.META.get('HTTP_CONTENT_TYPE')`, as it provides transparent support for browser-based non-form content.
+如果你确实需要访问请求的内容类型，你应该使用 `.content_type` 属性，而不是使用 `request.META.get('HTTP_CONTENT_TYPE')`, 因为它为基于浏览器的非表单内容提供了透明的支持。
 
 For more information see the [browser enhancements documentation].
 
