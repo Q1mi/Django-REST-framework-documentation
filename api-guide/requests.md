@@ -4,15 +4,14 @@
 
 > &mdash; Malcom Tredinnick, [Django developers group][cite]
 
-REST framework的`Request`类扩展了标准的`HttpRequest`，添加对REST框架的灵活请求解析和请求身份验证的支持。
+REST framework的`Request`类扩展了标准的`HttpRequest`，添加对REST framework的灵活请求解析和请求身份验证的支持。
 
 ---
 
 # Request parsing（请求解析）
 
-REST framework's Request objects provide flexible request parsing that allows you to treat requests with JSON data or other media types in the same way that you would normally deal with form data.
 
-REST框架请求对象提供灵活的请求解析，允许你以与通常处理表单数据相同的方式使用JSON数据或其他媒体类型处理请求。
+REST framework的请求对象提供灵活的请求解析，允许你以与通常处理表单数据相同的方式使用JSON数据或其他媒体类型处理请求。
 
 ## .data
 
@@ -20,7 +19,7 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 * 它包括所有解析的内容, 包括 *文件或非文件* 输入。
 * 它支持解析除`POST`之外的HTTP方法的内容，这意味着你可以访问`PUT`和`PATCH`请求的内容。
-* 它支持REST框架灵活的请求解析，而不仅仅支持表单数据。 例如，你可以以与处理传入表单数据相同的方式处理传入的JSON数据。
+* 它支持REST framework灵活的请求解析，而不仅仅支持表单数据。 例如，你可以以与处理传入表单数据相同的方式处理传入的JSON数据。
 
  更多详细信息请参阅[parsers documentation].
 
