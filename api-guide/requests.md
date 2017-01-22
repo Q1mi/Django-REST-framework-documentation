@@ -95,7 +95,7 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 ## .method
 
-`request.method` returns the **uppercased** string representation of the request's HTTP method.
+`request.method` 返回请求的HTTP方法的 **大写** 字符串表示形式。
 
 Browser-based `PUT`, `PATCH` and `DELETE` forms are transparently supported.
 
