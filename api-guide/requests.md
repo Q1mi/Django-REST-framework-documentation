@@ -75,7 +75,7 @@ REST framework 提供了灵活的，每次请求的验证，让你能够：
 
 ## .auth
 
-`request.auth` returns any additional authentication context.  The exact behavior of `request.auth` depends on the authentication policy being used, but it may typically be an instance of the token that the request was authenticated against.
+`request.auth` 返回任何其他身份验证上下文。 `request.auth` 的确切行为取决于所使用的的认证策略，但它通常可以是请求被认证的token实例。
 
 If the request is unauthenticated, or if no additional context is present, the default value of `request.auth` is `None`.
 
