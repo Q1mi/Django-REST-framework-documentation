@@ -38,7 +38,7 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 ---
 
-**Note:** If a client sends malformed content, then accessing `request.data` may raise a `ParseError`.  By default REST framework's `APIView` class or `@api_view` decorator will catch the error and return a `400 Bad Request` response.
+**Note:** 如果客户端发送格式错误的内容，则访问`request.data`可能会引发`ParseError`。默认情况下REST framework的 `APIView`类或`@api_view`装饰器将捕获错误并返回`400 Bad Request`响应。
 
 If a client sends a request with a content-type that cannot be parsed then a `UnsupportedMediaType` exception will be raised, which by default will be caught and return a `415 Unsupported Media Type` response.
 
