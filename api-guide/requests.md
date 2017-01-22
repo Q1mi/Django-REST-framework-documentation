@@ -83,7 +83,7 @@ REST framework 提供了灵活的，每次请求的验证，让你能够：
 
 ## .authenticators
 
-The `APIView` class or `@api_view` decorator will ensure that this property is automatically set to a list of `Authentication` instances, based on the `authentication_classes` set on the view or based on the `DEFAULT_AUTHENTICATORS` setting.
+`APIView` 类或 `@api_view` 装饰器将根据在view中设置的`authentication_classes` 或基于`DEFAULT_AUTHENTICATORS` 设置，确保此属性自动设置为 `Authentication` 实例的列表。
 
 You won't typically need to access this property.
 
