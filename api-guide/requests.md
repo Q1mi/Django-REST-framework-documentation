@@ -62,8 +62,8 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 REST framework 提供了灵活的，每次请求的验证，让你能够：
 * 对API的不同部分使用不同的身份验证策略。
-* Support the use of multiple authentication policies.
-* Provide both user and token information associated with the incoming request.
+* 支持使用多个身份验证策略。
+* 提供与传入请求相关联的用户和令牌信息。
 
 ## .user
 
