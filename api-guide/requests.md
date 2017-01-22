@@ -28,7 +28,7 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 `request.query_params`是`request.GET`的一个更准确的同义词。
 
-为了让你的代码清晰明了, 我们建议使用 `request.query_params` 而不是Django标准的`request.GET`. Doing so will help keep your codebase more correct and obvious - any HTTP method type may include query parameters, not just `GET` requests.
+为了让你的代码清晰明了, 我们建议使用 `request.query_params` 而不是Django标准的`request.GET`。这样做有助于保持代码库更加正确和明了——任何HTTP方法类型可能包括查询参数，而不仅仅是`GET`请求。
 
 ## .parsers
 
