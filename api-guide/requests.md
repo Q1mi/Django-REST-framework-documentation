@@ -97,9 +97,9 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 `request.method` 返回请求的HTTP方法的 **大写** 字符串表示形式。
 
-Browser-based `PUT`, `PATCH` and `DELETE` forms are transparently supported.
+透明地支持基于浏览器的 `PUT`, `PATCH` 和 `DELETE` 表单。
 
-For more information see the [browser enhancements documentation].
+更多详细信息请查阅 [browser enhancements documentation].
 
 ## .content_type
 
