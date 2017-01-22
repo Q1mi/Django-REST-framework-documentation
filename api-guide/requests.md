@@ -103,7 +103,7 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 ## .content_type
 
-`request.content_type`, returns a string object representing the media type of the HTTP request's body, or an empty string if no media type was provided.
+`request.content_type` 返回表示HTTP请求正文的媒体类型的字符串对象，如果未提供媒体类型，则返回空字符串。
 
 You won't typically need to directly access the request's content type, as you'll normally rely on REST framework's default request parsing behavior.
 
