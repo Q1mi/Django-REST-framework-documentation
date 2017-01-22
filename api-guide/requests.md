@@ -67,11 +67,11 @@ REST framework 提供了灵活的，每次请求的验证，让你能够：
 
 ## .user
 
-`request.user` 通常返回一个 `django.contrib.auth.models.User` 实例, although the behavior depends on the authentication policy being used.
+`request.user` 通常返回一个 `django.contrib.auth.models.User` 实例, 尽管该行为取决于所使用的的认证策略。
 
-If the request is unauthenticated the default value of `request.user` is an instance of `django.contrib.auth.models.AnonymousUser`.
+如果请求未认证则 `request.user` 的默认值为 `django.contrib.auth.models.AnonymousUser`的一个实例。
 
-For more details see the [authentication documentation].
+更多详细信息请查阅 [authentication documentation].
 
 ## .auth
 
