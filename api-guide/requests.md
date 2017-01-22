@@ -44,25 +44,24 @@ REST框架请求对象提供灵活的请求解析，允许你以与通常处理�
 
 ---
 
-# Content negotiation
+# Content negotiation（内容协商）
 
-The request exposes some properties that allow you to determine the result of the content negotiation stage. This allows you to implement behaviour such as selecting a different serialisation schemes for different media types.
+请求提供了一些属性允许你确定内容协商阶段的结果。这允许你实现具体的行为，例如为不同的媒体类型选择不用的序列化方案。
 
 ## .accepted_renderer
 
-The renderer instance what was selected by the content negotiation stage.
+由内容协商阶段选择的render实例。
 
 ## .accepted_media_type
 
-A string representing the media type that was accepted by the content negotiation stage.
+由内容协商阶段接受的媒体类型的字符串。
 
 ---
 
-# Authentication
+# Authentication（认证）
 
-REST framework provides flexible, per-request authentication, that gives you the ability to:
-
-* Use different authentication policies for different parts of your API.
+REST framework 提供了灵活的，每次请求的验证，让你能够：
+* 对API的不同部分使用不同的身份验证策略。
 * Support the use of multiple authentication policies.
 * Provide both user and token information associated with the incoming request.
 
