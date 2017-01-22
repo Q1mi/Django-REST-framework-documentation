@@ -89,9 +89,9 @@ REST framework 提供了灵活的，每次请求的验证，让你能够：
 
 ---
 
-# Browser enhancements
+# Browser enhancements（浏览器增强）
 
-REST framework supports a few browser enhancements such as browser-based `PUT`, `PATCH` and `DELETE` forms.
+REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT`, `PATCH` 和 `DELETE` 表单。
 
 ## .method
 
