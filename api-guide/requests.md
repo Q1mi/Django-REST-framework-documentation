@@ -120,7 +120,7 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 ---
 
-# Standard HttpRequest attributes
+# Standard HttpRequest attributes（标准HttpRequest属性）
 
 As REST framework's `Request` extends Django's `HttpRequest`, all the other standard attributes and methods are also available.  For example the `request.META` and `request.session` dictionaries are available as normal.
 
