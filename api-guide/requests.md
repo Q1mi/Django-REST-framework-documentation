@@ -79,7 +79,7 @@ REST framework 提供了灵活的，每次请求的验证，让你能够：
 
 如果请求未认证或者没有其他上下文，则 `request.auth` 的默认值为 `None`.
 
-For more details see the [authentication documentation].
+更多详细信息请查阅 [authentication documentation].
 
 ## .authenticators
 
