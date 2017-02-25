@@ -44,15 +44,15 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 ---
 
-\# Attributes
+\# 属性
 
 \#\# .data
 
-The unrendered content of a \`Request\` object.
+\`Request\` 对象的未渲染内容。
 
 \#\# .status\_code
 
-The numeric status code of the HTTP response.
+HTTP 响应的数字状态吗。
 
 \#\# .content
 
