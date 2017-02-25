@@ -24,7 +24,7 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 \*\*Signature:\*\* \`Response\(data, status=None, template\_name=None, headers=None, content\_type=None\)\`
 
-与常规的 \`HttpResponse\` 对象不同，你不能使用渲染内容来实例化一个 \`Response\` 对象，而是传递未渲染的数据，包含任何Python原始数据类型。
+与常规的 \`HttpResponse\` 对象不同，你不能使用渲染内容来实例化一个 \`Response\` 对象，而是传递未渲染的数据，包含任何Python基本数据类型。
 
 The renderers used by the \`Response\` class cannot natively handle complex datatypes such as Django model instances, so you need to serialize the data into primitive datatypes before creating the \`Response\` object.
 
