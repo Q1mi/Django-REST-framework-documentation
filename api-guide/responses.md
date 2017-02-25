@@ -82,9 +82,9 @@ response的呈现内容。 \`.render\(\)\` 方法必须先调用才能访问\`.c
 
 ---
 
-\# Standard HttpResponse attributes
+\# 标准的HttpResponse 属性
 
-The \`Response\` class extends \`SimpleTemplateResponse\`, and all the usual attributes and methods are also available on the response.  For example you can set headers on the response in the standard way:
+\`Response\` 类扩展了 \`SimpleTemplateResponse\`，并且所有常用的属性和方法都是提供的。比如你可以使用标准的方法设置response的header信息：
 
 ```
 response = Response\(\)
