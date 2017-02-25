@@ -28,7 +28,7 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 \`Response\` 类使用的渲染器无法自行处理想Django model实例这样的复杂数据类型，因此你需要在创建\`Response\`对象之前将数据序列化为基本数据类型。
 
-You can use REST framework's \`Serializer\` classes to perform this data serialization, or use your own custom serialization.
+你可以使用 REST framework的\`Serializer\` 类来执行此类数据的序列化，或者使用你自定义的来序列化。
 
 Arguments:
 
