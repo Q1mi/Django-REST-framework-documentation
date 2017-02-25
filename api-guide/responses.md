@@ -70,15 +70,15 @@ response的呈现内容。 \`.render\(\)\` 方法必须先调用才能访问\`.c
 
 \#\# .accepted\_media\_type
 
-The media type that was selected by the content negotiation stage.
+由 content negotiation 阶段选择的媒体类型。
 
-Set automatically by the \`APIView\` or \`@api\_view\` immediately before the response is returned from the view.
+自动通过 \`APIView\` 或者 \`@api\_view\` 在view返回response之前设置。
 
 \#\# .renderer\_context
 
-A dictionary of additional context information that will be passed to the renderer's \`.render\(\)\` method.
+一个将传递给渲染器的\`.render\(\)\`方法的附加上下文信息字典。
 
-Set automatically by the \`APIView\` or \`@api\_view\` immediately before the response is returned from the view.
+自动通过 \`APIView\` 或者 \`@api\_view\` 在view返回response之前设置。
 
 ---
 
