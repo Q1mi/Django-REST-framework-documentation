@@ -96,9 +96,9 @@ response\['Cache-Control'\] = 'no-cache'
 
 \*\*Signature:\*\* \`.render\(\)\`
 
-As with any other \`TemplateResponse\`, this method is called to render the serialized data of the response into the final response content.  When \`.render\(\)\` is called, the response content will be set to the result of calling the \`.render\(data, accepted\_media\_type, renderer\_context\)\` method on the \`accepted\_renderer\` instance.
+和其他的 \`TemplateResponse\`一样，调用该方法将response的序列化数据呈现为最终的response内容。 当\`.render\(\)\`被调用时， response的内容将被设置成在\`accepted\_renderer\`实例上调用\`.render\(data, accepted\_media\_type, renderer\_context\)\` 方法返回的结果。
 
-You won't typically need to call \`.render\(\)\` yourself, as it's handled by Django's standard response cycle.
+你通常并不需要自己调用 \`.render\(\)\` ，因为它是由Django的标准响应周期来处理的。
 
 \[cite\]: [https://docs.djangoproject.com/en/stable/stable/template-response/](https://docs.djangoproject.com/en/stable/stable/template-response/)
 
