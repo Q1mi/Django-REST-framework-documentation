@@ -56,11 +56,11 @@ HTTP 响应的数字状态吗。
 
 \#\# .content
 
-The rendered content of the response.  The \`.render\(\)\` method must have been called before \`.content\` can be accessed.
+response的呈现内容。 \`.render\(\)\` 方法必须先调用才能访问\`.content\` 。
 
 \#\# .template\_name
 
-The \`template\_name\`, if supplied.  Only required if \`HTMLRenderer\` or some other custom template renderer is the accepted renderer for the response.
+\`template\_name\` 只有在使用 \`HTMLRenderer\` 或者其他自定义模板作为response的渲染器时才需要提供该属性。
 
 \#\# .accepted\_renderer
 
