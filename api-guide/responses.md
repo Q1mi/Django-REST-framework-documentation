@@ -10,7 +10,7 @@ source: response.py
 
 REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiation，该类允许你返回可以呈现为多种内容类型的内容，具体取决于客户端的请求。
 
-\`Response\` 类的子类 Django的 \`SimpleTemplateResponse\`。  \`Response\` 对象用Python原生的数据类型初始化。 然后REST framework 使用标准的HTTP content negotiation 来确定如何呈现最终的相应内容。
+\`Response\` 类的子类 Django的 \`SimpleTemplateResponse\`。  \`Response\` 对象用Python基本数据类型初始化。 然后REST framework 使用标准的HTTP content negotiation 来确定如何呈现最终的相应内容。
 
 你并不需要一定是用 \`Response\` 类， 你可以从你的视图返回常规的 \`HttpResponse\` 或者 \`StreamingHttpResponse\` 对象。  使用 \`Response\` 类只提供了一个可以呈现多种格式的更好的界面来返回 content-negotiated 的 Web API 响应。
 
@@ -26,7 +26,7 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 与常规的 \`HttpResponse\` 对象不同，你不能使用渲染内容来实例化一个 \`Response\` 对象，而是传递未渲染的数据，包含任何Python基本数据类型。
 
-The renderers used by the \`Response\` class cannot natively handle complex datatypes such as Django model instances, so you need to serialize the data into primitive datatypes before creating the \`Response\` object.
+\`Response\` 类使用的渲染器无法自行处理想Django model实例这样的复杂数据类型，因此你需要在创建\`Response\`对象之前将数据序列化为基本数据类型。
 
 You can use REST framework's \`Serializer\` classes to perform this data serialization, or use your own custom serialization.
 
