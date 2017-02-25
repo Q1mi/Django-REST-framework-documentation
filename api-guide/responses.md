@@ -30,13 +30,13 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 你可以使用 REST framework的\`Serializer\` 类来执行此类数据的序列化，或者使用你自定义的来序列化。
 
-Arguments:
+参数:
 
-\* \`data\`: The serialized data for the response.
+\* \`data\`: response的数列化数据.
 
-\* \`status\`: A status code for the response.  Defaults to 200.  See also \[status codes\]\[statuscodes\].
+\* \`status\`:  response的状态码。默认是200.  另行参阅 \[status codes\]\[statuscodes\].
 
-\* \`template\_name\`: A template name to use if \`HTMLRenderer\` is selected.
+\* \`template\_name\`: \`HTMLRenderer\` 选择要使用的模板名称。
 
 \* \`headers\`: A dictionary of HTTP headers to use in the response.
 
