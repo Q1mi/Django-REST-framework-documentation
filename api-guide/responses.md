@@ -64,9 +64,9 @@ response的呈现内容。 \`.render\(\)\` 方法必须先调用才能访问\`.c
 
 \#\# .accepted\_renderer
 
-The renderer instance that will be used to render the response.
+将用于呈现response的render实例。
 
-Set automatically by the \`APIView\` or \`@api\_view\` immediately before the response is returned from the view.
+自动通过 \`APIView\` 或者 \`@api\_view\` 在view返回response之前设置。
 
 \#\# .accepted\_media\_type
 
