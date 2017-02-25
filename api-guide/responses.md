@@ -40,7 +40,7 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 \* \`headers\`: A dictionary of HTTP headers to use in the response.
 
-\* \`content\_type\`: The content type of the response.  Typically, this will be set automatically by the renderer as determined by content negotiation, but there may be some cases where you need to specify the content type explicitly.
+\* \`content\_type\`: response的内容类型。通常由渲染器自行设置，由content negotiation确定，但是在某些情况下，你需要明确指定内容类型。
 
 ---
 
