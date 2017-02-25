@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [API Guide](api-guide.md)
-    * [filtering](api-guide/filtering.md)
-    * [Requests](requests.md)
+  * [filtering](api-guide/filtering.md)
+  * [Requests](requests.md)
+  * [Responses](api-guide/responses.md)
 
