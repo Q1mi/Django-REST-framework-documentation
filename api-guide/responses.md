@@ -14,7 +14,7 @@ REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiati
 
 你并不需要一定是用 \`Response\` 类， 你可以从你的视图返回常规的 \`HttpResponse\` 或者 \`StreamingHttpResponse\` 对象。  使用 \`Response\` 类只提供了一个可以呈现多种格式的更好的界面来返回 content-negotiated 的 Web API 响应。
 
-除非你 want to heavily customize REST framework for some reason, you should always use an \`APIView\` class or \`@api\_view\` function for views that return \`Response\` objects.  Doing so ensures that the view can perform content negotiation and select the appropriate renderer for the response, before it is returned from the view.
+除非由于某种原因你要对 REST framework 做大量的自定义，否则你应该始终对返回对象的views使用 \`APIView\` 类或者\`@api\_view\` 函数。这样做可以确保视图在返回之前能够执行 content negotiation 并且为响应选择适当的渲染器。
 
 ---
 
