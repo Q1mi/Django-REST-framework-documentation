@@ -14,7 +14,7 @@ source: mixins.py
 
 基于类的视图的主要优点之一是它们允许你组合一些可重用的行为。  REST framework通过提供许多预先构建的视图来提供常用的模式来利用这一优点。
 
-The generic views provided by REST framework allow you to quickly build API views that map closely to your database models.
+REST framework 提供的通用视图允许您快速构建与数据库模型密切映射的API视图。
 
 If the generic views don't suit the needs of your API, you can drop down to using the regular \`APIView\` class, or reuse the mixins and base classes used by the generic views to compose your own set of reusable generic views.
 
