@@ -64,7 +64,7 @@ class UserList\(generics.ListCreateAPIView\):
 
             return Response\(serializer.data\)
 
-For very simple cases you might want to pass through any class attributes using the \`.as\_view\(\)\` method.  For example, your URLconf might include something like the following entry:
+对于非常简单的情况，你可能想使用`.as_view()`方法传递任何类属性。 比如：你的URLconf可能包括类似以下条目：
 
 ```
 url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), serializer\_class=UserSerializer\), name='user-list'\)
