@@ -18,9 +18,9 @@ REST framework 提供的通用视图允许您快速构建与数据库模型密�
 
 如果通用视图不适合你的API的需求，你可以选择使用常规`APIView`类，或重用通用视图使用的mixins和基类来组成你自己的一组可重用的通用视图。
 
-\#\# Examples
+\#\# 举个例子
 
-Typically when using the generic views, you'll override the view, and set several class attributes.
+通常在使用通用视图时，你将覆盖视图，并设置多个类属性。
 
 ```
 from django.contrib.auth.models import User
