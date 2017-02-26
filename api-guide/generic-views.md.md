@@ -42,7 +42,7 @@ class UserList\(generics.ListCreateAPIView\):
     permission\_classes = \(IsAdminUser,\)
 ```
 
-For more complex cases you might also want to override various methods on the view class.  For example.
+对于更复杂的情况，您可能还想覆盖视图类上的各种方法。比如：
 
     class UserList\(generics.ListCreateAPIView\):
 
