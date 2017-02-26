@@ -16,7 +16,7 @@ source: mixins.py
 
 REST framework 提供的通用视图允许您快速构建与数据库模型密切映射的API视图。
 
-If the generic views don't suit the needs of your API, you can drop down to using the regular \`APIView\` class, or reuse the mixins and base classes used by the generic views to compose your own set of reusable generic views.
+如果通用视图不适合你的API的需求，你可以选择使用常规`APIView`类，或重用通用视图使用的mixins和基类来组成你自己的一组可重用的通用视图。
 
 \#\# Examples
 
