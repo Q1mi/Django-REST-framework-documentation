@@ -78,7 +78,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 此类扩展了REST框架的`APIView`类，为标准list和detail view 添加了通常需要的行为。
 
-Each of the concrete generic views provided is built by combining \`GenericAPIView\`, with one or more mixin classes.
+提供的每个具体通用视图是通过将`GenericAPIView`与一个或多个mixin类组合来构建的。
 
 \#\#\# Attributes
 
