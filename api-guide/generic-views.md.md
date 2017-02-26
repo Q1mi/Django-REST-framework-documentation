@@ -76,7 +76,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \#\# GenericAPIView
 
-This class extends REST framework's \`APIView\` class, adding commonly required behavior for standard list and detail views.
+此类扩展了REST框架的`APIView`类，为标准list和detail view 添加了通常需要的行为。
 
 Each of the concrete generic views provided is built by combining \`GenericAPIView\`, with one or more mixin classes.
 
