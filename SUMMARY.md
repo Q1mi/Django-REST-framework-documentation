@@ -5,4 +5,5 @@
   * [filtering](api-guide/filtering.md)
   * [Requests](requests.md)
   * [Responses](api-guide/responses.md)
+  * [generic-views.md](api-guide/generic-views.md.md)
 
