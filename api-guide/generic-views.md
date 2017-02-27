@@ -92,7 +92,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \* \`lookup\_field\` - 用于执行各个model实例的对象查找的model字段。默认为 \`'pk'\`。 请注意，在使用超链接API时，如果需要使用自定义的值，你需要确保在API视图\*和\*序列化类\*都\*设置查找字段。
 
-\* \`lookup\_url\_kwarg\` - The URL keyword argument that should be used for object lookup.  The URL conf should include a keyword argument corresponding to this value.  If unset this defaults to using the same value as \`lookup\_field\`.
+\* \`lookup\_url\_kwarg\` - 应用于对象查找的URL关键字参数。它的 URL conf 应该包括一个与这个值相对应的关键字参数。如果取消设置，默认情况下使用与 \`lookup\_field\`相同的值。
 
 \*\*Pagination\*\*:
 
