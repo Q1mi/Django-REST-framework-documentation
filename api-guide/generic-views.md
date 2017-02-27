@@ -474,13 +474,13 @@ class BaseRetrieveUpdateDestroyView\(MultipleFieldLookupMixin,
 
 ---
 
-\# Third party packages
+\# 第三方包
 
-The following third party packages provide additional generic view implementations.
+以下第三方包提供了其他通用视图实现。
 
 \#\# Django REST Framework bulk
 
-The \[django-rest-framework-bulk package\]\[django-rest-framework-bulk\] implements generic view mixins as well as some common concrete generic views to allow to apply bulk operations via API requests.
+The \[django-rest-framework-bulk package\]\[django-rest-framework-bulk\] 包实现通用视图mixins以及一些常见的具体通用视图，以允许通过API请求应用批量操作。
 
 \#\# Django Rest Multiple Models
 
