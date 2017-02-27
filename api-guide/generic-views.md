@@ -114,7 +114,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 这个方法应该总是被调用而不是直接访问 \`self.queryset\` ，因为 \`self.queryset\` 只会被计算一起，然后这些结果将为后续的请求缓存起来。
 
-该方法可能会被重写以提供动态行为，比如返回基于发出请求的用户的结果集。 
+该方法可能会被重写以提供动态行为，比如返回基于发出请求的用户的结果集。
 
 例如:
 
@@ -128,11 +128,11 @@ def get\_queryset\(self\):
 
 \#\#\#\# \`get\_object\(self\)\`
 
-Returns an object instance that should be used for detail views.  Defaults to using the \`lookup\_field\` parameter to filter the base queryset.
+返回应用于详细视图的对象实例。默认使用 \`lookup\_field\` 参数过滤基本的查询集。
 
-May be overridden to provide more complex behavior, such as object lookups based on more than one URL kwarg.
+该方法可以被重写以提供更复杂的行为，例如基于多个 URL 参数的对象查找。
 
-For example:
+例如:
 
 ```
 def get\_object\(self\):
