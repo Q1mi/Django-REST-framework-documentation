@@ -84,7 +84,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \*\*Basic settings\*\*:
 
-The following attributes control the basic view behavior.
+以下属性控制着基本视图的行为。
 
 \* \`queryset\` - The queryset that should be used for returning objects from this view.  Typically, you must either set this attribute, or override the \`get\_queryset\(\)\` method. If you are overriding a view method, it is important that you call \`get\_queryset\(\)\` instead of accessing this property directly, as \`queryset\` will get evaluated once, and those results will be cached for all subsequent requests.
 
