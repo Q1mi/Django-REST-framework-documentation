@@ -96,9 +96,9 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \*\*Pagination\*\*:
 
-The following attributes are used to control pagination when used with list views.
+以下属性用于在与列表视图一起使用时控制分页。
 
-\* \`pagination\_class\` - The pagination class that should be used when paginating list results. Defaults to the same value as the \`DEFAULT\_PAGINATION\_CLASS\` setting, which is \`'rest\_framework.pagination.PageNumberPagination'\`.
+\* \`pagination\_class\` - 当分页列出结果时应使用的分页类。The pagination class that should be used when paginating list results. 默认值与 \`DEFAULT\_PAGINATION\_CLASS\` 设置的相同，即 \`'rest\_framework.pagination.PageNumberPagination'\`。
 
 \*\*Filtering\*\*:
 
