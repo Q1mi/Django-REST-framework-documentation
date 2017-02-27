@@ -288,9 +288,9 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 \#\# RetrieveModelMixin
 
-Provides a \`.retrieve\(request, \*args, \*\*kwargs\)\` method, that implements returning an existing model instance in a response.
+提供一个 \`.retrieve\(request, \*args, \*\*kwargs\)\` 方法，实现返回响应中现有模型的实例。
 
-If an object can be retrieved this returns a \`200 OK\` response, with a serialized representation of the object as the body of the response.  Otherwise it will return a \`404 Not Found\`.
+如果可以检索对象，则返回 \`200 OK\` 响应，将该对象的序列化表示作为响应的主体。否则将返回 \`404 Not Found\`。
 
 \#\# UpdateModelMixin
 
