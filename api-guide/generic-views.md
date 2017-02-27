@@ -82,11 +82,11 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \#\#\# Attributes
 
-\*\*Basic settings\*\*:
+\*\*基本设置\*\*:
 
 以下属性控制着基本视图的行为。
 
-\* \`queryset\` - The queryset that should be used for returning objects from this view.  Typically, you must either set this attribute, or override the \`get\_queryset\(\)\` method. If you are overriding a view method, it is important that you call \`get\_queryset\(\)\` instead of accessing this property directly, as \`queryset\` will get evaluated once, and those results will be cached for all subsequent requests.
+\* \`queryset\` - Queryset 应该用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 \`get\_queryset\(\)\` 方法。如果你重写了一个视图的方法，重要的是你应该调用 \`get\_queryset\(\)\` 方法而不是直接访问该属性，因为 \`queryset\` 将被计算一次，这些结果将为后续请求缓存起来。
 
 \* \`serializer\_class\` - The serializer class that should be used for validating and deserializing input, and for serializing output.  Typically, you must either set this attribute, or override the \`get\_serializer\_class\(\)\` method.
 
