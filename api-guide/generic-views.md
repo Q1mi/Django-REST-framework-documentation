@@ -294,9 +294,9 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 \#\# UpdateModelMixin
 
-Provides a \`.update\(request, \*args, \*\*kwargs\)\` method, that implements updating and saving an existing model instance.
+提供 \`.update\(request, \*args, \*\*kwargs\)\` 方法，实现更新和保存现有模型实例。
 
-Also provides a \`.partial\_update\(request, \*args, \*\*kwargs\)\` method, which is similar to the \`update\` method, except that all fields for the update will be optional.  This allows support for HTTP \`PATCH\` requests.
+同时还提供了一个 \`.partial\_update\(request, \*args, \*\*kwargs\)\` 方法，这个方法和 \`update\` 方法类似，但更新的所有字段都是可选的。这允许支持 HTTP \`PATCH\` 请求。
 
 If an object is updated this returns a \`200 OK\` response, with a serialized representation of the object as the body of the response.
 
