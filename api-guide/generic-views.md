@@ -358,35 +358,35 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 \#\# ListCreateAPIView
 
-Used for \*\*read-write\*\* endpoints to represent a \*\*collection of model instances\*\*.
+用于 **读写 端点以表示模型实例**的集合。
 
-Provides \`get\` and \`post\` method handlers.
+提供一个 \`get\` 和 \`post\` 方法的处理程序。
 
-Extends: \[GenericAPIView\], \[ListModelMixin\], \[CreateModelMixin\]
+扩展: \[GenericAPIView\], \[ListModelMixin\], \[CreateModelMixin\]
 
 \#\# RetrieveUpdateAPIView
 
-Used for \*\*read or update\*\* endpoints to represent a \*\*single model instance\*\*.
+用于 \*\*读取或更新\*\* 端点以表示 \*\*单个模型实例\*\*。
 
-Provides \`get\`, \`put\` and \`patch\` method handlers.
+提供 \`get\`, \`put\` 和 \`patch\` 方法的处理程序。
 
-Extends: \[GenericAPIView\], \[RetrieveModelMixin\], \[UpdateModelMixin\]
+扩展: \[GenericAPIView\], \[RetrieveModelMixin\], \[UpdateModelMixin\]
 
 \#\# RetrieveDestroyAPIView
 
-Used for \*\*read or delete\*\* endpoints to represent a \*\*single model instance\*\*.
+用于 \*\*读取或删除\*\* 端点以表示 \*\*单个模型实例\*\*。
 
-Provides \`get\` and \`delete\` method handlers.
+提供 \`get\` 和 \`delete\` 方法的处理程序。
 
-Extends: \[GenericAPIView\], \[RetrieveModelMixin\], \[DestroyModelMixin\]
+扩展: \[GenericAPIView\], \[RetrieveModelMixin\], \[DestroyModelMixin\]
 
 \#\# RetrieveUpdateDestroyAPIView
 
-Used for \*\*read-write-delete\*\* endpoints to represent a \*\*single model instance\*\*.
+用于 \*\*读写删除\*\* 端点以表示 \*\*单个模型实例\*\*。
 
-Provides \`get\`, \`put\`, \`patch\` and \`delete\` method handlers.
+提供 \`get\`, \`put\`, \`patch\` 和 \`delete\`方法的处理程序。
 
-Extends: \[GenericAPIView\], \[RetrieveModelMixin\], \[UpdateModelMixin\], \[DestroyModelMixin\]
+扩展: \[GenericAPIView\], \[RetrieveModelMixin\], \[UpdateModelMixin\], \[DestroyModelMixin\]
 
 ---
 
