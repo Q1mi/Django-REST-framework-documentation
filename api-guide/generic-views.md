@@ -312,29 +312,29 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 \# Concrete View Classes
 
-The following classes are the concrete generic views.  If you're using generic views this is normally the level you'll be working at unless you need heavily customized behavior.
+以下类是具体的通用视图。这通常是你真正用到的那些，除非你需要深度定制的行为。
 
-The view classes can be imported from \`rest\_framework.generics\`.
+这些视图类可以从 \`rest\_framework.generics\`导入。
 
 \#\# CreateAPIView
 
-Used for \*\*create-only\*\* endpoints.
+用于 \*\*仅创建\*\* 情形。
 
-Provides a \`post\` method handler.
+提供一个 \`post\` 方法处理程序。
 
-Extends: \[GenericAPIView\], \[CreateModelMixin\]
+扩展: \[GenericAPIView\], \[CreateModelMixin\]
 
 \#\# ListAPIView
 
-Used for \*\*read-only\*\* endpoints to represent a \*\*collection of model instances\*\*.
+用于表示\*\*模型实例集合 \*\*的 \*\* 只读 \*\* 端点。
 
-Provides a \`get\` method handler.
+提供一个 \`get\` 方法处理程序。
 
-Extends: \[GenericAPIView\], \[ListModelMixin\]
+扩展: \[GenericAPIView\], \[ListModelMixin\]
 
 \#\# RetrieveAPIView
 
-Used for \*\*read-only\*\* endpoints to represent a \*\*single model instance\*\*.
+用于表示**单个模型实例**的 \*\*只读\*\* 端点。
 
 Provides a \`get\` method handler.
 
