@@ -88,7 +88,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \* \`queryset\` - Queryset 应该用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 \`get\_queryset\(\)\` 方法。如果你重写了一个视图的方法，重要的是你应该调用 \`get\_queryset\(\)\` 方法而不是直接访问该属性，因为 \`queryset\` 将被计算一次，这些结果将为后续请求缓存起来。
 
-\* \`serializer\_class\` - The serializer class that should be used for validating and deserializing input, and for serializing output.  Typically, you must either set this attribute, or override the \`get\_serializer\_class\(\)\` method.
+\* \`serializer\_class\` - The serializer class 用于验证和反序列化输入以及用于序列化输出。 通常，你必须设置此属性或者重写\`get\_serializer\_class\(\)\` 方法。
 
 \* \`lookup\_field\` - The model field that should be used to for performing object lookup of individual model instances.  Defaults to \`'pk'\`.  Note that when using hyperlinked APIs you'll need to ensure that \*both\* the API views \*and\* the serializer classes set the lookup fields if you need to use a custom value.
 
