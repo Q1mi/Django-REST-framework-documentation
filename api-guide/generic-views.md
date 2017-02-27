@@ -252,17 +252,17 @@ def perform\_create\(self, serializer\):
 
 \*\*其他方法\*\*:
 
-You won't typically need to override the following methods, although you might need to call into them if you're writing custom views using \`GenericAPIView\`.
+你通常并不需要重写以下方法，虽然在你使用\`GenericAPIView\`编写自定义视图的时候可能会调用它们。
 
-\* \`get\_serializer\_context\(self\)\` - Returns a dictionary containing any extra context that should be supplied to the serializer.  Defaults to including \`'request'\`, \`'view'\` and \`'format'\` keys.
+\* \`get\_serializer\_context\(self\)\` - 返回包含应该提供给序列化程序的任何额外上下文的字典。默认包含 \`'request'\`, \`'view'\` 和 \`'format'\` 这些keys。.
 
-\* \`get\_serializer\(self, instance=None, data=None, many=False, partial=False\)\` - Returns a serializer instance.
+\* \`get\_serializer\(self, instance=None, data=None, many=False, partial=False\)\` - 返回一个序列化器的实例。
 
-\* \`get\_paginated\_response\(self, data\)\` - Returns a paginated style \`Response\` object.
+\* \`get\_paginated\_response\(self, data\)\` - 返回分页样式的 \`Response\` 对象。
 
-\* \`paginate\_queryset\(self, queryset\)\` - Paginate a queryset if required, either returning a page object, or \`None\` if pagination is not configured for this view.
+\* \`paginate\_queryset\(self, queryset\)\` - 如果需要分页查询，返回页面对象，如果没有为此视图配置分页，则返回 \`None\`。
 
-\* \`filter\_queryset\(self, queryset\)\` - Given a queryset, filter it with whichever filter backends are in use, returning a new queryset.
+\* \`filter\_queryset\(self, queryset\)\` - 给定查询集，使用任何过滤器后端进行过滤，返回一个新的查询集。
 
 ---
 
