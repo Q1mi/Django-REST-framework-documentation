@@ -234,7 +234,7 @@ def perform\_update\(self, serializer\):
     send\_email\_confirmation\(user=self.request.user, modified=instance\)
 ```
 
-You can also use these hooks to provide additional validation, by raising a \`ValidationError\(\)\`. This can be useful if you need some validation logic to apply at the point of database save. For example:
+你还可以使用这些钩子通过抛出\`ValidationError\(\)\`来提供额外的验证。当你需要在数据库保存时应用一些验证逻辑时，这会很有用。 例如:
 
 ```
 def perform\_create\(self, serializer\):
@@ -248,9 +248,9 @@ def perform\_create\(self, serializer\):
     serializer.save\(user=self.request.user\)
 ```
 
-\*\*Note\*\*: These methods replace the old-style version 2.x \`pre\_save\`, \`post\_save\`, \`pre\_delete\` and \`post\_delete\` methods, which are no longer available.
+\*\*注意\*\*: 这些方法替换了旧版本 2.x中的 \`pre\_save\`, \`post\_save\`, \`pre\_delete\` 和 \`post\_delete\` 方法，这些方法不再可用。
 
-\*\*Other methods\*\*:
+\*\*其他方法\*\*:
 
 You won't typically need to override the following methods, although you might need to call into them if you're writing custom views using \`GenericAPIView\`.
 
