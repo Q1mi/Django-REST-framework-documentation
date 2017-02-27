@@ -112,11 +112,11 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 返回列表视图中实用的查询集，该查询集还用作详细视图中的查找基础。默认返回由 \`queryset\` 属性指定的查询集。
 
-This method should always be used rather than accessing \`self.queryset\` directly, as \`self.queryset\` gets evaluated only once, and those results are cached for all subsequent requests.
+这个方法应该总是被调用而不是直接访问 \`self.queryset\` ，因为 \`self.queryset\` 只会被计算一起，然后这些结果将为后续的请求缓存起来。
 
-May be overridden to provide dynamic behavior, such as returning a queryset, that is specific to the user making the request.
+该方法可能会被重写以提供动态行为，比如返回基于发出请求的用户的结果集。 
 
-For example:
+例如:
 
 ```
 def get\_queryset\(self\):
