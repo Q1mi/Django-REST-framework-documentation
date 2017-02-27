@@ -208,13 +208,13 @@ def get\_serializer\_class\(self\):
 
 \*\*Save and deletion hooks\*\*:
 
-The following methods are provided by the mixin classes, and provide easy overriding of the object save or deletion behavior.
+以下方法由mixin类提供，并提供对象保存或删除行为的简单重写。
 
-\* \`perform\_create\(self, serializer\)\` - Called by \`CreateModelMixin\` when saving a new object instance.
+\* \`perform\_create\(self, serializer\)\` - 在保存新对象实例时由 \`CreateModelMixin\` 调用。
 
-\* \`perform\_update\(self, serializer\)\` - Called by \`UpdateModelMixin\` when saving an existing object instance.
+\* \`perform\_update\(self, serializer\)\` - 在保存现有对象实例时由 \`UpdateModelMixin\` 调用。
 
-\* \`perform\_destroy\(self, instance\)\` - Called by \`DestroyModelMixin\` when deleting an object instance.
+\* \`perform\_destroy\(self, instance\)\` - 在删除对象实例时由 \`DestroyModelMixin\` 调用。
 
 These hooks are particularly useful for setting attributes that are implicit in the request, but are not part of the request data.  For instance, you might set an attribute on the object based on the request user, or based on a URL keyword argument.
 
