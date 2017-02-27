@@ -86,11 +86,11 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 以下属性控制着基本视图的行为。
 
-\* \`queryset\` - Queryset 应该用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 \`get\_queryset\(\)\` 方法。如果你重写了一个视图的方法，重要的是你应该调用 \`get\_queryset\(\)\` 方法而不是直接访问该属性，因为 \`queryset\` 将被计算一次，这些结果将为后续请求缓存起来。
+\* \`queryset\` - 用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 \`get\_queryset\(\)\` 方法。如果你重写了一个视图的方法，重要的是你应该调用 \`get\_queryset\(\)\` 方法而不是直接访问该属性，因为 \`queryset\` 将被计算一次，这些结果将为后续请求缓存起来。
 
-\* \`serializer\_class\` - The serializer class 用于验证和反序列化输入以及用于序列化输出。 通常，你必须设置此属性或者重写\`get\_serializer\_class\(\)\` 方法。
+\* \`serializer\_class\` - 用于验证和反序列化输入以及用于序列化输出的Serializer类。 通常，你必须设置此属性或者重写\`get\_serializer\_class\(\)\` 方法。
 
-\* \`lookup\_field\` - The model field that should be used to for performing object lookup of individual model instances.  Defaults to \`'pk'\`.  Note that when using hyperlinked APIs you'll need to ensure that \*both\* the API views \*and\* the serializer classes set the lookup fields if you need to use a custom value.
+\* \`lookup\_field\` - 用于执行各个model实例的对象查找的model字段。默认为 \`'pk'\`。 请注意，在使用超链接API时，如果需要使用自定义的值，你需要确保在API视图\*和\*序列化类\*都\*设置查找字段。
 
 \* \`lookup\_url\_kwarg\` - The URL keyword argument that should be used for object lookup.  The URL conf should include a keyword argument corresponding to this value.  If unset this defaults to using the same value as \`lookup\_field\`.
 
