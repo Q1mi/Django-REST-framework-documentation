@@ -110,7 +110,7 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 \#\#\#\# \`get\_queryset\(self\)\`
 
-Returns the queryset that should be used for list views, and that should be used as the base for lookups in detail views.  Defaults to returning the queryset specified by the \`queryset\` attribute.
+返回列表视图中实用的查询集，该查询集还用作详细视图中的查找基础。默认返回由 \`queryset\` 属性指定的查询集。
 
 This method should always be used rather than accessing \`self.queryset\` directly, as \`self.queryset\` gets evaluated only once, and those results are cached for all subsequent requests.
 
