@@ -298,15 +298,15 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 同时还提供了一个 \`.partial\_update\(request, \*args, \*\*kwargs\)\` 方法，这个方法和 \`update\` 方法类似，但更新的所有字段都是可选的。这允许支持 HTTP \`PATCH\` 请求。
 
-If an object is updated this returns a \`200 OK\` response, with a serialized representation of the object as the body of the response.
+如果一个对象被更新，这将返回一个 \`200 OK\` 响应，将对象的序列化表示作为响应的主体。
 
-If the request data provided for updating the object was invalid, a \`400 Bad Request\` response will be returned, with the error details as the body of the response.
+如果为更新对象提供的请求数据无效，将返回一个 \`400 Bad Request\` 响应，错误详细信息作为响应的正文。
 
 \#\# DestroyModelMixin
 
-Provides a \`.destroy\(request, \*args, \*\*kwargs\)\` method, that implements deletion of an existing model instance.
+提供一个 \`.destroy\(request, \*args, \*\*kwargs\)\` 方法，实现删除现有模型实例。
 
-If an object is deleted this returns a \`204 No Content\` response, otherwise it will return a \`404 Not Found\`.
+如果删除对象，则返回 \`204 No Content\` 响应，否则返回 \`404 Not Found\`。
 
 ---
 
