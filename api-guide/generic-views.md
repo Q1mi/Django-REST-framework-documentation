@@ -268,9 +268,9 @@ def perform\_create\(self, serializer\):
 
 \# Mixins
 
-The mixin classes provide the actions that are used to provide the basic view behavior.  Note that the mixin classes provide action methods rather than defining the handler methods, such as \`.get\(\)\` and \`.post\(\)\`, directly.  This allows for more flexible composition of behavior.
+Mixin 类提供用于提供基本视图行为的操作。注意mixin类提供动作方法，而不是直接定义处理程序方法，例如 \`.get\(\)\` 和\`.post\(\)\`， 这允许更灵活的行为组成。
 
-The mixin classes can be imported from \`rest\_framework.mixins\`.
+Mixin 类能够从 \`rest\_framework.mixins\`导入。
 
 \#\# ListModelMixin
 
