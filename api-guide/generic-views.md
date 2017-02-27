@@ -270,21 +270,21 @@ def perform\_create\(self, serializer\):
 
 Mixin 类提供用于提供基本视图行为的操作。注意mixin类提供动作方法，而不是直接定义处理程序方法，例如 \`.get\(\)\` 和\`.post\(\)\`， 这允许更灵活的行为组成。
 
-Mixin 类能够从 \`rest\_framework.mixins\`导入。
+Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 \#\# ListModelMixin
 
-Provides a \`.list\(request, \*args, \*\*kwargs\)\` method, that implements listing a queryset.
+提供一个 \`.list\(request, \*args, \*\*kwargs\)\` 方法，实现列出结果集。
 
-If the queryset is populated, this returns a \`200 OK\` response, with a serialized representation of the queryset as the body of the response.  The response data may optionally be paginated.
+如果查询集被填充了数据，则返回 \`200 OK\` 响应，将查询集的序列化表示作为响应的主体。相应数据可以任意分页。
 
 \#\# CreateModelMixin
 
-Provides a \`.create\(request, \*args, \*\*kwargs\)\` method, that implements creating and saving a new model instance.
+提供 \`.create\(request, \*args, \*\*kwargs\)\` 方法，实现创建和保存一个新的model实例。
 
-If an object is created this returns a \`201 Created\` response, with a serialized representation of the object as the body of the response.  If the representation contains a key named \`url\`, then the \`Location\` header of the response will be populated with that value.
+如果创建了一个对象，这将返回一个 \`201 Created\` 响应，将该对象的序列化表示作为响应的主体。如果序列化的表示中包含名为 \`url\`的键，则响应的 \`Location\` 头将填充该值。
 
-If the request data provided for creating the object was invalid, a \`400 Bad Request\` response will be returned, with the error details as the body of the response.
+如果为创建对象提供的请求数据无效，将返回 \`400 Bad Request\`，其中错误详细信息作为响应的正文。
 
 \#\# RetrieveModelMixin
 
