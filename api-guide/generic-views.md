@@ -336,25 +336,25 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 用于表示**单个模型实例**的 \*\*只读\*\* 端点。
 
-Provides a \`get\` method handler.
+提供一个\`get\` 方法处理程序。
 
-Extends: \[GenericAPIView\], \[RetrieveModelMixin\]
+扩展: \[GenericAPIView\], \[RetrieveModelMixin\]
 
 \#\# DestroyAPIView
 
-Used for \*\*delete-only\*\* endpoints for a \*\*single model instance\*\*.
+用于**单个模型实例**的\*\*只删除\*\*端点。
 
-Provides a \`delete\` method handler.
+提供一个 \`delete\` 方法处理程序。
 
-Extends: \[GenericAPIView\], \[DestroyModelMixin\]
+扩展: \[GenericAPIView\], \[DestroyModelMixin\]
 
 \#\# UpdateAPIView
 
-Used for \*\*update-only\*\* endpoints for a \*\*single model instance\*\*.
+用于**单个模型实例的\*\***只更新\*\*。
 
-Provides \`put\` and \`patch\` method handlers.
+提供一个 \`put\`和\`patch\`方法处理程序。
 
-Extends: \[GenericAPIView\], \[UpdateModelMixin\]
+扩展: \[GenericAPIView\], \[UpdateModelMixin\]
 
 \#\# ListCreateAPIView
 
