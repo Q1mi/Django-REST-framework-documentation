@@ -154,13 +154,13 @@ def get\_object\(self\):
     return obj
 ```
 
-Note that if your API doesn't include any object level permissions, you may optionally exclude the \`self.check\_object\_permissions\`, and simply return the object from the \`get\_object\_or\_404\` lookup.
+请注意，如果你的API不包含任何对象级的权限控制，你可以选择不执行\`self.check\_object\_permissions\`，简单的返回 \`get\_object\_or\_404\` 查找的对象即可。
 
 \#\#\#\# \`filter\_queryset\(self, queryset\)\`
 
-Given a queryset, filter it with whichever filter backends are in use, returning a new queryset.
+给定一个queryset，使用任何过滤器后端进行过滤，返回一个新的queryset。
 
-For example:
+例如:
 
 ```
 def filter\_queryset\(self, queryset\):
@@ -190,11 +190,11 @@ def filter\_queryset\(self, queryset\):
 
 \#\#\#\# \`get\_serializer\_class\(self\)\`
 
-Returns the class that should be used for the serializer.  Defaults to returning the \`serializer\_class\` attribute.
+返回应用于序列化的类。默认为返回\`serializer\_class\` 属性的值。
 
-May be overridden to provide dynamic behavior, such as using different serializers for read and write operations, or providing different serializers to different types of users.
+可以被重写以提供动态的行为，例如对于读取和写入操作使用不同的序列化器，或者为不同类型的用户提供不同的序列化器。
 
-For example:
+例如:
 
 ```
 def get\_serializer\_class\(self\):
