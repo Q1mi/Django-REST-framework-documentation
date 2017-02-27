@@ -216,7 +216,7 @@ def get\_serializer\_class\(self\):
 
 \* \`perform\_destroy\(self, instance\)\` - 在删除对象实例时由 \`DestroyModelMixin\` 调用。
 
-These hooks are particularly useful for setting attributes that are implicit in the request, but are not part of the request data.  For instance, you might set an attribute on the object based on the request user, or based on a URL keyword argument.
+这些钩子对于设置请求中隐含的但不是请求数据的一部分的属性特别有用。例如，你可以根据请求用户或基于URL关键字参数在对象上设置属性。
 
 ```
 def perform\_create\(self, serializer\):
@@ -224,7 +224,7 @@ def perform\_create\(self, serializer\):
     serializer.save\(user=self.request.user\)
 ```
 
-These override points are also particularly useful for adding behavior that occurs before or after saving an object, such as emailing a confirmation, or logging the update.
+这些可重写的关键点对于添加在保存对象之前或之后发生的行为（例如通过电子邮件发送确认或记录更新日志）也特别有用。
 
 ```
 def perform\_update\(self, serializer\):
