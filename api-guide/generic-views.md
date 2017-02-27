@@ -390,13 +390,13 @@ Mixin 类可以从 \`rest\_framework.mixins\`导入。
 
 ---
 
-\# Customizing the generic views
+\# 自定义通用视图
 
-Often you'll want to use the existing generic views, but use some slightly customized behavior.  If you find yourself reusing some bit of customized behavior in multiple places, you might want to refactor the behavior into a common class that you can then just apply to any view or viewset as needed.
+通常你会想使用现有的通用视图，但是使用一些简单的自定义的行为。如果你发现自己在多个地方重复使用了一些自定义行为，你可能想将行为重构为一个公共类，然后只需根据需要应用到任何视图或视图集。
 
-\#\# Creating custom mixins
+\#\# 创建自定义 mixins
 
-For example, if you need to lookup objects based on multiple fields in the URL conf, you could create a mixin class like the following:
+例如，如果你需要基于 URL conf中的多个字段查找对象，则可以创建一个如下所示的 mixin类：
 
     class MultipleFieldLookupMixin\(object\):
 
@@ -424,7 +424,7 @@ For example, if you need to lookup objects based on multiple fields in the URL c
 
             return get\_object\_or\_404\(queryset, \*\*filter\)  \# Lookup the object
 
-You can then simply apply this mixin to a view or viewset anytime you need to apply the custom behavior.
+然后，你可以在需要应用自定义行为时随时将此mixin类应用于视图或视图集。
 
 ```
 class RetrieveUserView\(MultipleFieldLookupMixin, generics.RetrieveAPIView\):
@@ -436,11 +436,11 @@ class RetrieveUserView\(MultipleFieldLookupMixin, generics.RetrieveAPIView\):
     lookup\_fields = \('account', 'username'\)
 ```
 
-Using custom mixins is a good option if you have custom behavior that needs to be used.
+如果你需要使用自定义行为，那么使用自定义mixin是一个不错的选择。
 
-\#\# Creating custom base classes
+\#\# 创建自定义基类
 
-If you are using a mixin across multiple views, you can take this a step further and create your own set of base views that can then be used throughout your project.  For example:
+如果你在多个视图中使用mixin，你可以进一步创建你自己的一组基本视图，然后可以在整个项目中使用。举个例子:
 
 ```
 class BaseRetrieveView\(MultipleFieldLookupMixin,
@@ -458,19 +458,19 @@ class BaseRetrieveUpdateDestroyView\(MultipleFieldLookupMixin,
     pass
 ```
 
-Using custom base classes is a good option if you have custom behavior that consistently needs to be repeated across a large number of views throughout your project.
+如果你的自定义行为始终需要在整个项目中的大量视图中重复，则使用自定义基类是一个不错的选择。
 
 ---
 
 \# PUT as create
 
-Prior to version 3.0 the REST framework mixins treated \`PUT\` as either an update or a create operation, depending on if the object already existed or not.
+在3.0版本之前，REST framework mixins 将 \`PUT\` 视为更新或创建操作，具体取决于对象是否已存在。
 
-Allowing \`PUT\` as create operations is problematic, as it necessarily exposes information about the existence or non-existence of objects. It's also not obvious that transparently allowing re-creating of previously deleted instances is necessarily a better default behavior than simply returning \`404\` responses.
+允许 \`PUT\` 作为创建操作是有问题的，因为它必然会暴露关于对象的存在与不存在的信息。还有一个不太明显的地方是，透明地允许重新创建先前删除的实例必然是比简单地返回\`404\`响应更好的默认行为。
 
-Both styles "\`PUT\` as 404" and "\`PUT\` as create" can be valid in different circumstances, but from version 3.0 onwards we now use 404 behavior as the default, due to it being simpler and more obvious.
+两种形式 "\`PUT\` as 404" 和 "\`PUT\` as create" 可以在不同的情况下有效，但从3.0版本起，我们现在使用 404作为默认值，因为它更简单和更明显。
 
-If you need to generic PUT-as-create behavior you may want to include something like \[this \`AllowPUTAsCreateMixin\` class\]\([https://gist.github.com/tomchristie/a2ace4577eff2c603b1b\](https://gist.github.com/tomchristie/a2ace4577eff2c603b1b\)\) as a mixin to your views.
+如果你需要通用的 PUT-as-create行为，你可能想要包括像 \[这个 \`AllowPUTAsCreateMixin\` 类\]\([https://gist.github.com/tomchristie/a2ace4577eff2c603b1b\](https://gist.github.com/tomchristie/a2ace4577eff2c603b1b\)\) 一样的mixin在你的视图里。
 
 ---
 
