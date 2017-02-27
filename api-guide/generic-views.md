@@ -98,11 +98,11 @@ url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), ser
 
 以下属性用于在与列表视图一起使用时控制分页。
 
-\* \`pagination\_class\` - 当分页列出结果时应使用的分页类。The pagination class that should be used when paginating list results. 默认值与 \`DEFAULT\_PAGINATION\_CLASS\` 设置的相同，即 \`'rest\_framework.pagination.PageNumberPagination'\`。
+\* \`pagination\_class\` - 当分页列出结果时应使用的分页类。默认值与 \`DEFAULT\_PAGINATION\_CLASS\` 设置的值相同，即 \`'rest\_framework.pagination.PageNumberPagination'\`。
 
 \*\*Filtering\*\*:
 
-\* \`filter\_backends\` - A list of filter backend classes that should be used for filtering the queryset.  Defaults to the same value as the \`DEFAULT\_FILTER\_BACKENDS\` setting.
+\* \`filter\_backends\` - 用于过滤查询集的过滤器后端类的列表。默认值与\`DEFAULT\_FILTER\_BACKENDS\` 设置的值相同。
 
 \#\#\# Methods
 
