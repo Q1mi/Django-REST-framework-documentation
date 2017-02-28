@@ -289,139 +289,139 @@ Mixin 类可以从 `rest_framework.mixins`导入。
 
 提供一个 `.retrieve(request, *args, **kwargs)` 方法，实现返回响应中现有模型的实例。
 
-如果可以检索对象，则返回 \`200 OK\` 响应，将该对象的序列化表示作为响应的主体。否则将返回 \`404 Not Found\`。
+如果可以检索对象，则返回 `200 OK` 响应，将该对象的序列化表示作为响应的主体。否则将返回 `404 Not Found`。
 
-\#\# UpdateModelMixin
+## UpdateModelMixin
 
-提供 \`.update\(request, \*args, \*\*kwargs\)\` 方法，实现更新和保存现有模型实例。
+提供 `.update(request, *args, **kwargs)` 方法，实现更新和保存现有模型实例。
 
-同时还提供了一个 \`.partial\_update\(request, \*args, \*\*kwargs\)\` 方法，这个方法和 \`update\` 方法类似，但更新的所有字段都是可选的。这允许支持 HTTP \`PATCH\` 请求。
+同时还提供了一个 `.partial_update(request, *args, **kwargs)` 方法，这个方法和 `update` 方法类似，但更新的所有字段都是可选的。这允许支持 HTTP `PATCH` 请求。
 
-如果一个对象被更新，这将返回一个 \`200 OK\` 响应，将对象的序列化表示作为响应的主体。
+如果一个对象被更新，这将返回一个 `200 OK` 响应，将对象的序列化表示作为响应的主体。
 
-如果为更新对象提供的请求数据无效，将返回一个 \`400 Bad Request\` 响应，错误详细信息作为响应的正文。
+如果为更新对象提供的请求数据无效，将返回一个 `400 Bad Request` 响应，错误详细信息作为响应的正文。
 
-\#\# DestroyModelMixin
+## DestroyModelMixin
 
-提供一个 \`.destroy\(request, \*args, \*\*kwargs\)\` 方法，实现删除现有模型实例。
+提供一个 `.destroy(request, *args, **kwargs)` 方法，实现删除现有模型实例。
 
-如果删除对象，则返回 \`204 No Content\` 响应，否则返回 \`404 Not Found\`。
+如果删除对象，则返回 `204 No Content` 响应，否则返回 `404 Not Found`。
 
 ---
 
-\# Concrete View Classes
+# Concrete View Classes
 
 以下类是具体的通用视图。这通常是你真正用到的那些，除非你需要深度定制的行为。
 
-这些视图类可以从 \`rest\_framework.generics\`导入。
+这些视图类可以从 `rest_framework.generics`导入。
 
-\#\# CreateAPIView
+## CreateAPIView
 
-用于 \*\*仅创建\*\* 端点。
+用于 **仅创建** 端点。
 
-提供一个 \`post\` 方法处理程序。
+提供一个 `post` 方法处理程序。
 
-扩展: \[GenericAPIView\], \[CreateModelMixin\]
+扩展: [GenericAPIView], [CreateModelMixin]
 
-\#\# ListAPIView
+## ListAPIView
 
-用于\*\* 只读 \*\* 端点以表示\*\*模型实例集合 \*\*。
+用于** 只读 ** 端点以表示**模型实例集合 **。
 
-提供一个 \`get\` 方法处理程序。
+提供一个 `get` 方法处理程序。
 
-扩展: \[GenericAPIView\], \[ListModelMixin\]
+扩展: [GenericAPIView], [ListModelMixin]
 
-\#\# RetrieveAPIView
+## RetrieveAPIView
 
-用于\*\*只读\*\* 端点以表示**单个模型实例**。
+用于**只读** 端点以表示**单个模型实例**。
 
-提供一个\`get\` 方法处理程序。
+提供一个 `get` 方法处理程序。
 
-扩展: \[GenericAPIView\], \[RetrieveModelMixin\]
+扩展: [GenericAPIView], [RetrieveModelMixin]
 
-\#\# DestroyAPIView
+## DestroyAPIView
 
-用于\*\*只删除\*\*端点以表示**单个模型实例**。
+用于**只删除**端点以表示**单个模型实例**。
 
-提供一个 \`delete\` 方法处理程序。
+提供一个 `delete` 方法处理程序。
 
-扩展: \[GenericAPIView\], \[DestroyModelMixin\]
+扩展: [GenericAPIView], [DestroyModelMixin]
 
-\#\# UpdateAPIView
+## UpdateAPIView
 
 用于**只更新**端点以表示**单个模型实例**。
 
-提供一个 \`put\`和\`patch\`方法处理程序。
+提供一个 `put`和`patch`方法处理程序。
 
-扩展: \[GenericAPIView\], \[UpdateModelMixin\]
+扩展: [GenericAPIView], [UpdateModelMixin]
 
-\#\# ListCreateAPIView
+## ListCreateAPIView
 
 用于**读写端点**以表示**模型实例的集合**。
 
-提供一个 \`get\` 和 \`post\` 方法的处理程序。
+提供一个 `get` 和 `post` 方法的处理程序。
 
-扩展: \[GenericAPIView\], \[ListModelMixin\], \[CreateModelMixin\]
+扩展: [GenericAPIView], [ListModelMixin], [CreateModelMixin]
 
-\#\# RetrieveUpdateAPIView
+## RetrieveUpdateAPIView
 
-用于 \*\*读取或更新\*\* 端点以表示 \*\*单个模型实例\*\*。
+用于 **读取或更新** 端点以表示 **单个模型实例**。
 
-提供 \`get\`, \`put\` 和 \`patch\` 方法的处理程序。
+提供 `get`, `put` 和 `patch` 方法的处理程序。
 
-扩展: \[GenericAPIView\], \[RetrieveModelMixin\], \[UpdateModelMixin\]
+扩展: [GenericAPIView], [RetrieveModelMixin], [UpdateModelMixin]
 
-\#\# RetrieveDestroyAPIView
+## RetrieveDestroyAPIView
 
-用于 \*\*读取或删除\*\* 端点以表示 \*\*单个模型实例\*\*。
+用于 **读取或删除** 端点以表示 **单个模型实例**。
 
-提供 \`get\` 和 \`delete\` 方法的处理程序。
+提供 `get` 和 `delete` 方法的处理程序。
 
-扩展: \[GenericAPIView\], \[RetrieveModelMixin\], \[DestroyModelMixin\]
+扩展: [GenericAPIView], [RetrieveModelMixin], [DestroyModelMixin\]
 
-\#\# RetrieveUpdateDestroyAPIView
+## RetrieveUpdateDestroyAPIView
 
-用于 \*\*读写删除\*\* 端点以表示 \*\*单个模型实例\*\*。
+用于 **读写删除** 端点以表示 **单个模型实例**。
 
-提供 \`get\`, \`put\`, \`patch\` 和 \`delete\`方法的处理程序。
+提供 `get`, `put`, `patch` 和 `delete`方法的处理程序。
 
-扩展: \[GenericAPIView\], \[RetrieveModelMixin\], \[UpdateModelMixin\], \[DestroyModelMixin\]
+扩展: [GenericAPIView], [RetrieveModelMixin], [UpdateModelMixin], [DestroyModelMixin]
 
 ---
 
-\# 自定义通用视图
+# 自定义通用视图
 
 通常你会想使用现有的通用视图，但是使用一些简单的自定义的行为。如果你发现自己在多个地方重复使用了一些自定义行为，你可能想将行为重构为一个公共类，然后只需根据需要应用到任何视图或视图集。
 
-\#\# 创建自定义 mixins
+## 创建自定义 mixins
 
 例如，如果你需要基于 URL conf中的多个字段查找对象，则可以创建一个如下所示的 mixin类：
 
-    class MultipleFieldLookupMixin\(object\):
+    class MultipleFieldLookupMixin(object):
 
         """
 
         Apply this mixin to any view or viewset to get multiple field filtering
 
-        based on a \`lookup\_fields\` attribute, instead of the default single field filtering.
+        based on a `lookup_fields` attribute, instead of the default single field filtering.
 
         """
 
-        def get\_object\(self\):
+        def get_object(self):
 
-            queryset = self.get\_queryset\(\)             \# Get the base queryset
+            queryset = self.get_queryset()             \# Get the base queryset
 
-            queryset = self.filter\_queryset\(queryset\)  \# Apply any filter backends
+            queryset = self.filter_queryset(queryset)  \# Apply any filter backends
 
             filter = {}
 
-            for field in self.lookup\_fields:
+            for field in self.lookup_fields:
 
-                if self.kwargs\[field\]: \# Ignore empty fields.
+                if self.kwargs[field]: # Ignore empty fields.
 
-                    filter\[field\] = self.kwargs\[field\]
+                    filter[field] = self.kwargs[field]
 
-            return get\_object\_or\_404\(queryset, \*\*filter\)  \# Lookup the object
+            return get_object_or_404\(queryset, **filter)  # Lookup the object
 
 然后，你可以在需要应用自定义行为时随时将此mixin类应用于视图或视图集。
 
