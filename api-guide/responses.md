@@ -1,34 +1,33 @@
 source: response.py
 
-\# Responses
+# Responses
 
-&gt; 与基本的HttpResponse对象不同, TemplateResponse 对象保留view提供的上下文的详细信息以计算 response.  Response的最终输出直到它在稍后的响应过程中被需要才会计算。
+> 与基本的HttpResponse对象不同, TemplateResponse 对象保留view提供的上下文的详细信息以计算 response.  Response的最终输出直到它在稍后的响应过程中被需要才会计算。
+>
 
-&gt;
+> — [Django 文档][cite]
 
-&gt; — \[Django 文档\]\[cite\]
+REST framework 通过提供一个 `Response` 类来支持 HTTP content negotiation，该类允许你返回可以呈现为多种内容类型的内容，具体取决于客户端的请求。
 
-REST framework 通过提供一个\`Response\`类来支持 HTTP content negotiation，该类允许你返回可以呈现为多种内容类型的内容，具体取决于客户端的请求。
+`Response` 类的子类 Django的 `SimpleTemplateResponse`。`Response` 对象用Python基本数据类型初始化。 然后REST framework 使用标准的HTTP content negotiation 来确定如何呈现最终的相应内容。
 
-\`Response\` 类的子类 Django的 \`SimpleTemplateResponse\`。  \`Response\` 对象用Python基本数据类型初始化。 然后REST framework 使用标准的HTTP content negotiation 来确定如何呈现最终的相应内容。
+你并不需要一定是用 `Response` 类，你可以从你的视图返回常规的 `HttpResponse` 或者 `StreamingHttpResponse` 对象。使用`Response`类只提供了一个可以呈现多种格式的更好的界面来返回 content-negotiated 的 Web API 响应。
 
-你并不需要一定是用 \`Response\` 类， 你可以从你的视图返回常规的 \`HttpResponse\` 或者 \`StreamingHttpResponse\` 对象。  使用 \`Response\` 类只提供了一个可以呈现多种格式的更好的界面来返回 content-negotiated 的 Web API 响应。
-
-除非由于某种原因你要对 REST framework 做大量的自定义，否则你应该始终对返回对象的views使用 \`APIView\` 类或者\`@api\_view\` 函数。这样做可以确保视图在返回之前能够执行 content negotiation 并且为响应选择适当的渲染器。
+除非由于某种原因你要对 REST framework 做大量的自定义，否则你应该始终对返回对象的views使用 `APIView` 类或者 `@api_view` 函数。这样做可以确保视图在返回之前能够执行 content negotiation 并且为响应选择适当的渲染器。
 
 ---
 
-\# 创建 responses
+# 创建 responses
 
-\#\# Response\(\)
+## Response()
 
-\*\*Signature:\*\* \`Response\(data, status=None, template\_name=None, headers=None, content\_type=None\)\`
+**签名:** `Response(data, status=None, template_name=None, headers=None, content_type=None)`
 
-与常规的 \`HttpResponse\` 对象不同，你不能使用渲染内容来实例化一个 \`Response\` 对象，而是传递未渲染的数据，包含任何Python基本数据类型。
+与常规的 `HttpResponse` 对象不同，你不能使用渲染内容来实例化一个 `Response` 对象，而是传递未渲染的数据，包含任何Python基本数据类型。
 
-\`Response\` 类使用的渲染器无法自行处理想Django model实例这样的复杂数据类型，因此你需要在创建\`Response\`对象之前将数据序列化为基本数据类型。
+`Response` 类使用的渲染器无法自行处理像 Django model 实例这样的复杂数据类型，因此你需要在创建 `Response` 对象之前将数据序列化为基本数据类型。
 
-你可以使用 REST framework的\`Serializer\` 类来执行此类数据的序列化，或者使用你自定义的来序列化。
+你可以使用 REST framework的`Serializer` 类来执行此类数据的序列化，或者使用你自定义的来序列化。
 
 参数:
 
