@@ -73,9 +73,9 @@ class UserViewSet(viewsets.ModelViewSet):
 与使用 `View` 类相比，使用 `ViewSet` 类有两个主要优点。
 
 * 重复的逻辑可以组合成一个类。在上面的例子中，我们只需要指定一次 `queryset`，它将在多个视图中使用。
-* By using routers, we no longer need to deal with wiring up the URL conf ourselves.
+* 通过使用 routers, 哦们不再需要自己处理URLconf。
 
-Both of these come with a trade-off.  Using regular views and URL confs is more explicit and gives you more control.  ViewSets are helpful if you want to get up and running quickly, or when you have a large API and you want to enforce a consistent URL configuration throughout.
+这两者都有一个权衡。使用常规的 views 和 URL confs 更明确也能够为你提供更多的控制。ViewSets有助于快速启动和运行，或者当你有大型的API，并且希望在整个过程中执行一致的 URL 配置。
 
 ## Marking extra actions for routing
 
