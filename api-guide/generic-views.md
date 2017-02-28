@@ -109,85 +109,85 @@ url(r'^/users/', ListCreateAPIView.as_view\(queryset=User.objects.all(), seriali
 
 #### `get_queryset(self)`
 
-返回列表视图中实用的查询集，该查询集还用作详细视图中的查找基础。默认返回由 \`queryset\` 属性指定的查询集。
+返回列表视图中实用的查询集，该查询集还用作详细视图中的查找基础。默认返回由 `queryset` 属性指定的查询集。
 
-这个方法应该总是被调用而不是直接访问 \`self.queryset\` ，因为 \`self.queryset\` 只会被计算一起，然后这些结果将为后续的请求缓存起来。
+这个方法应该总是被调用而不是直接访问 `self.queryset` ，因为 `self.queryset` 只会被计算一起，然后这些结果将为后续的请求缓存起来。
 
 该方法可能会被重写以提供动态行为，比如返回基于发出请求的用户的结果集。
 
 例如:
 
 ```
-def get\_queryset\(self\):
+def get_queryset(self):
 
     user = self.request.user
 
-    return user.accounts.all\(\)
+    return user.accounts.all()
 ```
 
-\#\#\#\# \`get\_object\(self\)\`
+#### `get_object(self)`
 
-返回应用于详细视图的对象实例。默认使用 \`lookup\_field\` 参数过滤基本的查询集。
+返回应用于详细视图的对象实例。默认使用 `lookup_field` 参数过滤基本的查询集。
 
 该方法可以被重写以提供更复杂的行为，例如基于多个 URL 参数的对象查找。
 
 例如:
 
 ```
-def get\_object\(self\):
+def get_object(self):
 
-    queryset = self.get\_queryset\(\)
+    queryset = self.get_queryset()
 
     filter = {}
 
-    for field in self.multiple\_lookup\_fields:
+    for field in self.multiple_lookup_fields:
 
-        filter\[field\] = self.kwargs\[field\]
+        filter[field] = self.kwargs[field]
 
 
 
-    obj = get\_object\_or\_404\(queryset, \*\*filter\)
+    obj = get_object_or_404(queryset, **filter)
 
-    self.check\_object\_permissions\(self.request, obj\)
+    self.check_object_permissions(self.request, obj)
 
     return obj
 ```
 
-请注意，如果你的API不包含任何对象级的权限控制，你可以选择不执行\`self.check\_object\_permissions\`，简单的返回 \`get\_object\_or\_404\` 查找的对象即可。
+请注意，如果你的API不包含任何对象级的权限控制，你可以选择不执行`self.check_object_permissions`，简单的返回 `get_object_or_404` 查找的对象即可。
 
-\#\#\#\# \`filter\_queryset\(self, queryset\)\`
+#### `filter_queryset(self, queryset)`
 
 给定一个queryset，使用任何过滤器后端进行过滤，返回一个新的queryset。
 
 例如:
 
 ```
-def filter\_queryset\(self, queryset\):
+def filter_queryset(self, queryset):
 
-    filter\_backends = \(CategoryFilter,\)
-
-
-
-    if 'geo\_route' in self.request.query\_params:
-
-        filter\_backends = \(GeoRouteFilter, CategoryFilter\)
-
-    elif 'geo\_point' in self.request.query\_params:
-
-        filter\_backends = \(GeoPointFilter, CategoryFilter\)
+    filter_backends = (CategoryFilter, )
 
 
 
-    for backend in list\(filter\_backends\):
+    if 'geo_route' in self.request.query_params:
 
-        queryset = backend\(\).filter\_queryset\(self.request, queryset, view=self\)
+        filter_backends = (GeoRouteFilter, CategoryFilter)
+
+    elif 'geo_point' in self.request.query_params:
+
+        filter_backends = (GeoPointFilter, CategoryFilter)
+
+
+
+    for backend in list(filter_backends):
+
+        queryset = backend().filter_queryset(self.request, queryset, view=self)
 
 
 
     return queryset
 ```
 
-\#\#\#\# \`get\_serializer\_class\(self\)\`
+#### `get_serializer_class(self)`
 
 返回应用于序列化的类。默认为返回\`serializer\_class\` 属性的值。
 
