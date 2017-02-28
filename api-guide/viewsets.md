@@ -2,14 +2,13 @@ source: viewsets.py
 
 # ViewSets
 
-> After routing has determined which controller to use for a request, your controller is responsible for making sense of the request and producing the appropriate output.
+> 在路由已经确定了用于请求的控制器之后，你的控制器负责理解请求并产生适当的输出。 
 >
-> &mdash; [Ruby on Rails Documentation][cite]
+> — [Ruby on Rails 文档](http://guides.rubyonrails.org/routing.html)
 
+Django REST framework允许你将一组相关视图的逻辑组合在单个类（称为 `ViewSet`）中。 在其他框架中，你也可以找到概念上类似于 'Resources' 或 'Controllers'的类似实现。
 
-Django REST framework allows you to combine the logic for a set of related views in a single class, called a `ViewSet`.  In other frameworks you may also find conceptually similar implementations named something like 'Resources' or 'Controllers'.
-
-A `ViewSet` class is simply **a type of class-based View, that does not provide any method handlers** such as `.get()` or `.post()`, and instead provides actions such as `.list()` and `.create()`.
+ `ViewSet` 只是 一种基于类的视图，它不提供任何方法处理程序（如 `.get()` `.post()`, and instead provides actions such as `.list()` and `.create()`.
 
 The method handlers for a `ViewSet` are only bound to the corresponding actions at the point of finalizing the view, using the `.as_view()` method.
 
@@ -19,49 +18,57 @@ Typically, rather than explicitly registering the views in a viewset in the urlc
 
 Let's define a simple viewset that can be used to list or retrieve all the users in the system.
 
-    from django.contrib.auth.models import User
-    from django.shortcuts import get_object_or_404
-    from myapps.serializers import UserSerializer
-    from rest_framework import viewsets
-    from rest_framework.response import Response
+```
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from myapps.serializers import UserSerializer
+from rest_framework import viewsets
+from rest_framework.response import Response
 
-    class UserViewSet(viewsets.ViewSet):
-        """
-        A simple ViewSet for listing or retrieving users.
-        """
-        def list(self, request):
-            queryset = User.objects.all()
-            serializer = UserSerializer(queryset, many=True)
-            return Response(serializer.data)
+class UserViewSet(viewsets.ViewSet):
+    """
+    A simple ViewSet for listing or retrieving users.
+    """
+    def list(self, request):
+        queryset = User.objects.all()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-        def retrieve(self, request, pk=None):
-            queryset = User.objects.all()
-            user = get_object_or_404(queryset, pk=pk)
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
+    def retrieve(self, request, pk=None):
+        queryset = User.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+```
 
 If we need to, we can bind this viewset into two separate views, like so:
 
-    user_list = UserViewSet.as_view({'get': 'list'})
-    user_detail = UserViewSet.as_view({'get': 'retrieve'})
+```
+user_list = UserViewSet.as_view({'get': 'list'})
+user_detail = UserViewSet.as_view({'get': 'retrieve'})
+```
 
 Typically we wouldn't do this, but would instead register the viewset with a router, and allow the urlconf to be automatically generated.
 
-    from myapp.views import UserViewSet
-    from rest_framework.routers import DefaultRouter
+```
+from myapp.views import UserViewSet
+from rest_framework.routers import DefaultRouter
 
-    router = DefaultRouter()
-    router.register(r'users', UserViewSet)
-    urlpatterns = router.urls
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+urlpatterns = router.urls
+```
 
 Rather than writing your own viewsets, you'll often want to use the existing base classes that provide a default set of behavior.  For example:
 
-    class UserViewSet(viewsets.ModelViewSet):
-        """
-        A viewset for viewing and editing user instances.
-        """
-        serializer_class = UserSerializer
-        queryset = User.objects.all()
+```
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+```
 
 There are two main advantages of using a `ViewSet` class over using a `View` class.
 
@@ -107,55 +114,61 @@ The `@detail_route` decorator contains `pk` in its URL pattern and is intended f
 
 For example:
 
-    from django.contrib.auth.models import User
-    from rest_framework import status
-    from rest_framework import viewsets
-    from rest_framework.decorators import detail_route, list_route
-    from rest_framework.response import Response
-    from myapp.serializers import UserSerializer, PasswordSerializer
+```
+from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.decorators import detail_route, list_route
+from rest_framework.response import Response
+from myapp.serializers import UserSerializer, PasswordSerializer
 
-    class UserViewSet(viewsets.ModelViewSet):
-        """
-        A viewset that provides the standard actions
-        """
-        queryset = User.objects.all()
-        serializer_class = UserSerializer
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    A viewset that provides the standard actions
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-        @detail_route(methods=['post'])
-        def set_password(self, request, pk=None):
-            user = self.get_object()
-            serializer = PasswordSerializer(data=request.data)
-            if serializer.is_valid():
-                user.set_password(serializer.data['password'])
-                user.save()
-                return Response({'status': 'password set'})
-            else:
-                return Response(serializer.errors,
-                                status=status.HTTP_400_BAD_REQUEST)
+    @detail_route(methods=['post'])
+    def set_password(self, request, pk=None):
+        user = self.get_object()
+        serializer = PasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            user.set_password(serializer.data['password'])
+            user.save()
+            return Response({'status': 'password set'})
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
 
-        @list_route()
-        def recent_users(self, request):
-            recent_users = User.objects.all().order('-last_login')
+    @list_route()
+    def recent_users(self, request):
+        recent_users = User.objects.all().order('-last_login')
 
-            page = self.paginate_queryset(recent_users)
-            if page is not None:
-                serializer = self.get_serializer(page, many=True)
-                return self.get_paginated_response(serializer.data)
+        page = self.paginate_queryset(recent_users)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
 
-            serializer = self.get_serializer(recent_users, many=True)
-            return Response(serializer.data)
+        serializer = self.get_serializer(recent_users, many=True)
+        return Response(serializer.data)
+```
 
 The decorators can additionally take extra arguments that will be set for the routed view only.  For example...
 
-        @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf])
-        def set_password(self, request, pk=None):
-           ...
+```
+    @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf])
+    def set_password(self, request, pk=None):
+       ...
+```
 
 These decorators will route `GET` requests by default, but may also accept other HTTP methods, by using the `methods` argument.  For example:
 
-        @detail_route(methods=['post', 'delete'])
-        def unset_password(self, request, pk=None):
-           ...
+```
+    @detail_route(methods=['post', 'delete'])
+    def unset_password(self, request, pk=None):
+       ...
+```
 
 The two new actions will then be available at the urls `^users/{pk}/set_password/$` and `^users/{pk}/unset_password/$`
 
@@ -185,28 +198,32 @@ The actions provided by the `ModelViewSet` class are `.list()`, `.retrieve()`,  
 
 Because `ModelViewSet` extends `GenericAPIView`, you'll normally need to provide at least the `queryset` and `serializer_class` attributes.  For example:
 
-    class AccountViewSet(viewsets.ModelViewSet):
-        """
-        A simple ViewSet for viewing and editing accounts.
-        """
-        queryset = Account.objects.all()
-        serializer_class = AccountSerializer
-        permission_classes = [IsAccountAdminOrReadOnly]
+```
+class AccountViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing accounts.
+    """
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = [IsAccountAdminOrReadOnly]
+```
 
 Note that you can use any of the standard attributes or method overrides provided by `GenericAPIView`.  For example, to use a `ViewSet` that dynamically determines the queryset it should operate on, you might do something like this:
 
-    class AccountViewSet(viewsets.ModelViewSet):
-        """
-        A simple ViewSet for viewing and editing the accounts
-        associated with the user.
-        """
-        serializer_class = AccountSerializer
-        permission_classes = [IsAccountAdminOrReadOnly]
+```
+class AccountViewSet(viewsets.ModelViewSet):
+    """
+    A simple ViewSet for viewing and editing the accounts
+    associated with the user.
+    """
+    serializer_class = AccountSerializer
+    permission_classes = [IsAccountAdminOrReadOnly]
 
-        def get_queryset(self):
-            return self.request.user.accounts.all()
+    def get_queryset(self):
+        return self.request.user.accounts.all()
+```
 
-Note however that upon removal of the `queryset` property from your `ViewSet`, any associated [router][routers] will be unable to derive the base_name of your Model automatically, and so you will have to specify the `base_name` kwarg as part of your [router registration][routers].
+Note however that upon removal of the `queryset` property from your `ViewSet`, any associated [router](routers.md) will be unable to derive the base\_name of your Model automatically, and so you will have to specify the `base_name` kwarg as part of your [router registration](routers.md).
 
 Also note that although this class provides the complete set of create/list/retrieve/update/destroy actions by default, you can restrict the available operations by using the standard permission classes.
 
@@ -218,12 +235,14 @@ The `ReadOnlyModelViewSet` class also inherits from `GenericAPIView`.  As with `
 
 As with `ModelViewSet`, you'll normally need to provide at least the `queryset` and `serializer_class` attributes.  For example:
 
-    class AccountViewSet(viewsets.ReadOnlyModelViewSet):
-        """
-        A simple ViewSet for viewing accounts.
-        """
-        queryset = Account.objects.all()
-        serializer_class = AccountSerializer
+```
+class AccountViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    A simple ViewSet for viewing accounts.
+    """
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+```
 
 Again, as with `ModelViewSet`, you can use any of the standard attributes and method overrides available to `GenericAPIView`.
 
@@ -249,5 +268,3 @@ To create a base viewset class that provides `create`, `list` and `retrieve` ope
 
 By creating your own base `ViewSet` classes, you can provide common behavior that can be reused in multiple viewsets across your API.
 
-[cite]: http://guides.rubyonrails.org/routing.html
-[routers]: routers.md
