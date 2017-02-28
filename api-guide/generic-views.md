@@ -484,7 +484,7 @@ The \[django-rest-framework-bulk package\]\[django-rest-framework-bulk\] 包实�
 
 \#\# Django Rest Multiple Models
 
-\[Django Rest Multiple Models\]\[django-rest-multiple-models\] provides a generic view \(and mixin\) for sending multiple serialized models and/or querysets via a single API request.
+\[Django Rest Multiple Models\]\[django-rest-multiple-models\] 提供了通过单个API请求发送多个序列化模型和／或者查询集的通用视图（和mixin）。 
 
 \[cite\]: [https://docs.djangoproject.com/en/stable/ref/class-based-views/\\#base-vs-generic-views](https://docs.djangoproject.com/en/stable/ref/class-based-views/\#base-vs-generic-views)
 
