@@ -261,7 +261,7 @@ def perform_create(self, serializer):
 
 * `paginate_queryset(self, queryset)` - 如果需要分页查询，返回页面对象，如果没有为此视图配置分页，则返回 `None`。
 
-* `filter_queryset\(self, queryset\)\` - 给定查询集，使用任何过滤器后端进行过滤，返回一个新的查询集。
+* `filter_queryset(self, queryset)` - 给定查询集，使用任何过滤器后端进行过滤，返回一个新的查询集。
 
 ---
 
@@ -377,7 +377,7 @@ Mixin 类可以从 `rest_framework.mixins`导入。
 
 提供 `get` 和 `delete` 方法的处理程序。
 
-扩展: [GenericAPIView], [RetrieveModelMixin], [DestroyModelMixin\]
+扩展: [GenericAPIView], [RetrieveModelMixin], [DestroyModelMixin]
 
 ## RetrieveUpdateDestroyAPIView
 
@@ -463,9 +463,9 @@ class BaseRetrieveUpdateDestroyView(MultipleFieldLookupMixin,
 
 # PUT as create
 
-在3.0版本之前，REST framework mixins 将 \`PUT\` 视为更新或创建操作，具体取决于对象是否已存在。
+在3.0版本之前，REST framework mixins 将 `PUT` 视为更新或创建操作，具体取决于对象是否已存在。
 
-允许 `PUT` 作为创建操作是有问题的，因为它必然会暴露关于对象的存在与不存在的信息。同样不明显的是，透明地允许重新创建以前删除的实例是比简单地返回\`404\`响应更好的默认行为。
+允许 `PUT` 作为创建操作是有问题的，因为它必然会暴露关于对象的存在与不存在的信息。同样不明显的是，透明地允许重新创建以前删除的实例是比简单地返回`404`响应更好的默认行为。
 
 两种形式 "`PUT` as 404" 和 "`PUT` as create" 可以在不同的情况下有效，但从3.0版本起，我们现在使用 404作为默认值，因为它更简单和更明显。
 
