@@ -189,105 +189,105 @@ def filter_queryset(self, queryset):
 
 #### `get_serializer_class(self)`
 
-返回应用于序列化的类。默认为返回\`serializer\_class\` 属性的值。
+返回应用于序列化的类。默认为返回 `serializer_class` 属性的值。
 
 可以被重写以提供动态的行为，例如对于读取和写入操作使用不同的序列化器，或者为不同类型的用户提供不同的序列化器。
 
 例如:
 
 ```
-def get\_serializer\_class\(self\):
+def get_serializer_class(self\):
 
-    if self.request.user.is\_staff:
+    if self.request.user.is_staff:
 
         return FullAccountSerializer
 
     return BasicAccountSerializer
 ```
 
-\*\*Save and deletion hooks\*\*:
+**Save and deletion hooks**:
 
 以下方法由mixin类提供，并提供对象保存或删除行为的简单重写。
 
-\* \`perform\_create\(self, serializer\)\` - 在保存新对象实例时由 \`CreateModelMixin\` 调用。
+* `perform_create(self, serializer)` - 在保存新对象实例时由 `CreateModelMixin` 调用。
 
-\* \`perform\_update\(self, serializer\)\` - 在保存现有对象实例时由 \`UpdateModelMixin\` 调用。
+* `perform_update(self, serializer)` - 在保存现有对象实例时由 `UpdateModelMixin` 调用。
 
-\* \`perform\_destroy\(self, instance\)\` - 在删除对象实例时由 \`DestroyModelMixin\` 调用。
+* `perform_destroy(self, instance)` - 在删除对象实例时由 `DestroyModelMixin` 调用。
 
 这些钩子对于设置请求中隐含的但不是请求数据的一部分的属性特别有用。例如，你可以根据请求用户或基于URL关键字参数在对象上设置属性。
 
 ```
-def perform\_create\(self, serializer\):
+def perform_create(self, serializer):
 
-    serializer.save\(user=self.request.user\)
+    serializer.save(user=self.request.user)
 ```
 
 这些可重写的关键点对于添加在保存对象之前或之后发生的行为（例如通过电子邮件发送确认或记录更新日志）也特别有用。
 
 ```
-def perform\_update\(self, serializer\):
+def perform_update(self, serializer):
 
-    instance = serializer.save\(\)
+    instance = serializer.save()
 
-    send\_email\_confirmation\(user=self.request.user, modified=instance\)
+    send_email_confirmation(user=self.request.user, modified=instance)
 ```
 
-你还可以使用这些钩子通过抛出\`ValidationError\(\)\`来提供额外的验证。当你需要在数据库保存时应用一些验证逻辑时，这会很有用。 例如:
+你还可以使用这些钩子通过抛出 `ValidationError()` 来提供额外的验证。当你需要在数据库保存时应用一些验证逻辑时，这会很有用。 例如:
 
 ```
-def perform\_create\(self, serializer\):
+def perform_create(self, serializer):
 
-    queryset = SignupRequest.objects.filter\(user=self.request.user\)
+    queryset = SignupRequest.objects.filter(user=self.request.user)
 
-    if queryset.exists\(\):
+    if queryset.exists():
 
-        raise ValidationError\('You have already signed up'\)
+        raise ValidationError('You have already signed up')
 
-    serializer.save\(user=self.request.user\)
+    serializer.save(user=self.request.user)
 ```
 
-\*\*注意\*\*: 这些方法替换了旧版本 2.x中的 \`pre\_save\`, \`post\_save\`, \`pre\_delete\` 和 \`post\_delete\` 方法，这些方法不再可用。
+**注意**: 这些方法替换了旧版本2.x中的 `pre_save`, `post_save`, `pre_delete` 和 `post_delete` 方法，这些方法不再可用。
 
-\*\*其他方法\*\*:
+**其他方法**:
 
-你通常并不需要重写以下方法，虽然在你使用\`GenericAPIView\`编写自定义视图的时候可能会调用它们。
+你通常并不需要重写以下方法，虽然在你使用 `GenericAPIView` 编写自定义视图的时候可能会调用它们。
 
-\* \`get\_serializer\_context\(self\)\` - 返回包含应该提供给序列化程序的任何额外上下文的字典。默认包含 \`'request'\`, \`'view'\` 和 \`'format'\` 这些keys。.
+* `get_serializer_context(self)` - 返回包含应该提供给序列化程序的任何额外上下文的字典。默认包含 `'request'`, `'view'` 和 `'format'` 这些keys。.
 
-\* \`get\_serializer\(self, instance=None, data=None, many=False, partial=False\)\` - 返回一个序列化器的实例。
+* `get_serializer(self, instance=None, data=None, many=False, partial=False)` - 返回一个序列化器的实例。
 
-\* \`get\_paginated\_response\(self, data\)\` - 返回分页样式的 \`Response\` 对象。
+* `get_paginated_response(self, data)` - 返回分页样式的 `Response` 对象。
 
-\* \`paginate\_queryset\(self, queryset\)\` - 如果需要分页查询，返回页面对象，如果没有为此视图配置分页，则返回 \`None\`。
+* `paginate_queryset(self, queryset)` - 如果需要分页查询，返回页面对象，如果没有为此视图配置分页，则返回 `None`。
 
-\* \`filter\_queryset\(self, queryset\)\` - 给定查询集，使用任何过滤器后端进行过滤，返回一个新的查询集。
+* `filter_queryset\(self, queryset\)\` - 给定查询集，使用任何过滤器后端进行过滤，返回一个新的查询集。
 
 ---
 
-\# Mixins
+# Mixins
 
-Mixin 类提供用于提供基本视图行为的操作。注意mixin类提供动作方法，而不是直接定义处理程序方法，例如 \`.get\(\)\` 和\`.post\(\)\`， 这允许更灵活的行为组成。
+Mixin 类提供用于提供基本视图行为的操作。注意mixin类提供动作方法，而不是直接定义处理程序方法，例如 `.get()` 和 `.post()`， 这允许更灵活的行为组成。
 
-Mixin 类可以从 \`rest\_framework.mixins\`导入。
+Mixin 类可以从 `rest_framework.mixins`导入。
 
-\#\# ListModelMixin
+## ListModelMixin
 
-提供一个 \`.list\(request, \*args, \*\*kwargs\)\` 方法，实现列出结果集。
+提供一个 `.list(request, *args, **kwargs)` 方法，实现列出结果集。
 
-如果查询集被填充了数据，则返回 \`200 OK\` 响应，将查询集的序列化表示作为响应的主体。相应数据可以任意分页。
+如果查询集被填充了数据，则返回 `200 OK` 响应，将查询集的序列化表示作为响应的主体。相应数据可以任意分页。
 
-\#\# CreateModelMixin
+## CreateModelMixin
 
-提供 \`.create\(request, \*args, \*\*kwargs\)\` 方法，实现创建和保存一个新的model实例。
+提供 `.create(request, *args, **kwargs)` 方法，实现创建和保存一个新的model实例。
 
-如果创建了一个对象，这将返回一个 \`201 Created\` 响应，将该对象的序列化表示作为响应的主体。如果序列化的表示中包含名为 \`url\`的键，则响应的 \`Location\` 头将填充该值。
+如果创建了一个对象，这将返回一个 `201 Created` 响应，将该对象的序列化表示作为响应的主体。如果序列化的表示中包含名为 `url`的键，则响应的 `Location` 头将填充该值。
 
-如果为创建对象提供的请求数据无效，将返回 \`400 Bad Request\`，其中错误详细信息作为响应的正文。
+如果为创建对象提供的请求数据无效，将返回 `400 Bad Request`，其中错误详细信息作为响应的正文。
 
-\#\# RetrieveModelMixin
+## RetrieveModelMixin
 
-提供一个 \`.retrieve\(request, \*args, \*\*kwargs\)\` 方法，实现返回响应中现有模型的实例。
+提供一个 `.retrieve(request, *args, **kwargs)` 方法，实现返回响应中现有模型的实例。
 
 如果可以检索对象，则返回 \`200 OK\` 响应，将该对象的序列化表示作为响应的主体。否则将返回 \`404 Not Found\`。
 
