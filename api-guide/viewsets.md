@@ -176,7 +176,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 ## ViewSet
 
-The `ViewSet` class inherits from `APIView`.  You can use any of the standard attributes such as `permission_classes`, `authentication_classes` in order to control the API policy on the viewset.
+`ViewSet` 继承自 `APIView`。  You can use any of the standard attributes such as `permission_classes`, `authentication_classes` in order to control the API policy on the viewset.
 
 The `ViewSet` class does not provide any implementations of actions.  In order to use a `ViewSet` class you'll override the class and define the action implementations explicitly.
 
