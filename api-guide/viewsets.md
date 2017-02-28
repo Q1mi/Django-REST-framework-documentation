@@ -168,7 +168,7 @@ class UserViewSet(viewsets.ModelViewSet):
        ...
 ```
 
-The two new actions will then be available at the urls `^users/{pk}/set_password/$` and `^users/{pk}/unset_password/$`
+这两个新动作将在 urls `^users/{pk}/set_password/$` 和 `^users/{pk}/unset_password/$`上可用。
 
 ---
 
