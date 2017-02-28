@@ -108,7 +108,7 @@ REST framework 中包含的默任 routes 将为标准的 create/retrieve/update/
 
 如果你有需要被路由到的特别方法，你可以使用 `@detail_route` 或 `@list_route` 装饰器将它们标记为需要路由。
 
-The `@detail_route` decorator contains `pk` in its URL pattern and is intended for methods which require a single instance. The `@list_route` decorator is intended for methods which operate on a list of objects.
+`@detail_route` 装饰器在其URL模式中包含 `pk` 用于需要单个实例的方法。The `@list_route` 装饰器用于对对象列表进行操作的方法。
 
 For example:
 
