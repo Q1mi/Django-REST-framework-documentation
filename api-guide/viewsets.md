@@ -178,11 +178,11 @@ class UserViewSet(viewsets.ModelViewSet):
 
 `ViewSet` 继承自 `APIView`。你可以使用任何标准属性，如 `permission_classes`, `authentication_classes` 以便控制视图集上的 API 策略。
 
-The `ViewSet` class does not provide any implementations of actions.  In order to use a `ViewSet` class you'll override the class and define the action implementations explicitly.
+`ViewSet` 类不提供任何操作的实现。为了使用 `ViewSet` 类，你将重写该类并显式地定义动作实现。
 
 ## GenericViewSet
 
-The `GenericViewSet` class inherits from `GenericAPIView`, and provides the default set of `get_object`, `get_queryset` methods and other generic view base behavior, but does not include any actions by default.
+`GenericViewSet` 类继承自 `GenericAPIView`，并提供了 `get_object`， `get_queryset` 方法和其他通用视图基本行为的默认配置，但默认情况不包括任何操作。
 
 In order to use a `GenericViewSet` class you'll override the class and either mixin the required mixin classes, or define the action implementations explicitly.
 
