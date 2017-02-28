@@ -110,7 +110,7 @@ REST framework 中包含的默任 routes 将为标准的 create/retrieve/update/
 
 `@detail_route` 装饰器在其URL模式中包含 `pk` 用于需要单个实例的方法。The `@list_route` 装饰器用于对对象列表进行操作的方法。
 
-For example:
+例如：
 
 ```
 from django.contrib.auth.models import User
@@ -122,7 +122,7 @@ from myapp.serializers import UserSerializer, PasswordSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     """
-    A viewset that provides the standard actions
+    一个提供标准动作的 viewset
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -152,7 +152,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 ```
 
-The decorators can additionally take extra arguments that will be set for the routed view only.  For example...
+装饰器可以另外获取为路由视图设置的额外参数。例如...
 
 ```
     @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf])
@@ -160,7 +160,7 @@ The decorators can additionally take extra arguments that will be set for the ro
        ...
 ```
 
-These decorators will route `GET` requests by default, but may also accept other HTTP methods, by using the `methods` argument.  For example:
+这些装饰器将默认路由 `GET` 请求，但也可以通过使用 `methods` 参数接受其他 HTTP 方法。例如：
 
 ```
     @detail_route(methods=['post', 'delete'])
