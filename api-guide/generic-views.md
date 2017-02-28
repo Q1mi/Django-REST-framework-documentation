@@ -493,7 +493,7 @@ The [django-rest-framework-bulk package][django-rest-framework-bulk] 包实现�
 
 [CreateModelMixin]: #createmodelmixin
 
-[RetrieveModelMixin]: \#retrievemodelmixin
+[RetrieveModelMixin]: #retrievemodelmixin
 
 [UpdateModelMixin]: #updatemodelmixin
 
