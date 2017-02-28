@@ -409,9 +409,9 @@ Mixin 类可以从 `rest_framework.mixins`导入。
 
         def get_object(self):
 
-            queryset = self.get_queryset()             \# Get the base queryset
+            queryset = self.get_queryset()             # Get the base queryset
 
-            queryset = self.filter_queryset(queryset)  \# Apply any filter backends
+            queryset = self.filter_queryset(queryset)  # Apply any filter backends
 
             filter = {}
 
@@ -421,38 +421,38 @@ Mixin 类可以从 `rest_framework.mixins`导入。
 
                     filter[field] = self.kwargs[field]
 
-            return get_object_or_404\(queryset, **filter)  # Lookup the object
+            return get_object_or_404(queryset, **filter)  # Lookup the object
 
 然后，你可以在需要应用自定义行为时随时将此mixin类应用于视图或视图集。
 
 ```
-class RetrieveUserView\(MultipleFieldLookupMixin, generics.RetrieveAPIView\):
+class RetrieveUserView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
 
-    queryset = User.objects.all\(\)
+    queryset = User.objects.all()
 
-    serializer\_class = UserSerializer
+    serializer_class = UserSerializer
 
-    lookup\_fields = \('account', 'username'\)
+    lookup_fields = ('account', 'username')
 ```
 
 如果你需要使用自定义行为，那么使用自定义mixin是一个不错的选择。
 
-\#\# 创建自定义基类
+## 创建自定义基类
 
 如果你在多个视图中使用mixin，你可以进一步创建你自己的一组基本视图，然后可以在整个项目中使用。举个例子:
 
 ```
-class BaseRetrieveView\(MultipleFieldLookupMixin,
+class BaseRetrieveView(MultipleFieldLookupMixin,
 
-                       generics.RetrieveAPIView\):
+                       generics.RetrieveAPIView):
 
     pass
 
 
 
-class BaseRetrieveUpdateDestroyView\(MultipleFieldLookupMixin,
+class BaseRetrieveUpdateDestroyView(MultipleFieldLookupMixin,
 
-                                    generics.RetrieveUpdateDestroyAPIView\):
+                                    generics.RetrieveUpdateDestroyAPIView):
 
     pass
 ```
@@ -461,45 +461,45 @@ class BaseRetrieveUpdateDestroyView\(MultipleFieldLookupMixin,
 
 ---
 
-\# PUT as create
+# PUT as create
 
 在3.0版本之前，REST framework mixins 将 \`PUT\` 视为更新或创建操作，具体取决于对象是否已存在。
 
-允许 \`PUT\` 作为创建操作是有问题的，因为它必然会暴露关于对象的存在与不存在的信息。同样不明显的是，透明地允许重新创建以前删除的实例是比简单地返回\`404\`响应更好的默认行为。
+允许 `PUT` 作为创建操作是有问题的，因为它必然会暴露关于对象的存在与不存在的信息。同样不明显的是，透明地允许重新创建以前删除的实例是比简单地返回\`404\`响应更好的默认行为。
 
-两种形式 "\`PUT\` as 404" 和 "\`PUT\` as create" 可以在不同的情况下有效，但从3.0版本起，我们现在使用 404作为默认值，因为它更简单和更明显。
+两种形式 "`PUT` as 404" 和 "`PUT` as create" 可以在不同的情况下有效，但从3.0版本起，我们现在使用 404作为默认值，因为它更简单和更明显。
 
-如果你需要通用的 PUT-as-create行为，你可能想要包括像 \[这个 \`AllowPUTAsCreateMixin\` 类\]\([https://gist.github.com/tomchristie/a2ace4577eff2c603b1b\](https://gist.github.com/tomchristie/a2ace4577eff2c603b1b\)\) 一样的mixin在你的视图里。
+如果你需要通用的 PUT-as-create行为，你可能想要包括像 [这个`AllowPUTAsCreateMixin` 类]([https://gist.github.com/tomchristie/a2ace4577eff2c603b1b](https://gist.github.com/tomchristie/a2ace4577eff2c603b1b)) 一样的mixin在你的视图里。
 
 ---
 
-\# 第三方包
+# 第三方包
 
 以下第三方包提供了其他通用视图实现。
 
-\#\# Django REST Framework bulk
+## Django REST Framework bulk
 
-The \[django-rest-framework-bulk package\]\[django-rest-framework-bulk\] 包实现通用视图mixins以及一些常见的具体通用视图，以允许通过API请求应用批量操作。
+The [django-rest-framework-bulk package][django-rest-framework-bulk] 包实现通用视图mixins以及一些常见的具体通用视图，以允许通过API请求应用批量操作。
 
-\#\# Django Rest Multiple Models
+## Django Rest Multiple Models
 
-\[Django Rest Multiple Models\]\[django-rest-multiple-models\] 提供了通过单个API请求发送多个序列化模型和／或者查询集的通用视图（和mixin）。 
+[Django Rest Multiple Models][django-rest-multiple-models] 提供了通过单个API请求发送多个序列化模型和/或者查询集的通用视图（和mixin）。 
 
-\[cite\]: [https://docs.djangoproject.com/en/stable/ref/class-based-views/\\#base-vs-generic-views](https://docs.djangoproject.com/en/stable/ref/class-based-views/\#base-vs-generic-views)
+[cite]: [https://docs.djangoproject.com/en/stable/ref/class-based-views/\\#base-vs-generic-views](https://docs.djangoproject.com/en/stable/ref/class-based-views/\#base-vs-generic-views)
 
-\[GenericAPIView\]: \#genericapiview
+[GenericAPIView]: #genericapiview
 
-\[ListModelMixin\]: \#listmodelmixin
+[ListModelMixin]: #listmodelmixin
 
-\[CreateModelMixin\]: \#createmodelmixin
+[CreateModelMixin]: #createmodelmixin
 
-\[RetrieveModelMixin\]: \#retrievemodelmixin
+[RetrieveModelMixin]: \#retrievemodelmixin
 
-\[UpdateModelMixin\]: \#updatemodelmixin
+[UpdateModelMixin]: #updatemodelmixin
 
-\[DestroyModelMixin\]: \#destroymodelmixin
+[DestroyModelMixin]: #destroymodelmixin
 
-\[django-rest-framework-bulk\]: [https://github.com/miki725/django-rest-framework-bulk](https://github.com/miki725/django-rest-framework-bulk)
+[django-rest-framework-bulk]: [https://github.com/miki725/django-rest-framework-bulk](https://github.com/miki725/django-rest-framework-bulk)
 
-\[django-rest-multiple-models\]: [https://github.com/Axiologue/DjangoRestMultipleModels](https://github.com/Axiologue/DjangoRestMultipleModels)
+[django-rest-multiple-models]: [https://github.com/Axiologue/DjangoRestMultipleModels](https://github.com/Axiologue/DjangoRestMultipleModels)
 
