@@ -59,20 +59,20 @@ router.register(r'users', UserViewSet)
 urlpatterns = router.urls
 ```
 
-Rather than writing your own viewsets, you'll often want to use the existing base classes that provide a default set of behavior.  For example:
+不需要编写自己的视图集，你通常会想要使用提供默认行为的现有基类。例如：
 
 ```
 class UserViewSet(viewsets.ModelViewSet):
     """
-    A viewset for viewing and editing user instances.
+    用于查看和编辑用户实例的视图集。
     """
     serializer_class = UserSerializer
     queryset = User.objects.all()
 ```
 
-There are two main advantages of using a `ViewSet` class over using a `View` class.
+与使用 `View` 类相比，使用 `ViewSet` 类有两个主要优点。
 
-* Repeated logic can be combined into a single class.  In the above example, we only need to specify the `queryset` once, and it'll be used across multiple views.
+* 重复的逻辑可以组合成一个类。在上面的例子中，我们只需要指定一次 `queryset`，它将在多个视图中使用。
 * By using routers, we no longer need to deal with wiring up the URL conf ourselves.
 
 Both of these come with a trade-off.  Using regular views and URL confs is more explicit and gives you more control.  ViewSets are helpful if you want to get up and running quickly, or when you have a large API and you want to enforce a consistent URL configuration throughout.
