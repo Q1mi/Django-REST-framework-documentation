@@ -4,21 +4,20 @@ source: mixins.py
     generics.py
 ```
 
-\# Generic views
+# Generic views
 
-&gt; Django的标准 views...是为更快捷地使用常见的使用模式而开发的... 它们采用在view开发中找到的某些常见语法和模式，并对它们进行抽象，以便你可以快速写出数据的常见视图，而无需重复自己。
+> Django的标准 views...是为更快捷地使用常见的使用模式而开发的... 它们采用在view开发中找到的某些常见语法和模式，并对它们进行抽象，以便你可以快速写出数据的常见视图，而无需重复自己。
+>
 
-&gt;
-
-&gt; — \[Django 文档\]\[cite\]
+> — [Django 文档][cite]
 
 基于类的视图的主要优点之一是它们允许你组合一些可重用的行为。  REST framework通过提供许多预先构建的视图来提供常用的模式来利用这一优点。
 
 REST framework 提供的通用视图允许您快速构建与数据库模型密切映射的API视图。
 
-如果通用视图不适合你的API的需求，你可以选择使用常规`APIView`类，或重用通用视图使用的mixins和基类来组成你自己的一组可重用的通用视图。
+如果通用视图不适合你的API的需求，你可以选择使用常规 `APIView` 类，或重用通用视图使用的mixins和基类来组成你自己的一组可重用的通用视图。
 
-\#\# 举个例子
+## 举个例子
 
 通常在使用通用视图时，你将覆盖视图，并设置多个类属性。
 
@@ -27,88 +26,88 @@ from django.contrib.auth.models import User
 
 from myapp.serializers import UserSerializer
 
-from rest\_framework import generics
+from rest_framework import generics
 
-from rest\_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser
 
 
 
-class UserList\(generics.ListCreateAPIView\):
+class UserList(generics.ListCreateAPIView):
 
-    queryset = User.objects.all\(\)
+    queryset = User.objects.all()
 
-    serializer\_class = UserSerializer
+    serializer_class = UserSerializer
 
-    permission\_classes = \(IsAdminUser,\)
+    permission_classes = (IsAdminUser, )
 ```
 
 对于更复杂的情况，您可能还想覆盖视图类上的各种方法。比如：
 
-    class UserList\(generics.ListCreateAPIView\):
+    class UserList(generics.ListCreateAPIView):
 
-        queryset = User.objects.all\(\)
+        queryset = User.objects.all()
 
-        serializer\_class = UserSerializer
+        serializer_class = UserSerializer
 
-        permission\_classes = \(IsAdminUser,\)
+        permission_classes = (IsAdminUser, )
 
 
 
-        def list\(self, request\):
+        def list(self, request):
 
-            \# Note the use of \`get\_queryset\(\)\` instead of \`self.queryset\`
+            # Note the use of `get_queryset()` instead of `self.queryset`
 
-            queryset = self.get\_queryset\(\)
+            queryset = self.get_queryset()
 
-            serializer = UserSerializer\(queryset, many=True\)
+            serializer = UserSerializer(queryset, many=True)
 
-            return Response\(serializer.data\)
+            return Response(serializer.data)
 
-对于非常简单的情况，你可能想使用`.as_view()`方法传递任何类属性。 比如：你的URLconf可能包括类似以下条目：
+对于非常简单的情况，你可能想使用 `.as_view()` 方法传递任何类属性。 比如：你的URLconf可能包括类似以下条目：
 
 ```
-url\(r'^/users/', ListCreateAPIView.as\_view\(queryset=User.objects.all\(\), serializer\_class=UserSerializer\), name='user-list'\)
+url(r'^/users/', ListCreateAPIView.as_view\(queryset=User.objects.all(), serializer_class=UserSerializer), name='user-list')
 ```
 
 ---
 
-\# API Reference
+# API Reference
 
-\#\# GenericAPIView
+## GenericAPIView
 
-此类扩展了REST框架的`APIView`类，为标准list和detail view 添加了通常需要的行为。
+此类扩展了REST框架的 `APIView` 类，为标准list和detail view 添加了通常需要的行为。
 
-提供的每个具体通用视图是通过将`GenericAPIView`与一个或多个mixin类组合来构建的。
+提供的每个具体通用视图是通过将 `GenericAPIView` 与一个或多个mixin类组合来构建的。
 
-\#\#\# Attributes
+### Attributes
 
-\*\*基本设置\*\*:
+**基本设置**:
 
 以下属性控制着基本视图的行为。
 
-\* \`queryset\` - 用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 \`get\_queryset\(\)\` 方法。如果你重写了一个视图的方法，重要的是你应该调用 \`get\_queryset\(\)\` 方法而不是直接访问该属性，因为 \`queryset\` 将被计算一次，这些结果将为后续请求缓存起来。
+* `queryset` - 用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 `get_queryset()` 方法。如果你重写了一个视图的方法，重要的是你应该调用 `get_queryset()` 方法而不是直接访问该属性，因为 `queryset` 将被计算一次，这些结果将为后续请求缓存起来。
 
-\* \`serializer\_class\` - 用于验证和反序列化输入以及用于序列化输出的Serializer类。 通常，你必须设置此属性或者重写\`get\_serializer\_class\(\)\` 方法。
+* `serializer_class` - 用于验证和反序列化输入以及用于序列化输出的Serializer类。 通常，你必须设置此属性或者重写`get_serializer_class()` 方法。
 
-\* \`lookup\_field\` - 用于执行各个model实例的对象查找的model字段。默认为 \`'pk'\`。 请注意，在使用超链接API时，如果需要使用自定义的值，你需要确保在API视图\*和\*序列化类\*都\*设置查找字段。
+* `lookup_field` - 用于执行各个model实例的对象查找的model字段。默认为 `'pk'`。 请注意，在使用超链接API时，如果需要使用自定义的值，你需要确保在API视图\*和\*序列化类\*都\*设置查找字段。
 
-\* \`lookup\_url\_kwarg\` - 应用于对象查找的URL关键字参数。它的 URL conf 应该包括一个与这个值相对应的关键字参数。如果取消设置，默认情况下使用与 \`lookup\_field\`相同的值。
+* `lookup_url_kwarg` - 应用于对象查找的URL关键字参数。它的 URL conf 应该包括一个与这个值相对应的关键字参数。如果取消设置，默认情况下使用与 `lookup_field`相同的值。
 
-\*\*Pagination\*\*:
+**Pagination**:
 
 以下属性用于在与列表视图一起使用时控制分页。
 
-\* \`pagination\_class\` - 当分页列出结果时应使用的分页类。默认值与 \`DEFAULT\_PAGINATION\_CLASS\` 设置的值相同，即 \`'rest\_framework.pagination.PageNumberPagination'\`。
+* `pagination_class` - 当分页列出结果时应使用的分页类。默认值与 `DEFAULT_PAGINATION_CLASS` 设置的值相同，即 `'rest_framework.pagination.PageNumberPagination'`。
 
-\*\*Filtering\*\*:
+**Filtering**:
 
-\* \`filter\_backends\` - 用于过滤查询集的过滤器后端类的列表。默认值与\`DEFAULT\_FILTER\_BACKENDS\` 设置的值相同。
+* `filter_backends` - 用于过滤查询集的过滤器后端类的列表。默认值与`DEFAULT_FILTER_BACKENDS` 设置的值相同。
 
-\#\#\# Methods
+### Methods
 
-\*\*Base methods\*\*:
+**Base methods**:
 
-\#\#\#\# \`get\_queryset\(self\)\`
+#### `get_queryset(self)`
 
 返回列表视图中实用的查询集，该查询集还用作详细视图中的查找基础。默认返回由 \`queryset\` 属性指定的查询集。
 
