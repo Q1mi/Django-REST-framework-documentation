@@ -8,15 +8,15 @@ source: viewsets.py
 
 Django REST framework允许你将一组相关视图的逻辑组合在单个类（称为 `ViewSet`）中。 在其他框架中，你也可以找到概念上类似于 'Resources' 或 'Controllers'的类似实现。
 
- `ViewSet` 只是 一种基于类的视图，它不提供任何方法处理程序（如 `.get()` `.post()`, and instead provides actions such as `.list()` and `.create()`.
+ `ViewSet` 只是**一种基于类的视图，它不提供任何方法处理程序**（如 `.get()`或`.post()`）,而是提供诸如 `.list()` 和 `.create()` 之类的操作。
 
-The method handlers for a `ViewSet` are only bound to the corresponding actions at the point of finalizing the view, using the `.as_view()` method.
+ `ViewSet` 的方法处理程序仅使用 `.as_view()` 方法绑定到完成视图的相应操作。
 
-Typically, rather than explicitly registering the views in a viewset in the urlconf, you'll register the viewset with a router class, that automatically determines the urlconf for you.
+通常不是在 urlconf 中的视图集中显示注册视图，而是要使用路由类注册视图集，该类会自动为你确定 urlconf。
 
 ## Example
 
-Let's define a simple viewset that can be used to list or retrieve all the users in the system.
+让我们定义一个简单的视图集，可以用来列出或检索系统中的所有用户。
 
 ```
 from django.contrib.auth.models import User
@@ -41,14 +41,14 @@ class UserViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 ```
 
-If we need to, we can bind this viewset into two separate views, like so:
+如果我们需要，我们可以将这个viewset绑定到两个单独的视图，想这样：
 
 ```
 user_list = UserViewSet.as_view({'get': 'list'})
 user_detail = UserViewSet.as_view({'get': 'retrieve'})
 ```
 
-Typically we wouldn't do this, but would instead register the viewset with a router, and allow the urlconf to be automatically generated.
+通常我们不会这么做，我们会用一个router来注册我们的viewset，让urlconf自动生成。
 
 ```
 from myapp.views import UserViewSet
