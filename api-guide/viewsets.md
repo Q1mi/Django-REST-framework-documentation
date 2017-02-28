@@ -172,7 +172,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 ---
 
-# API Reference
+# API 参考
 
 ## ViewSet
 
