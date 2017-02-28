@@ -77,17 +77,15 @@ class UserViewSet(viewsets.ModelViewSet):
 
 这两者都有一个权衡。使用常规的 views 和 URL confs 更明确也能够为你提供更多的控制。ViewSets有助于快速启动和运行，或者当你有大型的API，并且希望在整个过程中执行一致的 URL 配置。
 
-## Marking extra actions for routing
+## 标记路由的额外操作
 
-The default routers included with REST framework will provide routes for a standard set of create/retrieve/update/destroy style operations, as shown below:
+REST framework 中包含的默任 routes 将为标准的 create/retrieve/update/destroy 类型操作提供路由, 如下所示：
 
     class UserViewSet(viewsets.ViewSet):
         """
-        Example empty viewset demonstrating the standard
-        actions that will be handled by a router class.
+        示例 viewset 演示了将由路由器类处理的标准动作。
 
-        If you're using format suffixes, make sure to also include
-        the `format=None` keyword argument for each action.
+        如果你使用格式后缀，请务必为每个动作包含一个`format=None` 的关键字参数。
         """
 
         def list(self, request):
@@ -108,7 +106,7 @@ The default routers included with REST framework will provide routes for a stand
         def destroy(self, request, pk=None):
             pass
 
-If you have ad-hoc methods that you need to be routed to, you can mark them as requiring routing using the `@detail_route` or `@list_route` decorators.
+如果你有需要被路由到的特别方法，你可以使用 `@detail_route` 或 `@list_route` 装饰器将它们标记为需要路由。
 
 The `@detail_route` decorator contains `pk` in its URL pattern and is intended for methods which require a single instance. The `@list_route` decorator is intended for methods which operate on a list of objects.
 
