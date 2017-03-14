@@ -6,9 +6,9 @@ source: routers.py
 >
 > &mdash; [Ruby on Rails 文档][cite]
 
-Some Web frameworks such as Rails provide functionality for automatically determining how the URLs for an application should be mapped to the logic that deals with handling incoming requests.
+某些Web框架（如Rails）提供了自动确定应用程序的URL应如何映射到处理传入请求的逻辑的功能。
 
-REST framework adds support for automatic URL routing to Django, and provides you with a simple, quick and consistent way of wiring your view logic to a set of URLs.
+REST框架添加了对自动URL路由到Django的支持，并为你提供了一种简单、快速和一致的方式来将视图逻辑连接到一组URL。
 
 ## Usage
 
