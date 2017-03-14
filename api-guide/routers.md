@@ -2,9 +2,9 @@ source: routers.py
 
 # Routers
 
-> Resource routing allows you to quickly declare all of the common routes for a given resourceful controller.  Instead of declaring separate routes for your index... a resourceful route declares them in a single line of code.
+> 资源路由允许你快速声明给定的有足够控制器的所有公共路由。而不是为你的index...声明单独的路由，一个强大的路由能在一行代码中声明它们。
 >
-> &mdash; [Ruby on Rails Documentation][cite]
+> &mdash; [Ruby on Rails 文档][cite]
 
 Some Web frameworks such as Rails provide functionality for automatically determining how the URLs for an application should be mapped to the logic that deals with handling incoming requests.
 
