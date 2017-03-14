@@ -12,7 +12,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ## Usage
 
-Here's an example of a simple URL conf, that uses `SimpleRouter`.
+这里有一个简单的URL conf的例子，它使用 `SimpleRouter`。
 
     from rest_framework import routers
 
@@ -21,14 +21,14 @@ Here's an example of a simple URL conf, that uses `SimpleRouter`.
     router.register(r'accounts', AccountViewSet)
     urlpatterns = router.urls
 
-There are two mandatory arguments to the `register()` method:
+`register()` 方法有两个强制参数:
 
-* `prefix` - The URL prefix to use for this set of routes.
-* `viewset` - The viewset class.
+* `prefix` - 用于此组路由的URL前缀。
+* `viewset` - 处理请求的viewset类。
 
-Optionally, you may also specify an additional argument:
+还可以指定一个附加参数（可选）:
 
-* `base_name` - The base to use for the URL names that are created.  If unset the basename will be automatically generated based on the `queryset` attribute of the viewset, if it has one.  Note that if the viewset does not include a `queryset` attribute then you must set `base_name` when registering the viewset.
+* `base_name` - 用于创建的URL名称的基本名称。如果不设置该参数，将根据视图集的`queryset`属性（如果有）来自动生成基本名称。注意，如果视图集不包括`queryset`属性，那么在注册视图集时必须设置`base_name`。
 
 The example above would generate the following URL patterns:
 
