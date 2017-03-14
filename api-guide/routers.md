@@ -30,7 +30,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 * `base_name` - 用于创建的URL名称的基本名称。如果不设置该参数，将根据视图集的`queryset`属性（如果有）来自动生成基本名称。注意，如果视图集不包括`queryset`属性，那么在注册视图集时必须设置`base_name`。
 
-The example above would generate the following URL patterns:
+上面的示例将生成以下URL模式:
 
 * URL pattern: `^users/$`  Name: `'user-list'`
 * URL pattern: `^users/{pk}/$`  Name: `'user-detail'`
@@ -39,7 +39,7 @@ The example above would generate the following URL patterns:
 
 ---
 
-**Note**: The `base_name` argument is used to specify the initial part of the view name pattern.  In the example above, that's the `user` or `account` part.
+**Note**: `base_name` 参数用于指定视图名称模式的初始部分。在上面的例子中就是指 `user` 或 `account` 部分。
 
 Typically you won't *need* to specify the `base_name` argument, but if you have a viewset where you've defined a custom `get_queryset` method, then the viewset may not have a `.queryset` attribute set.  If you try to register that viewset you'll see an error like this:
 
