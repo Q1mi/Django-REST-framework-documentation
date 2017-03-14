@@ -21,16 +21,16 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
     router.register(r'accounts', AccountViewSet)
     urlpatterns = router.urls
 
-`register()` 方法有两个强制参数:
+`register()` 方法有两个强制参数：
 
 * `prefix` - 用于此组路由的URL前缀。
 * `viewset` - 处理请求的viewset类。
 
-还可以指定一个附加参数（可选）:
+还可以指定一个附加参数（可选）：
 
 * `base_name` - 用于创建的URL名称的基本名称。如果不设置该参数，将根据视图集的`queryset`属性（如果有）来自动生成基本名称。注意，如果视图集不包括`queryset`属性，那么在注册视图集时必须设置`base_name`。
 
-上面的示例将生成以下URL模式:
+上面的示例将生成以下URL模式：
 
 * URL pattern: `^users/$`  Name: `'user-list'`
 * URL pattern: `^users/{pk}/$`  Name: `'user-detail'`
@@ -41,11 +41,11 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 **Note**: `base_name` 参数用于指定视图名称模式的初始部分。在上面的例子中就是指 `user` 或 `account` 部分。
 
-Typically you won't *need* to specify the `base_name` argument, but if you have a viewset where you've defined a custom `get_queryset` method, then the viewset may not have a `.queryset` attribute set.  If you try to register that viewset you'll see an error like this:
+通常，你*不需要*指定`base_name`参数，但是如果你有自定义`get_queryset`方法的视图集，那么那个视图集可能没有设置`.queryset`属性。当你注册这个视图集的时候，你就有可能会看到类似如下的错误：
 
     'base_name' argument not specified, and could not automatically determine the name from the viewset, as it does not have a '.queryset' attribute.
 
-This means you'll need to explicitly set the `base_name` argument when registering the viewset, as it could not be automatically determined from the model name.
+这意味着你需要在注册视图集时显式设置`base_name`参数，因为无法从model名自动确定。
 
 ---
 
