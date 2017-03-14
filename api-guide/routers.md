@@ -49,7 +49,12 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ---
 
-### Using `include` with routers
+### 在  
+
+
+
+
+路由中使用`include` with routers
 
 The `.urls` attribute on a router instance is simply a standard list of URL patterns. There are a number of different styles for how you can include these URLs.
 
