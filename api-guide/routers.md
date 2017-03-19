@@ -146,7 +146,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 该路由器包括标准集合`list`, `create`, `retrieve`, `update`, `partial_update` 和 `destroy`动作的路由。视图集中还可以使用`@ detail_route`或`@ list_route`装饰器标记要被路由的其他方法。
 
 <table border=1>
-    <tr><th>URL Style</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
+    <tr><th>URL 样式</th><th>HTTP 方法</th><th>动作</th><th>URL 名</th></tr>
     <tr><td rowspan=2>{prefix}/</td><td>GET</td><td>list</td><td rowspan=2>{basename}-list</td></tr></tr>
     <tr><td>POST</td><td>create</td></tr>
     <tr><td>{prefix}/{methodname}/</td><td>GET, or as specified by `methods` argument</td><td>`@list_route` decorated method</td><td>{basename}-{methodname}</td></tr>
