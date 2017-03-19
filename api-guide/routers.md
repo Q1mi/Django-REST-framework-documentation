@@ -303,13 +303,13 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 还提供以下第三方软件包。
 
-## DRF Nested Routers
+## DRF嵌套路由器
 
-The [drf-nested-routers package][drf-nested-routers] provides routers and relationship fields for working with nested resources.
+[drf-nested-routers 包][drf-nested-routers] 提供了使用嵌套资源的路由器和关系字段。
 
 ## ModelRouter (wq.db.rest)
 
-The [wq.db package][wq.db] provides an advanced [ModelRouter][wq.db-router] class (and singleton instance) that extends `DefaultRouter` with a `register_model()` API. Much like Django's `admin.site.register`, the only required argument to `rest.router.register_model` is a model class.  Reasonable defaults for a url prefix, serializer, and viewset will be inferred from the model and global configuration.
+The [wq.db 包][wq.db] 提供了一个使用`register_model()`API扩展`DefaultRouter`的高级[ModelRouter] [wq.db-router]类（和singleton实例）。很像Django的`admin.site.register`，`rest.router.register_model`唯一需要的参数是一个model类。url前缀，序列化器和视图集的合理默认值将从模型和全局配置中推断出来。
 
     from wq.db import rest
     from myapp.models import MyModel
@@ -318,7 +318,7 @@ The [wq.db package][wq.db] provides an advanced [ModelRouter][wq.db-router] clas
 
 ## DRF-extensions
 
-The [`DRF-extensions` package][drf-extensions] provides [routers][drf-extensions-routers] for creating [nested viewsets][drf-extensions-nested-viewsets], [collection level controllers][drf-extensions-collection-level-controllers] with [customizable endpoint names][drf-extensions-customizable-endpoint-names].
+[`DRF-extensions`包][drf-extensions] 提供用于创建 [嵌套视图][drf-extensions-nested-viewsets]的[路由器][drf-extensions-routers],  具有 [可定制端点名称][drf-extensions-customizable-endpoint-names]的[集合级别控制器][drf-extensions-collection-level-controllers]。
 
 [cite]: http://guides.rubyonrails.org/routing.html
 [route-decorators]: viewsets.md#marking-extra-actions-for-routing
