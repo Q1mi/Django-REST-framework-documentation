@@ -212,12 +212,11 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 **initkwargs**: 实例化视图时应传递的任何其他参数的字典。注意，`suffix`参数被保留用于标识视图集类型，在生成视图名称和面包屑链接时使用。
 
-## Customizing dynamic routes
+## 自定义动态路由
 
-You can also customize how the `@list_route` and `@detail_route` decorators are routed.
-To route either or both of these decorators, include a `DynamicListRoute` and/or `DynamicDetailRoute` named tuple in the `.routes` list.
+你还可以定制`@ list_route`和`@detail_route`装饰器的路由。要路由这些装饰器中的一个或两个，请在`.routes`列表中包含一个`DynamicListRoute`和/或`DynamicDetailRoute`命名的元组。
 
-The arguments to `DynamicListRoute` and `DynamicDetailRoute` are:
+`DynamicListRoute`和`DynamicDetailRoute`的参数是：
 
 **url**: A string representing the URL to be routed. May include the same format strings as `Route`, and additionally accepts the `{methodname}` and `{methodnamehyphen}` format strings.
 
