@@ -280,7 +280,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
     router = CustomReadOnlyRouter()
     router.register('users', UserViewSet)
-	urlpatterns = router.urls
+    urlpatterns = router.urls
 
 将生成以下映射...
 
@@ -291,7 +291,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
     <tr><td>/users/{username}/group-names</td><td>GET</td><td>group_names</td><td>user-group-names</td></tr>
 </table>
 
-For another example of setting the `.routes` attribute, see the source code for the `SimpleRouter` class.
+有关设置`.routes`属性的另一个示例，请参阅`SimpleRouter`类的源代码。
 
 ## Advanced custom routers
 
