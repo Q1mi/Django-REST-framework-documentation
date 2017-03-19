@@ -285,7 +285,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 将生成以下映射...
 
 <table border=1>
-    <tr><th>URL</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
+    <tr><th>URL</th><th>HTTP 方法</th><th>动作</th><th>URL 名称</th></tr>
     <tr><td>/users</td><td>GET</td><td>list</td><td>user-list</td></tr>
     <tr><td>/users/{username}</td><td>GET</td><td>retrieve</td><td>user-detail</td></tr>
     <tr><td>/users/{username}/group-names</td><td>GET</td><td>group_names</td><td>user-group-names</td></tr>
