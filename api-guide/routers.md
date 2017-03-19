@@ -190,27 +190,27 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
     router = DefaultRouter(trailing_slash=False)
 
-# Custom Routers
+# 自定义 Routers
 
-Implementing a custom router isn't something you'd need to do very often, but it can be useful if you have specific requirements about how the your URLs for your API are structured.  Doing so allows you to encapsulate the URL structure in a reusable way that ensures you don't have to write your URL patterns explicitly for each new view.
+通常你并不需要实现自定义路由器，但如果你对API的网址结构有特定的要求，那它就十分有用了。这样做允许你以可重用的方式封装URL结构，确保你不必为每个新视图显式地编写URL模式。
 
-The simplest way to implement a custom router is to subclass one of the existing router classes.  The `.routes` attribute is used to template the URL patterns that will be mapped to each viewset. The `.routes` attribute is a list of `Route` named tuples.
+实现自定义路由器的最简单的方法是继承一个现有的路由器类。`.routes`属性用于模板将被映射到每个视图集的URL模式。`.routes`属性是一个名为tuples的Route对象的列表。
 
-The arguments to the `Route` named tuple are:
+`Route`命名元组的参数是：
 
-**url**: A string representing the URL to be routed.  May include the following format strings:
+**url**: 表示要路由的URL的字符串。可能包括以下格式字符串：
 
-* `{prefix}` - The URL prefix to use for this set of routes.
-* `{lookup}` - The lookup field used to match against a single instance.
-* `{trailing_slash}` - Either a '/' or an empty string, depending on the `trailing_slash` argument.
+* `{prefix}` - 用于此组路由的URL前缀。
+* `{lookup}` - 用于与单个实例进行匹配的查找字段。
+* `{trailing_slash}` - 可以是一个'/'或一个空字符串，这取决于`trailing_slash`参数。
 
-**mapping**: A mapping of HTTP method names to the view methods
+**mapping**: HTTP方法名称到视图方法的映射
 
-**name**: The name of the URL as used in `reverse` calls. May include the following format string:
+**name**: 在`reverse`调用中使用的URL的名称。可能包括以下格式字符串：
 
-* `{basename}` - The base to use for the URL names that are created.
+* `{basename}` - 用于创建的URL名称的基本名称
 
-**initkwargs**: A dictionary of any additional arguments that should be passed when instantiating the view.  Note that the `suffix` argument is reserved for identifying the viewset type, used when generating the view name and breadcrumb links.
+**initkwargs**: 实例化视图时应传递的任何其他参数的字典。注意，`suffix`参数被保留用于标识视图集类型，在生成视图名称和面包屑链接时使用。
 
 ## Customizing dynamic routes
 
