@@ -51,9 +51,9 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ### 在路由中使用 `include`
 
-The `.urls` attribute on a router instance is simply a standard list of URL patterns. There are a number of different styles for how you can include these URLs.
+路由器实例上的`.urls`属性只是一个URL模式的标准列表。对于如何添加这些网址，有很多不同的写法。
 
-For example, you can append `router.urls` to a list of existing views…
+例如，你可以将`router.urls`附加到现有视图的列表中...
 
     router = routers.SimpleRouter()
     router.register(r'users', UserViewSet)
@@ -65,14 +65,14 @@ For example, you can append `router.urls` to a list of existing views…
     
     urlpatterns += router.urls
 
-Alternatively you can use Django's `include` function, like so…
+或者，你可以使用Django的`include`函数，像这样...
 
     urlpatterns = [
         url(r'^forgot-password/$', ForgotPasswordFormView.as_view()),
         url(r'^', include(router.urls)),
     ]
 
-Router URL patterns can also be namespaces.
+路由器URL模式也支持命名空间的写法。
 
     urlpatterns = [
         url(r'^forgot-password/$', ForgotPasswordFormView.as_view()),
