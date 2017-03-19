@@ -79,12 +79,12 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
         url(r'^api/', include(router.urls, namespace='api')),
     ]
 
-If using namespacing with hyperlinked serializers you'll also need to ensure that any `view_name` parameters on the serializers correctly reflect the namespace. In the example above you'd need to include a parameter such as `view_name='api:user-detail'` for serializer fields hyperlinked to the user detail view.
+ 如果使用带超链接序列化器的命名空间，你还需要确保序列化器上的任何`view_name`参数正确地反映命名空间。在上面的示例中，你需要让超链接到用户详细信息视图的序列化器字段包含一个参数，例如`view_name ='api：user-detail'`。
 
-### Extra link and actions
+### 额外链接和操作
 
-Any methods on the viewset decorated with `@detail_route` or `@list_route` will also be routed.
-For example, given a method like this on the `UserViewSet` class:
+用`@ detail_route`或`@ list_route`装饰的视图集上的任何方法也将被路由。
+例如，给定一个类似这样的方法在`UserViewSet`类：
 
     from myapp.permissions import IsAdminOrIsSelf
     from rest_framework.decorators import detail_route
