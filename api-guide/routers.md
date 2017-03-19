@@ -164,7 +164,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 尾部斜杠在Django中是常见的，但是在其他一些框架（如Rails）中默认不使用。你选择使用哪种风格在很大程度上是你个人偏好问题，虽然一些javascript框架可能需要一个特定的路由风格。
 
-The router will match lookup values containing any characters except slashes and period characters.  For a more restrictive (or lenient) lookup pattern, set the `lookup_value_regex` attribute on the viewset.  For example, you can limit the lookup to valid UUIDs:
+路由器将匹配包含除斜杠和句点字符以外的任何字符的查找值。对于更严格（或更宽松）的查找模式，请在视图集上设置`lookup_value_regex`属性。例如，你可以将查找限制为有效的UUID：
 
     class MyModelViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet):
         lookup_field = 'my_model_id'
