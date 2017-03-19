@@ -224,7 +224,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 **initkwargs**: 实例化视图时应传递的任何其他参数的字典。
 
-## Example
+## 例子
 
 The following example will only route to the `list` and `retrieve` actions, and does not use the trailing slash convention.
 
