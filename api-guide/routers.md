@@ -172,10 +172,9 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ## DefaultRouter
 
-This router is similar to `SimpleRouter` as above, but additionally includes a default API root view, that returns a response containing hyperlinks to all the list views.  It also generates routes for optional `.json` style format suffixes.
-
+这个路由器类似于上面的`SimpleRouter`，但是还包括一个默认返回所有列表视图的超链接的API根视图。它还生成可选的`.json`样式格式后缀的路由。
 <table border=1>
-    <tr><th>URL Style</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
+    <tr><th>URL 样式</th><th>HTTP 方法</th><th>动作</th><th>URL 名称</th></tr>
     <tr><td>[.format]</td><td>GET</td><td>automatically generated root view</td><td>api-root</td></tr></tr>
     <tr><td rowspan=2>{prefix}/[.format]</td><td>GET</td><td>list</td><td rowspan=2>{basename}-list</td></tr></tr>
     <tr><td>POST</td><td>create</td></tr>
