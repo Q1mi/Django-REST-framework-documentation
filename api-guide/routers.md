@@ -162,7 +162,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
     router = SimpleRouter(trailing_slash=False)
 
-Trailing slashes are conventional in Django, but are not used by default in some other frameworks such as Rails.  Which style you choose to use is largely a matter of preference, although some javascript frameworks may expect a particular routing style.
+尾部斜杠在Django中是常见的，但是在其他一些框架（如Rails）中默认不使用。你选择使用哪种风格在很大程度上是你个人偏好问题，虽然一些javascript框架可能需要一个特定的路由风格。
 
 The router will match lookup values containing any characters except slashes and period characters.  For a more restrictive (or lenient) lookup pattern, set the `lookup_value_regex` attribute on the viewset.  For example, you can limit the lookup to valid UUIDs:
 
