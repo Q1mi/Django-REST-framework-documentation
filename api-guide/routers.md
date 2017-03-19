@@ -186,7 +186,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
     <tr><td>{prefix}/{lookup}/{methodname}/[.format]</td><td>GET, or as specified by `methods` argument</td><td>`@detail_route` decorated method</td><td>{basename}-{methodname}</td></tr>
 </table>
 
-As with `SimpleRouter` the trailing slashes on the URL routes can be removed by setting the `trailing_slash` argument to `False` when instantiating the router.
+与`SimpleRouter`一样，在实例化路由器时，可以通过将`trailing_slash`参数设置为`False'来删除URL路由的尾部斜杠。
 
     router = DefaultRouter(trailing_slash=False)
 
