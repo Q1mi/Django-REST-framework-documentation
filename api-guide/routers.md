@@ -1,4 +1,4 @@
-source: routers.py
+URLsource: routers.py
 
 # Routers
 
@@ -51,7 +51,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ### 在路由中使用 `include`
 
-路由器实例上的`.urls`属性只是一个URL模式的标准列表。对于如何添加这些网址，有很多不同的写法。
+路由器实例上的`.urls`属性只是一个URL模式的标准列表。对于如何添加这些URL，有很多不同的写法。
 
 例如，你可以将`router.urls`附加到现有视图的列表中...
 
@@ -99,7 +99,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 * URL pattern: `^users/{pk}/set_password/$`  Name: `'user-set-password'`
 
-如果你不想让自定义的操作使用自动生成的默认网址，你可以改用url_path参数进行自定义。
+如果你不想让自定义的操作使用自动生成的默认URL，你可以改用url_path参数进行自定义。
 
 例如，如果你要将自定义操作的URL更改为`^users/{pk}/change-password/$`, 你可以这样写：
 
@@ -113,7 +113,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
         def set_password(self, request, pk=None):
             ...
 
-以上示例将生成以下网址格式：
+以上示例将生成以下URL格式：
 
 * URL pattern: `^users/{pk}/change-password/$`  Name: `'user-change-password'`
 
