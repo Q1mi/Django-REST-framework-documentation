@@ -158,8 +158,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 </table>
 
 默认情况下，由`SimpleRouter`创建的URL将附加尾部斜杠。
-在实例化路由器时，可以通过将`trailing_slash`参数设置为`False'来修改此行为。
-比如：
+在实例化路由器时，可以通过将`trailing_slash`参数设置为`False'来修改此行为。比如：
 
     router = SimpleRouter(trailing_slash=False)
 
