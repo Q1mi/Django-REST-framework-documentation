@@ -101,7 +101,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 如果你不想让自定义的操作使用自动生成的默认网址，你可以改用url_path参数进行自定义。
 
-For example, if you want to change the URL for our custom action to `^users/{pk}/change-password/$`, you could write:
+例如，如果你要将自定义操作的URL更改为`^users/{pk}/change-password/$`, 你可以这样写：
 
     from myapp.permissions import IsAdminOrIsSelf
     from rest_framework.decorators import detail_route
@@ -113,7 +113,7 @@ For example, if you want to change the URL for our custom action to `^users/{pk}
         def set_password(self, request, pk=None):
             ...
 
-The above example would now generate the following URL pattern:
+以上示例将生成以下网址格式：
 
 * URL pattern: `^users/{pk}/change-password/$`  Name: `'user-change-password'`
 
