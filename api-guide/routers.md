@@ -295,13 +295,13 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ## 高级自定义路由器
 
-If you want to provide totally custom behavior, you can override `BaseRouter` and override the `get_urls(self)` method.  The method should inspect the registered viewsets and return a list of URL patterns.  The registered prefix, viewset and basename tuples may be inspected by accessing the `self.registry` attribute.
+如果你想提供完全自定义的行为，你可以覆写`BaseRouter`并写`get_urls（self）`方法。该方法应该检查注册的视图并返回一个URL模式列表。可以通过访问`self.registry`属性来检查注册的前缀，视图集和基本名元组。
 
-You may also want to override the `get_default_base_name(self, viewset)` method, or else always explicitly set the `base_name` argument when registering your viewsets with the router.
+你可能还想覆盖`get_default_base_name（self，viewset）`方法，或者在路由器注册你的视图时总是显式地设置`base_name`参数。
 
-# Third Party Packages
+# 第三方包
 
-The following third party packages are also available.
+还提供以下第三方软件包。
 
 ## DRF Nested Routers
 
