@@ -226,7 +226,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ## 例子
 
-The following example will only route to the `list` and `retrieve` actions, and does not use the trailing slash convention.
+以下示例将只路由到`list`和`retrieve`操作，并且不使用尾部斜线约定。
 
     from rest_framework.routers import Route, DynamicDetailRoute, SimpleRouter
 
@@ -254,7 +254,7 @@ The following example will only route to the `list` and `retrieve` actions, and 
         	)
         ]
 
-Let's take a look at the routes our `CustomReadOnlyRouter` would generate for a simple viewset.
+让我们来看看我们定义的`CustomReadOnlyRouter`为简单视图生成的路由。
 
 `views.py`:
 
@@ -282,7 +282,7 @@ Let's take a look at the routes our `CustomReadOnlyRouter` would generate for a 
     router.register('users', UserViewSet)
 	urlpatterns = router.urls
 
-The following mappings would be generated...
+将生成以下映射...
 
 <table border=1>
     <tr><th>URL</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
