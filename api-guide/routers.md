@@ -139,11 +139,11 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 有关更多信息，请参阅viewset文档 [标记路由的额外操作][route-decorators].
 
-# API Guide
+# API 向导
 
 ## SimpleRouter
 
-This router includes routes for the standard set of `list`, `create`, `retrieve`, `update`, `partial_update` and `destroy` actions.  The viewset can also mark additional methods to be routed, using the `@detail_route` or `@list_route` decorators.
+该路由器包括标准集合`list`, `create`, `retrieve`, `update`, `partial_update` 和 `destroy`动作的路由。视图集中还可以使用`@ detail_route`或`@ list_route`装饰器标记要被路由的其他方法。
 
 <table border=1>
     <tr><th>URL Style</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
