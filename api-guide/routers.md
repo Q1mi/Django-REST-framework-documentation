@@ -95,12 +95,11 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
         @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf])
         def set_password(self, request, pk=None):
             ...
-
-The following URL pattern would additionally be generated:
+将另外生成以下URL模式：
 
 * URL pattern: `^users/{pk}/set_password/$`  Name: `'user-set-password'`
 
-If you do not want to use the default URL generated for your custom action, you can instead use the url_path parameter to customize it.
+如果你不想让自定义的操作使用自动生成的默认网址，你可以改用url_path参数进行自定义。
 
 For example, if you want to change the URL for our custom action to `^users/{pk}/change-password/$`, you could write:
 
