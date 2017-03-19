@@ -131,13 +131,13 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
         def set_password(self, request, pk=None):
             ...
 
-The above example would now generate the following URL pattern:
+以上示例现在将生成以下URL格式：
 
 * URL pattern: `^users/{pk}/set_password/$`  Name: `'user-change-password'`
 
-You can also use url_path and url_name parameters together to obtain extra control on URL generation for custom views.
+你还可以同时设置url_path和url_name参数对自定义视图的URL生成进行额外的控制。
 
-For more information see the viewset documentation on [marking extra actions for routing][route-decorators].
+有关更多信息，请参阅viewset文档 [标记路由的额外操作][route-decorators].
 
 # API Guide
 
