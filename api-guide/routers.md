@@ -218,11 +218,11 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 `DynamicListRoute`和`DynamicDetailRoute`的参数是：
 
-**url**: A string representing the URL to be routed. May include the same format strings as `Route`, and additionally accepts the `{methodname}` and `{methodnamehyphen}` format strings.
+**url**: 表示要路由的URL的字符串。可以包括与“Route”相同的格式字符串，并且另外接受`{methodname}`和`{methodnamehyphen}`格式字符串。
 
-**name**: The name of the URL as used in `reverse` calls. May include the following format strings: `{basename}`, `{methodname}` and `{methodnamehyphen}`.
+**name**: 在`reverse`调用中使用的URL的名称。可能包括以下格式字符串：`{basename}`，`{methodname}`和`{methodnamehyphen}`。
 
-**initkwargs**: A dictionary of any additional arguments that should be passed when instantiating the view.
+**initkwargs**: 实例化视图时应传递的任何其他参数的字典。
 
 ## Example
 
