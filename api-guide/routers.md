@@ -117,9 +117,9 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 * URL pattern: `^users/{pk}/change-password/$`  Name: `'user-change-password'`
 
-In the case you do not want to use the default name generated for your custom action, you can use the url_name parameter to customize it.
+在你不想使用为自定义操作生成的默认名称的情况下，ni可以使用url_name参数来自定义它。
 
-For example, if you want to change the name of our custom action to `'user-change-password'`, you could write:
+例如，如果要将自定义操作的名称更改为`'user-change-password'`，则可以写为：
 
     from myapp.permissions import IsAdminOrIsSelf
     from rest_framework.decorators import detail_route
