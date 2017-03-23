@@ -34,8 +34,7 @@ REST_FRAMEWORK = {
 }
 ```
 
-You can also set the parsers used for an individual view, or viewset,  
-using the `APIView` class-based views.
+你还可以设置用于单个视图或视图集的解析器， 使用`APIView`类视图。
 
 ```
 from rest_framework.parsers import JSONParser
