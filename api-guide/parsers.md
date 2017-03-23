@@ -86,9 +86,9 @@ def example_view(request, format=None):
 
 ## MultiPartParser
 
-Parses multipart HTML form content, which supports file uploads.  Both `request.data` will be populated with a `QueryDict`.
+解析多部分HTML表单内容，支持文件上传。`request.data` 都将被一个 `QueryDict`填充。
 
-You will typically want to use both `FormParser` and `MultiPartParser` together in order to fully support HTML form data.
+你通常会同时使用`FormParser`和`MultiPartParser`两者，以便完全支持HTML表单数据。
 
 **.media\_type**: `multipart/form-data`
 
