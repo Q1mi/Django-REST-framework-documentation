@@ -102,7 +102,7 @@ def example_view(request, format=None):
 
 **.media\_type**: `*/*`
 
-##### Notes:
+##### 笔记:
 
 * The `FileUploadParser` is for usage with native clients that can upload the file as a raw data request.  For web-based uploads, or for native clients with multipart upload support, you should use the `MultiPartParser` parser instead.
 * Since this parser's `media_type` matches any content type, `FileUploadParser` should generally be the only parser set on an API view.
