@@ -94,11 +94,11 @@ def example_view(request, format=None):
 
 ## FileUploadParser
 
-解析原始文件上传内容。Parses raw file upload content.  The `request.data` 属性将是一个包含上传文件的单个key `'file'`的字典。
+解析原始文件上传内容。 `request.data` 属性将是有单个key `'file'`的包含上传文件的字典。
 
-If the view used with `FileUploadParser` is called with a `filename` URL keyword argument, then that argument will be used as the filename.
+如果与`FileUploadParser`一起使用的视图使用`filename` URL关键字参数调用，则该参数将用作文件名。
 
-If it is called without a `filename` URL keyword argument, then the client must set the filename in the `Content-Disposition` HTTP header.  For example `Content-Disposition: attachment; filename=upload.jpg`.
+如果没有`filename` URL关键字参数调用，那么客户端必须在`Content-Disposition` HTTP头中设置文件名。例如 `Content-Disposition: attachment; filename=upload.jpg`.
 
 **.media\_type**: `*/*`
 
