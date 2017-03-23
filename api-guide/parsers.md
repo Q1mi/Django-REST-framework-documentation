@@ -16,15 +16,15 @@ REST 框架包括一些内置的Parser类，允许你接受各种媒体类型的
 
 **注意**: 开发客户端应用程序时应该始终记住在HTTP请求中发送数据时确保设置`Content-Type`头。
 
-If you don't set the content type, most clients will default to using `'application/x-www-form-urlencoded'`, which may not be what you wanted.
+如果你不设置内容类型，大多数客户端将默认使用`'application/x-www-form-urlencoded'`，而这可能并不是你想要的。
 
-As an example, if you are sending `json` encoded data using jQuery with the [.ajax\(\) method](http://api.jquery.com/jQuery.ajax/), you should make sure to include the `contentType: 'application/json'` setting.
+举个例子，如果你使用jQuery的[.ajax\(\) 方法](http://api.jquery.com/jQuery.ajax/)发送`json`编码数据，你应该确保包含`contentType：'application / json'`设置。
 
 ---
 
-## Setting the parsers
+## 设置解析器
 
-The default set of parsers may be set globally, using the `DEFAULT_PARSER_CLASSES` setting. For example, the following settings would allow only requests with `JSON` content, instead of the default of JSON or form data.
+可以使用`DEFAULT_PARSER_CLASSES`设置全局默认的解析器集。例如，以下设置将仅允许具有`JSON`内容的请求，而不是JSON或表单数据的默认值。
 
 ```
 REST_FRAMEWORK = {
