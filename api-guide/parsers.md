@@ -94,7 +94,7 @@ def example_view(request, format=None):
 
 ## FileUploadParser
 
-Parses raw file upload content.  The `request.data` property will be a dictionary with a single key `'file'` containing the uploaded file.
+解析原始文件上传内容。Parses raw file upload content.  The `request.data` 属性将是一个包含上传文件的单个key `'file'`的字典。
 
 If the view used with `FileUploadParser` is called with a `filename` URL keyword argument, then that argument will be used as the filename.
 
