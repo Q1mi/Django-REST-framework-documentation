@@ -108,7 +108,7 @@ def example_view(request, format=None):
 * 由于该解析器的`media_type`与任何内容类型匹配，所以`FileUploadParser`通常应该是API视图中唯一的解析器。
 * `FileUploadParser` 遵循 Django 的标准 `FILE_UPLOAD_HANDLERS` 设置，和 `request.upload_handlers` 属性。参见 [Django 文档](https://docs.djangoproject.com/en/stable/topics/http/file-uploads/#upload-handlers) 获取更多细节。
 
-##### Basic usage example:
+##### 基本用法示例：
 
 ```
 # views.py
