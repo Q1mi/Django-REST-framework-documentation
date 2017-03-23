@@ -43,7 +43,7 @@ from rest_framework.views import APIView
 
 class ExampleView(APIView):
     """
-    A view that can accept POST requests with JSON content.
+    可以接收JSON内容POST请求的视图。
     """
     parser_classes = (JSONParser,)
 
