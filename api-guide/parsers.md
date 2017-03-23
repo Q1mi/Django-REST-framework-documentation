@@ -68,11 +68,11 @@ def example_view(request, format=None):
 
 ---
 
-# API Reference
+# API参考
 
 ## JSONParser
 
-Parses `JSON` request content.
+解析 `JSON` 请求内容。
 
 **.media\_type**: `application/json`
 
