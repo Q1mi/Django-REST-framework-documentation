@@ -78,9 +78,9 @@ def example_view(request, format=None):
 
 ## FormParser
 
-Parses HTML form content.  `request.data` will be populated with a `QueryDict` of data.
+解析 HTML 表单内容。`request.data`将被填充一个`QueryDict`的数据。
 
-You will typically want to use both `FormParser` and `MultiPartParser` together in order to fully support HTML form data.
+通常，你需要使用`FormParser`和`MultiPartParser`两者，以便完全支持HTML表单数据。
 
 **.media\_type**: `application/x-www-form-urlencoded`
 
