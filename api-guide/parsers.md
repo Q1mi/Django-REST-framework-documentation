@@ -104,9 +104,9 @@ def example_view(request, format=None):
 
 ##### 笔记:
 
-* The `FileUploadParser` is for usage with native clients that can upload the file as a raw data request.  For web-based uploads, or for native clients with multipart upload support, you should use the `MultiPartParser` parser instead.
-* Since this parser's `media_type` matches any content type, `FileUploadParser` should generally be the only parser set on an API view.
-* `FileUploadParser` respects Django's standard `FILE_UPLOAD_HANDLERS` setting, and the `request.upload_handlers` attribute.  See the [Django documentation](https://docs.djangoproject.com/en/stable/topics/http/file-uploads/#upload-handlers) for more details.
+* `FileUploadParser` 用于与原始数据请求一起上传文件的本机客户端。对于基于Web的上传，或者对于具有多部分上传支持的本机客户端，您应该使用`MultiPartParser`解析器。
+* 由于该解析器的`media_type`与任何内容类型匹配，所以`FileUploadParser`通常应该是API视图中唯一的解析器。
+* `FileUploadParser` 遵循 Django 的标准 `FILE_UPLOAD_HANDLERS` 设置，和 `request.upload_handlers` 属性。参见 [Django 文档](https://docs.djangoproject.com/en/stable/topics/http/file-uploads/#upload-handlers) 获取更多细节。
 
 ##### Basic usage example:
 
