@@ -51,7 +51,7 @@ class ExampleView(APIView):
         return Response({'received data': request.data})
 ```
 
-Or, if you're using the `@api_view` decorator with function based views.
+或者，如果你使用基于方法的视图的`@api_view`装饰器。
 
 ```
 from rest_framework.decorators import api_view
@@ -61,7 +61,7 @@ from rest_framework.decorators import parser_classes
 @parser_classes((JSONParser,))
 def example_view(request, format=None):
     """
-    A view that can accept POST requests with JSON content.
+    可以接收JSON内容POST请求的视图
     """
     return Response({'received data': request.data})
 ```
