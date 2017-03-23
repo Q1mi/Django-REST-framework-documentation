@@ -14,7 +14,7 @@ REST 框架包括一些内置的Parser类，允许你接受各种媒体类型的
 
 ---
 
-**Note**: When developing client applications always remember to make sure you're setting the `Content-Type` header when sending data in an HTTP request.
+**注意**: 开发客户端应用程序时应该始终记住在HTTP请求中发送数据时确保设置`Content-Type`头。
 
 If you don't set the content type, most clients will default to using `'application/x-www-form-urlencoded'`, which may not be what you wanted.
 
