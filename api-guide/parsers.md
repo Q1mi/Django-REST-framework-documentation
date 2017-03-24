@@ -151,9 +151,9 @@ urlpatterns = [
 
 ### parser\_context
 
-Optional.  If supplied, this argument will be a dictionary containing any additional context that may be required to parse the request content.
+可选的。如果提供，该参数将是一个包含解析请求内容可能需要的任何附加上下文的字典。
 
-By default this will include the following keys: `view`, `request`, `args`, `kwargs`.
+默认情况下将包含以下keys: `view`, `request`, `args`, `kwargs`。
 
 ## Example
 
