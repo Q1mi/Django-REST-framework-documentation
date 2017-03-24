@@ -133,9 +133,9 @@ urlpatterns = [
 
 # 自定义解析器
 
-To implement a custom parser, you should override `BaseParser`, set the `.media_type` property, and implement the `.parse(self, stream, media_type, parser_context)` method.
+要实现一个自定义解析器，你应该重写`BaseParser`，设置`.media_type`属性，并实现`.parse（self，stream，media_type，parser_context）`方法。
 
-The method should return the data that will be used to populate the `request.data` property.
+该方法应该返回用于填充`request.data` 属性的数据。
 
 The arguments passed to `.parse()` are:
 
