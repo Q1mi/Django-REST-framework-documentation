@@ -155,7 +155,7 @@ urlpatterns = [
 
 默认情况下将包含以下keys: `view`, `request`, `args`, `kwargs`。
 
-## Example
+## 例子
 
 The following is an example plaintext parser that will populate the `request.data` property with a string representing the body of the request.
 
