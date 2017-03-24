@@ -175,7 +175,7 @@ class PlainTextParser(BaseParser):
 
 ---
 
-# Third party packages
+# 第三方包
 
 The following third party packages are also available.
 
