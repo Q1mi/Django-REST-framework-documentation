@@ -141,11 +141,11 @@ urlpatterns = [
 
 ### stream
 
-A stream-like object representing the body of the request.
+表示请求体的数据流。
 
 ### media\_type
 
-Optional.  If provided, this is the media type of the incoming request content.
+可选的。如果提供，这是传入请求内容的媒体类型。
 
 Depending on the request's `Content-Type:` header, this may be more specific than the renderer's `media_type` attribute, and may include media type parameters.  For example `"text/plain; charset=utf-8"`.
 
