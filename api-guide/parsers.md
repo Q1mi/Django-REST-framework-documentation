@@ -168,7 +168,7 @@ class PlainTextParser(BaseParser):
 
     def parse(self, stream, media_type=None, parser_context=None):
         """
-        Simply return a string representing the body of the request.
+        只需返回一个表示请求正文的字符串。
         """
         return stream.read()
 ```
