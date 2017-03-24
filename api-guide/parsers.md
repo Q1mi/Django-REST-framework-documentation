@@ -147,7 +147,7 @@ urlpatterns = [
 
 可选的。如果提供，这是传入请求内容的媒体类型。
 
-Depending on the request's `Content-Type:` header, this may be more specific than the renderer's `media_type` attribute, and may include media type parameters.  For example `"text/plain; charset=utf-8"`.
+基于请求的`Content-Type:`头，这可能比渲染器的`media_type`属性更具体，可能包括媒体类型参数。例如 `"text/plain; charset=utf-8"`。
 
 ### parser\_context
 
