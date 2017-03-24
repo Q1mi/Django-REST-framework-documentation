@@ -157,12 +157,12 @@ urlpatterns = [
 
 ## 例子
 
-The following is an example plaintext parser that will populate the `request.data` property with a string representing the body of the request.
+以下是一个Plain text的示例，它将使用表示请求正文的字符串填充`request.data`属性。The following is an example plaintext parser that will populate the `request.data` property with a string representing the body of the request.
 
 ```
 class PlainTextParser(BaseParser):
     """
-    Plain text parser.
+    Plain text 解析器。
     """
     media_type = 'text/plain'
 
