@@ -131,7 +131,7 @@ urlpatterns = [
 
 ---
 
-# Custom parsers
+# 自定义解析器
 
 To implement a custom parser, you should override `BaseParser`, set the `.media_type` property, and implement the `.parse(self, stream, media_type, parser_context)` method.
 
