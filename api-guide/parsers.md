@@ -133,11 +133,11 @@ urlpatterns = [
 
 # 自定义解析器
 
-要实现一个自定义解析器，你应该重写`BaseParser`，设置`.media_type`属性，并实现`.parse（self，stream，media_type，parser_context）`方法。
+要实现一个自定义解析器，你应该重写`BaseParser`，设置`.media_type`属性，并实现`.parse(self，stream，media_type，parser_context)`方法。
 
 该方法应该返回用于填充`request.data` 属性的数据。
 
-The arguments passed to `.parse()` are:
+传递给 `.parse()` 的参数是:
 
 ### stream
 
