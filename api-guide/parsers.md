@@ -217,7 +217,7 @@ REST_FRAMEWORK = {
 $ pip install djangorestframework-xml
 ```
 
-Modify your REST framework settings.
+修改你的 REST framework settings.
 
 ```
 REST_FRAMEWORK = {
@@ -232,7 +232,7 @@ REST_FRAMEWORK = {
 
 ## MessagePack
 
-[MessagePack](https://github.com/juanriaza/django-rest-framework-msgpack) is a fast, efficient binary serialization format.  [Juan Riaza](https://github.com/juanriaza) maintains the [djangorestframework-msgpack](https://github.com/juanriaza/django-rest-framework-msgpack) package which provides MessagePack renderer and parser support for REST framework.
+[MessagePack](https://github.com/juanriaza/django-rest-framework-msgpack) 是一种快速，高效的二进制序列化格式。 [Juan Riaza](https://github.com/juanriaza) 维护着 [djangorestframework-msgpack](https://github.com/juanriaza/django-rest-framework-msgpack) 包，它为REST框架提供MessagePack渲染器和解析器支持。
 
 ## CamelCase JSON
 
