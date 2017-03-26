@@ -232,9 +232,9 @@ REST_FRAMEWORK = {
 
 ## MessagePack
 
-[MessagePack](https://github.com/juanriaza/django-rest-framework-msgpack) 是一种快速，高效的二进制序列化格式。 [Juan Riaza](https://github.com/juanriaza) 维护着 [djangorestframework-msgpack](https://github.com/juanriaza/django-rest-framework-msgpack) 包，它为REST框架提供MessagePack渲染器和解析器支持。
+[MessagePack](https://github.com/juanriaza/django-rest-framework-msgpack) 是一种快速，高效的二进制序列化格式。 [Juan Riaza](https://github.com/juanriaza) 维护了 [djangorestframework-msgpack](https://github.com/juanriaza/django-rest-framework-msgpack) 包，它为REST框架提供MessagePack渲染器和解析器支持。
 
 ## CamelCase JSON
 
-[djangorestframework-camel-case](https://github.com/vbabiy/djangorestframework-camel-case) provides camel case JSON renderers and parsers for REST framework.  This allows serializers to use Python-style underscored field names, but be exposed in the API as Javascript-style camel case field names.  It is maintained by [Vitaly Babiy](https://github.com/vbabiy).
+[djangorestframework-camel-case](https://github.com/vbabiy/djangorestframework-camel-case) 为REST framework提供了驼峰类型JSON 生成和解析。这个库允许序列化程序使用Python风格的下划线字段名称，并且将其转变为Javascript风格的驼峰字段名称在API中公开。这个库由 [Vitaly Babiy](https://github.com/vbabiy)维护。
 
