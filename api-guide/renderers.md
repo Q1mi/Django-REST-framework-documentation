@@ -1,20 +1,20 @@
 source: renderers.py
 
-# Renderers
+# 渲染器
 
-> Before a TemplateResponse instance can be returned to the client, it must be rendered. The rendering process takes the intermediate representation of template and context, and turns it into the final byte stream that can be served to the client.
+> 在将TemplateResponse实例返回给客户端之前，必须渲染它。渲染过程采用模板和上下文的中间表示，并将其转换为可以提供给客户端的最终字节流。
 >
-> &mdash; [Django documentation][cite]
+> &mdash; [Django 文档][cite]
 
-REST framework includes a number of built in Renderer classes, that allow you to return responses with various media types.  There is also support for defining your own custom renderers, which gives you the flexibility to design your own media types.
+REST框架包括许多内置的Renderer类，它们允许你使用各种媒体类型返回响应。还支持定义你自己的自定义渲染器，这样可以灵活地设计你自己的媒体类型。
 
-## How the renderer is determined
+## 渲染器的确定方式
 
-The set of valid renderers for a view is always defined as a list of classes.  When a view is entered REST framework will perform content negotiation on the incoming request, and determine the most appropriate renderer to satisfy the request.
+视图的有效渲染器集合始终被定义为一个元素都是类的列表。当输入视图时，REST框架将对传入请求执行内容协商，并确定最适合的渲染器来满足请求。
 
-The basic process of content negotiation involves examining the request's `Accept` header, to determine which media types it expects in the response.  Optionally, format suffixes on the URL may be used to explicitly request a particular representation.  For example the URL `http://example.com/api/users_count.json` might be an endpoint that always returns JSON data.
+内容协商的基本过程包括检查请求的`Accept`头，以确定响应中期望的媒体类型。URL上可选的格式后缀可以用于显式请求特定表示。例如URL`http://example.com/api/users_count.json`可能是始终返回JSON数据的路径。
 
-For more information see the documentation on [content negotiation][conneg].
+有关详细信息，请参阅有关 [内容协商][conneg]的文档。
 
 ## Setting the renderers
 
