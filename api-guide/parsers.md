@@ -206,11 +206,12 @@ REST_FRAMEWORK = {
 
 ## XML
 
-[REST Framework XML](http://jpadilla.github.io/django-rest-framework-xml/) provides a simple informal XML format. It was previously included directly in the REST framework package, and is now instead supported as a third-party package.
+[REST Framework XML](http://jpadilla.github.io/django-rest-framework-xml/) 提供了一种简单的非正式XML格式。它以前是直接包含在REST框架包中，现在被替代为第三方包支持。
 
-#### Installation & configuration
+#### 安装和配置
 
-Install using pip.
+
+使用pip进行安装。
 
 ```
 $ pip install djangorestframework-xml
