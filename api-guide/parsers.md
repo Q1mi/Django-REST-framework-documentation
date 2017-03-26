@@ -177,21 +177,21 @@ class PlainTextParser(BaseParser):
 
 # 第三方包
 
-The following third party packages are also available.
+以下是可用的第三方包。
 
 ## YAML
 
-[REST framework YAML](http://jpadilla.github.io/django-rest-framework-yaml/) provides [YAML](http://www.yaml.org/) parsing and rendering support. It was previously included directly in the REST framework package, and is now instead supported as a third-party package.
+[REST framework YAML](http://jpadilla.github.io/django-rest-framework-yaml/) 提供了 [YAML](http://www.yaml.org/) 解析和呈现的支持。之前它是直接包含在REST框架包中的，现在被替代为第三方包支持。
 
-#### Installation & configuration
+#### 安装和配置
 
-Install using pip.
+使用pip进行安装。
 
 ```
 $ pip install djangorestframework-yaml
 ```
 
-Modify your REST framework settings.
+修改你的 REST framework settings。
 
 ```
 REST_FRAMEWORK = {
