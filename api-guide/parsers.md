@@ -102,7 +102,7 @@ def example_view(request, format=None):
 
 **.media\_type**: `*/*`
 
-##### 笔记:
+##### 说明:
 
 * `FileUploadParser` 用于与原始数据请求一起上传文件的本机客户端。对于基于Web的上传，或者对于具有多部分上传支持的本机客户端，您应该使用`MultiPartParser`解析器。
 * 由于该解析器的`media_type`与任何内容类型匹配，所以`FileUploadParser`通常应该是API视图中唯一的解析器。
