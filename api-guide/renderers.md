@@ -98,7 +98,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
 与其他渲染器不同，传递给`Response`的数据不需要序列化。此外，与其他渲染器不同，你可能希望在创建`Response`时包含一个`template_name`参数。
 
-The TemplateHTMLRenderer will create a `RequestContext`, using the `response.data` as the context dict, and determine a template name to use to render the context.
+TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作为上下文字典，并确定用于渲染上下文的模板名称。
 
 The template name is determined by (in order of preference):
 
