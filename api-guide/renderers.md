@@ -236,7 +236,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ## MultiPartRenderer
 
-This renderer is used for rendering HTML multipart form data.  **It is not suitable as a response renderer**, but is instead used for creating test requests, using REST framework's [test client and test request factory][testing].
+此渲染器用于渲染HTML multipart表单数据。 **它不适合作为响应渲染器**，而是用于创建测试请求，使用REST framework的 [test client and test request factory][testing]。
 
 **.media_type**: `multipart/form-data; boundary=BoUnDaRyStRiNg`
 
