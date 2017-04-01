@@ -176,7 +176,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 #### 自定义 BrowsableAPIRenderer
 
-By default the response content will be rendered with the highest priority renderer apart from `BrowsableAPIRenderer`.  If you need to customize this behavior, for example to use HTML as the default return format, but use JSON in the browsable API, you can do so by overriding the `get_default_renderer()` method.  For example:
+默认情况下，响应内容将以与`BrowsableAPIRenderer`不同的最高优先级渲染器渲染。如果你需要自定义此行为，例如使用HTML作为默认返回格式，但在可浏览的API中使用JSON，则可以通过重写`get_default_renderer()`方法来实现。例如：
 
     class CustomBrowsableAPIRenderer(BrowsableAPIRenderer):
         def get_default_renderer(self, view):
