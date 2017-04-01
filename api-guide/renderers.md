@@ -211,7 +211,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ## HTMLFormRenderer
 
-Renders data returned by a serializer into an HTML form. The output of this renderer does not include the enclosing `<form>` tags, a hidden CSRF input or any submit buttons.
+将序列化程序返回的数据渲染为HTML表单。此渲染器的输出不包括封闭的`<form>`标签，隐藏的CSRF输入或任何提交按钮。
 
 This renderer is not intended to be used directly, but can instead be used in templates by passing a serializer instance to the `render_form` template tag.
 
