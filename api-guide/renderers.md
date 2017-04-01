@@ -102,8 +102,8 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 模板名称由（按优先顺序）确定：
 
-1. An explicit `template_name` argument passed to the response.
-2. An explicit `.template_name` attribute set on this class.
+1. 一个显式的`template_name`参数传递给响应。
+2. 在类中现实定义`.template_name`属性。
 3. The return result of calling `view.get_template_names()`.
 
 An example of a view that uses `TemplateHTMLRenderer`:
