@@ -100,7 +100,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
 TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作为上下文字典，并确定用于渲染上下文的模板名称。
 
-The template name is determined by (in order of preference):
+模板名称由（按优先顺序）确定：
 
 1. An explicit `template_name` argument passed to the response.
 2. An explicit `.template_name` attribute set on this class.
