@@ -110,7 +110,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
     class UserDetail(generics.RetrieveAPIView):
         """
-        A view that returns a templated HTML representation of a given user.
+        返回给定用户的模板HTML表示的视图。
         """
         queryset = User.objects.all()
         renderer_classes = (TemplateHTMLRenderer,)
