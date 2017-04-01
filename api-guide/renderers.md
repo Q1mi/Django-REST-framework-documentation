@@ -248,7 +248,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 # Custom renderers
 
-To implement a custom renderer, you should override `BaseRenderer`, set the `.media_type` and `.format` properties, and implement the `.render(self, data, media_type=None, renderer_context=None)` method.
+要实现自定义渲染器，你应该重写`BaseRenderer`，设置 `.media_type`和`.format`属性，并且实现 `.render(self, data, media_type=None, renderer_context=None)` 方法。
 
 The method should return a bytestring, which will be used as the body of the HTTP response.
 
