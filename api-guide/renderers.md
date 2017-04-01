@@ -174,7 +174,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 **.template**: `'rest_framework/api.html'`
 
-#### Customizing BrowsableAPIRenderer
+#### 自定义 BrowsableAPIRenderer
 
 By default the response content will be rendered with the highest priority renderer apart from `BrowsableAPIRenderer`.  If you need to customize this behavior, for example to use HTML as the default return format, but use JSON in the browsable API, you can do so by overriding the `get_default_renderer()` method.  For example:
 
