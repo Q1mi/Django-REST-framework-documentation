@@ -63,7 +63,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
 例如，如果你的API提供JSON响应和HTML可浏览的API，则可能需要将`JSONRenderer`设置为你的默认渲染器，以便向不指定`Accept`标头的客户端发送`JSON`响应。
 
-If your API includes views that can serve both regular webpages and API responses depending on the request, then you might consider making `TemplateHTMLRenderer` your default renderer, in order to play nicely with older browsers that send [broken accept headers][browser-accept-headers].
+如果你的API包含可以根据请求提供常规网页和API响应的视图，那么你就可以考虑使用`TemplateHTMLRenderer`作为你的默认渲染器，以便能在那些发送[破坏的接收标头][browser-accept-headers]的旧版本的浏览器上能很好的展示。 
 
 ---
 
