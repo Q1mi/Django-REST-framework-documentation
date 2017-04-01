@@ -145,7 +145,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
         data = '<html><body><h1>Hello, world</h1></body></html>'
         return Response(data)
 
-You can use `StaticHTMLRenderer` either to return regular HTML pages using REST framework, or to return both HTML and API responses from a single endpoint.
+你可以使用`StaticHTMLRenderer`使用REST框架返回常规HTML页面，也可以从单个端点返回HTML和API响应。
 
 **.media_type**: `text/html`
 
