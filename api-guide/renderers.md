@@ -119,7 +119,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
             self.object = self.get_object()
             return Response({'user': self.object}, template_name='user_detail.html')
 
-You can use `TemplateHTMLRenderer` either to return regular HTML pages using REST framework, or to return both HTML and API responses from a single endpoint.
+你可以使用`TemplateHTMLRenderer`来返回使用REST框架的常规HTML页面，或者从单个端点返回HTML和API响应。
 
 If you're building websites that use `TemplateHTMLRenderer` along with other renderer classes, you should consider listing `TemplateHTMLRenderer` as the first class in the `renderer_classes` list, so that it will be prioritised first even for browsers that send poorly formed `ACCEPT:` headers.
 
