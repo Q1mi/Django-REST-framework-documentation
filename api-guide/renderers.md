@@ -160,7 +160,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ## BrowsableAPIRenderer
 
-Renders data into HTML for the Browsable API:
+将数据渲染成可浏览的API：
 
 ![The BrowsableAPIRenderer](../img/quickstart.png)
 
