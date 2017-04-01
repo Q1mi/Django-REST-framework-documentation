@@ -14,11 +14,11 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
 内容协商的基本过程包括检查请求的`Accept`头，以确定响应中期望的媒体类型。URL上可选的格式后缀可以用于显式请求特定表示。例如URL`http://example.com/api/users_count.json`可能是始终返回JSON数据的路径。
 
-有关详细信息，请参阅有关 [内容协商][conneg]的文档。
+有关详细信息，请参阅有关[内容协商][conneg]的文档。
 
-## Setting the renderers
+## 设置渲染器
 
-The default set of renderers may be set globally, using the `DEFAULT_RENDERER_CLASSES` setting.  For example, the following settings would use `JSON` as the main media type and also include the self describing API.
+可以使用`DEFAULT_RENDERER_CLASSES`设置全局默认的渲染器集。例如，以下设置将使用`JSON`作为主要媒体类型，并且还包括自描述API。
 
     REST_FRAMEWORK = {
         'DEFAULT_RENDERER_CLASSES': (
@@ -27,8 +27,7 @@ The default set of renderers may be set globally, using the `DEFAULT_RENDERER_CL
         )
     }
 
-You can also set the renderers used for an individual view, or viewset,
-using the `APIView` class-based views.
+你还可以设置用于单个视图或视图集的渲染器， 使用`APIView`类视图。
 
     from django.contrib.auth.models import User
     from rest_framework.renderers import JSONRenderer
