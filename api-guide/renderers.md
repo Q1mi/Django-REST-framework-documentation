@@ -106,7 +106,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 2. 在类中显式定义`.template_name`属性。
 3. 调用`view.get_template_names（）`的返回结果。
 
-An example of a view that uses `TemplateHTMLRenderer`:
+使用 `TemplateHTMLRenderer`的视图的例子：
 
     class UserDetail(generics.RetrieveAPIView):
         """
