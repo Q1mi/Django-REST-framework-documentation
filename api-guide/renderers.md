@@ -131,7 +131,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 **.charset**: `utf-8`
 
-See also: `StaticHTMLRenderer`
+也可以看看: `StaticHTMLRenderer`
 
 ## StaticHTMLRenderer
 
