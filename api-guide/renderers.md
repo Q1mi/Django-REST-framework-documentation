@@ -184,7 +184,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ##  AdminRenderer
 
-Renders data into HTML for an admin-like display:
+将数据渲染给HTML以进行类似管理的显示：
 
 ![The AdminRender view](../img/admin.png)
 
