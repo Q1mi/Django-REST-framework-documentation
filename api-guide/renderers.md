@@ -84,7 +84,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
         "value": 999
     }
 
-The default JSON encoding style can be altered using the `UNICODE_JSON` and `COMPACT_JSON` settings keys.
+可以使用`UNICODE_JSON`和`COMPACT_JSON`更改默认JSON编码样式。
 
 **.media_type**: `application/json`
 
