@@ -192,7 +192,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 请注意，包含嵌套或列表序列化器的输入视图对于`AdminRenderer`将无法正常工作，因为HTML表单无法正确支持它们。
 
-**Note**: The `AdminRenderer` is only able to include links to detail pages when a properly configured `URL_FIELD_NAME` (`url` by default) attribute is present in the data. For `HyperlinkedModelSerializer` this will be the case, but for `ModelSerializer` or plain `Serializer` classes you'll need to make sure to include the field explicitly. For example here we use models `get_absolute_url` method:
+**注意**: 当数据中存在正确配置的`URL_FIELD_NAME`（缺省`url`）属性时，`AdminRenderer`才能够包含指向详细页面的链接。对于`HyperlinkedModelSerializer`，这将是这种情况，但是对于`ModelSerializer` 或者简单的`Serializer`类，你需要确保明确地包含该字段。例如，我们使用模型`get_absolute_url`方法：
 
     class AccountSerializer(serializers.ModelSerializer):
         url = serializers.CharField(source='get_absolute_url', read_only=True)
