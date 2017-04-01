@@ -224,7 +224,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
         <input type="submit" value="Save" />
     </form>
 
-For more information see the [HTML & Forms][html-and-forms] documentation.
+有关更多信息，请参阅[HTML和表单][html-and-forms]文档。
 
 **.media_type**: `text/html`
 
