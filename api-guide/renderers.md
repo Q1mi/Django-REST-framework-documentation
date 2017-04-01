@@ -94,8 +94,9 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
 ## TemplateHTMLRenderer
 
-Renders data to HTML, using Django's standard template rendering.
-Unlike other renderers, the data passed to the `Response` does not need to be serialized.  Also, unlike other renderers, you may want to include a `template_name` argument when creating the `Response`.
+使用Django的标准模板将数据渲染成HTML。
+
+与其他渲染器不同，传递给`Response`的数据不需要序列化。此外，与其他渲染器不同，你可能希望在创建`Response`时包含一个`template_name`参数。
 
 The TemplateHTMLRenderer will create a `RequestContext`, using the `response.data` as the context dict, and determine a template name to use to render the context.
 
