@@ -188,7 +188,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ![The AdminRender view](../img/admin.png)
 
-This renderer is suitable for CRUD-style web APIs that should also present a user-friendly interface for managing the data.
+此渲染器适用于CRUD风格的Web API，还应提供用于管理数据的用户友好界面。
 
 Note that views that have nested or list serializers for their input won't work well with the `AdminRenderer`, as the HTML forms are unable to properly support them.
 
