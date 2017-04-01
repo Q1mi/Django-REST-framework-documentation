@@ -164,7 +164,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ![The BrowsableAPIRenderer](../img/quickstart.png)
 
-This renderer will determine which other renderer would have been given highest priority, and use that to display an API style response within the HTML page.
+此渲染器将确定哪个其他渲染器将被赋予最高优先级，并使用它在HTML页面中显示API。
 
 **.media_type**: `text/html`
 
