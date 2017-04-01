@@ -121,7 +121,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 你可以使用`TemplateHTMLRenderer`来返回使用REST框架的常规HTML页面，或者从单个端点返回HTML和API响应。
 
-If you're building websites that use `TemplateHTMLRenderer` along with other renderer classes, you should consider listing `TemplateHTMLRenderer` as the first class in the `renderer_classes` list, so that it will be prioritised first even for browsers that send poorly formed `ACCEPT:` headers.
+如果你正在构建使用 `TemplateHTMLRenderer` 和其他渲染类的网站，你应该考虑将`TemplateHTMLRenderer`列为`renderer_classes`列表中的第一个类，这样即使对于发送格式不正确的`ACCEPT:`头文件的浏览器它也将被优先排序。
 
 See the [_HTML & Forms_ Topic Page][html-and-forms] for further examples of `TemplateHTMLRenderer` usage.
 
