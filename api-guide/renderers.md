@@ -77,7 +77,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
     {"unicode black star":"★","value":999}
 
-The client may additionally include an `'indent'` media type parameter, in which case the returned `JSON` will be indented.  For example `Accept: application/json; indent=4`.
+客户端还可以包含`'indent'`媒体类型参数，在这种情况下，返回的`JSON`将被缩进。例如`Accept: application/json; indent=4`。
 
     {
         "unicode black star": "★",
