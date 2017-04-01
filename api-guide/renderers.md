@@ -135,9 +135,9 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ## StaticHTMLRenderer
 
-A simple renderer that simply returns pre-rendered HTML.  Unlike other renderers, the data passed to the response object should be a string representing the content to be returned.
+一个简单的渲染器，只需返回预渲染的HTML。与其他渲染器不同，传递给响应对象的数据应该是表示要返回的内容的字符串。
 
-An example of a view that uses `StaticHTMLRenderer`:
+一个使用 `StaticHTMLRenderer`的视图的例子：
 
     @api_view(('GET',))
     @renderer_classes((StaticHTMLRenderer,))
