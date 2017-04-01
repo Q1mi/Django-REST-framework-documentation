@@ -27,7 +27,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
         )
     }
 
-你还可以设置用于单个视图或视图集的渲染器， 使用`APIView`类视图。
+你还可以设置用于单个视图或视图集的渲染器，使用`APIView`类视图。
 
     from django.contrib.auth.models import User
     from rest_framework.renderers import JSONRenderer
@@ -36,7 +36,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
     class UserCountView(APIView):
         """
-        A view that returns the count of active users in JSON.
+        返回JSON格式活动用户数的视图。
         """
         renderer_classes = (JSONRenderer, )
 
@@ -45,13 +45,13 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
             content = {'user_count': user_count}
             return Response(content)
 
-Or, if you're using the `@api_view` decorator with function based views.
+或者，如果你使用基于功能的视图的`@api_view`装饰器。
 
     @api_view(['GET'])
     @renderer_classes((JSONRenderer,))
     def user_count_view(request, format=None):
         """
-        A view that returns the count of active users in JSON.
+        返回JSON格式活动用户数的视图。
         """
         user_count = User.objects.filter(active=True).count()
         content = {'user_count': user_count}
