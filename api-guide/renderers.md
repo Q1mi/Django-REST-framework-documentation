@@ -57,11 +57,11 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
         content = {'user_count': user_count}
         return Response(content)
 
-## Ordering of renderer classes
+## 渲染器类的排序
 
-It's important when specifying the renderer classes for your API to think about what priority you want to assign to each media type.  If a client underspecifies the representations it can accept, such as sending an `Accept: */*` header, or not including an `Accept` header at all, then REST framework will select the first renderer in the list to use for the response.
+指定你的API的渲染器类时要考虑到每个媒体类型要分配哪些优先级，这一点非常重要。如果一个客户端不能指定它可以接受的表示形式，例如发送一个`Accept: */*`头，或者不包含一个`Accept`头，那么REST框架将选择列表中用于响应的第一个渲染器。
 
-For example if your API serves JSON responses and the HTML browsable API, you might want to make `JSONRenderer` your default renderer, in order to send `JSON` responses to clients that do not specify an `Accept` header.
+例如，如果你的API提供JSON响应和HTML可浏览的API，则可能需要将`JSONRenderer`设置为你的默认渲染器，以便向不指定`Accept`标头的客户端发送`JSON`响应。
 
 If your API includes views that can serve both regular webpages and API responses depending on the request, then you might consider making `TemplateHTMLRenderer` your default renderer, in order to play nicely with older browsers that send [broken accept headers][browser-accept-headers].
 
