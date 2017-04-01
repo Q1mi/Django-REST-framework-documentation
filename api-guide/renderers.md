@@ -73,7 +73,7 @@ REST框架包括许多内置的Renderer类，它们允许你使用各种媒体�
 
 使用utf-8编码将请求的数据渲染成`JSON`。
 
-Note that the default style is to include unicode characters, and render the response using a compact style with no unnecessary whitespace:
+请注意，默认样式是包括unicode字符，并使用没有不必要空格的紧凑样式呈现响应:
 
     {"unicode black star":"★","value":999}
 
