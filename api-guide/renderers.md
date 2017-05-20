@@ -250,29 +250,29 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 要实现自定义渲染器，你应该重写`BaseRenderer`，设置 `.media_type`和`.format`属性，并且实现 `.render(self, data, media_type=None, renderer_context=None)` 方法。
 
-The method should return a bytestring, which will be used as the body of the HTTP response.
+这个方法应当返回一个字节bytestring，它将被用于HTTP响应的主体。
 
-The arguments passed to the `.render()` method are:
+传递给 `.render()` 方法的参数是：
 
 ### `data`
 
-The request data, as set by the `Response()` instantiation.
+请求数据，由 `Response()` 实例化设置。
 
 ### `media_type=None`
 
-Optional.  If provided, this is the accepted media type, as determined by the content negotiation stage.
+可选的。如果提供，这是由内容协商阶段确定的所接受的媒体类型。
 
-Depending on the client's `Accept:` header, this may be more specific than the renderer's `media_type` attribute, and may include media type parameters.  For example `"application/json; nested=true"`.
+根据客户端的 `Accept:` 头，这可能比渲染器的 `media_type` 属性更具体，可能包括媒体类型参数。例如 `"application/json; nested=true"`。
 
 ### `renderer_context=None`
 
-Optional.  If provided, this is a dictionary of contextual information provided by the view.
+可选的。如果提供，这是一个由view提供的上下文信息的字典。
 
-By default this will include the following keys: `view`, `request`, `response`, `args`, `kwargs`.
+默认情况下这个字典会包括以下键： `view`, `request`, `response`, `args`, `kwargs`。
 
-## Example
+## 例子
 
-The following is an example plaintext renderer that will return a response with the `data` parameter as the content of the response.
+下面是一个示例明文渲染器，它将使用参数作为响应 `data` 的内容返回响应。 
 
     from django.utils.encoding import smart_unicode
     from rest_framework import renderers
@@ -285,9 +285,9 @@ The following is an example plaintext renderer that will return a response with 
         def render(self, data, media_type=None, renderer_context=None):
             return data.encode(self.charset)
 
-## Setting the character set
+## 设置字符集
 
-By default renderer classes are assumed to be using the `UTF-8` encoding.  To use a different encoding, set the `charset` attribute on the renderer.
+假设默认的渲染器类正在使用 `UTF-8` 编码。要使用其他编码，请在渲染器设置 `charset` 属性。
 
     class PlainTextRenderer(renderers.BaseRenderer):
         media_type = 'text/plain'
@@ -297,11 +297,11 @@ By default renderer classes are assumed to be using the `UTF-8` encoding.  To us
         def render(self, data, media_type=None, renderer_context=None):
             return data.encode(self.charset)
 
-Note that if a renderer class returns a unicode string, then the response content will be coerced into a bytestring by the `Response` class, with the `charset` attribute set on the renderer used to determine the encoding.
+注意，如果一个渲染类返回了一个unicode字符串，则响应内容将被`Response`类强制转换成bytestring，渲染器上的设置的 `charset` 属性将用于确定编码。
 
-If the renderer returns a bytestring representing raw binary content, you should set a charset value of `None`, which will ensure the `Content-Type` header of the response will not have a `charset` value set.
+如果渲染器返回一个bytestring表示原始的二进制内容，则应该设置字符集的值为 `None`，确保响应请求头的 `Content-Type` 中不会设置 `charset` 值。
 
-In some cases you may also want to set the `render_style` attribute to `'binary'`.  Doing so will also ensure that the browsable API will not attempt to display the binary content as a string.
+在某些情况下你可能还需要将 `render_style` 属性设置成 `'binary'`。这么做也将确保可浏览的API不会尝试将二进制内容显示为字符串。
 
     class JPEGRenderer(renderers.BaseRenderer):
         media_type = 'image/jpeg'
@@ -314,54 +314,53 @@ In some cases you may also want to set the `render_style` attribute to `'binary'
 
 ---
 
-# Advanced renderer usage
+# 高级渲染器使用
 
-You can do some pretty flexible things using REST framework's renderers.  Some examples...
+你可以使用REST framework的渲染器做一些非常灵活的事情。一些例子...
 
-* Provide either flat or nested representations from the same endpoint, depending on the requested media type.
-* Serve both regular HTML webpages, and JSON based API responses from the same endpoints.
-* Specify multiple types of HTML representation for API clients to use.
-* Underspecify a renderer's media type, such as using `media_type = 'image/*'`, and use the `Accept` header to vary the encoding of the response.
+* 根据请求的媒体类型，从同一个端点既能提供单独的或者嵌套的表示。
+* 提供常规HTML网页和来自同一端点的基于JSON的API响应。
+* 为API客户端指定要使用的多种类型的HTML表示形式。
+* 未指定渲染器的媒体类型，例如使用 `media_type = 'image/*'`，并使用 `Accept` 标头来更改响应的编码。
 
-## Varying behaviour by media type
+## 媒体类型的不同行为
 
-In some cases you might want your view to use different serialization styles depending on the accepted media type.  If you need to do this you can access `request.accepted_renderer` to determine the negotiated renderer that will be used for the response.
+在某些情况下，你可能希望视图根据所接受的媒体类型使用不同的序列化样式。如果你需要实现这个功能，你可以根据 `request.accepted_renderer` 来确定将用于响应的协商渲染器。
 
-For example:
+例如:
 
     @api_view(('GET',))
     @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
     def list_users(request):
         """
-        A view that can return JSON or HTML representations
-        of the users in the system.
+        一个可以返回系统中用户的JSON或HTML表示的视图。
         """
         queryset = Users.objects.filter(active=True)
 
         if request.accepted_renderer.format == 'html':
-            # TemplateHTMLRenderer takes a context dict,
-            # and additionally requires a 'template_name'.
-            # It does not require serialization.
+            # TemplateHTMLRenderer 采用一个上下文的字典，
+            # 并且额外需要一个 'template_name'。
+            # 它不需要序列化。
             data = {'users': queryset}
             return Response(data, template_name='list_users.html')
 
-        # JSONRenderer requires serialized data as normal.
+        # JSONRenderer 需要正常的序列化数据。
         serializer = UserSerializer(instance=queryset)
         data = serializer.data
         return Response(data)
 
-## Underspecifying the media type
+## 不明确的媒体类型
 
-In some cases you might want a renderer to serve a range of media types.
-In this case you can underspecify the media types it should respond to, by using a `media_type` value such as `image/*`, or `*/*`.
+在某些情况下你可能希望渲染器提供一些列媒体类型。
+在这种情况下，你可以通过为 `media_type` 设置诸如 `image/*` 或 `*/*`这样的值来指定应该响应的媒体类型。
 
-If you underspecify the renderer's media type, you should make sure to specify the media type explicitly when you return the response, using the `content_type` attribute.  For example:
+如果你指定了渲染器的媒体类型，你应该确保在返回响应时使用 `content_type` 属性明确指定媒体类型。 例如:
 
     return Response(data, content_type='image/png')
 
-## Designing your media types
+## 设计你的媒体类型
 
-For the purposes of many Web APIs, simple `JSON` responses with hyperlinked relations may be sufficient.  If you want to fully embrace RESTful design and [HATEOAS] you'll need to consider the design and usage of your media types in more detail.
+许多Web API的目标，简单的具有超链接的 `JSON` 响应可能就已经足够了。If you want to fully embrace RESTful design and [HATEOAS] you'll need to consider the design and usage of your media types in more detail.
 
 In [the words of Roy Fielding][quote], "A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types.".
 
