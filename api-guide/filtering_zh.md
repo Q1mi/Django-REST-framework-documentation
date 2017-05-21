@@ -95,7 +95,7 @@ class PurchaseList(generics.ListAPIView):
 
 通用过滤器也可以在browsable API和admin API中显示为HTML控件。
 
-![filter-controls.png](../assets/filter-controls.png)
+![filter-controls.png](../img/filter-controls.png)
 
 ## Setting filter backends（设置通用过滤后端）
 
@@ -194,7 +194,7 @@ pip install django-crispy-forms
 ```
 
 安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：  
-![django filter](../assets/django-filter.png)
+![django filter](../img/django-filter.png)
 
 ## Specifying filter fields（指定筛选字段）
 
@@ -310,7 +310,7 @@ http://example.com/api/products?manufacturer=foo
 `SearchFilter`类支持基于简单单查询参数的搜索，并且基于[Django admin的搜索功能](https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields)。
 
 在使用时， browsable API将包括一个`SearchFilter`控件：
-![search-filter.png](../assets/search-filter.png)
+![search-filter.png](../img/search-filter.png)
 
 仅当view中设置了`search_fields`属性时，才应用`SearchFilter`类。`search_fields`属性应该是model中文本类型字段的名称列表，例如`CharField`或`TextField`。
 
@@ -365,7 +365,7 @@ search_fields = ('=username', '=email')
 ## OrderingFilter（排序筛选）
 
 `OrderingFilter`类支持简单的查询参数控制结果排序。
-![ordering-filter.png](../assets/ordering-filter.png)
+![ordering-filter.png](../img/ordering-filter.png)
 
 默认情况下，查询参数名为`'ordering'`，但这可以通过使用`ORDERING_PARAM`设置覆盖。
 

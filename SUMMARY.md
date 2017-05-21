@@ -3,14 +3,14 @@
 * [Introduction](README.md)
 * [API Guide](api-guide.md)
 
-  * [Requests](requests.md)
-  * [Responses](api-guide/responses.md)
-  * [Generic Views](/api-guide/generic-views.md.md)
-  * [Viewets](/api-guide/viewsets.md)
-  * [Routers](/api-guide/routers.md)
-  * [Parsers](/api-guide/parsers.md)
-  * [Renderers](/api-guide/renderers.md)
-  * [Filtering](/api-guide/filtering.md)
+  * [Requests](requests_zh.md)
+  * [Responses](api-guide/responses_zh.md)
+  * [Generic Views](/api-guide/generic-views_zh.md)
+  * [Viewets](/api-guide/viewsets_zh.md)
+  * [Routers](/api-guide/routers_zh.md)
+  * [Parsers](/api-guide/parsers_zh.md)
+  * [Renderers](/api-guide/renderers_zh.md)
+  * [Filtering](/api-guide/filtering_zh.md)
 
 
 
