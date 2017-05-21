@@ -1,8 +1,4 @@
-
-
-
-
-显source: renderers.py
+source: renderers.py
 
 # 渲染器
 
@@ -123,7 +119,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
             self.object = self.get_object()
             return Response({'user': self.object}, template_name='user_detail.html')
 
-你可以使用`TemplateHTMLRenderer`来返回使用REST框架的常规HTML页面，或者从单个端点返回HTML和API响应。
+你可以使用`TemplateHTMLRenderer`来返回使用REST框架的常规HTML页面，或者从单个路径返回HTML和API响应。
 
 如果你正在构建使用 `TemplateHTMLRenderer` 和其他渲染类的网站，你应该考虑将`TemplateHTMLRenderer`列为`renderer_classes`列表中的第一个类，这样即使对于发送格式不正确的`ACCEPT:`头文件的浏览器它也将被优先排序。
 
@@ -149,7 +145,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
         data = '<html><body><h1>Hello, world</h1></body></html>'
         return Response(data)
 
-你可以使用`StaticHTMLRenderer`使用REST框架返回常规HTML页面，也可以从单个端点返回HTML和API响应。
+你可以使用`StaticHTMLRenderer`使用REST框架返回常规HTML页面，也可以从单个路径返回HTML和API响应。
 
 **.media_type**: `text/html`
 
@@ -318,8 +314,8 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 你可以使用REST framework的渲染器做一些非常灵活的事情。一些例子...
 
-* 根据请求的媒体类型，从同一个端点既能提供单独的或者嵌套的表示。
-* 提供常规HTML网页和来自同一端点的基于JSON的API响应。
+* 根据请求的媒体类型，从同一个路径既能提供单独的或者嵌套的表示。
+* 提供常规HTML网页和来自同一路径的基于JSON的API响应。
 * 为API客户端指定要使用的多种类型的HTML表示形式。
 * 未指定渲染器的媒体类型，例如使用 `media_type = 'image/*'`，并使用 `Accept` 标头来更改响应的编码。
 
@@ -360,45 +356,44 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 
 ## 设计你的媒体类型
 
-许多Web API的目标，简单的具有超链接的 `JSON` 响应可能就已经足够了。If you want to fully embrace RESTful design and [HATEOAS] you'll need to consider the design and usage of your media types in more detail.
+许多Web API的目标，简单的具有超链接的 `JSON` 响应可能就已经足够了。如果你想完全拥抱RESTful设计和[HATEOAS]则需要更详细地考虑媒体类型的设计和使用。
 
-In [the words of Roy Fielding][quote], "A REST API should spend almost all of its descriptive effort in defining the media type(s) used for representing resources and driving application state, or in defining extended relation names and/or hypertext-enabled mark-up for existing standard media types.".
+用[Roy Fielding的话][quote]来说，"REST API 应该花费所有的描述性努力来定义用于表示资源和驱动应用程序状态的媒体类型（们），或者为现有的标准媒体类型定义扩展关系名称和/或超文本启用标记。"。
 
-For good examples of custom media types, see GitHub's use of a custom [application/vnd.github+json] media type, and Mike Amundsen's IANA approved [application/vnd.collection+json] JSON-based hypermedia.
+有关自定义媒体类型的优秀示例，请参阅GitHub关于自定义 [application/vnd.github+json] 媒体类型的应用以及 Mike Amundsen的IANA认可的 [application/vnd.collection+json] JSON超媒体。
 
-## HTML error views
+## HTML错误视图
 
-Typically a renderer will behave the same regardless of if it's dealing with a regular response, or with a response caused by an exception being raised, such as an `Http404` or `PermissionDenied` exception, or a subclass of `APIException`.
+通常渲染器都具有相同的行为，无论它处理的是正常的响应还是由异常引起的响应，如 `Http404` 或 `PermissionDenied` 异常，或者一个 `APIException` 的子类。
 
-If you're using either the `TemplateHTMLRenderer` or the `StaticHTMLRenderer` and an exception is raised, the behavior is slightly different, and mirrors [Django's default handling of error views][django-error-views].
+如果你正在使用 `TemplateHTMLRenderer` 或 `StaticHTMLRenderer` 时抛出了异常，行为略有不同。并且反映 [Django对错误视图的默认处理][django-error-views].
 
-Exceptions raised and handled by an HTML renderer will attempt to render using one of the following methods, by order of precedence.
+由HTML渲染器引发和处理的异常将尝试按照优先顺序使用以下方法之一进行渲染。
 
-* Load and render a template named `{status_code}.html`.
-* Load and render a template named `api_exception.html`.
-* Render the HTTP status code and text, for example "404 Not Found".
+* 加载并渲染一个名为 `{status_code}.html`的模板。
+* 加载并渲染一个名为 `api_exception.html`的模板。
+* 渲染HTTP状态码和文本，例如 "404 Not Found"。
 
-Templates will render with a `RequestContext` which includes the `status_code` and `details` keys.
+模板们将使用一个包括`status_code`和`details`的 `RequestContext` 渲染。
 
-**Note**: If `DEBUG=True`, Django's standard traceback error page will be displayed instead of rendering the HTTP status code and text.
+**注意**: 如果设置了 `DEBUG=True`，Django将展示它的标准回溯错误页面而不是渲染HTTP状态码和文本。
 
 ---
 
-# Third party packages
+# 第三方包
 
-The following third party packages are also available.
+以下第三方包都是可用的。
 
 ## YAML
 
-[REST framework YAML][rest-framework-yaml] provides [YAML][yaml] parsing and rendering support. It was previously included directly in the REST framework package, and is now instead supported as a third-party package.
+[REST framework YAML][rest-framework-yaml] 提供 [YAML][yaml] 解析和渲染支持。它之前直接包含在REST framework 包中，现在被替代为第三方包支持。
+#### 安装和配置
 
-#### Installation & configuration
-
-Install using pip.
+使用pip安装。
 
     $ pip install djangorestframework-yaml
 
-Modify your REST framework settings.
+修改你的REST framework设置。
 
     REST_FRAMEWORK = {
         'DEFAULT_PARSER_CLASSES': (
@@ -411,15 +406,15 @@ Modify your REST framework settings.
 
 ## XML
 
-[REST Framework XML][rest-framework-xml] provides a simple informal XML format. It was previously included directly in the REST framework package, and is now instead supported as a third-party package.
+[REST Framework XML][rest-framework-xml] 提供了一个简单的非正式XML格式。它之前直接包含在REST framework 包中，现在被替代为第三方包支持。
 
-#### Installation & configuration
+#### 安装和配置
 
-Install using pip.
+使用pip安装。
 
     $ pip install djangorestframework-xml
 
-Modify your REST framework settings.
+修改你的REST framework设置。
 
     REST_FRAMEWORK = {
         'DEFAULT_PARSER_CLASSES': (
@@ -432,23 +427,23 @@ Modify your REST framework settings.
 
 ## JSONP
 
-[REST framework JSONP][rest-framework-jsonp] provides JSONP rendering support. It was previously included directly in the REST framework package, and is now instead supported as a third-party package.
+[REST framework JSONP][rest-framework-jsonp] 提供JSONP渲染支持。它之前直接包含在REST framework 包中，现在被替代为第三方包支持。
 
 ---
 
-**Warning**: If you require cross-domain AJAX requests, you should generally be using the more modern approach of [CORS][cors] as an alternative to `JSONP`. See the [CORS documentation][cors-docs] for more details.
+**警告**: 如果你需要跨域的AJAX请求，你通常应该使用更现代化的[CORS][cors]方法代替`JSONP`。更多详细信息请参阅[CORS文档][cors-docs]。
 
-The `jsonp` approach is essentially a browser hack, and is [only appropriate for globally readable API endpoints][jsonp-security], where `GET` requests are unauthenticated and do not require any user permissions.
+`jsonp` 本质上是一个浏览器hack方法，[仅适用于全局可读的API路径][jsonp-security]，其中`GET`请求未经身份验证，并且不需要任何用户权限。
 
 ---
 
-#### Installation & configuration
+#### 安装和配置
 
-Install using pip.
+使用pip安装。
 
     $ pip install djangorestframework-jsonp
 
-Modify your REST framework settings.
+修改你的REST framework设置。
 
     REST_FRAMEWORK = {
         'DEFAULT_RENDERER_CLASSES': (
@@ -458,27 +453,27 @@ Modify your REST framework settings.
 
 ## MessagePack
 
-[MessagePack][messagepack] is a fast, efficient binary serialization format.  [Juan Riaza][juanriaza] maintains the [djangorestframework-msgpack][djangorestframework-msgpack] package which provides MessagePack renderer and parser support for REST framework.
+[MessagePack][messagepack]是一种快速，高效的二进制序列化格式。[Juan Riaza][juanriaza]维护着[djangorestframework-msgpack][djangorestframework-msgpack] 包，它为REST framework提供MessagePack渲染器和解析器支持。
 
 ## CSV
 
-Comma-separated values are a plain-text tabular data format, that can be easily imported into spreadsheet applications. [Mjumbe Poe][mjumbewu] maintains the [djangorestframework-csv][djangorestframework-csv] package which provides CSV renderer support for REST framework.
+逗号分隔的值是纯文本数据格式，可以轻松导入到电子表格应用中。[Mjumbe Poe][mjumbewu]维护着[djangorestframework-csv][djangorestframework-csv]包，它为REST framework提供了CSV渲染器支持。
 
 ## UltraJSON
 
-[UltraJSON][ultrajson] is an optimized C JSON encoder which can give significantly faster JSON rendering. [Jacob Haslehurst][hzy] maintains the [drf-ujson-renderer][drf-ujson-renderer] package which implements JSON rendering using the UJSON package.
+[UltraJSON][ultrajson]是一个优化的C JSON编码器，可以显著提高JSON渲染速度。[Jacob Haslehurst][hzy]维护着使用UJSON包实现JSON渲染的[drf-ujson-renderer][drf-ujson-renderer]包。
 
 ## CamelCase JSON
 
-[djangorestframework-camel-case] provides camel case JSON renderers and parsers for REST framework.  This allows serializers to use Python-style underscored field names, but be exposed in the API as Javascript-style camel case field names.  It is maintained by [Vitaly Babiy][vbabiy].
+[djangorestframework-camel-case]为REST framework提供了驼峰样式的JSON渲染器和解析器。这使序列化程序可以使用Python风格的下划线字段名，但是在API中显示成Javascript样式的驼峰字段名。它被[Vitaly Babiy][vbabiy]维护着。
 
 ## Pandas (CSV, Excel, PNG)
 
-[Django REST Pandas] provides a serializer and renderers that support additional data processing and output via the [Pandas] DataFrame API.  Django REST Pandas includes renderers for Pandas-style CSV files, Excel workbooks (both `.xls` and `.xlsx`), and a number of [other formats]. It is maintained by [S. Andrew Sheppard][sheppard] as part of the [wq Project][wq].
+[Django REST Pandas]提供了一个序列化器和渲染器，通过[Pandas] DataFrame API提供额外的数据处理和输出。Django REST Pandas包括Pandas风格的CSV文件，Excel表格(包括 `.xls` 和 `.xlsx`)以及许多[其他格式][other formats]的渲染器。作为[wq 项目][wq]的一部分由[S. Andrew Sheppard][sheppard]维护着。
 
 ## LaTeX
 
-[Rest Framework Latex] provides a renderer that outputs PDFs using Laulatex. It is maintained by [Pebble (S/F Software)][mypebble].
+[Rest Framework Latex]提供了一个使用Laulatex输出PDF的渲染器。它由[Pebble (S/F Software)][mypebble]维护着。
 
 
 [cite]: https://docs.djangoproject.com/en/stable/stable/template-response/#the-rendering-process
