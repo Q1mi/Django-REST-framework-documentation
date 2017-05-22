@@ -194,7 +194,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 #### 对象级别的验证
 
-要执行需要访问多个字段的任何其他验证，请添加一个`.validate()`方法到你的`Serializer`子类中。这个方法采用一个字段值字典的单个参数，如果需要应该抛出一个 `ValidationError`异常，或者知识返回经过验证的值。例如：
+要执行需要访问多个字段的任何其他验证，请添加一个`.validate()`方法到你的`Serializer`子类中。这个方法采用字段值字典的单个参数，如果需要应该抛出一个 `ValidationError`异常，或者知识返回经过验证的值。例如：
 
     from rest_framework import serializers
 
@@ -211,9 +211,9 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
                 raise serializers.ValidationError("finish must occur after start")
             return data
 
-#### Validators
+#### 验证器
 
-Individual fields on a serializer can include validators, by declaring them on the field instance, for example:
+序列化器上的各个字段都可以包含验证器，通过在字段实例上声明，例如：
 
     def multiple_of_ten(value):
         if value % 10 != 0:
@@ -223,7 +223,7 @@ Individual fields on a serializer can include validators, by declaring them on t
         score = IntegerField(validators=[multiple_of_ten])
         ...
 
-Serializer classes can also include reusable validators that are applied to the complete set of field data. These validators are included by declaring them on an inner `Meta` class, like so:
+序列化器类还可以包括应用于一组字段数据的可重用的验证器。这些验证器要在内部的 `Meta`类中声明，如下所示：
 
     class EventSerializer(serializers.Serializer):
         name = serializers.CharField()
@@ -231,32 +231,32 @@ Serializer classes can also include reusable validators that are applied to the 
         date = serializers.DateField()
 
         class Meta:
-            # Each room only has one event per day.
+            # 每间屋子每天只能有1个活动。
             validators = UniqueTogetherValidator(
                 queryset=Event.objects.all(),
                 fields=['room_number', 'date']
             )
 
-For more information see the [validators documentation](validators.md).
+更多信息请参阅 [validators文档](validators.md)。
 
-## Accessing the initial data and instance
+## 访问初始数据和实例
 
-When passing an initial object or queryset to a serializer instance, the object will be made available as `.instance`. If no initial object is passed then the `.instance` attribute will be `None`.
+将初始化对象或者查询集传递给序列化实例时，可以通过`.instance`访问。如果没有传递初始化对象，那么`.instance`属性将是`None`。
 
-When passing data to a serializer instance, the unmodified data will be made available as `.initial_data`. If the data keyword argument is not passed then the `.initial_data` attribute will not exist.
+将数据传递给序列化器实例时，未修改的数据可以通过`.initial_data`获取。如果没有传递data关键字参数，那么`.initial_data`属性就不存在。
 
-## Partial updates
+## 部分更新
 
-By default, serializers must be passed values for all required fields or they will raise validation errors. You can use the `partial` argument in order to allow partial updates.
+默认情况下，序列化器必须传递所有必填字段的值，否则就会引发验证错误。你可以使用 `partial`参数来允许部分更新。
 
-    # Update `comment` with partial data
+    # 使用部分数据更新`comment` 
     serializer = CommentSerializer(comment, data={'content': u'foo bar'}, partial=True)
 
-## Dealing with nested objects
+## 处理嵌套对象
 
-The previous examples are fine for dealing with objects that only have simple datatypes, but sometimes we also need to be able to represent more complex objects, where some of the attributes of an object might not be simple datatypes such as strings, dates or integers.
+前面的实例适用于处理只有简单数据类型的对象，但是有时候我们也需要表示更复杂的对象，其中对象的某些属性可能不是字符串、日期、整数这样简单的数据类型。
 
-The `Serializer` class is itself a type of `Field`, and can be used to represent relationships where one object type is nested inside another.
+`Serializer`类本身也是一种`Field`，并且可以用来表示一个对象类型嵌套在另一个对象中的关系。
 
     class UserSerializer(serializers.Serializer):
         email = serializers.EmailField()
@@ -267,18 +267,18 @@ The `Serializer` class is itself a type of `Field`, and can be used to represent
         content = serializers.CharField(max_length=200)
         created = serializers.DateTimeField()
 
-If a nested representation may optionally accept the `None` value you should pass the `required=False` flag to the nested serializer.
+如果嵌套表示可以接收 `None`值，则应该将 `required=False`标志传递给嵌套的序列化器。
 
     class CommentSerializer(serializers.Serializer):
-        user = UserSerializer(required=False)  # May be an anonymous user.
+        user = UserSerializer(required=False)  # 可能是匿名用户。
         content = serializers.CharField(max_length=200)
         created = serializers.DateTimeField()
 
-Similarly if a nested representation should be a list of items, you should pass the `many=True` flag to the nested serialized.
+类似的，如果嵌套的关系可以接收一个列表，那么应该将`many=True`标志传递给嵌套的序列化器。
 
     class CommentSerializer(serializers.Serializer):
         user = UserSerializer(required=False)
-        edits = EditItemSerializer(many=True)  # A nested list of 'edit' items.
+        edits = EditItemSerializer(many=True)  # edit'项的嵌套列表
         content = serializers.CharField(max_length=200)
         created = serializers.DateTimeField()
 
