@@ -166,7 +166,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 #### 字段级别的验证
 
-你可以通过向你的`Serializer`子类中添加`.validate_<field_name>`方法来指定自定义字段级别的验证。这些类似于Django表单中的.clean_<field_name>`方法。
+你可以通过向你的`Serializer`子类中添加`.validate_<field_name>`方法来指定自定义字段级别的验证。这些类似于Django表单中的`.clean_<field_name>`方法。
 
 这些方法采用单个参数，即需要验证的字段值。
 
@@ -223,7 +223,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
         score = IntegerField(validators=[multiple_of_ten])
         ...
 
-序列化器类还可以包括应用于一组字段数据的可重用的验证器。这些验证器要在内部的 `Meta`类中声明，如下所示：
+序列化器类还可以包括应用于一组字段数据的可重用的验证器。这些验证器要在内部的`Meta`类中声明，如下所示：
 
     class EventSerializer(serializers.Serializer):
         name = serializers.CharField()
@@ -274,7 +274,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
         content = serializers.CharField(max_length=200)
         created = serializers.DateTimeField()
 
-类似的，如果嵌套的关系可以接收一个列表，那么应该将`many=True`标志传递给嵌套的序列化器。
+类似的，如果嵌套的关联字段可以接收一个列表，那么应该将`many=True`标志传递给嵌套的序列化器。
 
     class CommentSerializer(serializers.Serializer):
         user = UserSerializer(required=False)
@@ -282,9 +282,9 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
         content = serializers.CharField(max_length=200)
         created = serializers.DateTimeField()
 
-## Writable nested representations
+## 可写的嵌套表示
 
-When dealing with nested representations that support deserializing the data, any errors with nested objects will be nested under the field name of the nested object.
+当处理支持反序列化数据的嵌套表示时，嵌套对象的任何错误都嵌套在嵌套对象的字段名下。
 
     serializer = CommentSerializer(data={'user': {'email': 'foobar', 'username': 'doe'}, 'content': 'baz'})
     serializer.is_valid()
@@ -292,13 +292,13 @@ When dealing with nested representations that support deserializing the data, an
     serializer.errors
     # {'user': {'email': [u'Enter a valid e-mail address.']}, 'created': [u'This field is required.']}
 
-Similarly, the `.validated_data` property will include nested data structures.
+类似的，`.validated_data` 属性将包括嵌套数据结构。
 
-#### Writing `.create()` methods for nested representations
+#### 为嵌套关系定义`.create()`方法
 
-If you're supporting writable nested representations you'll need to write `.create()` or `.update()` methods that handle saving multiple objects.
+如果你支持可写的嵌套表示，则需要编写`.create()`或`.update()`处理保存多个对象的方法。
 
-The following example demonstrates how you might handle creating a user with a nested profile object.
+下面的示例演示如何处理创建一个具有嵌套的概要信息对象的用户。
 
     class UserSerializer(serializers.ModelSerializer):
         profile = ProfileSerializer()
@@ -313,22 +313,22 @@ The following example demonstrates how you might handle creating a user with a n
             Profile.objects.create(user=user, **profile_data)
             return user
 
-#### Writing `.update()` methods for nested representations
+#### 为嵌套关系定义`.update()`方法
 
-For updates you'll want to think carefully about how to handle updates to relationships. For example if the data for the relationship is `None`, or not provided, which of the following should occur?
+对于更新，你需要仔细考虑如何处理关联字段的更新。 例如，如果关联字段的值是`None`，或者没有提供，那么会发生下面哪一项？
 
-* Set the relationship to `NULL` in the database.
-* Delete the associated instance.
-* Ignore the data and leave the instance as it is.
-* Raise a validation error.
+* 在数据库中将关联字段设置成`NULL`。
+* 删除关联的实例。
+* 忽略数据并保留这个实例。
+* 抛出验证错误。
 
-Here's an example for an `update()` method on our previous `UserSerializer` class.
+下面是我们之前`UserSerializer`类中`update()`方法的一个例子。 
 
         def update(self, instance, validated_data):
             profile_data = validated_data.pop('profile')
-            # Unless the application properly enforces that this field is
-            # always set, the follow could raise a `DoesNotExist`, which
-            # would need to be handled.
+            # 除非应用程序正确执行，
+            # 保证这个字段一直被设置，
+            # 否则就应该抛出一个需要处理的`DoesNotExist`。
             profile = instance.profile
 
             instance.username = validated_data.get('username', instance.username)
@@ -347,15 +347,15 @@ Here's an example for an `update()` method on our previous `UserSerializer` clas
 
             return instance
 
-Because the behavior of nested creates and updates can be ambiguous, and may require complex dependencies between related models, REST framework 3 requires you to always write these methods explicitly. The default `ModelSerializer` `.create()` and `.update()` methods do not include support for writable nested representations.
+因为嵌套关系的创建和更新行为可能不明确，并且可能需要关联模型间的复杂依赖关系，REST framework 3 要求你始终明确的定义这些方法。默认的`ModelSerializer` `.create()`和`.update()`方法不包括对可写嵌套关联的支持。
 
-It is possible that a third party package, providing automatic support some kinds of automatic writable nested representations may be released alongside the 3.1 release.
+提供自动支持某种类型的自动写入嵌套关联的第三方包可能与3.1版本一同放出。
 
-#### Handling saving related instances in model manager classes
+#### 处理在模型管理类中保存关联实例
 
-An alternative to saving multiple related instances in the serializer is to write custom model manager classes that handle creating the correct instances.
+在序列化器中保存多个相关实例的另一种方法是编写处理创建正确实例的自定义模型管理器类。
 
-For example, suppose we wanted to ensure that `User` instances and `Profile` instances are always created together as a pair. We might write a custom manager class that looks something like this:
+例如，假设我们想确保`User`实例和`Profile`实例总是作为一对一起创建。我们可能会写一个类似这样的自定义管理器类：
 
     class UserManager(models.Manager):
         ...
@@ -371,7 +371,7 @@ For example, suppose we wanted to ensure that `User` instances and `Profile` ins
             profile.save()
             return user
 
-This manager class now more nicely encapsulates that user instances and profile instances are always created at the same time. Our `.create()` method on the serializer class can now be re-written to use the new manager method.
+这个管理器类现在更好的封装了用户实例和用户信息实例总是在同一时间创建。我们在序列化器类上的`.create()`方法现在能够用新的管理器方法重写。
 
     def create(self, validated_data):
         return User.objects.create(
@@ -381,7 +381,7 @@ This manager class now more nicely encapsulates that user instances and profile 
             has_support_contract=validated_data['profile']['has_support_contract']
         )
 
-For more details on this approach see the Django documentation on [model managers][model-managers], and [this blogpost on using model and manager classes][encapsulation-blogpost].
+有关此方法的更多详细信息，请参阅Django文档中的 [模型管理器][model-managers]和[使用模型和管理器类的相关博客][encapsulation-blogpost]。
 
 ## Dealing with multiple objects
 
