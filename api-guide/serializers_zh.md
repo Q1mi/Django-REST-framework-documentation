@@ -383,13 +383,13 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 有关此方法的更多详细信息，请参阅Django文档中的 [模型管理器][model-managers]和[使用模型和管理器类的相关博客][encapsulation-blogpost]。
 
-## Dealing with multiple objects
+## 处理多个对象
 
-The `Serializer` class can also handle serializing or deserializing lists of objects.
+`Serializer`类还可以序列化或反序列化对象的列表。
 
-#### Serializing multiple objects
+#### 序列化多个对象
 
-To serialize a queryset or list of objects instead of a single object instance, you should pass the `many=True` flag when instantiating the serializer.  You can then pass a queryset or list of objects to be serialized.
+为了能够序列化一个查询集或者一个对象列表而不是一个单独的对象，应该在实例化序列化器类的时候传一个`many=True`参数。这样就能序列化一个查询集或一个对象列表。
 
     queryset = Book.objects.all()
     serializer = BookSerializer(queryset, many=True)
@@ -400,11 +400,11 @@ To serialize a queryset or list of objects instead of a single object instance, 
     #     {'id': 2, 'title': 'The wind-up bird chronicle', 'author': 'Haruki Murakami'}
     # ]
 
-#### Deserializing multiple objects
+#### 反序列化多个对象
 
-The default behavior for deserializing multiple objects is to support multiple object creation, but not support multiple object updates. For more information on how to support or customize either of these cases, see the [ListSerializer](#listserializer) documentation below.
+反序列化多个对象默认支持多个对象的创建，但是不支持多个对象的更新。有关如何支持或自定义这些情况的更多信息，请查阅这个文档[ListSerializer](#listserializer)。
 
-## Including extra context
+## 包括额外的上下文
 
 There are some cases where you need to provide extra context to the serializer in addition to the object being serialized.  One common case is if you're using a serializer that includes hyperlinked relations, which requires the serializer to have access to the current request so that it can properly generate fully qualified URLs.
 
