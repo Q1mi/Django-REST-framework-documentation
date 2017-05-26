@@ -420,32 +420,32 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 # ModelSerializer
 
-Often you'll want serializer classes that map closely to Django model definitions.
+通常你会想要与Django模型相对应的序列化类。
 
-The `ModelSerializer` class provides a shortcut that lets you automatically create a `Serializer` class with fields that correspond to the Model fields.
+`ModelSerializer`类能够让你自动创建一个具有模型中相应字段的`Serializer`类。
 
-**The `ModelSerializer` class is the same as a regular `Serializer` class, except that**:
+**这个`ModelSerializer`类和常规的`Serializer`类一样，不同的是**：
 
-* It will automatically generate a set of fields for you, based on the model.
-* It will automatically generate validators for the serializer, such as unique_together validators.
-* It includes simple default implementations of `.create()` and `.update()`.
+* 它根据模型自动生成一组字段。
+* 它自动生成序列化器的验证器，比如unique_together验证器。
+* 它默认简单实现了`.create()`方法和`.update()`方法。
 
-Declaring a `ModelSerializer` looks like this:
+声明一个`ModelSerializer`如下：
 
     class AccountSerializer(serializers.ModelSerializer):
         class Meta:
             model = Account
             fields = ('id', 'account_name', 'users', 'created')
 
-By default, all the model fields on the class will be mapped to a corresponding serializer fields.
+默认情况下，所有的模型的字段都将映射到序列化器上相应的字段。
 
-Any relationships such as foreign keys on the model will be mapped to `PrimaryKeyRelatedField`. Reverse relationships are not included by default unless explicitly included as specified in the [serializer relations][relations] documentation.
+模型中任何关联字段比如外键都将映射到`PrimaryKeyRelatedField`字段。默认情况下不包括反向关联，除非像[serializer relations][relations]文档中规定的那样显示包含。
 
-#### Inspecting a `ModelSerializer`
+#### 检查`ModelSerializer`
 
-Serializer classes generate helpful verbose representation strings, that allow you to fully inspect the state of their fields. This is particularly useful when working with `ModelSerializers` where you want to determine what set of fields and validators are being automatically created for you.
+序列化类生成有用的详细表示字符串，允许你全面检查其字段的状态。 这在使用`ModelSerializers`时特别有用，因为你想确定自动创建了哪些字段和验证器。
 
-To do so, open the Django shell, using `python manage.py shell`, then import the serializer class, instantiate it, and print the object representation…
+要检查的话，打开Django shell,执行 `python manage.py shell`，然后导入序列化器类，实例化它，并打印对象的表示：
 
     >>> from myapp.serializers import AccountSerializer
     >>> serializer = AccountSerializer()
@@ -455,40 +455,40 @@ To do so, open the Django shell, using `python manage.py shell`, then import the
         name = CharField(allow_blank=True, max_length=100, required=False)
         owner = PrimaryKeyRelatedField(queryset=User.objects.all())
 
-## Specifying which fields to include
+## 指定要包括的字段
 
-If you only want a subset of the default fields to be used in a model serializer, you can do so using `fields` or `exclude` options, just as you would with a `ModelForm`. It is strongly recommended that you explicitly set all fields that should be serialized using the `fields` attribute. This will make it less likely to result in unintentionally exposing data when your models change.
+如果你希望在模型序列化器中使用默认字段的一部分，你可以使用`fields`或`exclude`选项来执行此操作，就像使用`ModelForm`一样。强烈建议你使用`fields`属性显示的设置要序列化的字段。这样就不太可能因为你修改了模型而无意中暴露了数据。
 
-For example:
+例如：
 
     class AccountSerializer(serializers.ModelSerializer):
         class Meta:
             model = Account
             fields = ('id', 'account_name', 'users', 'created')
 
-You can also set the `fields` attribute to the special value `'__all__'` to indicate that all fields in the model should be used.
+你还可以将`fields`属性设置成`'__all__'`来表明使用模型中的所有字段。
 
-For example:
+例如：
 
     class AccountSerializer(serializers.ModelSerializer):
         class Meta:
             model = Account
             fields = '__all__'
 
-You can set the `exclude` attribute to a list of fields to be excluded from the serializer.
+你可以将`exclude`属性设置成一个从序列化器中排除的字段列表。
 
-For example:
+例如：
 
     class AccountSerializer(serializers.ModelSerializer):
         class Meta:
             model = Account
             exclude = ('users',)
 
-In the example above, if the `Account` model had 3 fields `account_name`, `users`, and `created`, this will result in the fields `account_name` and `created` to be serialized.
+在上面的例子中，如果`Account`模型有三个字段`account_name`，`users`和`created`，那么只有 `account_name`和`created`会被序列化。
 
-The names in the `fields` and `exclude` attributes will normally map to model fields on the model class.
+在`fields`和`exclude`属性中的名称，通常会映射到模型类中的模型字段。
 
-Alternatively names in the `fields` options can map to properties or methods which take no arguments that exist on the model class.
+或者`fields`选项中的名称可以映射到模型类中不存在任何参数的属性或方法。
 
 ## Specifying nested serialization
 
