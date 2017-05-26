@@ -406,15 +406,15 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 ## 包括额外的上下文
 
-There are some cases where you need to provide extra context to the serializer in addition to the object being serialized.  One common case is if you're using a serializer that includes hyperlinked relations, which requires the serializer to have access to the current request so that it can properly generate fully qualified URLs.
+在某些情况下，除了要序列化的对象之外，还需要为序列化程序提供额外的上下文。一个常见的情况是，如果你使用包含超链接关系的序列化程序，这需要序列化器能够访问当前的请求以便正确生成完全限定的URL。
 
-You can provide arbitrary additional context by passing a `context` argument when instantiating the serializer.  For example:
+你可以在实例化序列化器的时候传递一个`context`参数来传递任意的附加上下文。例如：
 
     serializer = AccountSerializer(account, context={'request': request})
     serializer.data
     # {'id': 6, 'owner': u'denvercoder9', 'created': datetime.datetime(2013, 2, 12, 09, 44, 56, 678870), 'details': 'http://example.com/accounts/6/details'}
 
-The context dictionary can be used within any serializer field logic, such as a custom `.to_representation()` method, by accessing the `self.context` attribute.
+这个上下文的字典可以在任何序列化器字段的逻辑中使用，例如`.to_representation()`方法中可以通过访问`self.context`属性获取上下文字典。
 
 ---
 
