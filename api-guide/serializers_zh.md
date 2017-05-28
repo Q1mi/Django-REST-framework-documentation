@@ -490,9 +490,9 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 或者`fields`选项中的名称可以映射到模型类中不存在任何参数的属性或方法。
 
-## Specifying nested serialization
+## 指定嵌套序列化
 
-The default `ModelSerializer` uses primary keys for relationships, but you can also easily generate nested representations using the `depth` option:
+默认`ModelSerializer`使用主键进行关联，但是你也可以使用`depth`选项轻松生成嵌套关联：
 
     class AccountSerializer(serializers.ModelSerializer):
         class Meta:
@@ -500,13 +500,13 @@ The default `ModelSerializer` uses primary keys for relationships, but you can a
             fields = ('id', 'account_name', 'users', 'created')
             depth = 1
 
-The `depth` option should be set to an integer value that indicates the depth of relationships that should be traversed before reverting to a flat representation.
+`depth`选项应该设置一个整数值，表明应该遍历的关联深度。
 
-If you want to customize the way the serialization is done you'll need to define the field yourself.
+如果要自定义序列化的方式你需要自定义该子段。
 
-## Specifying fields explicitly
+## 明确指定字段
 
-You can add extra fields to a `ModelSerializer` or override the default fields by declaring fields on the class, just as you would for a `Serializer` class.
+你可以通过在`ModelSerializer`类上声明字段来增加额外的字段或者重写默认的字段，就和在`Serializer`类一样的。
 
     class AccountSerializer(serializers.ModelSerializer):
         url = serializers.CharField(source='get_absolute_url', read_only=True)
@@ -515,13 +515,13 @@ You can add extra fields to a `ModelSerializer` or override the default fields b
         class Meta:
             model = Account
 
-Extra fields can correspond to any property or callable on the model.
+额外的字段可以对应模型上任何属性或可调用的方法。
 
-## Specifying read only fields
+## 指定只读字段
 
-You may wish to specify multiple fields as read-only. Instead of adding each field explicitly with the `read_only=True` attribute, you may use the shortcut Meta option, `read_only_fields`.
+你可能希望将多个字段指定为只读。而不是显示的唯美个字段添加`read_only=True`属性，这种情况你可以使用Meta的`read_only_fields`选项。
 
-This option should be a list or tuple of field names, and is declared as follows:
+该选项应该是字段名称的列表或元祖，并像下面这样声明：
 
     class AccountSerializer(serializers.ModelSerializer):
         class Meta:
@@ -529,28 +529,28 @@ This option should be a list or tuple of field names, and is declared as follows
             fields = ('id', 'account_name', 'users', 'created')
             read_only_fields = ('account_name',)
 
-Model fields which have `editable=False` set, and `AutoField` fields will be set to read-only by default, and do not need to be added to the `read_only_fields` option.
+模型中已经设置`editable=False`的字段和默认就被设置为只读的`AutoField`字段都不需要添加到`read_only_fields`选项中。
 
 ---
 
-**Note**: There is a special-case where a read-only field is part of a `unique_together` constraint at the model level. In this case the field is required by the serializer class in order to validate the constraint, but should also not be editable by the user.
+**注意**: 有一种特殊情况，其中一个只读字段是模型级别`unique_together`约束的一部分。在这种情况下，序列化器类需要该字段才能验证约束，但也不能由用户编辑。
 
-The right way to deal with this is to specify the field explicitly on the serializer, providing both the `read_only=True` and `default=…` keyword arguments.
+处理此问题的正确方法是在序列化器上显示指定该字段，同时提供`read_only=True`和`default=…`关键字参数。
 
-One example of this is a read-only relation to the currently authenticated `User` which is `unique_together` with another identifier. In this case you would declare the user field like so:
+这种情况的一个例子就是对于一个和其他标识符`unique_together`的当前认证的`User`是只读的。 在这种情况下你可以像下面这样声明user字段：
 
     user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
 
-Please review the [Validators Documentation](/api-guide/validators/) for details on the [UniqueTogetherValidator](/api-guide/validators/#uniquetogethervalidator) and [CurrentUserDefault](/api-guide/validators/#currentuserdefault) classes.
+有关[UniqueTogetherValidator](/api-guide/validators/#uniquetogethervalidator)和[CurrentUserDefault](/api-guide/validators/#currentuserdefault)类的详细文档，请查阅[验证器的文档](/api-guide/validators/)。
 
 ---
 
 
-## Additional keyword arguments
+## 附加关键字参数
 
-There is also a shortcut allowing you to specify arbitrary additional keyword arguments on fields, using the `extra_kwargs` option. As in the case of `read_only_fields`, this means you do not need to explicitly declare the field on the serializer.
+还可以通过使用`extra_kwargs`选项快捷地在字段上指定任意附加的关键字参数。在`read_only_fields`这种情况下，你不需要在序列化器上显示的声明该字段。
 
-This option is a dictionary, mapping field names to a dictionary of keyword arguments. For example:
+这个选项是一个将具体字段名称当作键值的字典。例如：
 
     class CreateUserSerializer(serializers.ModelSerializer):
         class Meta:
@@ -567,130 +567,127 @@ This option is a dictionary, mapping field names to a dictionary of keyword argu
             user.save()
             return user
 
-## Relational fields
+## 关联字段
 
-When serializing model instances, there are a number of different ways you might choose to represent relationships.  The default representation for `ModelSerializer` is to use the primary keys of the related instances.
+在序列化模型实例的时候，你可以选择多种不同的方式来表示关联关系。对于`ModelSerializer`默认是使用相关实例的主键。
 
-Alternative representations include serializing using hyperlinks, serializing complete nested representations, or serializing with a custom representation.
+替代的其他方法包括使用超链接序列化，序列化完整的嵌套表示或者使用自定义表示的序列化。
 
-For full details see the [serializer relations][relations] documentation.
+更多详细信息请查阅[serializer relations][relations]文档。
 
-## Customizing field mappings
+## 自定义字段映射
 
-The ModelSerializer class also exposes an API that you can override in order to alter how serializer fields are automatically determined when instantiating the serializer.
+ModelSerializer类还公开了一个可以覆盖的API，以便在实例化序列化器时改变序列化器字段的自动确定。
 
-Normally if a `ModelSerializer` does not generate the fields you need by default then you should either add them to the class explicitly, or simply use a regular `Serializer` class instead. However in some cases you may want to create a new base class that defines how the serializer fields are created for any given model.
+通常情况下，如果`ModelSerializer`没有生成默认情况下你需要的字段，那么你应该将它们显式地添加到类中，或者直接使用常规的`Serializer`类。但是在某些情况下，你可能需要创建一个新的基类，来定义给任意模型创建序列化字段的方式。
 
 ### `.serializer_field_mapping`
 
-A mapping of Django model classes to REST framework serializer classes. You can override this mapping to alter the default serializer classes that should be used for each model class.
+将Django model类映射到REST framework serializer类。你可以覆写这个映射来更改每个模型应该使用的默认序列化器类。
 
 ### `.serializer_related_field`
 
-This property should be the serializer field class, that is used for relational fields by default.
+这个属性应是序列化器字段类，默认情况下用于关联字段。
 
-For `ModelSerializer` this defaults to `PrimaryKeyRelatedField`.
+对于`ModelSerializer`此属性默认是`PrimaryKeyRelatedField`。
 
-For `HyperlinkedModelSerializer` this defaults to `serializers.HyperlinkedRelatedField`.
+对于`HyperlinkedModelSerializer`此属性默认是`serializers.HyperlinkedRelatedField`。
 
 ### `serializer_url_field`
 
-The serializer field class that should be used for any `url` field on the serializer.
+应该用于序列化器上任何`url`字段的序列化器字段类。
 
-Defaults to `serializers.HyperlinkedIdentityField`
+默认是 `serializers.HyperlinkedIdentityField`
 
 ### `serializer_choice_field`
 
-The serializer field class that should be used for any choice fields on the serializer.
+应用于序列化器上任何选择字段的序列化器字段类。
 
-Defaults to `serializers.ChoiceField`
+默认是`serializers.ChoiceField`
 
-### The field_class and field_kwargs API
+### The field_class和field_kwargs API
 
-The following methods are called to determine the class and keyword arguments for each field that should be automatically included on the serializer. Each of these methods should return a two tuple of `(field_class, field_kwargs)`.
+调用下面的方法来确定应该自动包含在序列化器类中每个字段的类和关键字参数。这些方法都应该返回两个 `(field_class, field_kwargs)`元祖。
 
 ### `.build_standard_field(self, field_name, model_field)`
 
-Called to generate a serializer field that maps to a standard model field.
+调用后生成对应标准模型字段的序列化器字段。
 
-The default implementation returns a serializer class based on the `serializer_field_mapping` attribute.
+默认实现是根据`serializer_field_mapping`属性返回一个序列化器类。
 
 ### `.build_relational_field(self, field_name, relation_info)`
 
-Called to generate a serializer field that maps to a relational model field.
+调用后生成对应关联模型字段的序列化器字段。
 
-The default implementation returns a serializer class based on the `serializer_relational_field` attribute.
+默认实现是根据`serializer_relational_field`属性返回一个序列化器类。
 
-The `relation_info` argument is a named tuple, that contains `model_field`, `related_model`, `to_many` and `has_through_model` properties.
+这里的`relation_info`参数是一个命名元祖，包含`model_field`，`related_model`，`to_many`和`has_through_model`属性。
 
 ### `.build_nested_field(self, field_name, relation_info, nested_depth)`
 
-Called to generate a serializer field that maps to a relational model field, when the `depth` option has been set.
+当`depth`选项被设置时，被调用后生成一个对应到关联模型字段的序列化器字段。
 
-The default implementation dynamically creates a nested serializer class based on either `ModelSerializer` or `HyperlinkedModelSerializer`.
+默认实现是动态的创建一个基于`ModelSerializer`或`HyperlinkedModelSerializer`的嵌套的序列化器类。
 
-The `nested_depth` will be the value of the `depth` option, minus one.
+`nested_depth`的值是`depth`的值减1。
 
-The `relation_info` argument is a named tuple, that contains `model_field`, `related_model`, `to_many` and `has_through_model` properties.
+`relation_info`参数是一个命名元祖，包含 `model_field`，`related_model`，`to_many`和`has_through_model`属性。
 
 ### `.build_property_field(self, field_name, model_class)`
 
-Called to generate a serializer field that maps to a property or zero-argument method on the model class.
+被调用后生成一个对应到模型类中属性或无参数方法的序列化器字段。
 
-The default implementation returns a `ReadOnlyField` class.
+默认实现是返回一个`ReadOnlyField`类。
 
 ### `.build_url_field(self, field_name, model_class)`
 
-Called to generate a serializer field for the serializer's own `url` field. The default implementation returns a `HyperlinkedIdentityField` class.
+被调用后为序列化器自己的`url`字段生成一个序列化器字段。默认实现是返回一个`HyperlinkedIdentityField`类。
 
 ### `.build_unknown_field(self, field_name, model_class)`
 
-Called when the field name did not map to any model field or model property.
-The default implementation raises an error, although subclasses may customize this behavior.
+当字段名称没有对应到任何模型字段或者模型属性时调用。
+默认实现会抛出一个错误，尽管子类可能会自定义该行为。
 
 ---
 
 # HyperlinkedModelSerializer
 
-The `HyperlinkedModelSerializer` class is similar to the `ModelSerializer` class except that it uses hyperlinks to represent relationships, rather than primary keys.
+`HyperlinkedModelSerializer`类类似于`ModelSerializer`类，不同之处在于它使用超链接来表示关联关系而不是主键。
 
-By default the serializer will include a `url` field instead of a primary key field.
+默认情况下序列化器将包含一个`url`字段而不是主键字段。
 
-The url field will be represented using a `HyperlinkedIdentityField` serializer field, and any relationships on the model will be represented using a `HyperlinkedRelatedField` serializer field.
+url字段将使用`HyperlinkedIdentityField`字段来表示，模型的任何关联都将使用`HyperlinkedRelatedField`字段来表示。
 
-You can explicitly include the primary key by adding it to the `fields` option, for example:
+你可以通过将主键添加到`fields`选项中来显式的包含，例如：
 
     class AccountSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = Account
             fields = ('url', 'id', 'account_name', 'users', 'created')
 
-## Absolute and relative URLs
+## 绝对和相对URL
 
-When instantiating a `HyperlinkedModelSerializer` you must include the current
-`request` in the serializer context, for example:
+当实例化一个`HyperlinkedModelSerializer`时，你必须在序列化器的上下文中包含当前的`request`值，例如：
 
     serializer = AccountSerializer(queryset, context={'request': request})
 
-Doing so will ensure that the hyperlinks can include an appropriate hostname,
-so that the resulting representation uses fully qualified URLs, such as:
+这样做将确保超链接可以包含恰当的主机名，一边生成完全限定的URL，例如：
 
     http://api.example.com/accounts/1/
 
-Rather than relative URLs, such as:
+而不是相对的URL，例如：
 
     /accounts/1/
 
-If you *do* want to use relative URLs, you should explicitly pass `{'request': None}`
-in the serializer context.
+如果你*真的*要使用相对URL，你应该明确的在序列化器上下文中传递一个`{'request': None}`。
 
-## How hyperlinked views are determined
+## 如何确定超链接视图
 
-There needs to be a way of determining which views should be used for hyperlinking to model instances.
+需要一种确定哪些视图能应用超链接到模型实例的方法。
 
-By default hyperlinks are expected to correspond to a view name that matches the style `'{model_name}-detail'`, and looks up the instance by a `pk` keyword argument.
+默认情况下，超链接期望对应到一个样式能匹配`'{model_name}-detail'`的视图，并通过`pk`关键字参数查找实例。
 
-You can override a URL field view name and lookup field by using either, or both of, the `view_name` and `lookup_field` options in the `extra_kwargs` setting, like so:
+你可以通过在`extra_kwargs`中设置`view_name`和`lookup_field`中的一个或两个来重写URL字段视图名称和查询字段。如下所示：
 
     class AccountSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
@@ -701,7 +698,7 @@ You can override a URL field view name and lookup field by using either, or both
                 'users': {'lookup_field': 'username'}
             }
 
-Alternatively you can set the fields on the serializer explicitly. For example:
+或者你可以显式的设置序列化器上的字段。例如：
 
     class AccountSerializer(serializers.HyperlinkedModelSerializer):
         url = serializers.HyperlinkedIdentityField(
@@ -721,13 +718,13 @@ Alternatively you can set the fields on the serializer explicitly. For example:
 
 ---
 
-**Tip**: Properly matching together hyperlinked representations and your URL conf can sometimes be a bit fiddly. Printing the `repr` of a `HyperlinkedModelSerializer` instance is a particularly useful way to inspect exactly which view names and lookup fields the relationships are expected to map too.
+**提示**：正确匹配超链接表示和你的URL配置有时可能会有点困难。打印一个`HyperlinkedModelSerializer`实例的`repr`是一个特别有用的方式来检查关联关系映射的那些视图名称和查询字段。
 
 ---
 
-## Changing the URL field name
+## 更改URL字段名称
 
-The name of the URL field defaults to 'url'.  You can override this globally, by using the `URL_FIELD_NAME` setting.
+URL字段的名称默认为'url'。你可以通过使用`URL_FIELD_NAME`设置进行全局性修改。
 
 ---
 
