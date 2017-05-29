@@ -730,26 +730,26 @@ URL字段的名称默认为'url'。你可以通过使用`URL_FIELD_NAME`设置�
 
 # ListSerializer
 
-The `ListSerializer` class provides the behavior for serializing and validating multiple objects at once. You won't *typically* need to use `ListSerializer` directly, but should instead simply pass `many=True` when instantiating a serializer.
+`ListSerializer`类能够序列化和一次验证多个对象。你*通常*不需要直接使用`ListSerializer`，而是应该在实例化一个序列化器时简单地传递一个`many=True`参数。
 
-When a serializer is instantiated and `many=True` is passed, a `ListSerializer` instance will be created. The serializer class then becomes a child of the parent `ListSerializer`
+当一个序列化器在带有`many=True`选项被序列化时，将创建一个`ListSerializer`实例。该序列化器类将成为`ListSerializer`类的子类。
 
-The following argument can also be passed to a `ListSerializer` field or a serializer that is passed `many=True`:
+下面的参数也可以传递给`ListSerializer`字段或者一个带有`many=True`参数的序列化器。
 
 ### `allow_empty`
 
-This is `True` by default, but can be set to `False` if you want to disallow empty lists as valid input.
+默认是`True`，但是如果你不想把空列表当作有效输入的话可以把它设置成`False`。
 
-### Customizing `ListSerializer` behavior
+### 自定义`ListSerializer`行为
 
-There *are* a few use cases when you might want to customize the `ListSerializer` behavior. For example:
+下面是你可能希望要定制`ListSerializer`行为的**一些**情况。例如：
 
-* You want to provide particular validation of the lists, such as checking that one element does not conflict with another element in a list.
-* You want to customize the create or update behavior of multiple objects.
+* 你希望提供列表的特定验证，例如检查一个元素是否与列表中的另外一个元素冲突。
+* 你要自定义多个对象的创建或更新行为。
 
-For these cases you can modify the class that is used when `many=True` is passed, by using the `list_serializer_class` option on the serializer `Meta` class.
+对于这些情况，当你可以通过使用序列化器类的`Meta`类下面的`list_serializer_class`选项来修改当`many=True`时正在使用的类。
 
-For example:
+例如：
 
     class CustomListSerializer(serializers.ListSerializer):
         ...
@@ -759,11 +759,11 @@ For example:
         class Meta:
             list_serializer_class = CustomListSerializer
 
-#### Customizing multiple create
+#### 自定义多个对象的创建
 
-The default implementation for multiple object creation is to simply call `.create()` for each item in the list. If you want to customize this behavior, you'll need to customize the `.create()` method on `ListSerializer` class that is used when `many=True` is passed.
+多个对象的创建默认实现是简单地调用列表中每个对象的`.create()`方法。如果要自定义实现，那么你需要自定义当被传递`many=True`参数时使用的`ListSerializer`类中的`.create()`方法。
 
-For example:
+例如：
 
     class BookListSerializer(serializers.ListSerializer):
         def create(self, validated_data):
@@ -775,20 +775,20 @@ For example:
         class Meta:
             list_serializer_class = BookListSerializer
 
-#### Customizing multiple update
+#### 自定义多对象的更新
 
-By default the `ListSerializer` class does not support multiple updates. This is because the behavior that should be expected for insertions and deletions is ambiguous.
+默认情况下，`ListSerializer`类不支持多对象的更新。这是因为插入和删除的预期行为是不明确的。
 
-To support multiple updates you'll need to do so explicitly. When writing your multiple update code make sure to keep the following in mind:
+要支持多对象更新的话你需要自己明确地实现。编写多个对象更新的代码时要注意以下几点：
 
-* How do you determine which instance should be updated for each item in the list of data?
-* How should insertions be handled? Are they invalid, or do they create new objects?
-* How should removals be handled? Do they imply object deletion, or removing a relationship? Should they be silently ignored, or are they invalid?
-* How should ordering be handled? Does changing the position of two items imply any state change or is it ignored?
+* 如何确定数据列表中的每个元素应该对应更新哪个实例？
+* 如何处理插入？它们是无效的？还是创建新对象？
+* 移除应该如何处理？它们是要删除对象还是删除关联关系？它们应该被忽略还是提示无效操作？
+* 排序如何处理？改变两个元素的位置是否意味着任何状态改变或者应该被忽视？
 
-You will need to add an explicit `id` field to the instance serializer. The default implicitly-generated `id` field is marked as `read_only`. This causes it to be removed on updates. Once you declare it explicitly, it will be available in the list serializer's `update` method.
+你需要向实例序列化器中显式添加一个`id`字段。默认隐式生成的`id`字段是`read_only`。这就导致它在更新时被删除。一旦你明确地声明它，它将在列表序列化器的`update`方法中可用。
 
-Here's an example of how you might choose to implement multiple updates:
+下面是一个你可以选择用来做多个对象更新的示例：
 
     class BookListSerializer(serializers.ListSerializer):
         def update(self, instance, validated_data):
@@ -813,8 +813,8 @@ Here's an example of how you might choose to implement multiple updates:
             return ret
 
     class BookSerializer(serializers.Serializer):
-        # We need to identify elements in the list using their primary key,
-        # so use a writable field here, rather than the default which would be read-only.
+        # 我们需要使用主键来识别列表中的元素，
+        # 所以在这里使用可写的字段，而不是默认的只读字段。
         id = serializers.IntegerField()
 
         ...
@@ -823,21 +823,21 @@ Here's an example of how you might choose to implement multiple updates:
         class Meta:
             list_serializer_class = BookListSerializer
 
-It is possible that a third party package may be included alongside the 3.1 release that provides some automatic support for multiple update operations, similar to the `allow_add_remove` behavior that was present in REST framework 2.
+类似于REST framework 2中`allow_add_remove`的自动支持多个对象更新操作可能会在3.1版本的第三方包中提供。
 
-#### Customizing ListSerializer initialization
+#### 自定义ListSerializer初始化
 
-When a serializer with `many=True` is instantiated, we need to determine which arguments and keyword arguments should be passed to the `.__init__()` method for both the child `Serializer` class, and for the parent `ListSerializer` class.
+当带有`many=True`参数的序列化器被实例化时，我们需要确定哪些参数和关键字参数应该被传递给子类`Serializer`和父类`ListSerializer`的`.__init__()`方法。
 
-The default implementation is to pass all arguments to both classes, except for `validators`, and any custom keyword arguments, both of which are assumed to be intended for the child serializer class.
+默认实现是将所有参数都传递给两个类，出了`validators`和任何关键字参数。这两个参数都假定用于子序列化器类。
 
-Occasionally you might need to explicitly specify how the child and parent classes should be instantiated when `many=True` is passed. You can do so by using the `many_init` class method.
+偶尔，你可能需要明确指定当被传递`many=True`参数时，子类和父类应该如何实例化。你可以使用`many_init`类方法来执行此操作。
 
         @classmethod
         def many_init(cls, *args, **kwargs):
-            # Instantiate the child serializer.
+            # 实例化子序列化器类。
             kwargs['child'] = cls()
-            # Instantiate the parent list serializer.
+            # 实例化列表序列化父类
             return CustomListSerializer(*args, **kwargs)
 
 ---
