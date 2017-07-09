@@ -12,6 +12,7 @@
   * [Renderers](/api-guide/renderers_zh.md)
   * [Serializers](/api-guide/serializers_zh.md)
   * [Filtering](/api-guide/filtering_zh.md)
+  * [Authentication](/api-guide/authentication_zh.md)
 
 
 
