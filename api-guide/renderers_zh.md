@@ -211,7 +211,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
 将序列化程序返回的数据渲染为HTML表单。此渲染器的输出不包括封闭的`<form>`标签，隐藏的CSRF输入或任何提交按钮。
 
 此渲染器不是直接使用，而是可以通过将序列化器实例传递给`render_form`模板标记来替代模板。
-
+{% raw %}
     {% load rest_framework %}
 
     <form action="/submit-report/" method="post">
@@ -219,7 +219,7 @@ TemplateHTMLRenderer将创建一个`RequestContext`，使用`response.data`作�
         {% render_form serializer %}
         <input type="submit" value="Save" />
     </form>
-
+{% endraw %}
 有关更多信息，请参阅[HTML和表单][html-and-forms]文档。
 
 **.media_type**: `text/html`
