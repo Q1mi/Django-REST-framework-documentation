@@ -212,6 +212,7 @@ Renders data returned by a serializer into an HTML form. The output of this rend
 
 This renderer is not intended to be used directly, but can instead be used in templates by passing a serializer instance to the `render_form` template tag.
 
+    {% raw %}
     {% load rest_framework %}
 
     <form action="/submit-report/" method="post">
@@ -219,6 +220,7 @@ This renderer is not intended to be used directly, but can instead be used in te
         {% render_form serializer %}
         <input type="submit" value="Save" />
     </form>
+    {% endraw %}
 
 For more information see the [HTML & Forms][html-and-forms] documentation.
 
