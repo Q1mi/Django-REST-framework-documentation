@@ -83,7 +83,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 ### 额外链接和操作
 
-用`@ detail_route`或`@ list_route`装饰的视图集上的任何方法也将被路由。
+用`@detail_route`或`@list_route`装饰的视图集上的任何方法也将被路由。
 例如，给定一个类似这样的方法在`UserViewSet`类：
 
     from myapp.permissions import IsAdminOrIsSelf
@@ -145,6 +145,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 该路由器包括标准集合`list`, `create`, `retrieve`, `update`, `partial_update` 和 `destroy`动作的路由。视图集中还可以使用`@ detail_route`或`@ list_route`装饰器标记要被路由的其他方法。
 
+{% raw %}
 <table border=1>
     <tr><th>URL 样式</th><th>HTTP 方法</th><th>动作</th><th>URL 名</th></tr>
     <tr><td rowspan=2>{prefix}/</td><td>GET</td><td>list</td><td rowspan=2>{basename}-list</td></tr></tr>
@@ -156,6 +157,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
     <tr><td>DELETE</td><td>destroy</td></tr>
     <tr><td>{prefix}/{lookup}/{methodname}/</td><td>GET, or as specified by `methods` argument</td><td>`@detail_route` decorated method</td><td>{basename}-{methodname}</td></tr>
 </table>
+{% end raw %}
 
 默认情况下，由`SimpleRouter`创建的URL将附加尾部斜杠。
 在实例化路由器时，可以通过将`trailing_slash`参数设置为`False'来修改此行为。比如：
@@ -173,6 +175,8 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 ## DefaultRouter
 
 这个路由器类似于上面的`SimpleRouter`，但是还包括一个默认返回所有列表视图的超链接的API根视图。它还生成可选的`.json`样式格式后缀的路由。
+
+{% raw %}
 <table border=1>
     <tr><th>URL 样式</th><th>HTTP 方法</th><th>动作</th><th>URL 名称</th></tr>
     <tr><td>[.format]</td><td>GET</td><td>automatically generated root view</td><td>api-root</td></tr></tr>
@@ -185,6 +189,7 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
     <tr><td>DELETE</td><td>destroy</td></tr>
     <tr><td>{prefix}/{lookup}/{methodname}/[.format]</td><td>GET, or as specified by `methods` argument</td><td>`@detail_route` decorated method</td><td>{basename}-{methodname}</td></tr>
 </table>
+{% end raw %}
 
 与`SimpleRouter`一样，在实例化路由器时，可以通过将`trailing_slash`参数设置为`False'来删除URL路由的尾部斜杠。
 
@@ -284,12 +289,15 @@ REST框架添加了对自动URL路由到Django的支持，并为你提供了一�
 
 将生成以下映射...
 
+{% raw %}
 <table border=1>
     <tr><th>URL</th><th>HTTP 方法</th><th>动作</th><th>URL 名称</th></tr>
     <tr><td>/users</td><td>GET</td><td>list</td><td>user-list</td></tr>
     <tr><td>/users/{username}</td><td>GET</td><td>retrieve</td><td>user-detail</td></tr>
     <tr><td>/users/{username}/group-names</td><td>GET</td><td>group_names</td><td>user-group-names</td></tr>
-</table>
+</table
+{% end raw %}>
+
 
 有关设置`.routes`属性的另一个示例，请参阅`SimpleRouter`类的源代码。
 
