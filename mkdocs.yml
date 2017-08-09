@@ -1,0 +1,75 @@
+site_name: Django REST framework中文站点
+site_url: http://www.django-rest-framework.org/
+site_description: Django REST framework - Web APIs for Django
+
+repo_url: https://github.com/tomchristie/django-rest-framework
+
+theme_dir: docs_theme
+
+markdown_extensions:
+ - toc:
+    anchorlink: True
+
+pages:
+ - 主页: 'index.md'
+ - 教程:
+    - 'Quickstart': 'tutorial/quickstart.md'
+    - '1 - Serialization': 'tutorial/1-serialization.md'
+    - '2 - Requests and responses': 'tutorial/2-requests-and-responses.md'
+    - '3 - Class based views': 'tutorial/3-class-based-views.md'
+    - '4 - Authentication and permissions': 'tutorial/4-authentication-and-permissions.md'
+    - '5 - Relationships and hyperlinked APIs': 'tutorial/5-relationships-and-hyperlinked-apis.md'
+    - '6 - Viewsets and routers': 'tutorial/6-viewsets-and-routers.md'
+    - '7 - Schemas and client libraries': 'tutorial/7-schemas-and-client-libraries.md'
+ - API 指南:
+    - 'Requests': 'api-guide/requests_zh.md'
+    - 'Responses': 'api-guide/responses_zh.md'
+    - 'Views': 'api-guide/views.md'
+    - 'Generic views': 'api-guide/generic-views_zh.md'
+    - 'Viewsets': 'api-guide/viewsets_zh.md'
+    - 'Routers': 'api-guide/routers_zh.md'
+    - 'Parsers': 'api-guide/parsers_zh.md'
+    - 'Renderers': 'api-guide/renderers_zh.md'
+    - 'Serializers': 'api-guide/serializers_zh.md'
+    - 'Serializer fields': 'api-guide/fields.md'
+    - 'Serializer relations': 'api-guide/relations.md'
+    - 'Validators': 'api-guide/validators.md'
+    - 'Authentication': 'api-guide/authentication_zh.md'
+    - 'Permissions': 'api-guide/permissions.md'
+    - 'Throttling': 'api-guide/throttling.md'
+    - 'Filtering': 'api-guide/filtering_zh.md'
+    - 'Pagination': 'api-guide/pagination.md'
+    - 'Versioning': 'api-guide/versioning.md'
+    - 'Content negotiation': 'api-guide/content-negotiation.md'
+    - 'Metadata': 'api-guide/metadata.md'
+    - 'Schemas': 'api-guide/schemas.md'
+    - 'Format suffixes': 'api-guide/format-suffixes.md'
+    - 'Returning URLs': 'api-guide/reverse.md'
+    - 'Exceptions': 'api-guide/exceptions.md'
+    - 'Status codes': 'api-guide/status-codes.md'
+    - 'Testing': 'api-guide/testing.md'
+    - 'Settings': 'api-guide/settings.md'
+ - 话题:
+     - 'Documenting your API': 'topics/documenting-your-api.md'
+     - 'API Clients': 'topics/api-clients.md'
+     - 'Internationalization': 'topics/internationalization.md'
+     - 'AJAX, CSRF & CORS': 'topics/ajax-csrf-cors.md'
+     - 'HTML & Forms': 'topics/html-and-forms.md'
+     - 'Browser Enhancements': 'topics/browser-enhancements.md'
+     - 'The Browsable API': 'topics/browsable-api.md'
+     - 'REST, Hypermedia & HATEOAS': 'topics/rest-hypermedia-hateoas.md'
+     - 'Third Party Packages': 'topics/third-party-packages.md'
+     - 'Tutorials and Resources': 'topics/tutorials-and-resources.md'
+     - 'Contributing to REST framework': 'topics/contributing.md'
+     - 'Project management': 'topics/project-management.md'
+     - '3.0 Announcement': 'topics/3.0-announcement.md'
+     - '3.1 Announcement': 'topics/3.1-announcement.md'
+     - '3.2 Announcement': 'topics/3.2-announcement.md'
+     - '3.3 Announcement': 'topics/3.3-announcement.md'
+     - '3.4 Announcement': 'topics/3.4-announcement.md'
+     - '3.5 Announcement': 'topics/3.5-announcement.md'
+     - 'Kickstarter Announcement': 'topics/kickstarter-announcement.md'
+     - 'Mozilla Grant': 'topics/mozilla-grant.md'
+     - 'Funding': 'topics/funding.md'
+     - 'Release Notes': 'topics/release-notes.md'
+     - 'Jobs': 'topics/jobs.md'

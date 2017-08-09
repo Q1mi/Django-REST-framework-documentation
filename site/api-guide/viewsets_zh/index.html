@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Viewsets - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="http://www.django-rest-framework.org/api-guide/viewsets_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, REST, Viewsets">
+  <meta name="author" content="Tom Christie">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/tomchristie/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../routers_zh/">
+            下一页 <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../generic-views_zh/">
+            <i class="icon-arrow-left icon-white"></i> 上一页
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://www.django-rest-framework.org">Django REST framework</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API 指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">话题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#viewsets">ViewSets</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#example">Example</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_1">标记路由的额外操作</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#api">API 参考</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#viewset">ViewSet</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#genericviewset">GenericViewSet</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#modelviewset">ModelViewSet</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#readonlymodelviewset">ReadOnlyModelViewSet</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#custom-viewset-base-classes">Custom ViewSet base classes</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#example_3">Example</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr/>
+                    <div id="sidebarInclude">
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/viewsets.py">
+                    <span class="label label-info">viewsets.py</span>
+                  </a>
+                
+              
+
+              <h1 id="viewsets"><a class="toclink" href="#viewsets">ViewSets</a></h1>
+<blockquote>
+<p>在路由已经确定了用于请求的控制器之后，你的控制器负责理解请求并产生适当的输出。 </p>
+<p>— <a href="http://guides.rubyonrails.org/routing.html">Ruby on Rails 文档</a></p>
+</blockquote>
+<p>Django REST framework允许你将一组相关视图的逻辑组合在单个类（称为 <code>ViewSet</code>）中。 在其他框架中，你也可以找到概念上类似于 'Resources' 或 'Controllers'的类似实现。</p>
+<p><code>ViewSet</code> 只是<strong>一种基于类的视图，它不提供任何方法处理程序</strong>（如 <code>.get()</code>或<code>.post()</code>）,而是提供诸如 <code>.list()</code> 和 <code>.create()</code> 之类的操作。</p>
+<p><code>ViewSet</code> 的方法处理程序仅使用 <code>.as_view()</code> 方法绑定到完成视图的相应操作。</p>
+<p>通常不是在 urlconf 中的视图集中显示注册视图，而是要使用路由类注册视图集，该类会自动为你确定 urlconf。</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<p>让我们定义一个简单的视图集，可以用来列出或检索系统中的所有用户。</p>
+<pre><code>from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from myapps.serializers import UserSerializer
+from rest_framework import viewsets
+from rest_framework.response import Response
+
+class UserViewSet(viewsets.ViewSet):
+    &quot;&quot;&quot;
+    A simple ViewSet for listing or retrieving users.
+    &quot;&quot;&quot;
+    def list(self, request):
+        queryset = User.objects.all()
+        serializer = UserSerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None):
+        queryset = User.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+</code></pre>
+
+<p>如果我们需要，我们可以将这个viewset绑定到两个单独的视图，想这样：</p>
+<pre><code>user_list = UserViewSet.as_view({'get': 'list'})
+user_detail = UserViewSet.as_view({'get': 'retrieve'})
+</code></pre>
+
+<p>通常我们不会这么做，我们会用一个router来注册我们的viewset，让urlconf自动生成。</p>
+<pre><code>from myapp.views import UserViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+urlpatterns = router.urls
+</code></pre>
+
+<p>不需要编写自己的视图集，你通常会想要使用提供默认行为的现有基类。例如：</p>
+<pre><code>class UserViewSet(viewsets.ModelViewSet):
+    &quot;&quot;&quot;
+    用于查看和编辑用户实例的视图集。
+    &quot;&quot;&quot;
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+</code></pre>
+
+<p>与使用 <code>View</code> 类相比，使用 <code>ViewSet</code> 类有两个主要优点。</p>
+<ul>
+<li>重复的逻辑可以组合成一个类。在上面的例子中，我们只需要指定一次 <code>queryset</code>，它将在多个视图中使用。</li>
+<li>通过使用 routers, 哦们不再需要自己处理URLconf。</li>
+</ul>
+<p>这两者都有一个权衡。使用常规的 views 和 URL confs 更明确也能够为你提供更多的控制。ViewSets有助于快速启动和运行，或者当你有大型的API，并且希望在整个过程中执行一致的 URL 配置。</p>
+<h2 id="_1"><a class="toclink" href="#_1">标记路由的额外操作</a></h2>
+<p>REST framework 中包含的默任 routes 将为标准的 create/retrieve/update/destroy 类型操作提供路由, 如下所示：</p>
+<pre><code>class UserViewSet(viewsets.ViewSet):
+    """
+    示例 viewset 演示了将由路由器类处理的标准动作。
+
+    如果你使用格式后缀，请务必为每个动作包含一个`format=None` 的关键字参数。
+    """
+
+    def list(self, request):
+        pass
+
+    def create(self, request):
+        pass
+
+    def retrieve(self, request, pk=None):
+        pass
+
+    def update(self, request, pk=None):
+        pass
+
+    def partial_update(self, request, pk=None):
+        pass
+
+    def destroy(self, request, pk=None):
+        pass
+</code></pre>
+<p>如果你有需要被路由到的特别方法，你可以使用 <code>@detail_route</code> 或 <code>@list_route</code> 装饰器将它们标记为需要路由。</p>
+<p><code>@detail_route</code> 装饰器在其URL模式中包含 <code>pk</code> 用于需要单个实例的方法。The <code>@list_route</code> 装饰器用于对对象列表进行操作的方法。</p>
+<p>例如：</p>
+<pre><code>from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.decorators import detail_route, list_route
+from rest_framework.response import Response
+from myapp.serializers import UserSerializer, PasswordSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    &quot;&quot;&quot;
+    一个提供标准动作的 viewset
+    &quot;&quot;&quot;
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    @detail_route(methods=['post'])
+    def set_password(self, request, pk=None):
+        user = self.get_object()
+        serializer = PasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            user.set_password(serializer.data['password'])
+            user.save()
+            return Response({'status': 'password set'})
+        else:
+            return Response(serializer.errors,
+                            status=status.HTTP_400_BAD_REQUEST)
+
+    @list_route()
+    def recent_users(self, request):
+        recent_users = User.objects.all().order('-last_login')
+
+        page = self.paginate_queryset(recent_users)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(recent_users, many=True)
+        return Response(serializer.data)
+</code></pre>
+
+<p>装饰器可以另外获取为路由视图设置的额外参数。例如...</p>
+<pre><code>    @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf])
+    def set_password(self, request, pk=None):
+       ...
+</code></pre>
+
+<p>这些装饰器将默认路由 <code>GET</code> 请求，但也可以通过使用 <code>methods</code> 参数接受其他 HTTP 方法。例如：</p>
+<pre><code>    @detail_route(methods=['post', 'delete'])
+    def unset_password(self, request, pk=None):
+       ...
+</code></pre>
+
+<p>这两个新动作将在 urls <code>^users/{pk}/set_password/$</code> 和 <code>^users/{pk}/unset_password/$</code>上可用。</p>
+<hr />
+<h1 id="api"><a class="toclink" href="#api">API 参考</a></h1>
+<h2 id="viewset"><a class="toclink" href="#viewset">ViewSet</a></h2>
+<p><code>ViewSet</code> 继承自 <code>APIView</code>。你可以使用任何标准属性，如 <code>permission_classes</code>, <code>authentication_classes</code> 以便控制视图集上的 API 策略。</p>
+<p><code>ViewSet</code> 类不提供任何操作的实现。为了使用 <code>ViewSet</code> 类，你将重写该类并显式地定义动作实现。</p>
+<h2 id="genericviewset"><a class="toclink" href="#genericviewset">GenericViewSet</a></h2>
+<p><code>GenericViewSet</code> 类继承自 <code>GenericAPIView</code>，并提供了 <code>get_object</code>， <code>get_queryset</code> 方法和其他通用视图基本行为的默认配置，但默认情况不包括任何操作。</p>
+<p>In order to use a <code>GenericViewSet</code> class you'll override the class and either mixin the required mixin classes, or define the action implementations explicitly.</p>
+<h2 id="modelviewset"><a class="toclink" href="#modelviewset">ModelViewSet</a></h2>
+<p>The <code>ModelViewSet</code> class inherits from <code>GenericAPIView</code> and includes implementations for various actions, by mixing in the behavior of the various mixin classes.</p>
+<p>The actions provided by the <code>ModelViewSet</code> class are <code>.list()</code>, <code>.retrieve()</code>,  <code>.create()</code>, <code>.update()</code>, <code>.partial_update()</code>, and <code>.destroy()</code>.</p>
+<h4 id="example_1"><a class="toclink" href="#example_1">Example</a></h4>
+<p>Because <code>ModelViewSet</code> extends <code>GenericAPIView</code>, you'll normally need to provide at least the <code>queryset</code> and <code>serializer_class</code> attributes.  For example:</p>
+<pre><code>class AccountViewSet(viewsets.ModelViewSet):
+    &quot;&quot;&quot;
+    A simple ViewSet for viewing and editing accounts.
+    &quot;&quot;&quot;
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = [IsAccountAdminOrReadOnly]
+</code></pre>
+
+<p>Note that you can use any of the standard attributes or method overrides provided by <code>GenericAPIView</code>.  For example, to use a <code>ViewSet</code> that dynamically determines the queryset it should operate on, you might do something like this:</p>
+<pre><code>class AccountViewSet(viewsets.ModelViewSet):
+    &quot;&quot;&quot;
+    A simple ViewSet for viewing and editing the accounts
+    associated with the user.
+    &quot;&quot;&quot;
+    serializer_class = AccountSerializer
+    permission_classes = [IsAccountAdminOrReadOnly]
+
+    def get_queryset(self):
+        return self.request.user.accounts.all()
+</code></pre>
+
+<p>Note however that upon removal of the <code>queryset</code> property from your <code>ViewSet</code>, any associated <a href="routers.md">router</a> will be unable to derive the base_name of your Model automatically, and so you will have to specify the <code>base_name</code> kwarg as part of your <a href="routers.md">router registration</a>.</p>
+<p>Also note that although this class provides the complete set of create/list/retrieve/update/destroy actions by default, you can restrict the available operations by using the standard permission classes.</p>
+<h2 id="readonlymodelviewset"><a class="toclink" href="#readonlymodelviewset">ReadOnlyModelViewSet</a></h2>
+<p>The <code>ReadOnlyModelViewSet</code> class also inherits from <code>GenericAPIView</code>.  As with <code>ModelViewSet</code> it also includes implementations for various actions, but unlike <code>ModelViewSet</code> only provides the 'read-only' actions, <code>.list()</code> and <code>.retrieve()</code>.</p>
+<h4 id="example_2"><a class="toclink" href="#example_2">Example</a></h4>
+<p>As with <code>ModelViewSet</code>, you'll normally need to provide at least the <code>queryset</code> and <code>serializer_class</code> attributes.  For example:</p>
+<pre><code>class AccountViewSet(viewsets.ReadOnlyModelViewSet):
+    &quot;&quot;&quot;
+    A simple ViewSet for viewing accounts.
+    &quot;&quot;&quot;
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+</code></pre>
+
+<p>Again, as with <code>ModelViewSet</code>, you can use any of the standard attributes and method overrides available to <code>GenericAPIView</code>.</p>
+<h1 id="custom-viewset-base-classes"><a class="toclink" href="#custom-viewset-base-classes">Custom ViewSet base classes</a></h1>
+<p>You may need to provide custom <code>ViewSet</code> classes that do not have the full set of <code>ModelViewSet</code> actions, or that customize the behavior in some other way.</p>
+<h2 id="example_3"><a class="toclink" href="#example_3">Example</a></h2>
+<p>To create a base viewset class that provides <code>create</code>, <code>list</code> and <code>retrieve</code> operations, inherit from <code>GenericViewSet</code>, and mixin the required actions:</p>
+<pre><code>class CreateListRetrieveViewSet(mixins.CreateModelMixin,
+                                mixins.ListModelMixin,
+                                mixins.RetrieveModelMixin,
+                                viewsets.GenericViewSet):
+    """
+    A viewset that provides `retrieve`, `create`, and `list` actions.
+
+    To use it, override the class and set the `.queryset` and
+    `.serializer_class` attributes.
+    """
+    pass
+</code></pre>
+<p>By creating your own base <code>ViewSet</code> classes, you can provide common behavior that can be reused in multiple viewsets across your API.</p>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script>var base_url = '../..';</script>
+  <script src="../../mkdocs/js/require.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>
