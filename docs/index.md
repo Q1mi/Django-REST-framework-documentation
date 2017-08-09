@@ -1,23 +1,23 @@
-## Django REST framework 中文
+## Django REST framework 中文文档
 
-如果本文对您有帮助，请在github上star该项目或直接联系加入我们。
+如果本文对你有帮助，请在[github](https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/)上 **star** 该项目。
 
-我们对您的支持深表感谢。
+当然我也十分欢迎你加入该项目并推送你的翻译。
 
 ## 版本相关
 
-这是Django REST framework v3 版本的中文文档。
+这是Django REST framework v3 版本的中文翻译文档。
 
-* django-rest-framework
+* django-rest-framework版本：
 
     - v3.5.3
 
-* django
+* django版本：
 
     - v1.10.4
 
 ## 翻译人员
-* Q1mi
+* [Q1mi](https://github.com/Q1mi)
 
 ## 以下章节已完成翻译
 
