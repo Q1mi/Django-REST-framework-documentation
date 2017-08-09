@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.django-rest-framework.org/api-guide/metadata/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Metadata - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../tutorial/quickstart/">Quickstart</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/1-serialization/">1 - Serialization</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/2-requests-and-responses/">2 - Requests and responses</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/3-class-based-views/">3 - Class based views</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/4-authentication-and-permissions/">4 - Authentication and permissions</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis/">5 - Relationships and hyperlinked APIs</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/6-viewsets-and-routers/">6 - Viewsets and routers</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/7-schemas-and-client-libraries/">7 - Schemas and client libraries</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API Guide <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../requests_zh/">Requests</a>
+</li>
+                            
+<li >
+    <a href="../responses_zh/">Responses</a>
+</li>
+                            
+<li >
+    <a href="../views/">Views</a>
+</li>
+                            
+<li >
+    <a href="../generic-views_zh/">Generic views</a>
+</li>
+                            
+<li >
+    <a href="../viewsets_zh/">Viewsets</a>
+</li>
+                            
+<li >
+    <a href="../routers_zh/">Routers</a>
+</li>
+                            
+<li >
+    <a href="../parsers_zh/">Parsers</a>
+</li>
+                            
+<li >
+    <a href="../renderers_zh/">Renderers</a>
+</li>
+                            
+<li >
+    <a href="../serializers_zh/">Serializers</a>
+</li>
+                            
+<li >
+    <a href="../fields/">Serializer fields</a>
+</li>
+                            
+<li >
+    <a href="../relations/">Serializer relations</a>
+</li>
+                            
+<li >
+    <a href="../validators/">Validators</a>
+</li>
+                            
+<li >
+    <a href="../authentication_zh/">Authentication</a>
+</li>
+                            
+<li >
+    <a href="../permissions/">Permissions</a>
+</li>
+                            
+<li >
+    <a href="../throttling/">Throttling</a>
+</li>
+                            
+<li >
+    <a href="../filtering_zh/">Filtering</a>
+</li>
+                            
+<li >
+    <a href="../pagination/">Pagination</a>
+</li>
+                            
+<li >
+    <a href="../versioning/">Versioning</a>
+</li>
+                            
+<li >
+    <a href="../content-negotiation/">Content negotiation</a>
+</li>
+                            
+<li class="active">
+    <a href="./">Metadata</a>
+</li>
+                            
+<li >
+    <a href="../schemas/">Schemas</a>
+</li>
+                            
+<li >
+    <a href="../format-suffixes/">Format suffixes</a>
+</li>
+                            
+<li >
+    <a href="../reverse/">Returning URLs</a>
+</li>
+                            
+<li >
+    <a href="../exceptions/">Exceptions</a>
+</li>
+                            
+<li >
+    <a href="../status-codes/">Status codes</a>
+</li>
+                            
+<li >
+    <a href="../testing/">Testing</a>
+</li>
+                            
+<li >
+    <a href="../settings/">Settings</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+</li>
+                            
+<li >
+    <a href="../../topics/api-clients/">API Clients</a>
+</li>
+                            
+<li >
+    <a href="../../topics/internationalization/">Internationalization</a>
+</li>
+                            
+<li >
+    <a href="../../topics/ajax-csrf-cors/">AJAX, CSRF & CORS</a>
+</li>
+                            
+<li >
+    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+</li>
+                            
+<li >
+    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+</li>
+                            
+<li >
+    <a href="../../topics/browsable-api/">The Browsable API</a>
+</li>
+                            
+<li >
+    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+</li>
+                            
+<li >
+    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+</li>
+                            
+<li >
+    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+</li>
+                            
+<li >
+    <a href="../../topics/contributing/">Contributing to REST framework</a>
+</li>
+                            
+<li >
+    <a href="../../topics/project-management/">Project management</a>
+</li>
+                            
+<li >
+    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+</li>
+                            
+<li >
+    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+</li>
+                            
+<li >
+    <a href="../../topics/funding/">Funding</a>
+</li>
+                            
+<li >
+    <a href="../../topics/release-notes/">Release Notes</a>
+</li>
+                            
+<li >
+    <a href="../../topics/jobs/">Jobs</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../content-negotiation/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../schemas/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/tomchristie/django-rest-framework">
+                                <i class="fa fa-github"></i>GitHub
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#metadata">Metadata</a></li>
+            <li><a href="#setting-the-metadata-scheme">Setting the metadata scheme</a></li>
+            <li><a href="#creating-schema-endpoints">Creating schema endpoints</a></li>
+        <li class="main "><a href="#custom-metadata-classes">Custom metadata classes</a></li>
+            <li><a href="#example">Example</a></li>
+        <li class="main "><a href="#third-party-packages">Third party packages</a></li>
+            <li><a href="#drf-schema-adapter">DRF-schema-adapter</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+<div class="source-links">
+
+    <span class="label label-primary">metadata.py</span>
+
+</div>
+
+
+<h1 id="metadata"><a class="toclink" href="#metadata">Metadata</a></h1>
+<blockquote>
+<p>[The <code>OPTIONS</code>] method allows a client to determine the options and/or requirements associated with a resource, or the capabilities of a server, without implying a resource action or initiating a resource retrieval.</p>
+<p>&mdash; <a href="http://tools.ietf.org/html/rfc7231#section-4.3.7">RFC7231, Section 4.3.7.</a></p>
+</blockquote>
+<p>REST framework includes a configurable mechanism for determining how your API should respond to <code>OPTIONS</code> requests. This allows you to return API schema or other resource information.</p>
+<p>There are not currently any widely adopted conventions for exactly what style of response should be returned for HTTP <code>OPTIONS</code> requests, so we provide an ad-hoc style that returns some useful information.</p>
+<p>Here's an example response that demonstrates the information that is returned by default.</p>
+<pre><code>HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+
+{
+    "name": "To Do List",
+    "description": "List existing 'To Do' items, or create a new item.",
+    "renders": [
+        "application/json",
+        "text/html"
+    ],
+    "parses": [
+        "application/json",
+        "application/x-www-form-urlencoded",
+        "multipart/form-data"
+    ],
+    "actions": {
+        "POST": {
+            "note": {
+                "type": "string",
+                "required": false,
+                "read_only": false,
+                "label": "title",
+                "max_length": 100
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="setting-the-metadata-scheme"><a class="toclink" href="#setting-the-metadata-scheme">Setting the metadata scheme</a></h2>
+<p>You can set the metadata class globally using the <code>'DEFAULT_METADATA_CLASS'</code> settings key:</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_METADATA_CLASS': 'rest_framework.metadata.SimpleMetadata'
+}
+</code></pre>
+<p>Or you can set the metadata class individually for a view:</p>
+<pre><code>class APIRoot(APIView):
+    metadata_class = APIRootMetadata
+
+    def get(self, request, format=None):
+        return Response({
+            ...
+        })
+</code></pre>
+<p>The REST framework package only includes a single metadata class implementation, named <code>SimpleMetadata</code>. If you want to use an alternative style you'll need to implement a custom metadata class.</p>
+<h2 id="creating-schema-endpoints"><a class="toclink" href="#creating-schema-endpoints">Creating schema endpoints</a></h2>
+<p>If you have specific requirements for creating schema endpoints that are accessed with regular <code>GET</code> requests, you might consider re-using the metadata API for doing so.</p>
+<p>For example, the following additional route could be used on a viewset to provide a linkable schema endpoint.</p>
+<pre><code>@list_route(methods=['GET'])
+def schema(self, request):
+    meta = self.metadata_class()
+    data = meta.determine_metadata(request, self)
+    return Response(data)
+</code></pre>
+<p>There are a couple of reasons that you might choose to take this approach, including that <code>OPTIONS</code> responses <a href="https://www.mnot.net/blog/2012/10/29/NO_OPTIONS">are not cacheable</a>.</p>
+<hr />
+<h1 id="custom-metadata-classes"><a class="toclink" href="#custom-metadata-classes">Custom metadata classes</a></h1>
+<p>If you want to provide a custom metadata class you should override <code>BaseMetadata</code> and implement the <code>determine_metadata(self, request, view)</code> method.</p>
+<p>Useful things that you might want to do could include returning schema information, using a format such as <a href="http://json-schema.org/">JSON schema</a>, or returning debug information to admin users.</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<p>The following class could be used to limit the information that is returned to <code>OPTIONS</code> requests.</p>
+<pre><code>class MinimalMetadata(BaseMetadata):
+    """
+    Don't include field and other information for `OPTIONS` requests.
+    Just return the name and description.
+    """
+    def determine_metadata(self, request, view):
+        return {
+            'name': view.get_view_name(),
+            'description': view.get_view_description()
+        }
+</code></pre>
+<p>Then configure your settings to use this custom class:</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_METADATA_CLASS': 'myproject.apps.core.MinimalMetadata'
+}
+</code></pre>
+<h1 id="third-party-packages"><a class="toclink" href="#third-party-packages">Third party packages</a></h1>
+<p>The following third party packages provide additional metadata implementations.</p>
+<h2 id="drf-schema-adapter"><a class="toclink" href="#drf-schema-adapter">DRF-schema-adapter</a></h2>
+<p><a href="https://github.com/drf-forms/drf-schema-adapter">drf-schema-adapter</a> is a set of tools that makes it easier to provide schema information to frontend frameworks and libraries. It provides a metadata mixin as well as 2 metadata classes and several adapters suitable to generate <a href="http://json-schema.org/">json-schema</a> as well as schema information readable by various libraries.</p>
+<p>You can also write your own adapter to work with your specific frontend.
+If you wish to do so, it also provides an exporter that can export those schema information to json files.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

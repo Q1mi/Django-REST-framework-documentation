@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="http://www.django-rest-framework.org/topics/ajax-csrf-cors/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>AJAX, CSRF & CORS - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../tutorial/quickstart/">Quickstart</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/1-serialization/">1 - Serialization</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/2-requests-and-responses/">2 - Requests and responses</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/3-class-based-views/">3 - Class based views</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/4-authentication-and-permissions/">4 - Authentication and permissions</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis/">5 - Relationships and hyperlinked APIs</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/6-viewsets-and-routers/">6 - Viewsets and routers</a>
+</li>
+                            
+<li >
+    <a href="../../tutorial/7-schemas-and-client-libraries/">7 - Schemas and client libraries</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">API Guide <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../../api-guide/requests_zh/">Requests</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/responses_zh/">Responses</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/views/">Views</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/generic-views_zh/">Generic views</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/routers_zh/">Routers</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/parsers_zh/">Parsers</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/renderers_zh/">Renderers</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/serializers_zh/">Serializers</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/fields/">Serializer fields</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/relations/">Serializer relations</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/validators/">Validators</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/authentication_zh/">Authentication</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/permissions/">Permissions</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/throttling/">Throttling</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/filtering_zh/">Filtering</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/pagination/">Pagination</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/versioning/">Versioning</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/metadata/">Metadata</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/schemas/">Schemas</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/reverse/">Returning URLs</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/exceptions/">Exceptions</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/status-codes/">Status codes</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/testing/">Testing</a>
+</li>
+                            
+<li >
+    <a href="../../api-guide/settings/">Settings</a>
+</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Topics <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            
+<li >
+    <a href="../documenting-your-api/">Documenting your API</a>
+</li>
+                            
+<li >
+    <a href="../api-clients/">API Clients</a>
+</li>
+                            
+<li >
+    <a href="../internationalization/">Internationalization</a>
+</li>
+                            
+<li class="active">
+    <a href="./">AJAX, CSRF & CORS</a>
+</li>
+                            
+<li >
+    <a href="../html-and-forms/">HTML & Forms</a>
+</li>
+                            
+<li >
+    <a href="../browser-enhancements/">Browser Enhancements</a>
+</li>
+                            
+<li >
+    <a href="../browsable-api/">The Browsable API</a>
+</li>
+                            
+<li >
+    <a href="../rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+</li>
+                            
+<li >
+    <a href="../third-party-packages/">Third Party Packages</a>
+</li>
+                            
+<li >
+    <a href="../tutorials-and-resources/">Tutorials and Resources</a>
+</li>
+                            
+<li >
+    <a href="../contributing/">Contributing to REST framework</a>
+</li>
+                            
+<li >
+    <a href="../project-management/">Project management</a>
+</li>
+                            
+<li >
+    <a href="../3.0-announcement/">3.0 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../3.1-announcement/">3.1 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../3.2-announcement/">3.2 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../3.3-announcement/">3.3 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../3.4-announcement/">3.4 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../3.5-announcement/">3.5 Announcement</a>
+</li>
+                            
+<li >
+    <a href="../kickstarter-announcement/">Kickstarter Announcement</a>
+</li>
+                            
+<li >
+    <a href="../mozilla-grant/">Mozilla Grant</a>
+</li>
+                            
+<li >
+    <a href="../funding/">Funding</a>
+</li>
+                            
+<li >
+    <a href="../release-notes/">Release Notes</a>
+</li>
+                            
+<li >
+    <a href="../jobs/">Jobs</a>
+</li>
+                        </ul>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../internationalization/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../html-and-forms/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/tomchristie/django-rest-framework">
+                                <i class="fa fa-github"></i>GitHub
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#working-with-ajax-csrf-cors">Working with AJAX, CSRF &amp; CORS</a></li>
+            <li><a href="#javascript-clients">Javascript clients</a></li>
+            <li><a href="#csrf-protection">CSRF protection</a></li>
+            <li><a href="#cors">CORS</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="working-with-ajax-csrf-cors"><a class="toclink" href="#working-with-ajax-csrf-cors">Working with AJAX, CSRF &amp; CORS</a></h1>
+<blockquote>
+<p>"Take a close look at possible CSRF / XSRF vulnerabilities on your own websites.  They're the worst kind of vulnerability &mdash; very easy to exploit by attackers, yet not so intuitively easy to understand for software developers, at least until you've been bitten by one."</p>
+<p>&mdash; <a href="http://www.codinghorror.com/blog/2008/10/preventing-csrf-and-xsrf-attacks.html">Jeff Atwood</a></p>
+</blockquote>
+<h2 id="javascript-clients"><a class="toclink" href="#javascript-clients">Javascript clients</a></h2>
+<p>If you’re building a JavaScript client to interface with your Web API, you'll need to consider if the client can use the same authentication policy that is used by the rest of the website, and also determine if you need to use CSRF tokens or CORS headers.</p>
+<p>AJAX requests that are made within the same context as the API they are interacting with will typically use <code>SessionAuthentication</code>.  This ensures that once a user has logged in, any AJAX requests made can be authenticated using the same session-based authentication that is used for the rest of the website.</p>
+<p>AJAX requests that are made on a different site from the API they are communicating with will typically need to use a non-session-based authentication scheme, such as <code>TokenAuthentication</code>.</p>
+<h2 id="csrf-protection"><a class="toclink" href="#csrf-protection">CSRF protection</a></h2>
+<p><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross Site Request Forgery</a> protection is a mechanism of guarding against a particular type of attack, which can occur when a user has not logged out of a web site, and continues to have a valid session.   In this circumstance a malicious site may be able to perform actions against the target site, within the context of the logged-in session.</p>
+<p>To guard against these type of attacks, you need to do two things:</p>
+<ol>
+<li>Ensure that the 'safe' HTTP operations, such as <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> cannot be used to alter any server-side state.</li>
+<li>Ensure that any 'unsafe' HTTP operations, such as <code>POST</code>, <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code>, always require a valid CSRF token.</li>
+</ol>
+<p>If you're using <code>SessionAuthentication</code> you'll need to include valid CSRF tokens for any <code>POST</code>, <code>PUT</code>, <code>PATCH</code> or <code>DELETE</code> operations.</p>
+<p>In order to make AJAX requests, you need to include CSRF token in the HTTP header, as <a href="https://docs.djangoproject.com/en/stable/ref/csrf/#ajax">described in the Django documentation</a>.</p>
+<h2 id="cors"><a class="toclink" href="#cors">CORS</a></h2>
+<p><a href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a> is a mechanism for allowing clients to interact with APIs that are hosted on a different domain.  CORS works by requiring the server to include a specific set of headers that allow a browser to determine if and when cross-domain requests should be allowed.</p>
+<p>The best way to deal with CORS in REST framework is to add the required response headers in middleware.  This ensures that CORS is supported transparently, without having to change any behavior in your views.</p>
+<p><a href="https://github.com/ottoyiu/">Otto Yiu</a> maintains the <a href="https://github.com/ottoyiu/django-cors-headers/">django-cors-headers</a> package, which is known to work correctly with REST framework APIs.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '../..';</script>
+        <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+        <script src="../../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
