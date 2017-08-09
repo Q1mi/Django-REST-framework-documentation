@@ -679,15 +679,13 @@ def simple_html_view(request):
 <h2 id="htmlformrenderer"><a class="toclink" href="#htmlformrenderer">HTMLFormRenderer</a></h2>
 <p>将序列化程序返回的数据渲染为HTML表单。此渲染器的输出不包括封闭的<code>&lt;form&gt;</code>标签，隐藏的CSRF输入或任何提交按钮。</p>
 <p>此渲染器不是直接使用，而是可以通过将序列化器实例传递给<code>render_form</code>模板标记来替代模板。</p>
-<pre><code>{% raw %}
-{% load rest_framework %}
+<pre><code>{% load rest_framework %}
 
 &lt;form action="/submit-report/" method="post"&gt;
     {% csrf_token %}
     {% render_form serializer %}
     &lt;input type="submit" value="Save" /&gt;
 &lt;/form&gt;
-{% endraw %}
 </code></pre>
 <p>有关更多信息，请参阅<a href="../../topics/html-and-forms/">HTML和表单</a>文档。</p>
 <p><strong>.media_type</strong>: <code>text/html</code></p>
