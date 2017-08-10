@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>AJAX, CSRF & CORS - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="http://www.django-rest-framework.org/topics/ajax-csrf-cors/" />
+  <link rel="canonical" href="http://www.django-rest-framework.org/topics/ajax-csrf-cors_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Django, API, REST, AJAX, CSRF & CORS">
   <meta name="author" content="Tom Christie">
@@ -374,16 +374,16 @@
 
                 
                   <li class="main">
-                    <a href="#working-with-ajax-csrf-cors">Working with AJAX, CSRF &amp; CORS</a>
+                    <a href="#ajax-csrf-cors">使用AJAX, CSRF 和 CORS</a>
                   </li>
 
                   
                     <li>
-                      <a href="#javascript-clients">Javascript clients</a>
+                      <a href="#javascript">Javascript 客户端</a>
                     </li>
                   
                     <li>
-                      <a href="#csrf-protection">CSRF protection</a>
+                      <a href="#csrf">CSRF 保护</a>
                     </li>
                   
                     <li>
@@ -405,28 +405,29 @@
             
               
 
-              <h1 id="working-with-ajax-csrf-cors"><a class="toclink" href="#working-with-ajax-csrf-cors">Working with AJAX, CSRF &amp; CORS</a></h1>
+              <h1 id="ajax-csrf-cors"><a class="toclink" href="#ajax-csrf-cors">使用AJAX, CSRF 和 CORS</a></h1>
 <blockquote>
-<p>"Take a close look at possible CSRF / XSRF vulnerabilities on your own websites.  They're the worst kind of vulnerability &mdash; very easy to exploit by attackers, yet not so intuitively easy to understand for software developers, at least until you've been bitten by one."</p>
+<p>"仔细观察您自己的网站上的可能的CSRF/XSRF漏洞。它们是最糟糕的漏洞 &mdash; 非常容易被攻击者利用。但对于软件开发人员来说，至少直到你被攻击了你才能直观的理解。"</p>
 <p>&mdash; <a href="http://www.codinghorror.com/blog/2008/10/preventing-csrf-and-xsrf-attacks.html">Jeff Atwood</a></p>
 </blockquote>
-<h2 id="javascript-clients"><a class="toclink" href="#javascript-clients">Javascript clients</a></h2>
-<p>If you’re building a JavaScript client to interface with your Web API, you'll need to consider if the client can use the same authentication policy that is used by the rest of the website, and also determine if you need to use CSRF tokens or CORS headers.</p>
-<p>AJAX requests that are made within the same context as the API they are interacting with will typically use <code>SessionAuthentication</code>.  This ensures that once a user has logged in, any AJAX requests made can be authenticated using the same session-based authentication that is used for the rest of the website.</p>
-<p>AJAX requests that are made on a different site from the API they are communicating with will typically need to use a non-session-based authentication scheme, such as <code>TokenAuthentication</code>.</p>
-<h2 id="csrf-protection"><a class="toclink" href="#csrf-protection">CSRF protection</a></h2>
-<p><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross Site Request Forgery</a> protection is a mechanism of guarding against a particular type of attack, which can occur when a user has not logged out of a web site, and continues to have a valid session.   In this circumstance a malicious site may be able to perform actions against the target site, within the context of the logged-in session.</p>
-<p>To guard against these type of attacks, you need to do two things:</p>
+<h2 id="javascript"><a class="toclink" href="#javascript">Javascript 客户端</a></h2>
+<p>如果你正在构建一个JavaScript客户端来和Web API对接，你将需要考虑客户端是否可以使用网站其他部分使用的身份验证策略，并确定是否需要使用CSRF令牌或CORS标头。</p>
+<p>与正在交互的API相同的上下文中发起的AJAX请求通常将使用 <code>SessionAuthentication</code> 。这确保一旦用户登录，任何AJAX请求都可以使用与网站其他部分相同的基于会话的身份验证进行身份验证。</p>
+<p>与其通信的API在不同站点上发起的AJAX请求通常需要使用基于非会话的身份验证方案，例如 <code>TokenAuthentication</code>。</p>
+<h2 id="csrf"><a class="toclink" href="#csrf">CSRF 保护</a></h2>
+<p><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross Site Request Forgery</a> 保护是防止特定类型的攻击的机制，当用户没有注销登出网站并且具有有效的会话时，这种攻击可能发生。在这种情况下，恶意站点可能会在登录会话的上下文中针对目标站点执行操作。</p>
+<p>为了防范这些类型的攻击，你需要做两件事情：</p>
 <ol>
-<li>Ensure that the 'safe' HTTP operations, such as <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> cannot be used to alter any server-side state.</li>
-<li>Ensure that any 'unsafe' HTTP operations, such as <code>POST</code>, <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code>, always require a valid CSRF token.</li>
+<li>确保“安全”的HTTP操作（如： <code>GET</code>， <code>HEAD</code> 和 <code>OPTIONS</code>）不能用于更改任何服务器端状态。</li>
+<li>确保“不安全”的HTTP操作（如： <code>POST</code>, <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code>）始终需要有效的CSRF令牌。</li>
 </ol>
-<p>If you're using <code>SessionAuthentication</code> you'll need to include valid CSRF tokens for any <code>POST</code>, <code>PUT</code>, <code>PATCH</code> or <code>DELETE</code> operations.</p>
-<p>In order to make AJAX requests, you need to include CSRF token in the HTTP header, as <a href="https://docs.djangoproject.com/en/stable/ref/csrf/#ajax">described in the Django documentation</a>.</p>
+<p>如果你使用的是<code>SessionAuthentication</code>，则需要为任何<code>POST</code>, <code>PUT</code>, <code>PATCH</code> 或 <code>DELETE</code> 操作包含有效的CSRF令牌。</p>
+<p>为了使用AJAX请求，你需要在HTTP标头中包含CSRF令牌，如<a href="https://docs.djangoproject.com/en/stable/ref/csrf/#ajax">Django文档中所述</a>。</p>
 <h2 id="cors"><a class="toclink" href="#cors">CORS</a></h2>
-<p><a href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a> is a mechanism for allowing clients to interact with APIs that are hosted on a different domain.  CORS works by requiring the server to include a specific set of headers that allow a browser to determine if and when cross-domain requests should be allowed.</p>
-<p>The best way to deal with CORS in REST framework is to add the required response headers in middleware.  This ensures that CORS is supported transparently, without having to change any behavior in your views.</p>
-<p><a href="https://github.com/ottoyiu/">Otto Yiu</a> maintains the <a href="https://github.com/ottoyiu/django-cors-headers/">django-cors-headers</a> package, which is known to work correctly with REST framework APIs.</p>
+<p><a href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a> 是允许客户端与托管在不同域上的API交互的机制。</p>
+<p>CORS的工作原理是要求服务器包含一组特定的标头信息，允许浏览器确定是否和何时允许跨域请求。</p>
+<p>在REST框架中处理CORS的最佳方法是在中间件中添加所需的响应头信息。这样可以确保CORS得到透明支持，而无需更改视图中的任何行为。</p>
+<p><a href="https://github.com/ottoyiu/">Otto Yiu</a> 维护着能和REST框架搭建的API正常工作的 <a href="https://github.com/ottoyiu/django-cors-headers/">django-cors-headers</a> 包。</p>
             
 
           </div> <!--/span-->
