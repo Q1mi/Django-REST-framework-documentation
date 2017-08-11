@@ -21,10 +21,14 @@
 
 ## 以下章节已完成翻译
 
-### API Guide
+### 教程
 
-* [Requests](requests_zh.md)
-* [Responses](api-guide/responses_zh.md)
+* [quickstart](/tutorial/quickstart_zh.md)
+
+### API指南
+
+* [Requests](/api-guide/requests_zh.md)
+* [Responses](/api-guide/responses_zh.md)
 * [Generic Views](/api-guide/generic-views_zh.md)
 * [Viewets](/api-guide/viewsets_zh.md)
 * [Routers](/api-guide/routers_zh.md)
