@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>1 - Serialization - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="http://www.django-rest-framework.org/tutorial/1-serialization/" />
+  <link rel="canonical" href="http://www.django-rest-framework.org/tutorial/1-serialization_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Django, API, REST, 1 - Serialization">
   <meta name="author" content="Tom Christie">
@@ -379,43 +379,43 @@
 
                   
                     <li>
-                      <a href="#introduction">Introduction</a>
+                      <a href="#_1">介绍</a>
                     </li>
                   
                     <li>
-                      <a href="#setting-up-a-new-environment">Setting up a new environment</a>
+                      <a href="#_2">创建一个新环境</a>
                     </li>
                   
                     <li>
-                      <a href="#getting-started">Getting started</a>
+                      <a href="#_3">正式开始</a>
                     </li>
                   
                     <li>
-                      <a href="#creating-a-model-to-work-with">Creating a model to work with</a>
+                      <a href="#model">创建一个model</a>
                     </li>
                   
                     <li>
-                      <a href="#creating-a-serializer-class">Creating a Serializer class</a>
+                      <a href="#_4">创建一个序列化类</a>
                     </li>
                   
                     <li>
-                      <a href="#working-with-serializers">Working with Serializers</a>
+                      <a href="#_5">使用序列化类</a>
                     </li>
                   
                     <li>
-                      <a href="#using-modelserializers">Using ModelSerializers</a>
+                      <a href="#modelserializers">使用ModelSerializers</a>
                     </li>
                   
                     <li>
-                      <a href="#writing-regular-django-views-using-our-serializer">Writing regular Django views using our Serializer</a>
+                      <a href="#serializerdjangoviews">使用我们的序列化（Serializer）来编写常规的Django视图（views）</a>
                     </li>
                   
                     <li>
-                      <a href="#testing-our-first-attempt-at-a-web-api">Testing our first attempt at a Web API</a>
+                      <a href="#web-api">测试在我们Web API进行第一次尝试</a>
                     </li>
                   
                     <li>
-                      <a href="#where-are-we-now">Where are we now</a>
+                      <a href="#_6">我们现在的位置</a>
                     </li>
                   
                 
@@ -434,44 +434,44 @@
               
 
               <h1 id="tutorial-1-serialization"><a class="toclink" href="#tutorial-1-serialization">Tutorial 1: Serialization</a></h1>
-<h2 id="introduction"><a class="toclink" href="#introduction">Introduction</a></h2>
-<p>This tutorial will cover creating a simple pastebin code highlighting Web API.  Along the way it will introduce the various components that make up REST framework, and give you a comprehensive understanding of how everything fits together.</p>
-<p>The tutorial is fairly in-depth, so you should probably get a cookie and a cup of your favorite brew before getting started.  If you just want a quick overview, you should head over to the <a href="quickstart.md">quickstart</a> documentation instead.</p>
+<h2 id="_1"><a class="toclink" href="#_1">介绍</a></h2>
+<p>本教程将介绍如何创建一个简单的收录代码高亮展示的Web API。这个过程中, 将会介绍组成Rest框架的各个组件，并让你全面了解各个组件是如何一起工作的。</p>
+<p>这个教程是相当深入的，所以你应该在开始之前准备些啤酒和花生毛豆什么的。如果你只是想来个快速预览，那你应该查看<a href="quickstart.md">quickstart</a>文档。</p>
 <hr />
-<p><strong>Note</strong>: The code for this tutorial is available in the <a href="https://github.com/tomchristie/rest-framework-tutorial">tomchristie/rest-framework-tutorial</a> repository on GitHub.  The completed implementation is also online as a sandbox version for testing, <a href="http://restframework.herokuapp.com/">available here</a>.</p>
+<p><strong>注意</strong>：本教程的代码可以在Github的<a href="https://github.com/tomchristie/rest-framework-tutorial">tomchristie/rest-framework-tutorial</a>库中找到。完整的实现版本可以<a href="http://restframework.herokuapp.com/">在线</a>查看作为一个沙盒版本进行测试。</p>
 <hr />
-<h2 id="setting-up-a-new-environment"><a class="toclink" href="#setting-up-a-new-environment">Setting up a new environment</a></h2>
-<p>Before we do anything else we'll create a new virtual environment, using <a href="http://www.virtualenv.org/en/latest/index.html">virtualenv</a>.  This will make sure our package configuration is kept nicely isolated from any other projects we're working on.</p>
+<h2 id="_2"><a class="toclink" href="#_2">创建一个新环境</a></h2>
+<p>在做其他事情之前，我们要用<a href="http://www.virtualenv.org/en/latest/index.html">virtualenv</a>创建一个新的虚拟环境。这样就能确保我们的包配置与我们正在开展的任何其他项目保持良好的隔离。</p>
 <pre><code>virtualenv env
 source env/bin/activate
 </code></pre>
-<p>Now that we're inside a virtualenv environment, we can install our package requirements.</p>
+<p>现在我们在一个virtualenv环境中，我们可以安装我们需要的包了。</p>
 <pre><code>pip install django
 pip install djangorestframework
-pip install pygments  # We'll be using this for the code highlighting
+pip install pygments  # 代码高亮插件
 </code></pre>
-<p><strong>Note:</strong> To exit the virtualenv environment at any time, just type <code>deactivate</code>.  For more information see the <a href="http://www.virtualenv.org/en/latest/index.html">virtualenv documentation</a>.</p>
-<h2 id="getting-started"><a class="toclink" href="#getting-started">Getting started</a></h2>
-<p>Okay, we're ready to get coding.
-To get started, let's create a new project to work with.</p>
+<p><strong>注意：</strong> 要随时退出virtualenv环境，只需输入<code>deactivate</code>。有关更多信息，请参阅<a href="http://www.virtualenv.org/en/latest/index.html">virtualenv documentation</a>文档。</p>
+<h2 id="_3"><a class="toclink" href="#_3">正式开始</a></h2>
+<p>好了，我们现在要开始写代码了。
+首先，我们来创建一个新的项目。</p>
 <pre><code>cd ~
 django-admin.py startproject tutorial
 cd tutorial
 </code></pre>
-<p>Once that's done we can create an app that we'll use to create a simple Web API.</p>
+<p>完成上面的步骤以后我们要创建一个用于创建简单Web API的app。</p>
 <pre><code>python manage.py startapp snippets
 </code></pre>
-<p>We'll need to add our new <code>snippets</code> app and the <code>rest_framework</code> app to <code>INSTALLED_APPS</code>. Let's edit the <code>tutorial/settings.py</code> file:</p>
+<p>我们需要将新建的<code>snippets</code>app和<code>rest_framework</code>app添加到<code>INSTALLED_APPS</code>。让我们编辑<code>tutorial/settings.py</code>文件：</p>
 <pre><code>INSTALLED_APPS = (
     ...
     'rest_framework',
     'snippets.apps.SnippetsConfig',
 )
 </code></pre>
-<p>Please note that if you're using Django &lt;1.9, you need to replace <code>snippets.apps.SnippetsConfig</code> with <code>snippets</code>.</p>
-<p>Okay, we're ready to roll.</p>
-<h2 id="creating-a-model-to-work-with"><a class="toclink" href="#creating-a-model-to-work-with">Creating a model to work with</a></h2>
-<p>For the purposes of this tutorial we're going to start by creating a simple <code>Snippet</code> model that is used to store code snippets.  Go ahead and edit the <code>snippets/models.py</code> file.  Note: Good programming practices include comments.  Although you will find them in our repository version of this tutorial code, we have omitted them here to focus on the code itself.</p>
+<p>请注意如果你使用的Django版本低于1.9，你需要使用<code>snippets.apps.SnippetsConfig</code>替换<code>snippets</code>。</p>
+<p>好了，我们的准备工作做完了。</p>
+<h2 id="model"><a class="toclink" href="#model">创建一个model</a></h2>
+<p>为了实现本教程的目的，我们将开始创建一个用于存储代码片段的简单的<code>Snippet</code> model。然后继续编辑<code>snippets/models.py</code>文件。注意：优秀的编程实践都会添加注释。虽然你将在本教程代码的存储库版本中找到它们，但我们在此忽略了它们，专注于代码本身。</p>
 <pre><code>from django.db import models
 from pygments.lexers import get_all_lexers
 from pygments.styles import get_all_styles
@@ -492,12 +492,12 @@ class Snippet(models.Model):
     class Meta:
         ordering = ('created',)
 </code></pre>
-<p>We'll also need to create an initial migration for our snippet model, and sync the database for the first time.</p>
+<p>我们还需要为我们的代码段模型创建初始迁移（initial migration），并首次同步数据库（migrate）。</p>
 <pre><code>python manage.py makemigrations snippets
 python manage.py migrate
 </code></pre>
-<h2 id="creating-a-serializer-class"><a class="toclink" href="#creating-a-serializer-class">Creating a Serializer class</a></h2>
-<p>The first thing we need to get started on our Web API is to provide a way of serializing and deserializing the snippet instances into representations such as <code>json</code>.  We can do this by declaring serializers that work very similar to Django's forms.  Create a file in the <code>snippets</code> directory named <code>serializers.py</code> and add the following.</p>
+<h2 id="_4"><a class="toclink" href="#_4">创建一个序列化类</a></h2>
+<p>开发我们的Web API的第一件事是为我们的Web API提供一种将代码片段实例序列化和反序列化为诸如<code>json</code>之类的表示形式的方式。我们可以通过声明与Django forms非常相似的序列化器（serializers）来实现。 在<code>snippets</code>的目录下创建一个名为<code>serializers.py</code>文件，并添加以下内容。</p>
 <pre><code>from rest_framework import serializers
 from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
 
@@ -512,13 +512,13 @@ class SnippetSerializer(serializers.Serializer):
 
     def create(self, validated_data):
         """
-        Create and return a new `Snippet` instance, given the validated data.
+        根据提供的验证过的数据创建并返回一个新的`Snippet`实例。
         """
         return Snippet.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         """
-        Update and return an existing `Snippet` instance, given the validated data.
+        根据提供的验证过的数据更新和返回一个已经存在的`Snippet`实例。
         """
         instance.title = validated_data.get('title', instance.title)
         instance.code = validated_data.get('code', instance.code)
@@ -528,15 +528,15 @@ class SnippetSerializer(serializers.Serializer):
         instance.save()
         return instance
 </code></pre>
-<p>The first part of the serializer class defines the fields that get serialized/deserialized.  The <code>create()</code> and <code>update()</code> methods define how fully fledged instances are created or modified when calling <code>serializer.save()</code></p>
-<p>A serializer class is very similar to a Django <code>Form</code> class, and includes similar validation flags on the various fields, such as <code>required</code>, <code>max_length</code> and <code>default</code>.</p>
-<p>The field flags can also control how the serializer should be displayed in certain circumstances, such as when rendering to HTML. The <code>{'base_template': 'textarea.html'}</code> flag above is equivalent to using <code>widget=widgets.Textarea</code> on a Django <code>Form</code> class. This is particularly useful for controlling how the browsable API should be displayed, as we'll see later in the tutorial.</p>
-<p>We can actually also save ourselves some time by using the <code>ModelSerializer</code> class, as we'll see later, but for now we'll keep our serializer definition explicit.</p>
-<h2 id="working-with-serializers"><a class="toclink" href="#working-with-serializers">Working with Serializers</a></h2>
-<p>Before we go any further we'll familiarize ourselves with using our new Serializer class.  Let's drop into the Django shell.</p>
+<p>序列化器类的第一部分定义了序列化/反序列化的字段。<code>create()</code>和<code>update()</code>方法定义了在调用<code>serializer.save()</code>时如何创建和修改完整的实例。</p>
+<p>序列化器类与Django <code>Form</code>类非常相似，并在各种字段中包含类似的验证标志，例如<code>required</code>，<code>max_length</code>和<code>default</code>。</p>
+<p>字段标志还可以控制serializer在某些情况下如何显示，比如渲染HTML的时候。上面的<code>{'base_template': 'textarea.html'}</code>标志等同于在Django <code>Form</code>类中使用<code>widget=widgets.Textarea</code>。这对于控制如何显示可浏览器浏览的API特别有用，我们将在本教程的后面看到。</p>
+<p>我们实际上也可以通过使用<code>ModelSerializer</code>类来节省时间，就像我们后面会用到的那样。但是现在我们还继续使用我们明确定义的serializer。</p>
+<h2 id="_5"><a class="toclink" href="#_5">使用序列化类</a></h2>
+<p>在我们进一步了解之前，我们先来熟悉使用我们新的Serializer类。输入下面的命令进入Django shell。</p>
 <pre><code>python manage.py shell
 </code></pre>
-<p>Okay, once we've got a few imports out of the way, let's create a couple of code snippets to work with.</p>
+<p>好的，像下面一样导入几个模块，然后开始创建一些代码片段来处理。</p>
 <pre><code>from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer
 from rest_framework.renderers import JSONRenderer
@@ -548,23 +548,23 @@ snippet.save()
 snippet = Snippet(code='print "hello, world"\n')
 snippet.save()
 </code></pre>
-<p>We've now got a few snippet instances to play with.  Let's take a look at serializing one of those instances.</p>
+<p>我们现在已经有几个片段实例了，让我们看一下将其中一个实例序列化。</p>
 <pre><code>serializer = SnippetSerializer(snippet)
 serializer.data
 # {'id': 2, 'title': u'', 'code': u'print "hello, world"\n', 'linenos': False, 'language': u'python', 'style': u'friendly'}
 </code></pre>
-<p>At this point we've translated the model instance into Python native datatypes.  To finalize the serialization process we render the data into <code>json</code>.</p>
+<p>此时，我们将模型实例转换为Python原生数据类型。要完成序列化过程，我们将数据转换成<code>json</code>。</p>
 <pre><code>content = JSONRenderer().render(serializer.data)
 content
 # '{"id": 2, "title": "", "code": "print \\"hello, world\\"\\n", "linenos": false, "language": "python", "style": "friendly"}'
 </code></pre>
-<p>Deserialization is similar.  First we parse a stream into Python native datatypes...</p>
+<p>反序列化是类似的。首先我们将一个流（stream）解析为Python原生数据类型...</p>
 <pre><code>from django.utils.six import BytesIO
 
 stream = BytesIO(content)
 data = JSONParser().parse(stream)
 </code></pre>
-<p>...then we restore those native datatypes into a fully populated object instance.</p>
+<p>...然后我们要将Python原生数据类型恢复成正常的对象实例。</p>
 <pre><code>serializer = SnippetSerializer(data=data)
 serializer.is_valid()
 # True
@@ -573,23 +573,22 @@ serializer.validated_data
 serializer.save()
 # &lt;Snippet: Snippet object&gt;
 </code></pre>
-<p>Notice how similar the API is to working with forms.  The similarity should become even more apparent when we start writing views that use our serializer.</p>
-<p>We can also serialize querysets instead of model instances.  To do so we simply add a <code>many=True</code> flag to the serializer arguments.</p>
+<p>可以看到API和表单(forms)是多么相似。当我们开始使用我们的序列化类编写视图的时候，相似性会变得更加明显。</p>
+<p>我们也可以序列化查询结果集（querysets）而不是模型实例。我们只需要为serializer添加一个<code>many=True</code>标志。</p>
 <pre><code>serializer = SnippetSerializer(Snippet.objects.all(), many=True)
 serializer.data
 # [OrderedDict([('id', 1), ('title', u''), ('code', u'foo = "bar"\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')]), OrderedDict([('id', 2), ('title', u''), ('code', u'print "hello, world"\n'), ('linenos', False), ('language', 'python'), ('style', 'friendly')]), OrderedDict([('id', 3), ('title', u''), ('code', u'print "hello, world"'), ('linenos', False), ('language', 'python'), ('style', 'friendly')])]
 </code></pre>
-<h2 id="using-modelserializers"><a class="toclink" href="#using-modelserializers">Using ModelSerializers</a></h2>
-<p>Our <code>SnippetSerializer</code> class is replicating a lot of information that's also contained in the <code>Snippet</code> model.  It would be nice if we could keep our code a bit  more concise.</p>
-<p>In the same way that Django provides both <code>Form</code> classes and <code>ModelForm</code> classes, REST framework includes both <code>Serializer</code> classes, and <code>ModelSerializer</code> classes.</p>
-<p>Let's look at refactoring our serializer using the <code>ModelSerializer</code> class.
-Open the file <code>snippets/serializers.py</code> again, and replace the <code>SnippetSerializer</code> class with the following.</p>
+<h2 id="modelserializers"><a class="toclink" href="#modelserializers">使用ModelSerializers</a></h2>
+<p>我们的<code>SnippetSerializer</code>类中重复了很多包含在<code>Snippet</code>模型类（model）中的信息。如果能保证我们的代码整洁，那就更好了。</p>
+<p>就像Django提供了<code>Form</code>类和<code>ModelForm</code>类一样，REST framework包括<code>Serializer</code>类和<code>ModelSerializer</code>类。</p>
+<p>我们来看看使用<code>ModelSerializer</code>类重构我们的序列化类。再次打开<code>snippets/serializers.py</code>文件，并将<code>SnippetSerializer</code>类替换为以下内容。</p>
 <pre><code>class SnippetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Snippet
         fields = ('id', 'title', 'code', 'linenos', 'language', 'style')
 </code></pre>
-<p>One nice property that serializers have is that you can inspect all the fields in a serializer instance, by printing its representation. Open the Django shell with <code>python manage.py shell</code>, then try the following:</p>
+<p>序列一个非常棒的属性就是可以通过打印序列化器类实例的结构(representation)查看它的所有字段。</p>
 <pre><code>from snippets.serializers import SnippetSerializer
 serializer = SnippetSerializer()
 print(repr(serializer))
@@ -601,16 +600,14 @@ print(repr(serializer))
 #    language = ChoiceField(choices=[('Clipper', 'FoxPro'), ('Cucumber', 'Gherkin'), ('RobotFramework', 'RobotFramework'), ('abap', 'ABAP'), ('ada', 'Ada')...
 #    style = ChoiceField(choices=[('autumn', 'autumn'), ('borland', 'borland'), ('bw', 'bw'), ('colorful', 'colorful')...
 </code></pre>
-<p>It's important to remember that <code>ModelSerializer</code> classes don't do anything particularly magical, they are simply a shortcut for creating serializer classes:</p>
+<p>重要的是要记住，<code>ModelSerializer</code>类并不会做任何特别神奇的事情，它们只是创建序列化器类的快捷方式：</p>
 <ul>
-<li>An automatically determined set of fields.</li>
-<li>Simple default implementations for the <code>create()</code> and <code>update()</code> methods.</li>
+<li>一组自动确定的字段。</li>
+<li>默认简单实现的<code>create()</code>和<code>update()</code>方法。</li>
 </ul>
-<h2 id="writing-regular-django-views-using-our-serializer"><a class="toclink" href="#writing-regular-django-views-using-our-serializer">Writing regular Django views using our Serializer</a></h2>
-<p>Let's see how we can write some API views using our new Serializer class.
-For the moment we won't use any of REST framework's other features, we'll just write the views as regular Django views.</p>
-<p>We'll start off by creating a subclass of HttpResponse that we can use to render any data we return into <code>json</code>.</p>
-<p>Edit the <code>snippets/views.py</code> file, and add the following.</p>
+<h2 id="serializerdjangoviews"><a class="toclink" href="#serializerdjangoviews">使用我们的序列化（Serializer）来编写常规的Django视图（views）</a></h2>
+<p>让我们看看如何使用我们新的Serializer类编写一些API视图。目前我们不会使用任何REST框架的其他功能，我们只需将视图作为常规Django视图编写。</p>
+<p>编辑<code>snippets/views.py</code>文件，并且添加以下内容。</p>
 <pre><code>from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
@@ -627,11 +624,11 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 </code></pre>
-<p>The root of our API is going to be a view that supports listing all the existing snippets, or creating a new snippet.</p>
+<p>我们的API的根源将是一个视图，支持列出所有现有的snippets，或创建一个新的snippet。</p>
 <pre><code>@csrf_exempt
 def snippet_list(request):
     """
-    List all code snippets, or create a new snippet.
+    列出所有的code snippet，或创建一个新的snippet。
     """
     if request.method == 'GET':
         snippets = Snippet.objects.all()
@@ -646,12 +643,12 @@ def snippet_list(request):
             return JSONResponse(serializer.data, status=201)
         return JSONResponse(serializer.errors, status=400)
 </code></pre>
-<p>Note that because we want to be able to POST to this view from clients that won't have a CSRF token we need to mark the view as <code>csrf_exempt</code>.  This isn't something that you'd normally want to do, and REST framework views actually use more sensible behavior than this, but it'll do for our purposes right now.</p>
-<p>We'll also need a view which corresponds to an individual snippet, and can be used to retrieve, update or delete the snippet.</p>
+<p>请注意，因为我们希望能够从不具有CSRF令牌的客户端对此视图进行POST，因此我们需要将视图标记为<code>csrf_exempt</code>。这不是你通常想要做的事情，并且REST框架视图实际上比这更实用的行为，但它现在足够达到我们的目的。</p>
+<p>我们也需要一个与单个snippet对象相应的视图，并且用于获取，更新和删除这个snippet。</p>
 <pre><code>@csrf_exempt
 def snippet_detail(request, pk):
     """
-    Retrieve, update or delete a code snippet.
+    获取，更新或删除一个 code snippet。
     """
     try:
         snippet = Snippet.objects.get(pk=pk)
@@ -674,7 +671,7 @@ def snippet_detail(request, pk):
         snippet.delete()
         return HttpResponse(status=204)
 </code></pre>
-<p>Finally we need to wire these views up.  Create the <code>snippets/urls.py</code> file:</p>
+<p>最终，我们需要把这些视图连起来。创建一个<code>snippets/urls.py</code>文件：</p>
 <pre><code>from django.conf.urls import url
 from snippets import views
 
@@ -683,20 +680,20 @@ urlpatterns = [
     url(r'^snippets/(?P&lt;pk&gt;[0-9]+)/$', views.snippet_detail),
 ]
 </code></pre>
-<p>We also need to wire up the root urlconf, in the <code>tutorial/urls.py</code> file, to include our snippet app's URLs.</p>
+<p>我们也需要在根URL配置<code>tutorial/urls.py</code>文件中，添加我们的snippet应用的URL。</p>
 <pre><code>from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^', include('snippets.urls')),
 ]
 </code></pre>
-<p>It's worth noting that there are a couple of edge cases we're not dealing with properly at the moment.  If we send malformed <code>json</code>, or if a request is made with a method that the view doesn't handle, then we'll end up with a 500 "server error" response.  Still, this'll do for now.</p>
-<h2 id="testing-our-first-attempt-at-a-web-api"><a class="toclink" href="#testing-our-first-attempt-at-a-web-api">Testing our first attempt at a Web API</a></h2>
-<p>Now we can start up a sample server that serves our snippets.</p>
-<p>Quit out of the shell...</p>
+<p>值得注意的是，目前我们还没有正确处理好几个边缘事项。如果我们发送格式错误的<code>json</code>，或者如果使用视图不处理的方法发出请求，那么我们最终会出现一个500“服务器错误”响应。不过，现在这样做。</p>
+<h2 id="web-api"><a class="toclink" href="#web-api">测试在我们Web API进行第一次尝试</a></h2>
+<p>现在为我们的snippets启动一个服务器。</p>
+<p>退出所有的shell...</p>
 <pre><code>quit()
 </code></pre>
-<p>...and start up Django's development server.</p>
+<p>...启动Django的开发服务器。</p>
 <pre><code>python manage.py runserver
 
 Validating models...
@@ -706,12 +703,12 @@ Django version 1.8.3, using settings 'tutorial.settings'
 Development server is running at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 </code></pre>
-<p>In another terminal window, we can test the server.</p>
-<p>We can test our API using <a href="http://curl.haxx.se">curl</a> or <a href="https://github.com/jakubroztocil/httpie#installation">httpie</a>. Httpie is a user friendly http client that's written in Python. Let's install that.</p>
-<p>You can install httpie using pip:</p>
+<p>在另一个终端窗口中，我们可以测试服务器。</p>
+<p>我们可以使用<a href="http://curl.haxx.se">curl</a>或<a href="https://github.com/jakubroztocil/httpie#installation">httpie</a>测试我们的服务器。Httpie是用Python编写的用户友好的http客户端，我们安装它。</p>
+<p>你可以使用pip来安装httpie：</p>
 <pre><code>pip install httpie
 </code></pre>
-<p>Finally, we can get a list of all of the snippets:</p>
+<p>最后，我们可以得到所有snippet的列表：</p>
 <pre><code>http http://127.0.0.1:8000/snippets/
 
 HTTP/1.1 200 OK
@@ -735,7 +732,7 @@ HTTP/1.1 200 OK
   }
 ]
 </code></pre>
-<p>Or we can get a particular snippet by referencing its id:</p>
+<p>或者我们可以通过引用其id来获取特定的snippet：</p>
 <pre><code>http http://127.0.0.1:8000/snippets/2/
 
 HTTP/1.1 200 OK
@@ -749,11 +746,11 @@ HTTP/1.1 200 OK
   "style": "friendly"
 }
 </code></pre>
-<p>Similarly, you can have the same json displayed by visiting these URLs in a web browser.</p>
-<h2 id="where-are-we-now"><a class="toclink" href="#where-are-we-now">Where are we now</a></h2>
-<p>We're doing okay so far, we've got a serialization API that feels pretty similar to Django's Forms API, and some regular Django views.</p>
-<p>Our API views don't do anything particularly special at the moment, beyond serving <code>json</code> responses, and there are some error handling edge cases we'd still like to clean up, but it's a functioning Web API.</p>
-<p>We'll see how we can start to improve things in <a href="../2-requests-and-responses/">part 2 of the tutorial</a>.</p>
+<p>同样，你可以通过在网络浏览器中访问这些URL来显示相同​​的json。</p>
+<h2 id="_6"><a class="toclink" href="#_6">我们现在的位置</a></h2>
+<p>我们到目前为止做得不错，我们有一个与Django的Forms API非常相似序列化API，和一些常规的Django视图。</p>
+<p>现在，我们的API视图除了服务<code>json</code>响应外，不会做任何其他特别的东西，并且有一些错误我们仍然需要清处理，但是它仍是一个可用的Web API。</p>
+<p>我们将在 <a href="../2-requests-and-responses/">本教程的第2部分</a>来完善这些东西。</p>
             
 
           </div> <!--/span-->
