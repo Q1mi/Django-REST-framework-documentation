@@ -23,7 +23,8 @@
 
 ### 教程
 
-* [quickstart](/tutorial/quickstart_zh.md)
+* [Quickstart](/tutorial/quickstart_zh.md)
+* [1-Serialization](/tutorial/1-serialization_zh.md)
 
 ### API指南
 
