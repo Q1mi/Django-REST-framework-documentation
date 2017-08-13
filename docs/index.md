@@ -26,6 +26,9 @@
 * [Quickstart](/tutorial/quickstart_zh.md)
 * [1-Serialization](/tutorial/1-serialization_zh.md)
 * [2-requests-and-responses](/tutorial/2-requests-and-responses_zh.md)
+* [3-class-based-views](/tutorial/3-class-based-views_zh.md)
+* [4-authentication-and-permissions](/tutorial/4-authentication-and-permissions_zh.md)
+* [5-relationships-and-hyperlinked-apis](/tutorial/5-relationships-and-hyperlinked-apis_zh.md)
 
 ### API指南
 

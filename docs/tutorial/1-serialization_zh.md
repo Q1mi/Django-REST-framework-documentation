@@ -1,4 +1,4 @@
-# Tutorial 1: Serialization
+# Tutorial 1: 序列化
 
 ## 介绍
 
@@ -233,7 +233,7 @@
             kwargs['content_type'] = 'application/json'
             super(JSONResponse, self).__init__(content, **kwargs)
 
-我们的API的根源将是一个视图，支持列出所有现有的snippets，或创建一个新的snippet。
+我们API的根视图支持列出所有现有的snippet或创建一个新的snippet。
 
     @csrf_exempt
     def snippet_list(request):

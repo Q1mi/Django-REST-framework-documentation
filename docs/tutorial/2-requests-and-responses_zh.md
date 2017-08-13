@@ -206,4 +206,4 @@ REST框架提供了两个可用于编写API视图的包装器（wrappers）。
 [devserver]: http://127.0.0.1:8000/snippets/
 [browsable-api]: ../topics/browsable-api.md
 [tut-1]: 1-serialization_zh.md
-[tut-3]: 3-class-based-views.md
+[tut-3]: 3-class-based-views_zh.md

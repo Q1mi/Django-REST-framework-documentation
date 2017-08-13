@@ -15,10 +15,10 @@ pages:
  - 教程:
     - 'Quickstart': 'tutorial/quickstart_zh.md'
     - '1 - Serialization': 'tutorial/1-serialization_zh.md'
-    - '2 - Requests and responses': 'tutorial/2-requests-and-responses.md'
-    - '3 - Class based views': 'tutorial/3-class-based-views.md'
-    - '4 - Authentication and permissions': 'tutorial/4-authentication-and-permissions.md'
-    - '5 - Relationships and hyperlinked APIs': 'tutorial/5-relationships-and-hyperlinked-apis.md'
+    - '2 - Requests and responses': 'tutorial/2-requests-and-responses_zh.md'
+    - '3 - Class based views': 'tutorial/3-class-based-views_zh.md'
+    - '4 - Authentication and permissions': 'tutorial/4-authentication-and-permissions_zh.md'
+    - '5 - Relationships and hyperlinked APIs': 'tutorial/5-relationships-and-hyperlinked-apis_zh.md'
     - '6 - Viewsets and routers': 'tutorial/6-viewsets-and-routers.md'
     - '7 - Schemas and client libraries': 'tutorial/7-schemas-and-client-libraries.md'
  - API指南:
