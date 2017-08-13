@@ -378,12 +378,12 @@
 
 现在，我们的API视图除了服务`json`响应外，不会做任何其他特别的东西，并且有一些错误我们仍然需要清处理，但是它仍是一个可用的Web API。
 
-我们将在 [本教程的第2部分][tut-2]来完善这些东西。
+我们将在[本教程的第2部分][tut-2]来完善这些东西。
 
-[quickstart]: quickstart.md
+[quickstart]: quickstart_zh.md
 [repo]: https://github.com/tomchristie/rest-framework-tutorial
 [sandbox]: http://restframework.herokuapp.com/
 [virtualenv]: http://www.virtualenv.org/en/latest/index.html
-[tut-2]: 2-requests-and-responses.md
+[tut-2]: 2-requests-and-responses_zh.md
 [httpie]: https://github.com/jakubroztocil/httpie#installation
 [curl]: http://curl.haxx.se

@@ -25,6 +25,7 @@
 
 * [Quickstart](/tutorial/quickstart_zh.md)
 * [1-Serialization](/tutorial/1-serialization_zh.md)
+* [2-requests-and-responses](/tutorial/2-requests-and-responses_zh.md)
 
 ### API指南
 
@@ -39,7 +40,7 @@
 * [Filtering](/api-guide/filtering_zh.md)
 * [Authentication](/api-guide/authentication_zh.md)
 
-### 话题
+### 主题
 
 * [ajax-csrf-cors](/topics/ajax-csrf-cors_zh.md)
 

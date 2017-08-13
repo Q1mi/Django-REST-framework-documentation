@@ -196,6 +196,6 @@
 
 [readme-example-api]: ../#example
 [image]: ../img/quickstart.png
-[tutorial]: 1-serialization.md
+[tutorial]: 1-serialization_zh.md
 [guide]: ../#api-guide
 [httpie]: https://github.com/jakubroztocil/httpie#installation

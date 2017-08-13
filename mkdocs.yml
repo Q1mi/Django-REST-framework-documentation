@@ -21,7 +21,7 @@ pages:
     - '5 - Relationships and hyperlinked APIs': 'tutorial/5-relationships-and-hyperlinked-apis.md'
     - '6 - Viewsets and routers': 'tutorial/6-viewsets-and-routers.md'
     - '7 - Schemas and client libraries': 'tutorial/7-schemas-and-client-libraries.md'
- - API 指南:
+ - API指南:
     - 'Requests': 'api-guide/requests_zh.md'
     - 'Responses': 'api-guide/responses_zh.md'
     - 'Views': 'api-guide/views.md'
@@ -49,7 +49,7 @@ pages:
     - 'Status codes': 'api-guide/status-codes.md'
     - 'Testing': 'api-guide/testing.md'
     - 'Settings': 'api-guide/settings.md'
- - 话题:
+ - 主题:
      - 'Documenting your API': 'topics/documenting-your-api.md'
      - 'API Clients': 'topics/api-clients.md'
      - 'Internationalization': 'topics/internationalization.md'
