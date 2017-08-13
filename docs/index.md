@@ -30,6 +30,7 @@
 * [4-authentication-and-permissions](/tutorial/4-authentication-and-permissions_zh.md)
 * [5-relationships-and-hyperlinked-apis](/tutorial/5-relationships-and-hyperlinked-apis_zh.md)
 * [6-viewsets-and-routers](/tutorial/6-viewsets-and-routers_zh.md)
+* [7-schemas-and-client-libraries](/tutorial/7-schemas-and-client-libraries_zh.md)
 
 ### API指南
 
