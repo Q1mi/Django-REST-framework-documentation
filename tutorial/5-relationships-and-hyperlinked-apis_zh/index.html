@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>5 - Relationships and hyperlinked APIs - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="http://www.django-rest-framework.org/tutorial/5-relationships-and-hyperlinked-apis/" />
+  <link rel="canonical" href="http://www.django-rest-framework.org/tutorial/5-relationships-and-hyperlinked-apis_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Django, API, REST, 5 - Relationships and hyperlinked APIs">
   <meta name="author" content="Tom Christie">
@@ -374,32 +374,32 @@
 
                 
                   <li class="main">
-                    <a href="#tutorial-5-relationships-hyperlinked-apis">Tutorial 5: Relationships &amp; Hyperlinked APIs</a>
+                    <a href="#tutorial-5-api">Tutorial 5: 关系和超链接API</a>
                   </li>
 
                   
                     <li>
-                      <a href="#creating-an-endpoint-for-the-root-of-our-api">Creating an endpoint for the root of our API</a>
+                      <a href="#api">为我们的API创建一个根路径</a>
                     </li>
                   
                     <li>
-                      <a href="#creating-an-endpoint-for-the-highlighted-snippets">Creating an endpoint for the highlighted snippets</a>
+                      <a href="#_1">为高亮显示的代码片段创建路径</a>
                     </li>
                   
                     <li>
-                      <a href="#hyperlinking-our-api">Hyperlinking our API</a>
+                      <a href="#api_1">超链接我们的API</a>
                     </li>
                   
                     <li>
-                      <a href="#making-sure-our-url-patterns-are-named">Making sure our URL patterns are named</a>
+                      <a href="#url">确保我们的URL模式被命名</a>
                     </li>
                   
                     <li>
-                      <a href="#adding-pagination">Adding pagination</a>
+                      <a href="#_2">添加分页</a>
                     </li>
                   
                     <li>
-                      <a href="#browsing-the-api">Browsing the API</a>
+                      <a href="#api_2">浏览API</a>
                     </li>
                   
                 
@@ -417,10 +417,10 @@
             
               
 
-              <h1 id="tutorial-5-relationships-hyperlinked-apis"><a class="toclink" href="#tutorial-5-relationships-hyperlinked-apis">Tutorial 5: Relationships &amp; Hyperlinked APIs</a></h1>
-<p>At the moment relationships within our API are represented by using primary keys.  In this part of the tutorial we'll improve the cohesion and discoverability of our API, by instead using hyperlinking for relationships.</p>
-<h2 id="creating-an-endpoint-for-the-root-of-our-api"><a class="toclink" href="#creating-an-endpoint-for-the-root-of-our-api">Creating an endpoint for the root of our API</a></h2>
-<p>Right now we have endpoints for 'snippets' and 'users', but we don't have a single entry point to our API.  To create one, we'll use a regular function-based view and the <code>@api_view</code> decorator we introduced earlier. In your <code>snippets/views.py</code> add:</p>
+              <h1 id="tutorial-5-api"><a class="toclink" href="#tutorial-5-api">Tutorial 5: 关系和超链接API</a></h1>
+<p>目前我们的API中的关系是用主键表示的。我们将通过使用超链接来提高我们API的内部联系。</p>
+<h2 id="api"><a class="toclink" href="#api">为我们的API创建一个根路径</a></h2>
+<p>现在我们有'snippets'和'users'的路径，但是我们的API没有一个入口点。我们将使用一个常规的基于函数的视图和我们前面介绍的<code>@api_view</code>装饰器创建一个。在你的<code>snippets/views.py</code>中添加：</p>
 <pre><code>from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -433,12 +433,12 @@ def api_root(request, format=None):
         'snippets': reverse('snippet-list', request=request, format=format)
     })
 </code></pre>
-<p>Two things should be noticed here. First, we're using REST framework's <code>reverse</code> function in order to return fully-qualified URLs; second, URL patterns are identified by convenience names that we will declare later on in our <code>snippets/urls.py</code>.</p>
-<h2 id="creating-an-endpoint-for-the-highlighted-snippets"><a class="toclink" href="#creating-an-endpoint-for-the-highlighted-snippets">Creating an endpoint for the highlighted snippets</a></h2>
-<p>The other obvious thing that's still missing from our pastebin API is the code highlighting endpoints.</p>
-<p>Unlike all our other API endpoints, we don't want to use JSON, but instead just present an HTML representation.  There are two styles of HTML renderer provided by REST framework, one for dealing with HTML rendered using templates, the other for dealing with pre-rendered HTML.  The second renderer is the one we'd like to use for this endpoint.</p>
-<p>The other thing we need to consider when creating the code highlight view is that there's no existing concrete generic view that we can use.  We're not returning an object instance, but instead a property of an object instance.</p>
-<p>Instead of using a concrete generic view, we'll use the base class for representing instances, and create our own <code>.get()</code> method.  In your <code>snippets/views.py</code> add:</p>
+<p>这里应该注意两件事。首先，我们使用REST框架的<code>reverse</code>功能来返回完全限定的URL；第二，URL模式是通过方便的名称来标识的，我们稍后将在<code>snippets/urls.py</code>中声明。</p>
+<h2 id="_1"><a class="toclink" href="#_1">为高亮显示的代码片段创建路径</a></h2>
+<p>我们的API中另一个明显缺少的是代码高亮显示路径。</p>
+<p>与所有其他API路径不同，我们不想使用JSON，而只是需要HTML表示。REST框架提供了两种HTML渲染器，一种用于处理使用模板渲染的HTML，另一种用于处理预渲染的HTML。第二个渲染器是我们要用于此路径的渲染器。</p>
+<p>创建代码高亮视图时需要考虑的另一件事是，我们没有可用的具体通用视图。我们不是返回对象实例，而是返回对象实例的属性。</p>
+<p>不是使用具体的通用视图，我们将使用基类来表示实例，并创建我们自己的<code>.get()</code>方法。在你的<code>snippets/views.py</code>中添加：</p>
 <pre><code>from rest_framework import renderers
 from rest_framework.response import Response
 
@@ -450,33 +450,31 @@ class SnippetHighlight(generics.GenericAPIView):
         snippet = self.get_object()
         return Response(snippet.highlighted)
 </code></pre>
-<p>As usual we need to add the new views that we've created in to our URLconf.
-We'll add a url pattern for our new API root in <code>snippets/urls.py</code>:</p>
+<p>像往常一样，我们需要在URLconf中添加我们创建的新视图。我们将在<code>snippets/urls.py</code>中为我们的新API根路径添加一个url模式：</p>
 <pre><code>url(r'^$', views.api_root),
 </code></pre>
-<p>And then add a url pattern for the snippet highlights:</p>
+<p>然后为高亮代码片段添加一个url模式：</p>
 <pre><code>url(r'^snippets/(?P&lt;pk&gt;[0-9]+)/highlight/$', views.SnippetHighlight.as_view()),
 </code></pre>
-<h2 id="hyperlinking-our-api"><a class="toclink" href="#hyperlinking-our-api">Hyperlinking our API</a></h2>
-<p>Dealing with relationships between entities is one of the more challenging aspects of Web API design.  There are a number of different ways that we might choose to represent a relationship:</p>
+<h2 id="api_1"><a class="toclink" href="#api_1">超链接我们的API</a></h2>
+<p>处理好实体之间的关系是Web API设计中更具挑战性的方面。我们可以选择几种不同的方式来代表一种关系：</p>
 <ul>
-<li>Using primary keys.</li>
-<li>Using hyperlinking between entities.</li>
-<li>Using a unique identifying slug field on the related entity.</li>
-<li>Using the default string representation of the related entity.</li>
-<li>Nesting the related entity inside the parent representation.</li>
-<li>Some other custom representation.</li>
+<li>使用主键。</li>
+<li>在实体之间使用超链接。</li>
+<li>在相关实体上使用唯一的标识字段。</li>
+<li>使用相关实体的默认字符串表示形式。</li>
+<li>将相关实体嵌套在父表示中。</li>
+<li>一些其他自定义表示。</li>
 </ul>
-<p>REST framework supports all of these styles, and can apply them across forward or reverse relationships, or apply them across custom managers such as generic foreign keys.</p>
-<p>In this case we'd like to use a hyperlinked style between entities.  In order to do so, we'll modify our serializers to extend <code>HyperlinkedModelSerializer</code> instead of the existing <code>ModelSerializer</code>.</p>
-<p>The <code>HyperlinkedModelSerializer</code> has the following differences from <code>ModelSerializer</code>:</p>
+<p>REST框架支持所有这些方式，并且可以将它们应用于正向或反向关系，也可以在诸如通用外键之类的自定义管理器上应用。</p>
+<p>在这种情况下，我们希望在实体之间使用超链接方式。这样的话，我们需要修改我们的序列化程序来扩展<code>HyperlinkedModelSerializer</code>而不是现有的<code>ModelSerializer</code>。</p>
+<p><code>HyperlinkedModelSerializer</code>与<code>ModelSerializer</code>有以下区别：</p>
 <ul>
-<li>It does not include the <code>id</code> field by default.</li>
-<li>It includes a <code>url</code> field, using <code>HyperlinkedIdentityField</code>.</li>
-<li>Relationships use <code>HyperlinkedRelatedField</code>,
-  instead of <code>PrimaryKeyRelatedField</code>.</li>
+<li>默认情况下不包括<code>id</code>字段。</li>
+<li>它包含一个<code>url</code>字段，使用<code>HyperlinkedIdentityField</code>。</li>
+<li>关联关系使用<code>HyperlinkedRelatedField</code>，而不是<code>PrimaryKeyRelatedField</code>。</li>
 </ul>
-<p>We can easily re-write our existing serializers to use hyperlinking. In your <code>snippets/serializers.py</code> add:</p>
+<p>我们可以轻松地重写我们现有的序列化程序以使用超链接。在你的<code>snippets/serializers.py</code>中添加：</p>
 <pre><code>class SnippetSerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
     highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
@@ -494,17 +492,17 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         model = User
         fields = ('url', 'id', 'username', 'snippets')
 </code></pre>
-<p>Notice that we've also added a new <code>'highlight'</code> field.  This field is of the same type as the <code>url</code> field, except that it points to the <code>'snippet-highlight'</code> url pattern, instead of the <code>'snippet-detail'</code> url pattern.</p>
-<p>Because we've included format suffixed URLs such as <code>'.json'</code>, we also need to indicate on the <code>highlight</code> field that any format suffixed hyperlinks it returns should use the <code>'.html'</code> suffix.</p>
-<h2 id="making-sure-our-url-patterns-are-named"><a class="toclink" href="#making-sure-our-url-patterns-are-named">Making sure our URL patterns are named</a></h2>
-<p>If we're going to have a hyperlinked API, we need to make sure we name our URL patterns.  Let's take a look at which URL patterns we need to name.</p>
+<p>请注意，我们还添加了一个新的<code>'highlight'</code>字段。该字段与<code>url</code>字段的类型相同，不同之处在于它指向<code>'snippet-highlight'</code>url模式，而不是<code>'snippet-detail'</code>url模式。</p>
+<p>因为我们已经包含了格式后缀的URL，例如<code>'.json'</code>，我们还需要在<code>highlight</code>字段上指出任何格式后缀的超链接，它应该使用<code>'.html'</code>后缀。</p>
+<h2 id="url"><a class="toclink" href="#url">确保我们的URL模式被命名</a></h2>
+<p>如果我们要使用超链接的API，那么需要确保为我们的URL模式命名。我们来看看我们需要命名的URL模式。</p>
 <ul>
-<li>The root of our API refers to <code>'user-list'</code> and <code>'snippet-list'</code>.</li>
-<li>Our snippet serializer includes a field that refers to <code>'snippet-highlight'</code>.</li>
-<li>Our user serializer includes a field that refers to <code>'snippet-detail'</code>.</li>
-<li>Our snippet and user serializers include <code>'url'</code> fields that by default will refer to <code>'{model_name}-detail'</code>, which in this case will be <code>'snippet-detail'</code> and <code>'user-detail'</code>.</li>
+<li>我们API的根路径是指<code>'user-list'</code>和<code>'snippet-list'</code>。</li>
+<li>我们的代码片段序列化器包含一个指向<code>'snippet-highlight'</code>的字段。</li>
+<li>我们的用户序列化器包含一个指向<code>'snippet-detail'</code>的字段。</li>
+<li>我们的代码片段和用户序列化程序包括<code>'url'</code>字段，默认情况下将指向<code>'{model_name}-detail'</code>，在这个例子中就是<code>'snippet-detail'</code>和<code>'user-detail'</code>。</li>
 </ul>
-<p>After adding all those names into our URLconf, our final <code>snippets/urls.py</code> file should look like this:</p>
+<p>将所有这些名称添加到我们的URLconf中后，最终我们的<code>snippets/urls.py</code>文件应该如下所示：</p>
 <pre><code>from django.conf.urls import url, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from snippets import views
@@ -529,25 +527,25 @@ urlpatterns = format_suffix_patterns([
         name='user-detail')
 ])
 
-# Login and logout views for the browsable API
+# 可浏览API的登录和注销视图
 urlpatterns += [
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
 ]
 </code></pre>
-<h2 id="adding-pagination"><a class="toclink" href="#adding-pagination">Adding pagination</a></h2>
-<p>The list views for users and code snippets could end up returning quite a lot of instances, so really we'd like to make sure we paginate the results, and allow the API client to step through each of the individual pages.</p>
-<p>We can change the default list style to use pagination, by modifying our <code>tutorial/settings.py</code> file slightly.  Add the following setting:</p>
+<h2 id="_2"><a class="toclink" href="#_2">添加分页</a></h2>
+<p>用户和代码片段的列表视图可能会返回相当多的实例，因此我们希望确保对结果分页，并允许API客户端依次获取每个单独的页面。</p>
+<p>我们可以通过稍微修改我们的<code>tutorial/settings.py</code>文件来更改默认列表展示样式来使用分页。添加以下设置：</p>
 <pre><code>REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 </code></pre>
-<p>Note that settings in REST framework are all namespaced into a single dictionary setting, named 'REST_FRAMEWORK', which helps keep them well separated from your other project settings.</p>
-<p>We could also customize the pagination style if we needed too, but in this case we'll just stick with the default.</p>
-<h2 id="browsing-the-api"><a class="toclink" href="#browsing-the-api">Browsing the API</a></h2>
-<p>If we open a browser and navigate to the browsable API, you'll find that you can now work your way around the API simply by following links.</p>
-<p>You'll also be able to see the 'highlight' links on the snippet instances, that will take you to the highlighted code HTML representations.</p>
-<p>In <a href="../6-viewsets-and-routers/">part 6</a> of the tutorial we'll look at how we can use ViewSets and Routers to reduce the amount of code we need to build our API.</p>
+<p>请注意，REST框架中的所有设置都放在一个名为“REST_FRAMEWORK”的字典中，这有助于区分项目中的其他设置。</p>
+<p>如果需要的话，我们也可以自定义分页风格，但在这个例子中，我们将一直使用默认设置。</p>
+<h2 id="api_2"><a class="toclink" href="#api_2">浏览API</a></h2>
+<p>如果我们打开浏览器并浏览我们的API，那么你可以简单的通过页面上的超链接来了解API。</p>
+<p>你还可以看到代码片段实例上的'highlight'链接，它能带你跳转到高亮显示的代码HTML表示。</p>
+<p>在<a href="6-viewsets-and-routers_zh.md">教程的第6部分</a>我们将介绍如何使用ViewSets和Routers来减少构建API所需的代码量。</p>
             
 
           </div> <!--/span-->
