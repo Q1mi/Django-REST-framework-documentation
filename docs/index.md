@@ -10,7 +10,7 @@
 
 * django-rest-framework版本：
 
-    - v3.5.3
+    - v3.6.3
 
 * django版本：
 
