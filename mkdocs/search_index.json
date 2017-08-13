@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "Django REST framework \u4e2d\u6587\u6587\u6863\n\n\n\u5982\u679c\u672c\u6587\u5bf9\u4f60\u6709\u5e2e\u52a9\uff0c\u8bf7\u5728\ngithub\n\u4e0a \nstar\n \u8be5\u9879\u76ee\u3002\n\n\n\u5f53\u7136\u6211\u4e5f\u5341\u5206\u6b22\u8fce\u4f60\u52a0\u5165\u8be5\u9879\u76ee\u5e76\u63a8\u9001\u4f60\u7684\u7ffb\u8bd1\u3002\n\n\n\u7248\u672c\u76f8\u5173\n\n\n\u8fd9\u662fDjango REST framework v3 \u7248\u672c\u7684\u4e2d\u6587\u7ffb\u8bd1\u6587\u6863\u3002\n\n\n\n\n\n\ndjango-rest-framework\u7248\u672c\uff1a\n\n\n\n\nv3.5.3\n\n\n\n\n\n\n\n\ndjango\u7248\u672c\uff1a\n\n\n\n\nv1.10.4\n\n\n\n\n\n\n\n\n\u7ffb\u8bd1\u4eba\u5458\n\n\n\n\nQ1mi\n\n\n\n\n\u4ee5\u4e0b\u7ae0\u8282\u5df2\u5b8c\u6210\u7ffb\u8bd1\n\n\n\u6559\u7a0b\n\n\n\n\nQuickstart\n\n\n1-Serialization\n\n\n2-requests-and-responses\n\n\n3-class-based-views\n\n\n4-authentication-and-permissions\n\n\n5-relationships-and-hyperlinked-apis\n\n\n6-viewsets-and-routers\n\n\n\n\nAPI\u6307\u5357\n\n\n\n\nRequests\n\n\nResponses\n\n\nGeneric Views\n\n\nViewets\n\n\nRouters\n\n\nParsers\n\n\nRenderers\n\n\nSerializers\n\n\nFiltering\n\n\nAuthentication\n\n\n\n\n\u4e3b\u9898\n\n\n\n\najax-csrf-cors",
+            "text": "Django REST framework \u4e2d\u6587\u6587\u6863\n\n\n\u5982\u679c\u672c\u6587\u5bf9\u4f60\u6709\u5e2e\u52a9\uff0c\u8bf7\u5728\ngithub\n\u4e0a \nstar\n \u8be5\u9879\u76ee\u3002\n\n\n\u5f53\u7136\u6211\u4e5f\u5341\u5206\u6b22\u8fce\u4f60\u52a0\u5165\u8be5\u9879\u76ee\u5e76\u63a8\u9001\u4f60\u7684\u7ffb\u8bd1\u3002\n\n\n\u7248\u672c\u76f8\u5173\n\n\n\u8fd9\u662fDjango REST framework v3 \u7248\u672c\u7684\u4e2d\u6587\u7ffb\u8bd1\u6587\u6863\u3002\n\n\n\n\n\n\ndjango-rest-framework\u7248\u672c\uff1a\n\n\n\n\nv3.5.3\n\n\n\n\n\n\n\n\ndjango\u7248\u672c\uff1a\n\n\n\n\nv1.10.4\n\n\n\n\n\n\n\n\n\u7ffb\u8bd1\u4eba\u5458\n\n\n\n\nQ1mi\n\n\n\n\n\u4ee5\u4e0b\u7ae0\u8282\u5df2\u5b8c\u6210\u7ffb\u8bd1\n\n\n\u6559\u7a0b\n\n\n\n\nQuickstart\n\n\n1-Serialization\n\n\n2-requests-and-responses\n\n\n3-class-based-views\n\n\n4-authentication-and-permissions\n\n\n5-relationships-and-hyperlinked-apis\n\n\n6-viewsets-and-routers\n\n\n7-schemas-and-client-libraries\n\n\n\n\nAPI\u6307\u5357\n\n\n\n\nRequests\n\n\nResponses\n\n\nGeneric Views\n\n\nViewets\n\n\nRouters\n\n\nParsers\n\n\nRenderers\n\n\nSerializers\n\n\nFiltering\n\n\nAuthentication\n\n\n\n\n\u4e3b\u9898\n\n\n\n\najax-csrf-cors",
             "title": "\u4e3b\u9875"
         },
         {
@@ -27,7 +27,7 @@
         },
         {
             "location": "/#_4",
-            "text": "Quickstart  1-Serialization  2-requests-and-responses  3-class-based-views  4-authentication-and-permissions  5-relationships-and-hyperlinked-apis  6-viewsets-and-routers",
+            "text": "Quickstart  1-Serialization  2-requests-and-responses  3-class-based-views  4-authentication-and-permissions  5-relationships-and-hyperlinked-apis  6-viewsets-and-routers  7-schemas-and-client-libraries",
             "title": "\u6559\u7a0b"
         },
         {
