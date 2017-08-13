@@ -97,7 +97,7 @@
                   </li>
                   
                   <li >
-                    <a href="../3-class-based-views/">3 - Class based views</a>
+                    <a href="../3-class-based-views_zh/">3 - Class based views</a>
                   </li>
                   
                   <li >
@@ -374,7 +374,7 @@
 
                 
                   <li class="main">
-                    <a href="#tutorial-1-serialization">Tutorial 1: Serialization</a>
+                    <a href="#tutorial-1">Tutorial 1: 序列化</a>
                   </li>
 
                   
@@ -433,7 +433,7 @@
             
               
 
-              <h1 id="tutorial-1-serialization"><a class="toclink" href="#tutorial-1-serialization">Tutorial 1: Serialization</a></h1>
+              <h1 id="tutorial-1"><a class="toclink" href="#tutorial-1">Tutorial 1: 序列化</a></h1>
 <h2 id="_1"><a class="toclink" href="#_1">介绍</a></h2>
 <p>本教程将介绍如何创建一个简单的收录代码高亮展示的Web API。这个过程中, 将会介绍组成Rest框架的各个组件，并让你全面了解各个组件是如何一起工作的。</p>
 <p>这个教程是相当深入的，所以你应该在开始之前准备些啤酒和花生毛豆什么的。如果你只是想来个快速预览，那你应该查看<a href="../quickstart_zh/">quickstart</a>文档。</p>
@@ -624,7 +624,7 @@ class JSONResponse(HttpResponse):
         kwargs['content_type'] = 'application/json'
         super(JSONResponse, self).__init__(content, **kwargs)
 </code></pre>
-<p>我们的API的根源将是一个视图，支持列出所有现有的snippets，或创建一个新的snippet。</p>
+<p>我们API的根视图支持列出所有现有的snippet或创建一个新的snippet。</p>
 <pre><code>@csrf_exempt
 def snippet_list(request):
     """
