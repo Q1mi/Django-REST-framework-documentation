@@ -2,7 +2,7 @@
 
 > “ 由Django Manager提供的根QuerySet描述了数据库表中的所有对象。可是通常你需要的只是选择完整对象中的一个子集而已。
 >
-> —— Django文档  
+> —— Django文档
 > ”
 
 REST framework列表视图的默认行为是返回一个model的全部queryset。通常你却想要你的API来限制queryset返回的数据。
