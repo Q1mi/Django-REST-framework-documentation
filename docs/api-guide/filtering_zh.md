@@ -7,7 +7,7 @@
 
 REST framework列表视图的默认行为是返回一个model的全部queryset。通常你却想要你的API来限制queryset返回的数据。
 
-最简单的删选一个`GenericAPIView`子视图的queryset的方法就是复写他的`.get_queryset()`方法。
+最简单的过滤任意`GenericAPIView`子视图queryset的方法就是重写它的`.get_queryset()`方法。
 
 重写这个方法允许你使用很多不同的方式来定制视图返回的queryset。
 
@@ -68,7 +68,7 @@ class PurchaseList(generics.ListAPIView):
 
 过滤初始查询集的最后一个示例是基于url中的查询参数确定初始查询集。
 
-我们可以覆盖`.get_queryset()`来处理像`http://example.com/api/purchases?username=denvercoder9`这样的网址，并且只有在URL中包含`username`参数时，才过滤queryset：
+我们可以通过重写`.get_queryset()`方法来处理像`http://example.com/api/purchases?username=denvercoder9`这样的网址，并且只有在URL中包含`username`参数时，才过滤queryset：
 
 
 ```
@@ -91,7 +91,7 @@ class PurchaseList(generics.ListAPIView):
 
 # Generic Filtering（通用过滤）
 
-除了能够覆盖默认queryset，REST框架还包括对通用过滤后端的支持，允许你轻松构建复杂的检索器和过滤器。
+除了能够重写默认的queryset，REST框架还包括对通用过滤后端的支持，允许你轻松构建复杂的检索器和过滤器。
 
 通用过滤器也可以在browsable API和admin API中显示为HTML控件。
 
@@ -136,7 +136,7 @@ http://example.com/api/products/4675/?category=clothing&max_price=10.00
 
 ## Overriding the initial queryset（覆盖初始queryset）
 
-请注意，你可以同时使用覆盖的`.get_queryset()`和通用过滤，并且一切都将按预期生效。 例如，如果`Product`与`User`（名为`purchase`）具有多对多关系，则可能需要编写如下所示的view：
+请注意，你可以同时重写`.get_queryset()`方法或使用通用过滤，并且一切都会按照预期生效。 例如，如果`Product`与`User`（名为`purchase`）具有多对多关系，则可能需要编写如下所示的view：
 
 
 ```
