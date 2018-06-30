@@ -58,7 +58,7 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../permissions/">
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../permissions_zh/">
             下一页 <i class="icon-arrow-right icon-white"></i>
           </a>
           <a class="repo-link btn btn-inverse btn-small " rel="next" href="../validators/">
@@ -176,7 +176,7 @@
                   </li>
                   
                   <li >
-                    <a href="../permissions/">Permissions</a>
+                    <a href="../permissions_zh/">Permissions</a>
                   </li>
                   
                   <li >
@@ -505,7 +505,7 @@
 <p><code>request.auth</code> 属性用于任何其他身份验证信息，例如，它可以用于表示请求签名的身份验证令牌。</p>
 <hr />
 <p><strong>注意：</strong> 不要忘了<strong>认证本身不会允许或拒绝传入的请求</strong>，它只是简单识别请求携带的凭证。</p>
-<p>有关如何设置API权限策略的信息，请参阅 <a href="../permissions/">权限文档</a>。</p>
+<p>有关如何设置API权限策略的信息，请参阅 <a href="permissions.md">权限文档</a>。</p>
 <hr />
 <h2 id="_2"><a class="toclink" href="#_2">如何确定身份验证</a></h2>
 <p>认证方案总是被定义为一个类的列表。REST framework 将尝试使用列表中的每个类进行身份验证，并使用成功完成验证的第一个类的返回值设置 <code>request.user</code> 和<code>request.auth</code>。</p>

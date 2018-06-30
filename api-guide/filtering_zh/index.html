@@ -176,7 +176,7 @@
                   </li>
                   
                   <li >
-                    <a href="../permissions/">Permissions</a>
+                    <a href="../permissions_zh/">Permissions</a>
                   </li>
                   
                   <li >
@@ -466,11 +466,11 @@
               <h1 id="filtering"><a class="toclink" href="#filtering">Filtering</a></h1>
 <blockquote>
 <p>“ 由Django Manager提供的根QuerySet描述了数据库表中的所有对象。可是通常你需要的只是选择完整对象中的一个子集而已。</p>
-<p>—— Django文档<br />
+<p>—— Django文档
 ”</p>
 </blockquote>
 <p>REST framework列表视图的默认行为是返回一个model的全部queryset。通常你却想要你的API来限制queryset返回的数据。</p>
-<p>最简单的删选一个<code>GenericAPIView</code>子视图的queryset的方法就是复写他的<code>.get_queryset()</code>方法。</p>
+<p>最简单的过滤任意<code>GenericAPIView</code>子视图queryset的方法就是重写它的<code>.get_queryset()</code>方法。</p>
 <p>重写这个方法允许你使用很多不同的方式来定制视图返回的queryset。</p>
 <h2 id="filtering-against-the-current-user"><a class="toclink" href="#filtering-against-the-current-user">Filtering against the current user（根据当前用户进行过滤）</a></h2>
 <p>您可能想要过滤queryset，以确保只返回与发出请求的当前已验证用户相关的结果。</p>
@@ -513,7 +513,7 @@ class PurchaseList(generics.ListAPIView):
 
 <h2 id="filtering-against-query-parameters"><a class="toclink" href="#filtering-against-query-parameters">Filtering against query parameters（根据查询参数进行过滤）</a></h2>
 <p>过滤初始查询集的最后一个示例是基于url中的查询参数确定初始查询集。</p>
-<p>我们可以覆盖<code>.get_queryset()</code>来处理像<code>http://example.com/api/purchases?username=denvercoder9</code>这样的网址，并且只有在URL中包含<code>username</code>参数时，才过滤queryset：</p>
+<p>我们可以通过重写<code>.get_queryset()</code>方法来处理像<code>http://example.com/api/purchases?username=denvercoder9</code>这样的网址，并且只有在URL中包含<code>username</code>参数时，才过滤queryset：</p>
 <pre><code>class PurchaseList(generics.ListAPIView):
     serializer_class = PurchaseSerializer
 
@@ -531,7 +531,7 @@ class PurchaseList(generics.ListAPIView):
 
 <hr />
 <h1 id="generic-filtering"><a class="toclink" href="#generic-filtering">Generic Filtering（通用过滤）</a></h1>
-<p>除了能够覆盖默认queryset，REST框架还包括对通用过滤后端的支持，允许你轻松构建复杂的检索器和过滤器。</p>
+<p>除了能够重写默认的queryset，REST框架还包括对通用过滤后端的支持，允许你轻松构建复杂的检索器和过滤器。</p>
 <p>通用过滤器也可以在browsable API和admin API中显示为HTML控件。</p>
 <p><img alt="filter-controls.png" src="../../img/filter-controls.png" /></p>
 <h2 id="setting-filter-backends"><a class="toclink" href="#setting-filter-backends">Setting filter backends（设置通用过滤后端）</a></h2>
@@ -560,7 +560,7 @@ class UserListView(generics.ListAPIView):
 </code></pre>
 
 <h2 id="overriding-the-initial-querysetqueryset"><a class="toclink" href="#overriding-the-initial-querysetqueryset">Overriding the initial queryset（覆盖初始queryset）</a></h2>
-<p>请注意，你可以同时使用覆盖的<code>.get_queryset()</code>和通用过滤，并且一切都将按预期生效。 例如，如果<code>Product</code>与<code>User</code>（名为<code>purchase</code>）具有多对多关系，则可能需要编写如下所示的view：</p>
+<p>请注意，你可以同时重写<code>.get_queryset()</code>方法或使用通用过滤，并且一切都会按照预期生效。 例如，如果<code>Product</code>与<code>User</code>（名为<code>purchase</code>）具有多对多关系，则可能需要编写如下所示的view：</p>
 <pre><code>class PurchasedProductsList(generics.ListAPIView):
     &quot;&quot;&quot;
     Return a list of all the products that the authenticated
