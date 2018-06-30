@@ -45,6 +45,7 @@
 * [Serializers](/api-guide/serializers_zh.md)
 * [Filtering](/api-guide/filtering_zh.md)
 * [Authentication](/api-guide/authentication_zh.md)
+* [Permissions](/api-guide/permissions_zh.md)
 
 ### 主题
 
