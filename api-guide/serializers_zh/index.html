@@ -499,7 +499,7 @@
 
                   
                     <li>
-                      <a href="#read-only-baseserializer-classes">Read-only BaseSerializer classes</a>
+                      <a href="#baseserializer-classes">只读的 BaseSerializer classes</a>
                     </li>
                   
                     <li>
@@ -507,7 +507,7 @@
                     </li>
                   
                     <li>
-                      <a href="#creating-new-base-classes">Creating new base classes</a>
+                      <a href="#_30">创建一个新的基类</a>
                     </li>
                   
                 
@@ -598,7 +598,7 @@
                     <div class="my-qr">
                       <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
                       <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px">支付宝</p>
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
                         <img src="https://raw.githubusercontent.com/Q1mi/image/master/qr/zfb_qr.png" alt="支付宝二维码">
                       </div>
                       <div style="max-width: 160px;margin: 10px auto 0">
@@ -1258,31 +1258,31 @@ class BookSerializer(serializers.Serializer):
 </code></pre>
 <hr />
 <h1 id="baseserializer"><a class="toclink" href="#baseserializer">BaseSerializer</a></h1>
-<p><code>BaseSerializer</code> class that can be used to easily support alternative serialization and deserialization styles.</p>
-<p>This class implements the same basic API as the <code>Serializer</code> class:</p>
+<p><code>BaseSerializer</code> 可以很简单的用来替代序列化和反序列化的样式。</p>
+<p>该类实现与<code>Serializer</code>类相同的基本API：</p>
 <ul>
-<li><code>.data</code> - Returns the outgoing primitive representation.</li>
-<li><code>.is_valid()</code> - Deserializes and validates incoming data.</li>
-<li><code>.validated_data</code> - Returns the validated incoming data.</li>
-<li><code>.errors</code> - Returns any errors during validation.</li>
-<li><code>.save()</code> - Persists the validated data into an object instance.</li>
+<li><code>.data</code> - 返回传出的原始数据。</li>
+<li><code>.is_valid()</code> - 反序列化并验证传入的数据。</li>
+<li><code>.validated_data</code> - 返回经过验证后的传入数据。</li>
+<li><code>.errors</code> - 返回验证期间的错误。</li>
+<li><code>.save()</code> - 将验证的数据保留到对象实例中。</li>
 </ul>
-<p>There are four methods that can be overridden, depending on what functionality you want the serializer class to support:</p>
+<p>它还有可以覆写的四种方法，具体取决于你想要序列化类支持的功能：</p>
 <ul>
-<li><code>.to_representation()</code> - Override this to support serialization, for read operations.</li>
-<li><code>.to_internal_value()</code> - Override this to support deserialization, for write operations.</li>
-<li><code>.create()</code> and <code>.update()</code> - Override either or both of these to support saving instances.</li>
+<li><code>.to_representation()</code> - 重写此方法来改变读取操作的序列化结果。</li>
+<li><code>.to_internal_value()</code> - 重写此方法来改变写入操作的序列化结果。</li>
+<li><code>.create()</code> 和 <code>.update()</code> - 重写其中一个或两个来改变保存实例时的动作。</li>
 </ul>
-<p>Because this class provides the same interface as the <code>Serializer</code> class, you can use it with the existing generic class-based views exactly as you would for a regular <code>Serializer</code> or <code>ModelSerializer</code>.</p>
-<p>The only difference you'll notice when doing so is the <code>BaseSerializer</code> classes will not generate HTML forms in the browsable API. This is because the data they return does not include all the field information that would allow each field to be rendered into a suitable HTML input.</p>
-<h5 id="read-only-baseserializer-classes"><a class="toclink" href="#read-only-baseserializer-classes">Read-only <code>BaseSerializer</code> classes</a></h5>
-<p>To implement a read-only serializer using the <code>BaseSerializer</code> class, we just need to override the <code>.to_representation()</code> method. Let's take a look at an example using a simple Django model:</p>
+<p>因为此类提供与<code>Serializer</code>类相同的接口，所以你可以将它与现有的基于类的通用视图一起使用，就像使用常规<code>Serializer</code>或<code>ModelSerializer</code>一样。</p>
+<p>这样做时你需要注意到的唯一区别是<code>BaseSerializer</code>类并不会在可浏览的API页面中生成HTML表单。</p>
+<h5 id="baseserializer-classes"><a class="toclink" href="#baseserializer-classes">只读的 <code>BaseSerializer</code> classes</a></h5>
+<p>要使用<code>BaseSerializer</code>类实现只读序列化程序，我们只需要覆写<code>.to_representation()</code>方法。让我们看一个简单的Django模型的示例：</p>
 <pre><code>class HighScore(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     player_name = models.CharField(max_length=10)
     score = models.IntegerField()
 </code></pre>
-<p>It's simple to create a read-only serializer for converting <code>HighScore</code> instances into primitive data types.</p>
+<p>创建一个只读的序列化程序来将<code>HighScore</code>实例转换为原始数据类型非常简单。</p>
 <pre><code>class HighScoreSerializer(serializers.BaseSerializer):
     def to_representation(self, obj):
         return {
@@ -1290,14 +1290,14 @@ class BookSerializer(serializers.Serializer):
             'player_name': obj.player_name
         }
 </code></pre>
-<p>We can now use this class to serialize single <code>HighScore</code> instances:</p>
+<p>我们现在可以使用这个类来序列化单个<code>HighScore</code>实例：</p>
 <pre><code>@api_view(['GET'])
 def high_score(request, pk):
     instance = HighScore.objects.get(pk=pk)
     serializer = HighScoreSerializer(instance)
     return Response(serializer.data)
 </code></pre>
-<p>Or use it to serialize multiple instances:</p>
+<p>或者使用它来序列化多个实例：</p>
 <pre><code>@api_view(['GET'])
 def all_high_scores(request):
     queryset = HighScore.objects.order_by('-score')
@@ -1305,16 +1305,16 @@ def all_high_scores(request):
     return Response(serializer.data)
 </code></pre>
 <h5 id="read-write-baseserializer-classes"><a class="toclink" href="#read-write-baseserializer-classes">Read-write <code>BaseSerializer</code> classes</a></h5>
-<p>To create a read-write serializer we first need to implement a <code>.to_internal_value()</code> method. This method returns the validated values that will be used to construct the object instance, and may raise a <code>ValidationError</code> if the supplied data is in an incorrect format.</p>
-<p>Once you've implemented <code>.to_internal_value()</code>, the basic validation API will be available on the serializer, and you will be able to use <code>.is_valid()</code>, <code>.validated_data</code> and <code>.errors</code>.</p>
-<p>If you want to also support <code>.save()</code> you'll need to also implement either or both of the <code>.create()</code> and <code>.update()</code> methods.</p>
-<p>Here's a complete example of our previous <code>HighScoreSerializer</code>, that's been updated to support both read and write operations.</p>
+<p>要创建一个读写都支持的序列化器，我们首先需要实现<code>.to_internal_value()</code>方法。这个方法返回用来构造对象实例的经过验证的值，如果提供的数据格式不正确，则可能引发<code>ValidationError</code>。</p>
+<p>一旦你实现了<code>.to_internal_value()</code>方法，那些基础的验证API都会在序列化对象上可用了，你就可以使用<code>.is_valid()</code>, <code>.validated_data</code> 和 <code>.errors</code> 方法。</p>
+<p>如果你还想支持<code>.save()</code>，你还需要实现<code>.create()</code>和<code>.update()</code>方法中的一个或两个。</p>
+<p>下面就是完整版的，支持读、写操作的 <code>HighScoreSerializer</code> 完整示例了。</p>
 <pre><code>class HighScoreSerializer(serializers.BaseSerializer):
     def to_internal_value(self, data):
         score = data.get('score')
         player_name = data.get('player_name')
 
-        # Perform the data validation.
+        # 执行数据有效性校验
         if not score:
             raise ValidationError({
                 'score': 'This field is required.'
@@ -1328,8 +1328,7 @@ def all_high_scores(request):
                 'player_name': 'May not be more than 10 characters.'
             })
 
-        # Return the validated values. This will be available as
-        # the `.validated_data` property.
+        # 返回通过验证的数据 这用来作为 `.validated_data` 属性的值。
         return {
             'score': int(score),
             'player_name': player_name
@@ -1344,39 +1343,38 @@ def all_high_scores(request):
     def create(self, validated_data):
         return HighScore.objects.create(**validated_data)
 </code></pre>
-<h4 id="creating-new-base-classes"><a class="toclink" href="#creating-new-base-classes">Creating new base classes</a></h4>
-<p>The <code>BaseSerializer</code> class is also useful if you want to implement new generic serializer classes for dealing with particular serialization styles, or for integrating with alternative storage backends.</p>
-<p>The following class is an example of a generic serializer that can handle coercing arbitrary objects into primitive representations.</p>
+<h4 id="_30"><a class="toclink" href="#_30">创建一个新的基类</a></h4>
+<p><code>BaseSerializer</code>类还可以用来创建新的通用序列化程序基类来处理特定的序列化样式或者用来整合备用存储后端。</p>
+<p>下面这个类是一个可以将任意对象强制转换为基本表示的通用序列化程序的示例。</p>
 <pre><code>class ObjectSerializer(serializers.BaseSerializer):
     """
-    A read-only serializer that coerces arbitrary complex objects
-    into primitive representations.
+    一个只读序列化程序，它将任意复杂的对象强制转换为内置数据类型表示。
     """
     def to_representation(self, obj):
         for attribute_name in dir(obj):
             attribute = getattr(obj, attribute_name)
             if attribute_name('_'):
-                # Ignore private attributes.
+                # 忽略私有属性
                 pass
             elif hasattr(attribute, '__call__'):
-                # Ignore methods and other callables.
+                # 忽略方法和其他可调用对象
                 pass
             elif isinstance(attribute, (str, int, bool, float, type(None))):
-                # Primitive types can be passed through unmodified.
+                # 内置的原始数据类型不做修改
                 output[attribute_name] = attribute
             elif isinstance(attribute, list):
-                # Recursively deal with items in lists.
+                # 递归处理列表中的对象
                 output[attribute_name] = [
                     self.to_representation(item) for item in attribute
                 ]
             elif isinstance(attribute, dict):
-                # Recursively deal with items in dictionaries.
+                # 递归处理字典中的对象
                 output[attribute_name] = {
                     str(key): self.to_representation(value)
                     for key, value in attribute.items()
                 }
             else:
-                # Force anything else to its string representation.
+                # 将其他数据类型强制转换为字符串表示
                 output[attribute_name] = str(attribute)
 </code></pre>
 <hr />
