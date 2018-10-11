@@ -8,7 +8,7 @@
   <link href="{{ base_url }}/img/favicon.ico" rel="icon" type="image/x-icon">
   <link rel="canonical" href="{{ canonical_url }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, REST{% if current_page %}, {{ current_page.title }}{% endif %}">
+  <meta name="description" content="Django, Django REST Framework, 中文文档, DRF, API, REST{% if current_page %}, {{ current_page.title }}{% endif %}">
   <meta name="author" content="Tom Christie">
 
   <!-- Le styles -->
@@ -103,7 +103,18 @@
 
                   <div class="promo">
                     <hr/>
-                    <div id="sidebarInclude">
+                    <!--<div id="sidebarInclude"></div>-->
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="https://raw.githubusercontent.com/Q1mi/image/master/qr/zfb_qr.png" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="https://raw.githubusercontent.com/Q1mi/image/master/qr/wechat_qr.png" alt="微信二维码">
+                      </div>
+                    </div>
                   </div>
               </ul>
 
@@ -141,7 +152,7 @@
   <script src="{{ base_url }}/js/jquery-1.8.1-min.js"></script>
   <script src="{{ base_url }}/js/prettify-1.0.js"></script>
   <script src="{{ base_url }}/js/bootstrap-2.1.1-min.js"></script>
-  <script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
   <script>var base_url = '{{ base_url }}';</script>
   <script src="{{ base_url }}/mkdocs/js/require.js"></script>
   <script src="{{ base_url }}/js/theme.js"></script>

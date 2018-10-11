@@ -844,36 +844,36 @@ URL字段的名称默认为'url'。你可以通过使用`URL_FIELD_NAME`设置�
 
 # BaseSerializer
 
-`BaseSerializer` class that can be used to easily support alternative serialization and deserialization styles.
+`BaseSerializer` 可以很简单的用来替代序列化和反序列化的样式。
 
-This class implements the same basic API as the `Serializer` class:
+该类实现与`Serializer`类相同的基本API：
 
-* `.data` - Returns the outgoing primitive representation.
-* `.is_valid()` - Deserializes and validates incoming data.
-* `.validated_data` - Returns the validated incoming data.
-* `.errors` - Returns any errors during validation.
-* `.save()` - Persists the validated data into an object instance.
+* `.data` - 返回传出的原始数据。
+* `.is_valid()` - 反序列化并验证传入的数据。
+* `.validated_data` - 返回经过验证后的传入数据。
+* `.errors` - 返回验证期间的错误。
+* `.save()` - 将验证的数据保留到对象实例中。
 
-There are four methods that can be overridden, depending on what functionality you want the serializer class to support:
+它还有可以覆写的四种方法，具体取决于你想要序列化类支持的功能：
 
-* `.to_representation()` - Override this to support serialization, for read operations.
-* `.to_internal_value()` - Override this to support deserialization, for write operations.
-* `.create()` and `.update()` - Override either or both of these to support saving instances.
+* `.to_representation()` - 重写此方法来改变读取操作的序列化结果。
+* `.to_internal_value()` - 重写此方法来改变写入操作的序列化结果。
+* `.create()` 和 `.update()` - 重写其中一个或两个来改变保存实例时的动作。
 
-Because this class provides the same interface as the `Serializer` class, you can use it with the existing generic class-based views exactly as you would for a regular `Serializer` or `ModelSerializer`.
+因为此类提供与`Serializer`类相同的接口，所以你可以将它与现有的基于类的通用视图一起使用，就像使用常规`Serializer`或`ModelSerializer`一样。
 
-The only difference you'll notice when doing so is the `BaseSerializer` classes will not generate HTML forms in the browsable API. This is because the data they return does not include all the field information that would allow each field to be rendered into a suitable HTML input.
+这样做时你需要注意到的唯一区别是`BaseSerializer`类并不会在可浏览的API页面中生成HTML表单。
 
-##### Read-only `BaseSerializer` classes
+##### 只读的 `BaseSerializer` classes
 
-To implement a read-only serializer using the `BaseSerializer` class, we just need to override the `.to_representation()` method. Let's take a look at an example using a simple Django model:
+要使用`BaseSerializer`类实现只读序列化程序，我们只需要覆写`.to_representation()`方法。让我们看一个简单的Django模型的示例：
 
     class HighScore(models.Model):
         created = models.DateTimeField(auto_now_add=True)
         player_name = models.CharField(max_length=10)
         score = models.IntegerField()
 
-It's simple to create a read-only serializer for converting `HighScore` instances into primitive data types.
+创建一个只读的序列化程序来将`HighScore`实例转换为原始数据类型非常简单。
 
     class HighScoreSerializer(serializers.BaseSerializer):
         def to_representation(self, obj):
@@ -882,7 +882,7 @@ It's simple to create a read-only serializer for converting `HighScore` instance
                 'player_name': obj.player_name
             }
 
-We can now use this class to serialize single `HighScore` instances:
+我们现在可以使用这个类来序列化单个`HighScore`实例：
 
     @api_view(['GET'])
     def high_score(request, pk):
@@ -890,7 +890,7 @@ We can now use this class to serialize single `HighScore` instances:
         serializer = HighScoreSerializer(instance)
 	    return Response(serializer.data)
 
-Or use it to serialize multiple instances:
+或者使用它来序列化多个实例：
 
     @api_view(['GET'])
     def all_high_scores(request):
@@ -900,20 +900,20 @@ Or use it to serialize multiple instances:
 
 ##### Read-write `BaseSerializer` classes
 
-To create a read-write serializer we first need to implement a `.to_internal_value()` method. This method returns the validated values that will be used to construct the object instance, and may raise a `ValidationError` if the supplied data is in an incorrect format.
+要创建一个读写都支持的序列化器，我们首先需要实现`.to_internal_value()`方法。这个方法返回用来构造对象实例的经过验证的值，如果提供的数据格式不正确，则可能引发`ValidationError`。
 
-Once you've implemented `.to_internal_value()`, the basic validation API will be available on the serializer, and you will be able to use `.is_valid()`, `.validated_data` and `.errors`.
+一旦你实现了`.to_internal_value()`方法，那些基础的验证API都会在序列化对象上可用了，你就可以使用`.is_valid()`, `.validated_data` 和 `.errors` 方法。
 
-If you want to also support `.save()` you'll need to also implement either or both of the `.create()` and `.update()` methods.
+如果你还想支持`.save()`，你还需要实现`.create()`和`.update()`方法中的一个或两个。
 
-Here's a complete example of our previous `HighScoreSerializer`, that's been updated to support both read and write operations.
+下面就是完整版的，支持读、写操作的 `HighScoreSerializer` 完整示例了。
 
     class HighScoreSerializer(serializers.BaseSerializer):
         def to_internal_value(self, data):
             score = data.get('score')
             player_name = data.get('player_name')
 
-            # Perform the data validation.
+            # 执行数据有效性校验
             if not score:
                 raise ValidationError({
                     'score': 'This field is required.'
@@ -927,8 +927,7 @@ Here's a complete example of our previous `HighScoreSerializer`, that's been upd
                     'player_name': 'May not be more than 10 characters.'
                 })
 
-			# Return the validated values. This will be available as
-			# the `.validated_data` property.
+			# 返回通过验证的数据 这用来作为 `.validated_data` 属性的值。
             return {
                 'score': int(score),
                 'player_name': player_name
@@ -943,42 +942,41 @@ Here's a complete example of our previous `HighScoreSerializer`, that's been upd
         def create(self, validated_data):
             return HighScore.objects.create(**validated_data)
 
-#### Creating new base classes
+#### 创建一个新的基类
 
-The `BaseSerializer` class is also useful if you want to implement new generic serializer classes for dealing with particular serialization styles, or for integrating with alternative storage backends.
+`BaseSerializer`类还可以用来创建新的通用序列化程序基类来处理特定的序列化样式或者用来整合备用存储后端。
 
-The following class is an example of a generic serializer that can handle coercing arbitrary objects into primitive representations.
+下面这个类是一个可以将任意对象强制转换为基本表示的通用序列化程序的示例。
 
     class ObjectSerializer(serializers.BaseSerializer):
         """
-        A read-only serializer that coerces arbitrary complex objects
-        into primitive representations.
+        一个只读序列化程序，它将任意复杂的对象强制转换为内置数据类型表示。
         """
         def to_representation(self, obj):
             for attribute_name in dir(obj):
                 attribute = getattr(obj, attribute_name)
                 if attribute_name('_'):
-                    # Ignore private attributes.
+                    # 忽略私有属性
                     pass
                 elif hasattr(attribute, '__call__'):
-                    # Ignore methods and other callables.
+                    # 忽略方法和其他可调用对象
                     pass
                 elif isinstance(attribute, (str, int, bool, float, type(None))):
-                    # Primitive types can be passed through unmodified.
+                    # 内置的原始数据类型不做修改
                     output[attribute_name] = attribute
                 elif isinstance(attribute, list):
-                    # Recursively deal with items in lists.
+                    # 递归处理列表中的对象
                     output[attribute_name] = [
                         self.to_representation(item) for item in attribute
                     ]
                 elif isinstance(attribute, dict):
-                    # Recursively deal with items in dictionaries.
+                    # 递归处理字典中的对象
                     output[attribute_name] = {
                         str(key): self.to_representation(value)
                         for key, value in attribute.items()
                     }
                 else:
-                    # Force anything else to its string representation.
+                    # 将其他数据类型强制转换为字符串表示
                     output[attribute_name] = str(attribute)
 
 ---
