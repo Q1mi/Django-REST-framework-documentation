@@ -512,16 +512,16 @@
                   
                 
                   <li class="main">
-                    <a href="#advanced-serializer-usage">Advanced serializer usage</a>
+                    <a href="#serializer">serializer进阶用法</a>
                   </li>
 
                   
                     <li>
-                      <a href="#overriding-serialization-and-deserialization-behavior">Overriding serialization and deserialization behavior</a>
+                      <a href="#_31">重写序列化和反序列化行为</a>
                     </li>
                   
                     <li>
-                      <a href="#serializer-inheritance">Serializer Inheritance</a>
+                      <a href="#serializer_1">Serializer 继承</a>
                     </li>
                   
                     <li>
@@ -1378,24 +1378,24 @@ def all_high_scores(request):
                 output[attribute_name] = str(attribute)
 </code></pre>
 <hr />
-<h1 id="advanced-serializer-usage"><a class="toclink" href="#advanced-serializer-usage">Advanced serializer usage</a></h1>
-<h2 id="overriding-serialization-and-deserialization-behavior"><a class="toclink" href="#overriding-serialization-and-deserialization-behavior">Overriding serialization and deserialization behavior</a></h2>
-<p>If you need to alter the serialization, deserialization or validation of a serializer class you can do so by overriding the <code>.to_representation()</code> or <code>.to_internal_value()</code> methods.</p>
-<p>Some reasons this might be useful include...</p>
+<h1 id="serializer"><a class="toclink" href="#serializer">serializer进阶用法</a></h1>
+<h2 id="_31"><a class="toclink" href="#_31">重写序列化和反序列化行为</a></h2>
+<p>如果你需要更改序列化程序类的序列化，反序列化或验证的行为，可以通过重写<code>.to_representation()</code>或<code>.to_internal_value()</code>方法来完成。</p>
+<p>我们可能这么做的一些原因包括......</p>
 <ul>
-<li>Adding new behavior for new serializer base classes.</li>
-<li>Modifying the behavior slightly for an existing class.</li>
-<li>Improving serialization performance for a frequently accessed API endpoint that returns lots of data.</li>
+<li>为新的序列化程序基类添加新行为。</li>
+<li>对现有的类稍作修改。</li>
+<li>提高频繁访问返回大量数据的API端点的序列化性能。</li>
 </ul>
-<p>The signatures for these methods are as follows:</p>
+<p>这些方法的签名如下：</p>
 <h4 id="to_representationself-obj"><a class="toclink" href="#to_representationself-obj"><code>.to_representation(self, obj)</code></a></h4>
-<p>Takes the object instance that requires serialization, and should return a primitive representation. Typically this means returning a structure of built-in Python datatypes. The exact types that can be handled will depend on the render classes you have configured for your API.</p>
+<p>接收一个需要被序列化的对象实例并且返回一个序列化之后的表示。通常，这意味着返回内置Python数据类型的结构。可以处理的确切类型取决于你为API配置的渲染类。</p>
 <h4 id="to_internal_valueself-data"><a class="toclink" href="#to_internal_valueself-data"><code>.to_internal_value(self, data)</code></a></h4>
-<p>Takes the unvalidated incoming data as input and should return the validated data that will be made available as <code>serializer.validated_data</code>. The return value will also be passed to the <code>.create()</code> or <code>.update()</code> methods if <code>.save()</code> is called on the serializer class.</p>
-<p>If any of the validation fails, then the method should raise a <code>serializers.ValidationError(errors)</code>. Typically the <code>errors</code> argument here will be a dictionary mapping field names to error messages.</p>
-<p>The <code>data</code> argument passed to this method will normally be the value of <code>request.data</code>, so the datatype it provides will depend on the parser classes you have configured for your API.</p>
-<h2 id="serializer-inheritance"><a class="toclink" href="#serializer-inheritance">Serializer Inheritance</a></h2>
-<p>Similar to Django forms, you can extend and reuse serializers through inheritance. This allows you to declare a common set of fields or methods on a parent class that can then be used in a number of serializers. For example,</p>
+<p>将未经验证的传入数据作为输入，返回可以通过<code>serializer.validated_data</code>来访问的已验证的数据。如果在序列化程序类上调用<code>.save()</code>，则该返回值也将传递给<code>.create()</code>或<code>.update()</code>方法。</p>
+<p>如果任何验证条件失败，那么该方法会引发一个<code>serializers.ValidationError(errors)</code>。通常，此处的<code>errors</code>参数将是错误消息字典的一个映射字段。</p>
+<p>传递给此方法的<code>data</code>参数通常是<code>request.data</code>的值，因此它提供的数据类型将取决于你为API配置的解析器类。</p>
+<h2 id="serializer_1"><a class="toclink" href="#serializer_1">Serializer 继承</a></h2>
+<p>与Django表单类似，你可以通过继承扩展和重用序列化程序。这允许你在父类上声明一组公共字段或方法，然后可以在许多序列化程序中使用它们。举个例子，</p>
 <pre><code>class MyBaseSerializer(Serializer):
     my_field = serializers.CharField()
 
@@ -1405,24 +1405,24 @@ def all_high_scores(request):
 class MySerializer(MyBaseSerializer):
     ...
 </code></pre>
-<p>Like Django's <code>Model</code> and <code>ModelForm</code> classes, the inner <code>Meta</code> class on serializers does not implicitly inherit from it's parents' inner <code>Meta</code> classes. If you want the <code>Meta</code> class to inherit from a parent class you must do so explicitly. For example:</p>
+<p>像Django的<code>Model</code>和<code>ModelForm</code>类一样，序列化器上的内部<code>Meta</code>类不会隐式地继承它的父元素内部的<code>Meta</code>类。如果你希望从父类继承<code>Meta</code>类，则必须明确地这样做。比如：</p>
 <pre><code>class AccountSerializer(MyBaseSerializer):
     class Meta(MyBaseSerializer.Meta):
         model = Account
 </code></pre>
-<p>Typically we would recommend <em>not</em> using inheritance on inner Meta classes, but instead declaring all options explicitly.</p>
-<p>Additionally, the following caveats apply to serializer inheritance:</p>
+<p>通常我们建议<em>不要</em>在内部Meta类上使用继承，而是明确声明所有选项。</p>
+<p>此外，以下警告适用于序列化程序继承：</p>
 <ul>
-<li>Normal Python name resolution rules apply. If you have multiple base classes that declare a <code>Meta</code> inner class, only the first one will be used. This means the child’s <code>Meta</code>, if it exists, otherwise the <code>Meta</code> of the first parent, etc.</li>
+<li>正常的Python名称解析规则适用。如果你有多个声明了<code>Meta</code>类的基类，则只使用第一个类。这意味要么是孩子的<code>Meta</code>（如果存在），否则就是第一个父母的<code>Meta</code>等。</li>
 <li>
-<p>It’s possible to declaratively remove a <code>Field</code> inherited from a parent class by setting the name to be <code>None</code> on the subclass.</p>
+<p>通过在子类上将名称设置为<code>None</code>，可以声明性地删除从父类继承的<code>Field</code>。</p>
 <pre><code>class MyBaseSerializer(ModelSerializer):
     my_field = serializers.CharField()
 
 class MySerializer(MyBaseSerializer):
     my_field = None
 </code></pre>
-<p>However, you can only use this technique to opt out from a field defined declaratively by a parent class; it won’t prevent the <code>ModelSerializer</code> from generating a default field. To opt-out from default fields, see <a href="#specifying-which-fields-to-include">Specifying which fields to include</a>.</p>
+<p>但是，你只能使用此技术去掉父类声明性定义的字段；它不会阻止<code>ModelSerializer</code>生成默认字段。想要从默认字段中选择去掉某个字段，请参阅 <a href="#specifying-which-fields-to-include">指定要包括的字段</a>。</p>
 </li>
 </ul>
 <h2 id="dynamically-modifying-fields"><a class="toclink" href="#dynamically-modifying-fields">Dynamically modifying fields</a></h2>
