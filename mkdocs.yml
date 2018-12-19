@@ -1,9 +1,9 @@
 site_name: Django REST framework中文站点
-site_url: http://www.django-rest-framework.org/
+site_url: https://q1mi.github.io/Django-REST-framework-documentation
 site_description: Django REST framework 中文官方文档
 site_author: Q1mi
 
-repo_url: https://github.com/tomchristie/django-rest-framework
+repo_url: https://github.com/Q1mi/Django-REST-framework-documentation
 
 theme_dir: docs_theme
 
