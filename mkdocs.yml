@@ -25,7 +25,7 @@ pages:
  - API指南:
     - 'Requests': 'api-guide/requests_zh.md'
     - 'Responses': 'api-guide/responses_zh.md'
-    - 'Views': 'api-guide/views.md'
+    - 'Views': 'api-guide/views_zh.md'
     - 'Generic views': 'api-guide/generic-views_zh.md'
     - 'Viewsets': 'api-guide/viewsets_zh.md'
     - 'Routers': 'api-guide/routers_zh.md'

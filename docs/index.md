@@ -43,6 +43,7 @@ QQ群号：930578836
 
 * [Requests](/api-guide/requests_zh.md)
 * [Responses](/api-guide/responses_zh.md)
+* [Views](/api-guide/views_zh.md)
 * [Generic Views](/api-guide/generic-views_zh.md)
 * [Viewets](/api-guide/viewsets_zh.md)
 * [Routers](/api-guide/routers_zh.md)
