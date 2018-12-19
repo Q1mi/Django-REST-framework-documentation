@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Parsers - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="http://www.django-rest-framework.org/api-guide/parsers_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST, Parsers">
+  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../renderers_zh/">
+            下一页 <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../routers_zh/">
+            <i class="icon-arrow-left icon-white"></i> 上一页
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#_1">解析器</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_2">解析器如何确定</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_3">设置解析器</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#api">API参考</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#jsonparser">JSONParser</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#formparser">FormParser</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#multipartparser">MultiPartParser</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#fileuploadparser">FileUploadParser</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_6">自定义解析器</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#stream">stream</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#media95type">media_type</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#parser95context">parser_context</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_7">例子</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_8">第三方包</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#yaml">YAML</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#xml">XML</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#messagepack">MessagePack</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#camelcase-json">CamelCase JSON</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr/>
+                    <!--<div id="sidebarInclude"></div>-->
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="https://raw.githubusercontent.com/Q1mi/image/master/qr/zfb_qr.png" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="https://raw.githubusercontent.com/Q1mi/image/master/qr/wechat_qr.png" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/parsers.py">
+                    <span class="label label-info">parsers.py</span>
+                  </a>
+                
+              
+
+              <h1 id="_1"><a class="toclink" href="#_1">解析器</a></h1>
+<blockquote>
+<p>机器互动的Web服务往往使用更多结构化的格式发送数据而不是使用表单编码，因为它们发送的是比简单形式更复杂的数据。</p>
+<p>— Malcom Tredinnick, <a href="https://groups.google.com/d/topic/django-developers/dxI4qVzrBY4/discussion">Django developers group</a></p>
+</blockquote>
+<p>REST 框架包括一些内置的Parser类，允许你接受各种媒体类型的请求。还支持定义自己的自定义解析器，这使你可以灵活地设计API接受的媒体类型。</p>
+<h2 id="_2"><a class="toclink" href="#_2">解析器如何确定</a></h2>
+<p>一组视图的有效解析器总是被定义为一个类的列表。当访问<code>request.data</code>时，REST框架将检查传入请求中的<code>Content-Type</code>头，并确定用于解析请求内容的解析器。</p>
+<hr />
+<p><strong>注意</strong>: 开发客户端应用程序时应该始终记住在HTTP请求中发送数据时确保设置<code>Content-Type</code>头。</p>
+<p>如果你不设置内容类型，大多数客户端将默认使用<code>'application/x-www-form-urlencoded'</code>，而这可能并不是你想要的。</p>
+<p>举个例子，如果你使用jQuery的<a href="http://api.jquery.com/jQuery.ajax/">.ajax() 方法</a>发送<code>json</code>编码数据，你应该确保包含<code>contentType：'application / json'</code>设置。</p>
+<hr />
+<h2 id="_3"><a class="toclink" href="#_3">设置解析器</a></h2>
+<p>可以使用<code>DEFAULT_PARSER_CLASSES</code>设置全局默认的解析器集。例如，以下设置将仅允许具有<code>JSON</code>内容的请求，而不是JSON或表单数据的默认值。</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+}
+</code></pre>
+
+<p>你还可以设置用于单个视图或视图集的解析器， 使用<code>APIView</code>类视图。</p>
+<pre><code>from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class ExampleView(APIView):
+    &quot;&quot;&quot;
+    可以接收JSON内容POST请求的视图。
+    &quot;&quot;&quot;
+    parser_classes = (JSONParser,)
+
+    def post(self, request, format=None):
+        return Response({'received data': request.data})
+</code></pre>
+
+<p>或者，如果你使用基于方法的视图的<code>@api_view</code>装饰器。</p>
+<pre><code>from rest_framework.decorators import api_view
+from rest_framework.decorators import parser_classes
+
+@api_view(['POST'])
+@parser_classes((JSONParser,))
+def example_view(request, format=None):
+    &quot;&quot;&quot;
+    可以接收JSON内容POST请求的视图
+    &quot;&quot;&quot;
+    return Response({'received data': request.data})
+</code></pre>
+
+<hr />
+<h1 id="api"><a class="toclink" href="#api">API参考</a></h1>
+<h2 id="jsonparser"><a class="toclink" href="#jsonparser">JSONParser</a></h2>
+<p>解析 <code>JSON</code> 请求内容。</p>
+<p><strong>.media_type</strong>: <code>application/json</code></p>
+<h2 id="formparser"><a class="toclink" href="#formparser">FormParser</a></h2>
+<p>解析 HTML 表单内容。<code>request.data</code>将被填充一个<code>QueryDict</code>的数据。</p>
+<p>通常，你需要使用<code>FormParser</code>和<code>MultiPartParser</code>两者，以便完全支持HTML表单数据。</p>
+<p><strong>.media_type</strong>: <code>application/x-www-form-urlencoded</code></p>
+<h2 id="multipartparser"><a class="toclink" href="#multipartparser">MultiPartParser</a></h2>
+<p>解析多部分HTML表单内容，支持文件上传。<code>request.data</code> 都将被一个 <code>QueryDict</code>填充。</p>
+<p>你通常会同时使用<code>FormParser</code>和<code>MultiPartParser</code>两者，以便完全支持HTML表单数据。</p>
+<p><strong>.media_type</strong>: <code>multipart/form-data</code></p>
+<h2 id="fileuploadparser"><a class="toclink" href="#fileuploadparser">FileUploadParser</a></h2>
+<p>解析原始文件上传内容。 <code>request.data</code> 属性将是有单个key <code>'file'</code>的包含上传文件的字典。</p>
+<p>如果与<code>FileUploadParser</code>一起使用的视图使用<code>filename</code> URL关键字参数调用，则该参数将用作文件名。</p>
+<p>如果没有<code>filename</code> URL关键字参数调用，那么客户端必须在<code>Content-Disposition</code> HTTP头中设置文件名。例如 <code>Content-Disposition: attachment; filename=upload.jpg</code>.</p>
+<p><strong>.media_type</strong>: <code>*/*</code></p>
+<h5 id="_4"><a class="toclink" href="#_4">说明:</a></h5>
+<ul>
+<li><code>FileUploadParser</code> 用于与原始数据请求一起上传文件的本机客户端。对于基于Web的上传，或者对于具有多部分上传支持的本机客户端，您应该使用<code>MultiPartParser</code>解析器。</li>
+<li>由于该解析器的<code>media_type</code>与任何内容类型匹配，所以<code>FileUploadParser</code>通常应该是API视图中唯一的解析器。</li>
+<li><code>FileUploadParser</code> 遵循 Django 的标准 <code>FILE_UPLOAD_HANDLERS</code> 设置，和 <code>request.upload_handlers</code> 属性。参见 <a href="https://docs.djangoproject.com/en/stable/topics/http/file-uploads/#upload-handlers">Django 文档</a> 获取更多细节。</li>
+</ul>
+<h5 id="_5"><a class="toclink" href="#_5">基本用法示例：</a></h5>
+<pre><code># views.py
+class FileUploadView(views.APIView):
+    parser_classes = (FileUploadParser,)
+
+    def put(self, request, filename, format=None):
+        file_obj = request.data['file']
+        # ...
+        # do some stuff with uploaded file
+        # ...
+        return Response(status=204)
+
+# urls.py
+urlpatterns = [
+    # ...
+    url(r'^upload/(?P&lt;filename&gt;[^/]+)$', FileUploadView.as_view())
+]
+</code></pre>
+
+<hr />
+<h1 id="_6"><a class="toclink" href="#_6">自定义解析器</a></h1>
+<p>要实现一个自定义解析器，你应该重写<code>BaseParser</code>，设置<code>.media_type</code>属性，并实现<code>.parse(self，stream，media_type，parser_context)</code>方法。</p>
+<p>该方法应该返回用于填充<code>request.data</code> 属性的数据。</p>
+<p>传递给 <code>.parse()</code> 的参数是:</p>
+<h3 id="stream"><a class="toclink" href="#stream">stream</a></h3>
+<p>表示请求体的数据流。</p>
+<h3 id="media95type"><a class="toclink" href="#media95type">media_type</a></h3>
+<p>可选的。如果提供，这是传入请求内容的媒体类型。</p>
+<p>基于请求的<code>Content-Type:</code>头，这可能比渲染器的<code>media_type</code>属性更具体，可能包括媒体类型参数。例如 <code>"text/plain; charset=utf-8"</code>。</p>
+<h3 id="parser95context"><a class="toclink" href="#parser95context">parser_context</a></h3>
+<p>可选的。如果提供，该参数将是一个包含解析请求内容可能需要的任何附加上下文的字典。</p>
+<p>默认情况下将包含以下keys: <code>view</code>, <code>request</code>, <code>args</code>, <code>kwargs</code>。</p>
+<h2 id="_7"><a class="toclink" href="#_7">例子</a></h2>
+<p>以下是一个Plain text的示例，它将使用表示请求正文的字符串填充<code>request.data</code>属性。</p>
+<pre><code>class PlainTextParser(BaseParser):
+    &quot;&quot;&quot;
+    Plain text 解析器。
+    &quot;&quot;&quot;
+    media_type = 'text/plain'
+
+    def parse(self, stream, media_type=None, parser_context=None):
+        &quot;&quot;&quot;
+        只需返回一个表示请求正文的字符串。
+        &quot;&quot;&quot;
+        return stream.read()
+</code></pre>
+
+<hr />
+<h1 id="_8"><a class="toclink" href="#_8">第三方包</a></h1>
+<p>以下是可用的第三方包。</p>
+<h2 id="yaml"><a class="toclink" href="#yaml">YAML</a></h2>
+<p><a href="http://jpadilla.github.io/django-rest-framework-yaml/">REST framework YAML</a> 提供了 <a href="http://www.yaml.org/">YAML</a> 解析和呈现的支持。之前它是直接包含在REST框架包中的，现在被替代为第三方包支持。</p>
+<h4 id="_9"><a class="toclink" href="#_9">安装和配置</a></h4>
+<p>使用pip进行安装。</p>
+<pre><code>$ pip install djangorestframework-yaml
+</code></pre>
+
+<p>修改你的 REST framework settings。</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework_yaml.parsers.YAMLParser',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework_yaml.renderers.YAMLRenderer',
+    ),
+}
+</code></pre>
+
+<h2 id="xml"><a class="toclink" href="#xml">XML</a></h2>
+<p><a href="http://jpadilla.github.io/django-rest-framework-xml/">REST Framework XML</a> 提供了一种简单的非正式XML格式。它以前是直接包含在REST框架包中，现在被替代为第三方包支持。</p>
+<h4 id="_10"><a class="toclink" href="#_10">安装和配置</a></h4>
+<p>使用pip进行安装。</p>
+<pre><code>$ pip install djangorestframework-xml
+</code></pre>
+
+<p>修改你的 REST framework settings.</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework_xml.parsers.XMLParser',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework_xml.renderers.XMLRenderer',
+    ),
+}
+</code></pre>
+
+<h2 id="messagepack"><a class="toclink" href="#messagepack">MessagePack</a></h2>
+<p><a href="https://github.com/juanriaza/django-rest-framework-msgpack">MessagePack</a> 是一种快速，高效的二进制序列化格式。 <a href="https://github.com/juanriaza">Juan Riaza</a> 维护了 <a href="https://github.com/juanriaza/django-rest-framework-msgpack">djangorestframework-msgpack</a> 包，它为REST框架提供MessagePack渲染器和解析器支持。</p>
+<h2 id="camelcase-json"><a class="toclink" href="#camelcase-json">CamelCase JSON</a></h2>
+<p><a href="https://github.com/vbabiy/djangorestframework-camel-case">djangorestframework-camel-case</a> 为REST framework提供了驼峰类型JSON 生成和解析。这个库允许序列化程序使用Python风格的下划线字段名称，并且将其转变为Javascript风格的驼峰字段名称在API中公开。这个库由 <a href="https://github.com/vbabiy">Vitaly Babiy</a>维护。</p>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
+  <script>var base_url = '../..';</script>
+  <script src="../../mkdocs/js/require.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>
