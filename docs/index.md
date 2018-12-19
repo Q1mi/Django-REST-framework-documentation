@@ -4,6 +4,12 @@
 
 当然我也十分欢迎你加入该项目并推送你的翻译。
 
+## Django REST framework 技术交流QQ群
+
+QQ群号：930578836
+
+[>>>点我查看快速入门视频教程](http://edu.51cto.com/sd/8bbb1)
+
 ## 版本相关
 
 这是Django REST framework v3 版本的中文翻译文档。
