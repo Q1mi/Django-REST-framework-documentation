@@ -156,7 +156,7 @@ REST framework提供了一个`APIView`类，它是Django的`View`类的子类。
 
 ## API 策略装饰器
 
-REST framework提供了一组可以加到视图上的装饰器来重写默认设置。这些装饰器必须放在`@api_view`的*后*(下)面。比如，要创建一个使用[限制器][throtting]确保特定用户每天只能调用一次的视图，可以用`@throttle_classes`装饰器并给它传递一个限制器类的列表。
+REST framework提供了一组可以加到视图上的装饰器来重写默认设置。这些装饰器必须放在`@api_view`的*后*(下)面。比如，要创建一个使用[限制器][throttling]确保特定用户每天只能调用一次的视图，可以用`@throttle_classes`装饰器并给它传递一个限制器类的列表。
 
     from rest_framework.decorators import api_view, throttle_classes
     from rest_framework.throttling import UserRateThrottle
