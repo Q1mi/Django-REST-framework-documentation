@@ -981,35 +981,35 @@ URL字段的名称默认为'url'。你可以通过使用`URL_FIELD_NAME`设置�
 
 ---
 
-# Advanced serializer usage
+# serializer进阶用法
 
-## Overriding serialization and deserialization behavior
+## 重写序列化和反序列化行为
 
-If you need to alter the serialization, deserialization or validation of a serializer class you can do so by overriding the `.to_representation()` or `.to_internal_value()` methods.
+如果你需要更改序列化程序类的序列化，反序列化或验证的行为，可以通过重写`.to_representation()`或`.to_internal_value()`方法来完成。
 
-Some reasons this might be useful include...
+我们可能这么做的一些原因包括......
 
-* Adding new behavior for new serializer base classes.
-* Modifying the behavior slightly for an existing class.
-* Improving serialization performance for a frequently accessed API endpoint that returns lots of data.
+* 为新的序列化程序基类添加新行为。
+* 对现有的类稍作修改。
+* 提高频繁访问返回大量数据的API端点的序列化性能。
 
-The signatures for these methods are as follows:
+这些方法的签名如下：
 
 #### `.to_representation(self, obj)`
 
-Takes the object instance that requires serialization, and should return a primitive representation. Typically this means returning a structure of built-in Python datatypes. The exact types that can be handled will depend on the render classes you have configured for your API.
+接收一个需要被序列化的对象实例并且返回一个序列化之后的表示。通常，这意味着返回内置Python数据类型的结构。可以处理的确切类型取决于你为API配置的渲染类。
 
 #### ``.to_internal_value(self, data)``
 
-Takes the unvalidated incoming data as input and should return the validated data that will be made available as `serializer.validated_data`. The return value will also be passed to the `.create()` or `.update()` methods if `.save()` is called on the serializer class.
+将未经验证的传入数据作为输入，返回可以通过`serializer.validated_data`来访问的已验证的数据。如果在序列化程序类上调用`.save()`，则该返回值也将传递给`.create()`或`.update()`方法。
 
-If any of the validation fails, then the method should raise a `serializers.ValidationError(errors)`. Typically the `errors` argument here will be a dictionary mapping field names to error messages.
+如果任何验证条件失败，那么该方法会引发一个`serializers.ValidationError(errors)`。通常，此处的`errors`参数将是错误消息字典的一个映射字段。
 
-The `data` argument passed to this method will normally be the value of `request.data`, so the datatype it provides will depend on the parser classes you have configured for your API.
+传递给此方法的`data`参数通常是`request.data`的值，因此它提供的数据类型将取决于你为API配置的解析器类。
 
-## Serializer Inheritance
+## Serializer 继承
 
-Similar to Django forms, you can extend and reuse serializers through inheritance. This allows you to declare a common set of fields or methods on a parent class that can then be used in a number of serializers. For example,
+与Django表单类似，你可以通过继承扩展和重用序列化程序。这允许你在父类上声明一组公共字段或方法，然后可以在许多序列化程序中使用它们。举个例子，
 
     class MyBaseSerializer(Serializer):
         my_field = serializers.CharField()
@@ -1020,18 +1020,18 @@ Similar to Django forms, you can extend and reuse serializers through inheritanc
     class MySerializer(MyBaseSerializer):
         ...
 
-Like Django's `Model` and `ModelForm` classes, the inner `Meta` class on serializers does not implicitly inherit from it's parents' inner `Meta` classes. If you want the `Meta` class to inherit from a parent class you must do so explicitly. For example:
+像Django的`Model`和`ModelForm`类一样，序列化器上的内部`Meta`类不会隐式地继承它的父元素内部的`Meta`类。如果你希望从父类继承`Meta`类，则必须明确地这样做。比如：
 
     class AccountSerializer(MyBaseSerializer):
         class Meta(MyBaseSerializer.Meta):
             model = Account
 
-Typically we would recommend *not* using inheritance on inner Meta classes, but instead declaring all options explicitly.
+通常我们建议*不要*在内部Meta类上使用继承，而是明确声明所有选项。
 
-Additionally, the following caveats apply to serializer inheritance:
+此外，以下警告适用于序列化程序继承：
 
-* Normal Python name resolution rules apply. If you have multiple base classes that declare a `Meta` inner class, only the first one will be used. This means the child’s `Meta`, if it exists, otherwise the `Meta` of the first parent, etc.
-* It’s possible to declaratively remove a `Field` inherited from a parent class by setting the name to be `None` on the subclass.
+* 正常的Python名称解析规则适用。如果你有多个声明了`Meta`类的基类，则只使用第一个类。这意味要么是孩子的`Meta`（如果存在），否则就是第一个父母的`Meta`等。
+* 通过在子类上将名称设置为`None`，可以声明性地删除从父类继承的`Field`。
 
         class MyBaseSerializer(ModelSerializer):
             my_field = serializers.CharField()
@@ -1039,7 +1039,7 @@ Additionally, the following caveats apply to serializer inheritance:
         class MySerializer(MyBaseSerializer):
             my_field = None
 
-    However, you can only use this technique to opt out from a field defined declaratively by a parent class; it won’t prevent the `ModelSerializer` from generating a default field. To opt-out from default fields, see [Specifying which fields to include](#specifying-which-fields-to-include).
+    但是，你只能使用此技术去掉父类声明性定义的字段；它不会阻止`ModelSerializer`生成默认字段。想要从默认字段中选择去掉某个字段，请参阅 [指定要包括的字段](#specifying-which-fields-to-include)。
 
 ## Dynamically modifying fields
 
