@@ -494,7 +494,7 @@
 <li>它支持解析除<code>POST</code>之外的HTTP方法的内容，这意味着你可以访问<code>PUT</code>和<code>PATCH</code>请求的内容。</li>
 <li>它支持REST framework灵活的请求解析，而不仅仅支持表单数据。 例如，你可以以与处理传入表单数据相同的方式处理传入的JSON数据。</li>
 </ul>
-<p>更多详细信息请参阅<a href="parsers.md">parsers documentation</a>.</p>
+<p>更多详细信息请参阅<a href="../parsers_zh/">parsers documentation</a>.</p>
 <h2 id="query_params"><a class="toclink" href="#query_params">.query_params</a></h2>
 <p><code>request.query_params</code>是<code>request.GET</code>的一个更准确的同义词。</p>
 <p>为了让你的代码清晰明了, 我们建议使用 <code>request.query_params</code> 而不是Django标准的<code>request.GET</code>。这样做有助于保持代码库更加正确和明了——任何HTTP方法类型可能包括查询参数，而不仅仅是<code>GET</code>请求。</p>

@@ -471,7 +471,7 @@
 <p>— <a href="../[https://docs.djangoproject.com/en/stable/stable/template-response/](https://docs.djangoproject.com/en/stable/stable/template-response/)">Django 文档</a></p>
 </blockquote>
 <p>REST framework 通过提供一个 <code>Response</code> 类来支持 HTTP content negotiation，该类允许你返回可以呈现为多种内容类型的内容，具体取决于客户端的请求。</p>
-<p><code>Response</code> 类的子类 Django的 <code>SimpleTemplateResponse</code>。<code>Response</code> 对象用Python基本数据类型初始化。 然后REST framework 使用标准的HTTP content negotiation 来确定如何呈现最终的相应内容。</p>
+<p><code>Response</code> 类是 Django中 <code>SimpleTemplateResponse</code> 类的一个子类。<code>Response</code> 对象用Python基本数据类型初始化。 然后REST framework 使用标准的HTTP content negotiation 来确定如何呈现最终的响应内容。</p>
 <p>你并不需要一定是用 <code>Response</code> 类，你可以从你的视图返回常规的 <code>HttpResponse</code> 或者 <code>StreamingHttpResponse</code> 对象。使用<code>Response</code>类只提供了一个可以呈现多种格式的更好的界面来返回 content-negotiated 的 Web API 响应。</p>
 <p>除非由于某种原因你要对 REST framework 做大量的自定义，否则你应该始终对返回对象的views使用 <code>APIView</code> 类或者 <code>@api_view</code> 函数。这样做可以确保视图在返回之前能够执行 content negotiation 并且为响应选择适当的渲染器。</p>
 <hr />
