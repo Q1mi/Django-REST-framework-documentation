@@ -127,6 +127,6 @@ REST framework 支持一些浏览器增强功能，例如基于浏览器的 `PUT
 
 
 [cite]: https://groups.google.com/d/topic/django-developers/dxI4qVzrBY4/discussion
-[parsers documentation]: parsers.md
+[parsers documentation]: ./parsers_zh.md
 [authentication documentation]: authentication.md
 [browser enhancements documentation]: ../topics/browser-enhancements.md
