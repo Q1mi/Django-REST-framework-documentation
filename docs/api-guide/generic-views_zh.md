@@ -20,44 +20,27 @@ REST framework 提供的通用视图允许您快速构建与数据库模型密�
 
 ```
 from django.contrib.auth.models import User
-
 from myapp.serializers import UserSerializer
-
 from rest_framework import generics
-
 from rest_framework.permissions import IsAdminUser
 
-
-
 class UserList(generics.ListCreateAPIView):
-
     queryset = User.objects.all()
-
     serializer_class = UserSerializer
-
     permission_classes = (IsAdminUser, )
 ```
 
 对于更复杂的情况，您可能还想覆盖视图类上的各种方法。比如：
 
     class UserList(generics.ListCreateAPIView):
-
         queryset = User.objects.all()
-
         serializer_class = UserSerializer
-
         permission_classes = (IsAdminUser, )
 
-
-
         def list(self, request):
-
             # Note the use of `get_queryset()` instead of `self.queryset`
-
             queryset = self.get_queryset()
-
             serializer = UserSerializer(queryset, many=True)
-
             return Response(serializer.data)
 
 对于非常简单的情况，你可能想使用 `.as_view()` 方法传递任何类属性。 比如：你的URLconf可能包括类似以下条目：
@@ -83,11 +66,8 @@ url(r'^/users/', ListCreateAPIView.as_view\(queryset=User.objects.all(), seriali
 以下属性控制着基本视图的行为。
 
 * `queryset` - 用于从视图返回对象的查询结果集。通常，你必须设置此属性或者重写 `get_queryset()` 方法。如果你重写了一个视图的方法，重要的是你应该调用 `get_queryset()` 方法而不是直接访问该属性，因为 `queryset` 将被计算一次，这些结果将为后续请求缓存起来。
-
 * `serializer_class` - 用于验证和反序列化输入以及用于序列化输出的Serializer类。 通常，你必须设置此属性或者重写`get_serializer_class()` 方法。
-
-* `lookup_field` - 用于执行各个model实例的对象查找的model字段。默认为 `'pk'`。 请注意，在使用超链接API时，如果需要使用自定义的值，你需要确保在API视图\*和\*序列化类\*都\*设置查找字段。
-
+* `lookup_field` - 用于执行各个model实例的对象查找的model字段。默认为 `'pk'`。 请注意，在使用超链接API时，如果需要使用自定义的值，你需要确保在API视图*和*序列化类*都*设置查找字段。
 * `lookup_url_kwarg` - 应用于对象查找的URL关键字参数。它的 URL conf 应该包括一个与这个值相对应的关键字参数。如果取消设置，默认情况下使用与 `lookup_field`相同的值。
 
 **Pagination**:
@@ -107,18 +87,14 @@ url(r'^/users/', ListCreateAPIView.as_view\(queryset=User.objects.all(), seriali
 #### `get_queryset(self)`
 
 返回列表视图中实用的查询集，该查询集还用作详细视图中的查找基础。默认返回由 `queryset` 属性指定的查询集。
-
 这个方法应该总是被调用而不是直接访问 `self.queryset` ，因为 `self.queryset` 只会被计算一起，然后这些结果将为后续的请求缓存起来。
-
 该方法可能会被重写以提供动态行为，比如返回基于发出请求的用户的结果集。
 
 例如:
 
 ```
 def get_queryset(self):
-
     user = self.request.user
-
     return user.accounts.all()
 ```
 
@@ -132,21 +108,13 @@ def get_queryset(self):
 
 ```
 def get_object(self):
-
     queryset = self.get_queryset()
-
     filter = {}
-
     for field in self.multiple_lookup_fields:
-
         filter[field] = self.kwargs[field]
 
-
-
     obj = get_object_or_404(queryset, **filter)
-
     self.check_object_permissions(self.request, obj)
-
     return obj
 ```
 
@@ -160,26 +128,15 @@ def get_object(self):
 
 ```
 def filter_queryset(self, queryset):
-
     filter_backends = (CategoryFilter, )
 
-
-
     if 'geo_route' in self.request.query_params:
-
         filter_backends = (GeoRouteFilter, CategoryFilter)
-
     elif 'geo_point' in self.request.query_params:
-
         filter_backends = (GeoPointFilter, CategoryFilter)
 
-
-
     for backend in list(filter_backends):
-
         queryset = backend().filter_queryset(self.request, queryset, view=self)
-
-
 
     return queryset
 ```
@@ -194,11 +151,8 @@ def filter_queryset(self, queryset):
 
 ```
 def get_serializer_class(self\):
-
     if self.request.user.is_staff:
-
         return FullAccountSerializer
-
     return BasicAccountSerializer
 ```
 
@@ -207,16 +161,13 @@ def get_serializer_class(self\):
 以下方法由mixin类提供，并提供对象保存或删除行为的简单重写。
 
 * `perform_create(self, serializer)` - 在保存新对象实例时由 `CreateModelMixin` 调用。
-
 * `perform_update(self, serializer)` - 在保存现有对象实例时由 `UpdateModelMixin` 调用。
-
 * `perform_destroy(self, instance)` - 在删除对象实例时由 `DestroyModelMixin` 调用。
 
 这些钩子对于设置请求中隐含的但不是请求数据的一部分的属性特别有用。例如，你可以根据请求用户或基于URL关键字参数在对象上设置属性。
 
 ```
 def perform_create(self, serializer):
-
     serializer.save(user=self.request.user)
 ```
 
@@ -224,9 +175,7 @@ def perform_create(self, serializer):
 
 ```
 def perform_update(self, serializer):
-
     instance = serializer.save()
-
     send_email_confirmation(user=self.request.user, modified=instance)
 ```
 
@@ -234,13 +183,9 @@ def perform_update(self, serializer):
 
 ```
 def perform_create(self, serializer):
-
     queryset = SignupRequest.objects.filter(user=self.request.user)
-
     if queryset.exists():
-
         raise ValidationError('You have already signed up')
-
     serializer.save(user=self.request.user)
 ```
 
@@ -251,13 +196,9 @@ def perform_create(self, serializer):
 你通常并不需要重写以下方法，虽然在你使用 `GenericAPIView` 编写自定义视图的时候可能会调用它们。
 
 * `get_serializer_context(self)` - 返回包含应该提供给序列化程序的任何额外上下文的字典。默认包含 `'request'`, `'view'` 和 `'format'` 这些keys。.
-
 * `get_serializer(self, instance=None, data=None, many=False, partial=False)` - 返回一个序列化器的实例。
-
 * `get_paginated_response(self, data)` - 返回分页样式的 `Response` 对象。
-
 * `paginate_queryset(self, queryset)` - 如果需要分页查询，返回页面对象，如果没有为此视图配置分页，则返回 `None`。
-
 * `filter_queryset(self, queryset)` - 给定查询集，使用任何过滤器后端进行过滤，返回一个新的查询集。
 
 ---
