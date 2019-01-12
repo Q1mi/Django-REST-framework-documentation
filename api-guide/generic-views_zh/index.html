@@ -755,13 +755,13 @@ class UserList(generics.ListCreateAPIView):
     based on a `lookup_fields` attribute, instead of the default single field filtering.
     """
     def get_object(self):
-        queryset = self.get_queryset()             # Get the base queryset
-        queryset = self.filter_queryset(queryset)  # Apply any filter backends
+        queryset = self.get_queryset()             # 获取基本的queryset
+        queryset = self.filter_queryset(queryset)  # 应用任何过滤器后端
         filter = {}
         for field in self.lookup_fields:
             if self.kwargs[field]: # Ignore empty fields.
                 filter[field] = self.kwargs[field]
-        return get_object_or_404(queryset, **filter)  # Lookup the object
+        return get_object_or_404(queryset, **filter)  # 查找对象
 </code></pre>
 <p>然后，你可以在需要应用自定义行为时随时将此mixin类应用于视图或视图集。</p>
 <pre><code>class RetrieveUserView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
