@@ -336,40 +336,25 @@ Mixin 类可以从 `rest_framework.mixins`导入。
 例如，如果你需要基于 URL conf中的多个字段查找对象，则可以创建一个如下所示的 mixin类：
 
     class MultipleFieldLookupMixin(object):
-
         """
-
         Apply this mixin to any view or viewset to get multiple field filtering
-
         based on a `lookup_fields` attribute, instead of the default single field filtering.
-
         """
-
         def get_object(self):
-
-            queryset = self.get_queryset()             # Get the base queryset
-
-            queryset = self.filter_queryset(queryset)  # Apply any filter backends
-
+            queryset = self.get_queryset()             # 获取基本的queryset
+            queryset = self.filter_queryset(queryset)  # 应用任何过滤器后端
             filter = {}
-
             for field in self.lookup_fields:
-
                 if self.kwargs[field]: # Ignore empty fields.
-
                     filter[field] = self.kwargs[field]
-
-            return get_object_or_404(queryset, **filter)  # Lookup the object
+            return get_object_or_404(queryset, **filter)  # 查找对象
 
 然后，你可以在需要应用自定义行为时随时将此mixin类应用于视图或视图集。
 
 ```
 class RetrieveUserView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
-
     queryset = User.objects.all()
-
     serializer_class = UserSerializer
-
     lookup_fields = ('account', 'username')
 ```
 
@@ -381,17 +366,11 @@ class RetrieveUserView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
 
 ```
 class BaseRetrieveView(MultipleFieldLookupMixin,
-
                        generics.RetrieveAPIView):
-
     pass
 
-
-
 class BaseRetrieveUpdateDestroyView(MultipleFieldLookupMixin,
-
                                     generics.RetrieveUpdateDestroyAPIView):
-
     pass
 ```
 
