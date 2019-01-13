@@ -53,6 +53,7 @@ QQ群号：930578836
 * [Filtering](/api-guide/filtering_zh.md)
 * [Authentication](/api-guide/authentication_zh.md)
 * [Permissions](/api-guide/permissions_zh.md)
+* [Versioning](/api-guide/versioning_zh.md)
 
 ### 主题
 

@@ -40,7 +40,7 @@ pages:
     - 'Throttling': 'api-guide/throttling.md'
     - 'Filtering': 'api-guide/filtering_zh.md'
     - 'Pagination': 'api-guide/pagination.md'
-    - 'Versioning': 'api-guide/versioning.md'
+    - 'Versioning': 'api-guide/versioning_zh.md'
     - 'Content negotiation': 'api-guide/content-negotiation.md'
     - 'Metadata': 'api-guide/metadata.md'
     - 'Schemas': 'api-guide/schemas.md'
