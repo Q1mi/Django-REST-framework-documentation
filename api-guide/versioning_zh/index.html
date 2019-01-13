@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>Versioning - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/versioning/" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/versioning_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST, Versioning">
   <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
@@ -379,16 +379,16 @@
 
                   
                     <li>
-                      <a href="#versioning-with-rest-framework">Versioning with REST framework</a>
+                      <a href="#rest">使用REST框架进行版本控制</a>
                     </li>
                   
                     <li>
-                      <a href="#configuring-the-versioning-scheme">Configuring the versioning scheme</a>
+                      <a href="#_2">配置版本控制方案</a>
                     </li>
                   
                 
                   <li class="main">
-                    <a href="#api-reference">API Reference</a>
+                    <a href="#api_1">API参考</a>
                   </li>
 
                   
@@ -419,7 +419,7 @@
 
                   
                     <li>
-                      <a href="#example">Example</a>
+                      <a href="#_4">举个例子</a>
                     </li>
                   
                 
@@ -456,60 +456,60 @@
 
               <h1 id="versioning"><a class="toclink" href="#versioning">Versioning</a></h1>
 <blockquote>
-<p>Versioning an interface is just a "polite" way to kill deployed clients.</p>
+<p>对接口进行版本控制只是一种杀死已部署客户端的“礼貌”方式。</p>
 <p>&mdash; <a href="http://www.slideshare.net/evolve_conference/201308-fielding-evolve/31">Roy Fielding</a>.</p>
 </blockquote>
-<p>API versioning allows you to alter behavior between different clients. REST framework provides for a number of different versioning schemes.</p>
-<p>Versioning is determined by the incoming client request, and may either be based on the request URL, or based on the request headers.</p>
-<p>There are a number of valid approaches to approaching versioning. <a href="http://www.infoq.com/articles/roy-fielding-on-versioning">Non-versioned systems can also be appropriate</a>, particularly if you're engineering for very long-term systems with multiple clients outside of your control.</p>
-<h2 id="versioning-with-rest-framework"><a class="toclink" href="#versioning-with-rest-framework">Versioning with REST framework</a></h2>
-<p>When API versioning is enabled, the <code>request.version</code> attribute will contain a string that corresponds to the version requested in the incoming client request.</p>
-<p>By default, versioning is not enabled, and <code>request.version</code> will always return <code>None</code>.</p>
-<h4 id="varying-behavior-based-on-the-version"><a class="toclink" href="#varying-behavior-based-on-the-version">Varying behavior based on the version</a></h4>
-<p>How you vary the API behavior is up to you, but one example you might typically want is to switch to a different serialization style in a newer version. For example:</p>
+<p>API 版本控制允许你在不同的客户端之间更改行为. REST framework 提供了许多不同的版本控制方案。</p>
+<p>版本控制由传入的客户端请求决定，可以基于请求的URL，也可以基于请求头。</p>
+<p>有许多有效的方法可以进行版本控制。<a href="http://www.infoq.com/articles/roy-fielding-on-versioning">无版本控制的系统也可能是合适的</a>，特别是如果你正在为一个长期系统进行工程设计，而这个系统有多个超出你控制范围的客户端。</p>
+<h2 id="rest"><a class="toclink" href="#rest">使用REST框架进行版本控制</a></h2>
+<p>当启用API版本控制，<code>request.version</code> 属性将包含与传入客户端请求中请求的版本相对应的字符串。</p>
+<p>默认情况下，版本控制没有启用，<code>request.version</code> 将总是返回 <code>None</code>。</p>
+<h4 id="_1"><a class="toclink" href="#_1">根据版本改变行为</a></h4>
+<p>如何改变API的行为取决于你自己，但是一个你通常想要的例子是在新版本中切换到不同的序列化样式。例如:</p>
 <pre><code>def get_serializer_class(self):
     if self.request.version == 'v1':
         return AccountSerializerVersion1
     return AccountSerializer
 </code></pre>
-<h4 id="reversing-urls-for-versioned-apis"><a class="toclink" href="#reversing-urls-for-versioned-apis">Reversing URLs for versioned APIs</a></h4>
-<p>The <code>reverse</code> function included by REST framework ties in with the versioning scheme. You need to make sure to include the current <code>request</code> as a keyword argument, like so.</p>
+<h4 id="apiurl"><a class="toclink" href="#apiurl">反向解析版本化API的URL</a></h4>
+<p>REST framework 包含的 <code>reverse</code> 函数与版本控制方案相关联。你需要确保将当前 <code>request</code> 作为关键字参数传递进去，如下所示。</p>
 <pre><code>from rest_framework.reverse import reverse
 
 reverse('bookings-list', request=request)
 </code></pre>
-<p>The above function will apply any URL transformations appropriate to the request version. For example:</p>
+<p>上述函数将应用任何适用于请求版本的URL转换。例如:</p>
 <ul>
-<li>If <code>NamespacedVersioning</code> was being used, and the API version was 'v1', then the URL lookup used would be <code>'v1:bookings-list'</code>, which might resolve to a URL like <code>http://example.org/v1/bookings/</code>.</li>
-<li>If <code>QueryParameterVersioning</code> was being used, and the API version was <code>1.0</code>, then the returned URL might be something like <code>http://example.org/bookings/?version=1.0</code></li>
+<li>如果使用<code>NamespacedVersioning</code>，并且API的版本是'v1'，那么将会查找 <code>'v1:bookings-list'</code>，可能反向解析为类似<code>http://example.org/v1/bookings/</code> 这个URL。</li>
+<li>如果使用<code>QueryParameterVersioning</code> 并且API的版本是<code>1.0</code>，那么返回的URL可能就像这样<code>http://example.org/bookings/?version=1.0</code>。</li>
 </ul>
-<h4 id="versioned-apis-and-hyperlinked-serializers"><a class="toclink" href="#versioned-apis-and-hyperlinked-serializers">Versioned APIs and hyperlinked serializers</a></h4>
-<p>When using hyperlinked serialization styles together with a URL based versioning scheme make sure to include the request as context to the serializer.</p>
+<h4 id="api"><a class="toclink" href="#api">版本化 API 和超链接序列化器</a></h4>
+<p>当将超链接序列化样式与基于URL的版本控制方案一起使用时，请确保将请求作为上下文包含在序列化程序中。</p>
 <pre><code>def get(self, request):
     queryset = Booking.objects.all()
     serializer = BookingsSerializer(queryset, many=True, context={'request': request})
     return Response({'all_bookings': serializer.data})
 </code></pre>
-<p>Doing so will allow any returned URLs to include the appropriate versioning.</p>
-<h2 id="configuring-the-versioning-scheme"><a class="toclink" href="#configuring-the-versioning-scheme">Configuring the versioning scheme</a></h2>
-<p>The versioning scheme is defined by the <code>DEFAULT_VERSIONING_CLASS</code> settings key.</p>
+<p>这样做将会在任何返回的URL中包含适当的版本控制。</p>
+<h2 id="_2"><a class="toclink" href="#_2">配置版本控制方案</a></h2>
+<p>版本控制方案由settings中的<code>DEFAULT_VERSIONING_CLASS</code>为key来配置。</p>
 <pre><code>REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
 }
 </code></pre>
-<p>Unless it is explicitly set, the value for <code>DEFAULT_VERSIONING_CLASS</code> will be <code>None</code>. In this case the <code>request.version</code> attribute will always return <code>None</code>.</p>
-<p>You can also set the versioning scheme on an individual view. Typically you won't need to do this, as it makes more sense to have a single versioning scheme used globally. If you do need to do so, use the <code>versioning_class</code> attribute.</p>
+<p>除非显式设置，否则<code>DEFAULT_VERSIONING_CLASS</code>将会是<code>None</code>。在这种情况下<code>request.version</code>属性将总是返回<code>None</code>。</p>
+<p>还可以在单个视图上设置版本控制方案。通常不需要这样做，因为全局使用单一版本控制方案更有意义。如果确实需要这样做，请在视图类中使用<code>versioning_class</code>属性。</p>
 <pre><code>class ProfileList(APIView):
     versioning_class = versioning.QueryParameterVersioning
 </code></pre>
-<h4 id="other-versioning-settings"><a class="toclink" href="#other-versioning-settings">Other versioning settings</a></h4>
-<p>The following settings keys are also used to control versioning:</p>
+<h4 id="_3"><a class="toclink" href="#_3">其他版本控制设置</a></h4>
+<p>以下设置的key也用于控制版本控制:</p>
 <ul>
-<li><code>DEFAULT_VERSION</code>. The value that should be used for <code>request.version</code> when no versioning information is present. Defaults to <code>None</code>.</li>
-<li><code>ALLOWED_VERSIONS</code>. If set, this value will restrict the set of versions that may be returned by the versioning scheme, and will raise an error if the provided version is not in this set. Note that the value used for the <code>DEFAULT_VERSION</code> setting is always considered to be part of the <code>ALLOWED_VERSIONS</code> set (unless it is <code>None</code>). Defaults to <code>None</code>.</li>
-<li><code>VERSION_PARAM</code>. The string that should be used for any versioning parameters, such as in the media type or URL query parameters. Defaults to <code>'version'</code>.</li>
+<li><code>DEFAULT_VERSION</code>. 当版本控制信息不存在时用于设置<code>request.version</code>的默认值，默认设置为<code>None</code>。</li>
+<li><code>ALLOWED_VERSIONS</code>. 如果设置了此值将限制版本控制方案可能返回的版本集，如果客户端请求提供的版本不在此集中，则会引发错误。请注意，用于<code>DEFAULT_VERSION</code>的值应该总是在<code>ALLOWED_VERSIONS</code>设置的集合中（除非是<code>None</code>）。该配置默认是 <code>None</code>。</li>
+<li><code>VERSION_PARAM</code>. 一个应当用于任何版本控制系统参数的字符串，例如媒体类型或URL查询参数。默认值是<code>'version'</code>。</li>
 </ul>
-<p>You can also set your versioning class plus those three values on a per-view or a per-viewset basis by defining your own versioning scheme and using the <code>default_version</code>, <code>allowed_versions</code> and <code>version_param</code> class variables. For example, if you want to use <code>URLPathVersioning</code>:</p>
+<p>你还可以通过自定义版本控制方案并使用<code>default_version</code>，<code>allowed_versions</code>和<code>version_param</code>类变量，在每个视图或每个视图集的基础上设置版本类加上这三个值。例如，如果你想使用<code>URLPathVersioning</code>：</p>
 <pre><code>from rest_framework.versioning import URLPathVersioning
 from rest_framework.views import APIView
 
@@ -522,33 +522,33 @@ class ExampleView(APIVIew):
     versioning_class = ExampleVersioning
 </code></pre>
 <hr />
-<h1 id="api-reference"><a class="toclink" href="#api-reference">API Reference</a></h1>
+<h1 id="api_1"><a class="toclink" href="#api_1">API参考</a></h1>
 <h2 id="acceptheaderversioning"><a class="toclink" href="#acceptheaderversioning">AcceptHeaderVersioning</a></h2>
-<p>This scheme requires the client to specify the version as part of the media type in the <code>Accept</code> header. The version is included as a media type parameter, that supplements the main media type.</p>
-<p>Here's an example HTTP request using the accept header versioning style.</p>
+<p>此方案要求客户端在<code>Accept</code> header 中将版本指定为媒体类型的一部分。该版本作为媒体类型参数包含在内，它补充了主要媒体类型。</p>
+<p>下面是一个使用accept header版本化样式的HTTP请求示例。</p>
 <pre><code>GET /bookings/ HTTP/1.1
 Host: example.com
 Accept: application/json; version=1.0
 </code></pre>
-<p>In the example request above <code>request.version</code> attribute would return the string <code>'1.0'</code>.</p>
-<p>Versioning based on accept headers is <a href="http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http#i_want_my_api_to_be_versioned">generally considered</a> as <a href="https://github.com/interagent/http-api-design/blob/master/en/foundations/require-versioning-in-the-accepts-header.md">best practice</a>, although other styles may be suitable depending on your client requirements.</p>
+<p>在上面的示例请求中<code>request.version</code>属性将返回字符串<code>'1.0'</code>。
+基于 accept headers 的版本控制<a href="http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http#i_want_my_api_to_be_versioned">通常被认为</a>是<a href="https://github.com/interagent/http-api-design/blob/master/en/foundations/require-versioning-in-the-accepts-header.md">最佳实践</a>，尽管其他版本控制方式可能适合你的客户端需求。</p>
 <h4 id="using-accept-headers-with-vendor-media-types"><a class="toclink" href="#using-accept-headers-with-vendor-media-types">Using accept headers with vendor media types</a></h4>
-<p>Strictly speaking the <code>json</code> media type is not specified as <a href="http://tools.ietf.org/html/rfc4627#section-6">including additional parameters</a>. If you are building a well-specified public API you might consider using a <a href="http://en.wikipedia.org/wiki/Internet_media_type#Vendor_tree">vendor media type</a>. To do so, configure your renderers to use a JSON based renderer with a custom media type:</p>
+<p>严格地说<code>json</code>媒体类型未指定为<a href="http://tools.ietf.org/html/rfc4627#section-6">包含其他参数</a>。如果要构建明确指定的公共API，则可以考虑使用<a href="http://en.wikipedia.org/wiki/Internet_media_type#Vendor_tree">vendor media type</a>。为此，请将渲染器配置为使用自定义媒体类型的基于JSON的渲染器：</p>
 <pre><code>class BookingsAPIRenderer(JSONRenderer):
     media_type = 'application/vnd.megacorp.bookings+json'
 </code></pre>
-<p>Your client requests would now look like this:</p>
+<p>你的客户端请求现在会是这样的:</p>
 <pre><code>GET /bookings/ HTTP/1.1
 Host: example.com
 Accept: application/vnd.megacorp.bookings+json; version=1.0
 </code></pre>
 <h2 id="urlpathversioning"><a class="toclink" href="#urlpathversioning">URLPathVersioning</a></h2>
-<p>This scheme requires the client to specify the version as part of the URL path.</p>
+<p>此方案要求客户端将版本指定为URL路径的一部分。</p>
 <pre><code>GET /v1/bookings/ HTTP/1.1
 Host: example.com
 Accept: application/json
 </code></pre>
-<p>Your URL conf must include a pattern that matches the version with a <code>'version'</code> keyword argument, so that this information is available to the versioning scheme.</p>
+<p>你的URL conf中必须包含一个使用<code>'version'</code>关键字参数的匹配模式，，以便版本控制方案可以使用此版本信息。</p>
 <pre><code>urlpatterns = [
     url(
         r'^(?P&lt;version&gt;(v1|v2))/bookings/$',
@@ -563,13 +563,13 @@ Accept: application/json
 ]
 </code></pre>
 <h2 id="namespaceversioning"><a class="toclink" href="#namespaceversioning">NamespaceVersioning</a></h2>
-<p>To the client, this scheme is the same as <code>URLPathVersioning</code>. The only difference is how it is configured in your Django application, as it uses URL namespacing, instead of URL keyword arguments.</p>
+<p>对于客户端，此方案与<code>URLPathVersioning</code>相同。唯一的区别是，它是如何在 Django 应用程序中配置的，因为它使用URL conf中的命名空间而不是URL conf中的关键字参数。</p>
 <pre><code>GET /v1/something/ HTTP/1.1
 Host: example.com
 Accept: application/json
 </code></pre>
-<p>With this scheme the <code>request.version</code> attribute is determined based on the <code>namespace</code> that matches the incoming request path.</p>
-<p>In the following example we're giving a set of views two different possible URL prefixes, each under a different namespace:</p>
+<p>使用此方案，<code>request.version</code> 属性是根据与传入请求的路径匹配的 <code>namespace</code> 确定的。</p>
+<p>在下面的示例中，我们给一组视图提供了两个可能出现的不同URL前缀，每个前缀在不同的命名空间下:</p>
 <pre><code># bookings/urls.py
 urlpatterns = [
     url(r'^$', bookings_list, name='bookings-list'),
@@ -582,36 +582,37 @@ urlpatterns = [
     url(r'^v2/bookings/', include('bookings.urls', namespace='v2'))
 ]
 </code></pre>
-<p>Both <code>URLPathVersioning</code> and <code>NamespaceVersioning</code> are reasonable if you just need a simple versioning scheme. The <code>URLPathVersioning</code> approach might be better suitable for small ad-hoc projects, and the <code>NamespaceVersioning</code> is probably easier to manage for larger projects.</p>
+<p>如果你只需要一个简单的版本控制方案<code>URLPathVersioning</code>和<code>NamespaceVersioning</code>都是合适的。<code>URLPathVersioning</code> 这种方法可能更适合小型项目，对于更大的项目来说<code>NamespaceVersioning</code>可能更容易管理。</p>
 <h2 id="hostnameversioning"><a class="toclink" href="#hostnameversioning">HostNameVersioning</a></h2>
-<p>The hostname versioning scheme requires the client to specify the requested version as part of the hostname in the URL.</p>
-<p>For example the following is an HTTP request to the <code>http://v1.example.com/bookings/</code> URL:</p>
+<p>主机名版本控制方案要求客户端将请求的版本指定为URL中主机名的一部分。
+例如，以下是对<code>http://v1.example.com/bookings/</code>的HTTP请求：</p>
 <pre><code>GET /bookings/ HTTP/1.1
 Host: v1.example.com
 Accept: application/json
 </code></pre>
-<p>By default this implementation expects the hostname to match this simple regular expression:</p>
+<p>默认情况下，此实现期望主机名与以下简单正则表达式匹配:</p>
 <pre><code>^([a-zA-Z0-9]+)\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+$
 </code></pre>
-<p>Note that the first group is enclosed in brackets, indicating that this is the matched portion of the hostname.</p>
-<p>The <code>HostNameVersioning</code> scheme can be awkward to use in debug mode as you will typically be accessing a raw IP address such as <code>127.0.0.1</code>. There are various online services which you to <a href="https://reinteractive.net/posts/199-developing-and-testing-rails-applications-with-subdomains">access localhost with a custom subdomain</a> which you may find helpful in this case.</p>
-<p>Hostname based versioning can be particularly useful if you have requirements to route incoming requests to different servers based on the version, as you can configure different DNS records for different API versions.</p>
+<p>注意，第一组用括号括起来，表示这是主机名的匹配部分。</p>
+<p><code>HostNameVersioning</code>这种方案在调试模式下使用方案可能会很尴尬，因为你通常会访问原始IP地址，例如<code>127.0.0.1</code>。有各种在线教程，介绍<a href="https://reinteractive.net/posts/199-developing-and-testing-rails-applications-with-subdomains">使用自定义子域名访问本地主机</a>，这种情况下你可能会发现这很有帮助。</p>
+<p>如果你有基于版本将传入请求路由到不同服务器的需求，那么基于主机名的版本控制会特别有用，因为你可以为不同的 API 版本配置不同的 DNS 记录。</p>
 <h2 id="queryparameterversioning"><a class="toclink" href="#queryparameterversioning">QueryParameterVersioning</a></h2>
-<p>This scheme is a simple style that includes the version as a query parameter in the URL. For example:</p>
+<p>此方案是一种在 URL 中包含版本信息作为查询参数的简单方案。例如：
+This scheme is a simple style that includes the version as a query parameter in the URL. For example:</p>
 <pre><code>GET /something/?version=0.1 HTTP/1.1
 Host: example.com
 Accept: application/json
 </code></pre>
 <hr />
 <h1 id="custom-versioning-schemes"><a class="toclink" href="#custom-versioning-schemes">Custom versioning schemes</a></h1>
-<p>To implement a custom versioning scheme, subclass <code>BaseVersioning</code> and override the <code>.determine_version</code> method.</p>
-<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<p>The following example uses a custom <code>X-API-Version</code> header to determine the requested version.</p>
+<p>要实现自定义版本控制方案，请继承 <code>BaseVersioning</code> 并重写 <code>.determine_version</code> 方法。</p>
+<h2 id="_4"><a class="toclink" href="#_4">举个例子</a></h2>
+<p>下面的例子中使用一个自定义的 <code>X-API-Version</code> header来确定所请求的版本。</p>
 <pre><code>class XAPIVersionScheme(versioning.BaseVersioning):
     def determine_version(self, request, *args, **kwargs):
         return request.META.get('HTTP_X_API_VERSION', None)
 </code></pre>
-<p>If your versioning scheme is based on the request URL, you will also want to alter how versioned URLs are determined. In order to do so you should override the <code>.reverse()</code> method on the class. See the source code for examples.</p>
+<p>如果你的版本化方案基于请求URL，你还需要改变版本化URL的确定方式。为此，你还应该重写类中的<code>.reverse()</code>方法。有关示例，请参见源代码。</p>
             
 
           </div> <!--/span-->
