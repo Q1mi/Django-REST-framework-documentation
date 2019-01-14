@@ -6,7 +6,7 @@ source: authentication.py
 >
 > &mdash; Jacob Kaplan-Moss, ["REST worst practices"][cite]
 
-认证是将传入请求与一组识别凭据，例如请求来自的用户或与其签名的令牌相关联的机制。然后，[权限] 和 [限制] 可以使用这些凭据来确定是否应允许该请求。
+身份验证是将传入请求与一组标识凭据（例如请求来自的用户或其签名的令牌）相关联的机制。然后，[权限][permission] 和 [限制][throttling] 可以使用这些凭据来确定是否应允许该请求。
 
 REST framework 提供了一些开箱即用的身份验证方案，并且还允许你实现自定义方案。
 
@@ -359,7 +359,7 @@ HTTP签名（目前为[IETF草案][http-signature-ietf-draft]）提供了一种�
 [http403]: http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4
 [basicauth]: http://tools.ietf.org/html/rfc2617
 [oauth]: http://oauth.net/2/
-[permission]: permissions.md
+[permission]: permissions_zh.md
 [throttling]: throttling.md
 [csrf-ajax]: https://docs.djangoproject.com/en/stable/ref/csrf/#ajax
 [mod_wsgi_official]: http://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIPassAuthorization
