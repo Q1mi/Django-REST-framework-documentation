@@ -509,14 +509,14 @@
 <p>身份验证功能需要可插拔。</p>
 <p>&mdash; Jacob Kaplan-Moss, <a href="http://jacobian.org/writing/rest-worst-practices/">"REST worst practices"</a></p>
 </blockquote>
-<p>认证是将传入请求与一组识别凭据，例如请求来自的用户或与其签名的令牌相关联的机制。然后，[权限] 和 [限制] 可以使用这些凭据来确定是否应允许该请求。</p>
+<p>身份验证是将传入请求与一组标识凭据（例如请求来自的用户或其签名的令牌）相关联的机制。然后，<a href="../permissions_zh/">权限</a> 和 <a href="../throttling/">限制</a> 可以使用这些凭据来确定是否应允许该请求。</p>
 <p>REST framework 提供了一些开箱即用的身份验证方案，并且还允许你实现自定义方案。</p>
 <p>验证始终在视图的最开始进行，在执行权限和限制检查之前以及允许任何其他代码继续执行之前。</p>
 <p><code>request.user</code> 属性通常被设置为<code>contrib.auth</code> 包中 <code>User</code> 类的一个实例。</p>
 <p><code>request.auth</code> 属性用于任何其他身份验证信息，例如，它可以用于表示请求签名的身份验证令牌。</p>
 <hr />
 <p><strong>注意：</strong> 不要忘了<strong>认证本身不会允许或拒绝传入的请求</strong>，它只是简单识别请求携带的凭证。</p>
-<p>有关如何设置API权限策略的信息，请参阅 <a href="permissions.md">权限文档</a>。</p>
+<p>有关如何设置API权限策略的信息，请参阅 <a href="../permissions_zh/">权限文档</a>。</p>
 <hr />
 <h2 id="_2"><a class="toclink" href="#_2">如何确定身份验证</a></h2>
 <p>认证方案总是被定义为一个类的列表。REST framework 将尝试使用列表中的每个类进行身份验证，并使用成功完成验证的第一个类的返回值设置 <code>request.user</code> 和<code>request.auth</code>。</p>
