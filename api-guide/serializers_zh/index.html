@@ -973,7 +973,7 @@ serializer.data
         fields = ('id', 'account_name', 'users', 'created')
 </code></pre>
 <p>默认情况下，所有的模型的字段都将映射到序列化器上相应的字段。</p>
-<p>模型中任何关联字段比如外键都将映射到<code>PrimaryKeyRelatedField</code>字段。默认情况下不包括反向关联，除非像<a href="../relations/">serializer relations</a>文档中规定的那样显示包含。</p>
+<p>模型中任何关联字段比如外键都将映射到<code>PrimaryKeyRelatedField</code>字段。默认情况下不包括反向关联，除非像<a href="../relations/">serializer relations</a>文档中规定的那样显式包含。</p>
 <h4 id="modelserializer_1"><a class="toclink" href="#modelserializer_1">检查<code>ModelSerializer</code></a></h4>
 <p>序列化类生成有用的详细表示字符串，允许你全面检查其字段的状态。 这在使用<code>ModelSerializers</code>时特别有用，因为你想确定自动创建了哪些字段和验证器。</p>
 <p>要检查的话，打开Django shell,执行 <code>python manage.py shell</code>，然后导入序列化器类，实例化它，并打印对象的表示：</p>
@@ -986,7 +986,7 @@ AccountSerializer():
     owner = PrimaryKeyRelatedField(queryset=User.objects.all())
 </code></pre>
 <h2 id="_20"><a class="toclink" href="#_20">指定要包括的字段</a></h2>
-<p>如果你希望在模型序列化器中使用默认字段的一部分，你可以使用<code>fields</code>或<code>exclude</code>选项来执行此操作，就像使用<code>ModelForm</code>一样。强烈建议你使用<code>fields</code>属性显示的设置要序列化的字段。这样就不太可能因为你修改了模型而无意中暴露了数据。</p>
+<p>如果你希望在模型序列化器中使用默认字段的一部分，你可以使用<code>fields</code>或<code>exclude</code>选项来执行此操作，就像使用<code>ModelForm</code>一样。强烈建议你使用<code>fields</code>属性显式的设置要序列化的字段。这样就不太可能因为你修改了模型而无意中暴露了数据。</p>
 <p>例如：</p>
 <pre><code>class AccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -1031,7 +1031,7 @@ AccountSerializer():
 </code></pre>
 <p>额外的字段可以对应模型上任何属性或可调用的方法。</p>
 <h2 id="_23"><a class="toclink" href="#_23">指定只读字段</a></h2>
-<p>你可能希望将多个字段指定为只读，而不是显示的为每个字段添加<code>read_only=True</code>属性，这种情况你可以使用Meta的<code>read_only_fields</code>选项。</p>
+<p>你可能希望将多个字段指定为只读，而不是显式的为每个字段添加<code>read_only=True</code>属性，这种情况你可以使用Meta的<code>read_only_fields</code>选项。</p>
 <p>该选项应该是字段名称的列表或元祖，并像下面这样声明：</p>
 <pre><code>class AccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -1042,14 +1042,14 @@ AccountSerializer():
 <p>模型中已经设置<code>editable=False</code>的字段和默认就被设置为只读的<code>AutoField</code>字段都不需要添加到<code>read_only_fields</code>选项中。</p>
 <hr />
 <p><strong>注意</strong>: 有一种特殊情况，其中一个只读字段是模型级别<code>unique_together</code>约束的一部分。在这种情况下，序列化器类需要该字段才能验证约束，但也不能由用户编辑。</p>
-<p>处理此问题的正确方法是在序列化器上显示指定该字段，同时提供<code>read_only=True</code>和<code>default=…</code>关键字参数。</p>
+<p>处理此问题的正确方法是在序列化器上显式指定该字段，同时提供<code>read_only=True</code>和<code>default=…</code>关键字参数。</p>
 <p>这种情况的一个例子就是对于一个和其他标识符<code>unique_together</code>的当前认证的<code>User</code>是只读的。 在这种情况下你可以像下面这样声明user字段：</p>
 <pre><code>user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
 </code></pre>
 <p>有关<a href="../../api-guide/validators/#uniquetogethervalidator">UniqueTogetherValidator</a>和<a href="../../api-guide/validators/#currentuserdefault">CurrentUserDefault</a>类的详细文档，请查阅<a href="../../api-guide/validators/">验证器的文档</a>。</p>
 <hr />
 <h2 id="_24"><a class="toclink" href="#_24">附加关键字参数</a></h2>
-<p>还可以通过使用<code>extra_kwargs</code>选项快捷地在字段上指定任意附加的关键字参数。在<code>read_only_fields</code>这种情况下，你不需要在序列化器上显示的声明该字段。</p>
+<p>还可以通过使用<code>extra_kwargs</code>选项快捷地在字段上指定任意附加的关键字参数。在<code>read_only_fields</code>这种情况下，你不需要在序列化器上式的声明该字段。</p>
 <p>这个选项是一个将具体字段名称当作键值的字典。例如：</p>
 <pre><code>class CreateUserSerializer(serializers.ModelSerializer):
     class Meta:
