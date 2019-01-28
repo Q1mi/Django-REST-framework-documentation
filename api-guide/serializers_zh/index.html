@@ -1031,7 +1031,7 @@ AccountSerializer():
 </code></pre>
 <p>额外的字段可以对应模型上任何属性或可调用的方法。</p>
 <h2 id="_23"><a class="toclink" href="#_23">指定只读字段</a></h2>
-<p>你可能希望将多个字段指定为只读。而不是显示的唯美个字段添加<code>read_only=True</code>属性，这种情况你可以使用Meta的<code>read_only_fields</code>选项。</p>
+<p>你可能希望将多个字段指定为只读，而不是显示的为每个字段添加<code>read_only=True</code>属性，这种情况你可以使用Meta的<code>read_only_fields</code>选项。</p>
 <p>该选项应该是字段名称的列表或元祖，并像下面这样声明：</p>
 <pre><code>class AccountSerializer(serializers.ModelSerializer):
     class Meta:
