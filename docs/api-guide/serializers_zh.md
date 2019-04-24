@@ -194,7 +194,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 #### 对象级别的验证
 
-要执行需要访问多个字段的任何其他验证，请添加一个`.validate()`方法到你的`Serializer`子类中。这个方法采用字段值字典的单个参数，如果需要应该抛出一个 `ValidationError`异常，或者知识返回经过验证的值。例如：
+要执行需要访问多个字段的任何其他验证，请添加一个`.validate()`方法到你的`Serializer`子类中。这个方法采用字段值字典的单个参数，如果需要应该抛出一个 `ValidationError`异常，或者只是返回经过验证的值。例如：
 
     from rest_framework import serializers
 
