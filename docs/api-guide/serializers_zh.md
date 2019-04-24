@@ -439,7 +439,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 默认情况下，所有的模型的字段都将映射到序列化器上相应的字段。
 
-模型中任何关联字段比如外键都将映射到`PrimaryKeyRelatedField`字段。默认情况下不包括反向关联，除非像[serializer relations][relations]文档中规定的那样显示包含。
+模型中任何关联字段比如外键都将映射到`PrimaryKeyRelatedField`字段。默认情况下不包括反向关联，除非像[serializer relations][relations]文档中规定的那样显式包含。
 
 #### 检查`ModelSerializer`
 
@@ -457,7 +457,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 ## 指定要包括的字段
 
-如果你希望在模型序列化器中使用默认字段的一部分，你可以使用`fields`或`exclude`选项来执行此操作，就像使用`ModelForm`一样。强烈建议你使用`fields`属性显示的设置要序列化的字段。这样就不太可能因为你修改了模型而无意中暴露了数据。
+如果你希望在模型序列化器中使用默认字段的一部分，你可以使用`fields`或`exclude`选项来执行此操作，就像使用`ModelForm`一样。强烈建议你使用`fields`属性显式的设置要序列化的字段。这样就不太可能因为你修改了模型而无意中暴露了数据。
 
 例如：
 
@@ -519,7 +519,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 ## 指定只读字段
 
-你可能希望将多个字段指定为只读。而不是显示的唯美个字段添加`read_only=True`属性，这种情况你可以使用Meta的`read_only_fields`选项。
+你可能希望将多个字段指定为只读，而不是显式的为每个字段添加`read_only=True`属性，这种情况你可以使用Meta的`read_only_fields`选项。
 
 该选项应该是字段名称的列表或元祖，并像下面这样声明：
 
@@ -535,7 +535,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 **注意**: 有一种特殊情况，其中一个只读字段是模型级别`unique_together`约束的一部分。在这种情况下，序列化器类需要该字段才能验证约束，但也不能由用户编辑。
 
-处理此问题的正确方法是在序列化器上显示指定该字段，同时提供`read_only=True`和`default=…`关键字参数。
+处理此问题的正确方法是在序列化器上显式指定该字段，同时提供`read_only=True`和`default=…`关键字参数。
 
 这种情况的一个例子就是对于一个和其他标识符`unique_together`的当前认证的`User`是只读的。 在这种情况下你可以像下面这样声明user字段：
 
@@ -548,7 +548,7 @@ REST framework中的serializers与Django的`Form`和`ModelForm`类非常像。�
 
 ## 附加关键字参数
 
-还可以通过使用`extra_kwargs`选项快捷地在字段上指定任意附加的关键字参数。在`read_only_fields`这种情况下，你不需要在序列化器上显示的声明该字段。
+还可以通过使用`extra_kwargs`选项快捷地在字段上指定任意附加的关键字参数。在`read_only_fields`这种情况下，你不需要在序列化器上式的声明该字段。
 
 这个选项是一个将具体字段名称当作键值的字典。例如：
 
