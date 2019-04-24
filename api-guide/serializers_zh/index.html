@@ -774,7 +774,7 @@ class BlogPostSerializer(serializers.Serializer):
 <p><strong>注意：</strong> 如果你在序列化器中声明<code>&lt;field_name&gt;</code>的时候带有<code>required=False</code>参数，字段不被包含的时候这个验证步骤就不会执行。</p>
 <hr />
 <h4 id="_9"><a class="toclink" href="#_9">对象级别的验证</a></h4>
-<p>要执行需要访问多个字段的任何其他验证，请添加一个<code>.validate()</code>方法到你的<code>Serializer</code>子类中。这个方法采用字段值字典的单个参数，如果需要应该抛出一个 <code>ValidationError</code>异常，或者知识返回经过验证的值。例如：</p>
+<p>要执行需要访问多个字段的任何其他验证，请添加一个<code>.validate()</code>方法到你的<code>Serializer</code>子类中。这个方法采用字段值字典的单个参数，如果需要应该抛出一个 <code>ValidationError</code>异常，或者只是返回经过验证的值。例如：</p>
 <pre><code>from rest_framework import serializers
 
 class EventSerializer(serializers.Serializer):
