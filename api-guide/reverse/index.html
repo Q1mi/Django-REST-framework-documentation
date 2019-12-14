@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title></title>
+  <title>Returning URLs - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/reverse/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST">
-  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
+  <meta name="description" content="Django, API, REST, Returning URLs">
+  <meta name="author" content="Tom Christie">
 
   <!-- Le styles -->
   <link href="../../css/prettify.css" rel="stylesheet">
@@ -57,21 +57,284 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            下一页 <i class="icon-arrow-right icon-white"></i>
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../exceptions/">
+            Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            <i class="icon-arrow-left icon-white"></i> 上一页
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../format-suffixes/">
+            <i class="icon-arrow-left icon-white"></i> Previous
           </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <a class="brand" href="https://www.django-rest-framework.org/">Django REST framework</a>
           <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
             
           </div>
           <!--/.nav-collapse -->
@@ -110,21 +373,24 @@
                 
 
                 
+                  <li class="main">
+                    <a href="#returning-urls">Returning URLs</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#reverse">reverse</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#reverse_lazy">reverse_lazy</a>
+                    </li>
+                  
+                
 
                   <div class="promo">
                     <hr/>
-                    <!--<div id="sidebarInclude"></div>-->
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/zfb_qr.png?raw=true" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/wechat_qr.png?raw=true" alt="微信二维码">
-                      </div>
-                    </div>
+                    <div id="sidebarInclude">
                   </div>
               </ul>
 
@@ -135,49 +401,86 @@
             
               
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/r">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
                     <span class="label label-info">r</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/e">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
                     <span class="label label-info">e</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/v">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/v">
                     <span class="label label-info">v</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/e">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
                     <span class="label label-info">e</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/r">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
                     <span class="label label-info">r</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/s">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
                     <span class="label label-info">s</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/e">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
                     <span class="label label-info">e</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/.">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
                     <span class="label label-info">.</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/p">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
                     <span class="label label-info">p</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/y">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
                     <span class="label label-info">y</span>
                   </a>
                 
               
 
-              
+              <h1 id="returning-urls"><a class="toclink" href="#returning-urls">Returning URLs</a></h1>
+<blockquote>
+<p>The central feature that distinguishes the REST architectural style from other network-based styles is its emphasis on a uniform interface between components.</p>
+<p>&mdash; Roy Fielding, <a href="http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm#sec_5_1_5">Architectural Styles and the Design of Network-based Software Architectures</a></p>
+</blockquote>
+<p>As a rule, it's probably better practice to return absolute URIs from your Web APIs, such as <code>http://example.com/foobar</code>, rather than returning relative URIs, such as <code>/foobar</code>.</p>
+<p>The advantages of doing so are:</p>
+<ul>
+<li>It's more explicit.</li>
+<li>It leaves less work for your API clients.</li>
+<li>There's no ambiguity about the meaning of the string when it's found in representations such as JSON that do not have a native URI type.</li>
+<li>It makes it easy to do things like markup HTML representations with hyperlinks.</li>
+</ul>
+<p>REST framework provides two utility functions to make it more simple to return absolute URIs from your Web API.</p>
+<p>There's no requirement for you to use them, but if you do then the self-describing API will be able to automatically hyperlink its output for you, which makes browsing the API much easier.</p>
+<h2 id="reverse"><a class="toclink" href="#reverse">reverse</a></h2>
+<p><strong>Signature:</strong> <code>reverse(viewname, *args, **kwargs)</code></p>
+<p>Has the same behavior as <a href="https://docs.djangoproject.com/en/stable/topics/http/urls/#reverse"><code>django.urls.reverse</code></a>, except that it returns a fully qualified URL, using the request to determine the host and port.</p>
+<p>You should <strong>include the request as a keyword argument</strong> to the function, for example:</p>
+<pre><code>from rest_framework.reverse import reverse
+from rest_framework.views import APIView
+from django.utils.timezone import now
+
+class APIRootView(APIView):
+    def get(self, request):
+        year = now().year
+        data = {
+            ...
+            'year-summary-url': reverse('year-summary', args=[year], request=request)
+        }
+        return Response(data)
+</code></pre>
+<h2 id="reverse_lazy"><a class="toclink" href="#reverse_lazy">reverse_lazy</a></h2>
+<p><strong>Signature:</strong> <code>reverse_lazy(viewname, *args, **kwargs)</code></p>
+<p>Has the same behavior as <a href="https://docs.djangoproject.com/en/stable/topics/http/urls/#reverse-lazy"><code>django.urls.reverse_lazy</code></a>, except that it returns a fully qualified URL, using the request to determine the host and port.</p>
+<p>As with the <code>reverse</code> function, you should <strong>include the request as a keyword argument</strong> to the function, for example:</p>
+<pre><code>api_root = reverse_lazy('api-root', request=request)
+</code></pre>
             
 
           </div> <!--/span-->
@@ -195,13 +498,16 @@
   <!-- Le javascript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
   <script src="../../js/jquery-1.8.1-min.js"></script>
   <script src="../../js/prettify-1.0.js"></script>
   <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
-  <script>var base_url = '../..';</script>
-  <script src="../../mkdocs/js/require.js"></script>
   <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
 
   <script>
     var shiftWindow = function() {

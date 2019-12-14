@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title></title>
+  <title>Permissions - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/permissions_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST">
-  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
+  <meta name="description" content="Django, API, REST, Permissions">
+  <meta name="author" content="Tom Christie">
 
   <!-- Le styles -->
   <link href="../../css/prettify.css" rel="stylesheet">
@@ -57,21 +57,284 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            下一页 <i class="icon-arrow-right icon-white"></i>
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../throttling/">
+            Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            <i class="icon-arrow-left icon-white"></i> 上一页
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../authentication_zh/">
+            <i class="icon-arrow-left icon-white"></i> Previous
           </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <a class="brand" href="https://www.django-rest-framework.org/">Django REST framework</a>
           <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
             
           </div>
           <!--/.nav-collapse -->
@@ -110,21 +373,98 @@
                 
 
                 
+                  <li class="main">
+                    <a href="#_1">权限</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_2">如何确定权限</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_3">对象级权限</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_5">设置权限策略</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#api">API 参考</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#allowany">AllowAny</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#isauthenticated">IsAuthenticated</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#isadminuser">IsAdminUser</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#isauthenticatedorreadonly">IsAuthenticatedOrReadOnly</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#djangomodelpermissions">DjangoModelPermissions</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#djangomodelpermissionsoranonreadonly">DjangoModelPermissionsOrAnonReadOnly</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#djangoobjectpermissions">DjangoObjectPermissions</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_6">自定义权限</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_7">示例</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_8">第三方包</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#composed-permissions">Composed Permissions</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#rest-condition">REST Condition</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#dry-rest-permissions">DRY Rest Permissions</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#django-rest-framework-roles">Django Rest Framework Roles</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#django-rest-framework-api-key">Django Rest Framework API Key</a>
+                    </li>
+                  
+                
 
                   <div class="promo">
                     <hr/>
-                    <!--<div id="sidebarInclude"></div>-->
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/zfb_qr.png?raw=true" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/wechat_qr.png?raw=true" alt="微信二维码">
-                      </div>
-                    </div>
+                    <div id="sidebarInclude">
                   </div>
               </ul>
 
@@ -135,65 +475,254 @@
             
               
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/p">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
                     <span class="label label-info">p</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/e">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
                     <span class="label label-info">e</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/r">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
                     <span class="label label-info">r</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/m">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/m">
                     <span class="label label-info">m</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/i">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
                     <span class="label label-info">i</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/s">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
                     <span class="label label-info">s</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/s">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
                     <span class="label label-info">s</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/i">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
                     <span class="label label-info">i</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/o">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/o">
                     <span class="label label-info">o</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/n">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
                     <span class="label label-info">n</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/s">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
                     <span class="label label-info">s</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/.">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
                     <span class="label label-info">.</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/p">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
                     <span class="label label-info">p</span>
                   </a>
                 
-                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/y">
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
                     <span class="label label-info">y</span>
                   </a>
                 
               
 
-              
+              <h1 id="_1"><a class="toclink" href="#_1">权限</a></h1>
+<blockquote>
+<p>身份验证或身份识别本身通常不足以获取信息或代码的访问权限。因此，请求访问的实体必须具有授权。</p>
+<p>&mdash; <a href="https://developer.apple.com/library/mac/#documentation/security/Conceptual/AuthenticationAndAuthorizationGuide/Authorization/Authorization.html">Apple Developer Documentation</a></p>
+</blockquote>
+<p>连同<a href="../authentication_zh/">认证</a>和<a href="../throttling/">限制</a>，权限决定是否应该接收请求或拒绝访问。</p>
+<p>权限检查始终在视图的开始处运行，在允许继续执行任何其他代码之前运行。
+权限检查通常会使用<code>request.user</code>和<code>request.auth</code>属性中的身份验证信息来确定是否允许传入请求。</p>
+<p>权限用于授予或拒绝将不同类别的用户访问到API的不同部分。</p>
+<p>最简单的权限是允许访问任何经过身份验证的用户，并拒绝访问任何未经身份验证的用户。这对应于REST框架中的<code>IsAuthenticated</code>类。</p>
+<p>稍微严格的权限控制风格是对经过身份验证的用户的允许完全访问，但对未经身份验证的用户的允许只读访问。这对应于REST框架中的<code>IsAuthenticatedOrReadOnly</code>类。</p>
+<h2 id="_2"><a class="toclink" href="#_2">如何确定权限</a></h2>
+<p>REST框架中的权限始终被定义为一个权限类的列表。</p>
+<p>在运行视图的主体之前，检查列表中的每个权限。
+如果任何权限检查失败，会抛出一个<code>exceptions.PermissionDenied</code>或<code>exceptions.NotAuthenticated</code>异常，并且视图的主体将不会运行。</p>
+<p>当权限检查失败时，将返回"403 Forbidden"或"401 Unauthorized"响应，具体根据以下规则：</p>
+<ul>
+<li>请求已成功通过身份验证，但权限被拒绝。 <em>&mdash; 将返回403 Forbidden响应。</em></li>
+<li>请求未成功认证，最高优先级的认证类<em>不使用</em><code>WWW-Authenticate</code>标头。<em>&mdash; 将返回403 Forbidden响应。</em></li>
+<li>请求未成功认证，最高优先级的认证类<em>使用</em><code>WWW-Authenticate</code>标头。<em>&mdash; 将返回HTTP 401未经授权的响应，并附带适当的<code>WWW-Authenticate</code>标头。</em></li>
+</ul>
+<h2 id="_3"><a class="toclink" href="#_3">对象级权限</a></h2>
+<p>REST框架权限还支持对象级的许可。对象级权限用于确定是否允许用户操作特定对象（通常是模型实例）。</p>
+<p>当调用<code>.get_object()</code>时，由REST框架的通用视图运行对象级权限检测。
+与视图级别权限一样，如果不允许用户操作给定对象，则会抛出<code>exceptions.PermissionDenied</code>异常。</p>
+<p>如果你正在编写自己的视图并希望强制执行对象级权限检测，或者你想在通用视图中重写<code>get_object</code>方法，那么你需要在检索对象的时候显式调用视图上的<code>.check_object_permissions(request, obj)</code>方法。</p>
+<p>这将抛出<code>PermissionDenied</code>或<code>NotAuthenticated</code>异常，或者如果视图具有适当的权限，则返回。</p>
+<p>例如：</p>
+<pre><code>def get_object(self):
+    obj = get_object_or_404(self.get_queryset())
+    self.check_object_permissions(self.request, obj)
+    return obj
+</code></pre>
+<h4 id="_4"><a class="toclink" href="#_4">对象级别的权限限制</a></h4>
+<p>出于性能原因，通用视图在返回对象列表时不会自动将对象级权限应用于查询集中的每个实例。</p>
+<p>通常，当你使用对象级权限时，你还需要适当地<a href="../filtering_zh/">过滤查询集</a>过滤查询集，以确保用户只能看到他们被允许查看的实例。</p>
+<h2 id="_5"><a class="toclink" href="#_5">设置权限策略</a></h2>
+<p>默认权限策略可以使用<code>DEFAULT_PERMISSION_CLASSES</code>设置进行全局设置。比如：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+</code></pre>
+<p>如果未指定，则此设置默认为允许无限制访问：</p>
+<pre><code>'DEFAULT_PERMISSION_CLASSES': (
+   'rest_framework.permissions.AllowAny',
+)
+</code></pre>
+<p>你还可以使用基于<code>APIView</code>类的视图在每个视图或每个视图集的基础上设置身份验证策略。</p>
+<pre><code>from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class ExampleView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request, format=None):
+        content = {
+            'status': 'request was permitted'
+        }
+        return Response(content)
+</code></pre>
+<p>或者你可以使用<code>@api_view</code>装饰器装饰基于函数的视图。</p>
+<pre><code>from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated, ))
+def example_view(request, format=None):
+    content = {
+        'status': 'request was permitted'
+    }
+    return Response(content)
+</code></pre>
+<p><strong>注意：</strong> 当你通过类属性或装饰器设置新的权限类时，你要通知视图忽略__settings.py__文件中设置的默认列表。</p>
+<hr />
+<h1 id="api"><a class="toclink" href="#api">API 参考</a></h1>
+<h2 id="allowany"><a class="toclink" href="#allowany">AllowAny</a></h2>
+<p><code>AllowAny</code>权限类将允许不受限制的访问，而<strong>不管该请求是否已通过身份验证或未经身份验证</strong>。</p>
+<p>此权限不是严格要求的，因为你可以通过使用空列表或元组进行权限设置来获得相同的结果，但你可能会发现指定此类很有用，因为它使意图更明确。</p>
+<h2 id="isauthenticated"><a class="toclink" href="#isauthenticated">IsAuthenticated</a></h2>
+<p><code>IsAuthenticated</code> 权限类将拒绝任何未经身份验证的用户的权限，并允许其他权限。 如果你希望你的API仅供注册用户访问，则此权限适用。</p>
+<p>如果你希望你的API允许匿名用户读取权限，并且只允许对已通过身份验证的用户进行写入权限，则此权限是适合的。</p>
+<h2 id="isadminuser"><a class="toclink" href="#isadminuser">IsAdminUser</a></h2>
+<p>除非<code>user.is_staff</code>为<code>True</code>，否则<code>IsAdminUser</code>权限类将拒绝任何用户的权限，在这种情况下将允许权限。</p>
+<p>如果你希望你的API只能被部分受信任的管理员访问，则此权限是适合的。</p>
+<h2 id="isauthenticatedorreadonly"><a class="toclink" href="#isauthenticatedorreadonly">IsAuthenticatedOrReadOnly</a></h2>
+<p><code>IsAuthenticatedOrReadOnly</code> 将允许经过身份验证的用户执行任何请求。只有当请求方法是“安全”方法（<code>GET</code>, <code>HEAD</code> 或 <code>OPTIONS</code>）之一时，才允许未经授权的用户请求。</p>
+<p>如果你希望你的API允许匿名用户读取权限，并且只允许对已通过身份验证的用户进行写入权限，则此权限是适合的。</p>
+<h2 id="djangomodelpermissions"><a class="toclink" href="#djangomodelpermissions">DjangoModelPermissions</a></h2>
+<p>此权限类与Django的标准<code>django.contrib.auth</code><a href="https://docs.djangoproject.com/en/stable/topics/auth/customizing/#custom-permissions">model权限</a>相关联。此权限只能应用于具有<code>.queryset</code>属性集的视图。只有在用户<em>通过身份验证</em>并分配了<em>相关模型权限</em>的情况下，才会被授予权限。</p>
+<ul>
+<li><code>POST</code> 请求要求用户对模型具有<code>添加</code>权限。</li>
+<li><code>PUT</code> 和 <code>PATCH</code> 请求要求用户对模型具有<code>更改</code>权限。</li>
+<li><code>DELETE</code> 请求想要求用户对模型具有<code>删除</code>权限。</li>
+</ul>
+<p>默认行为也可以被重写以支持自定义模型权限。例如，你可能希望为<code>GET</code>请求包含一个<code>查看</code>模型的权限。</p>
+<p>要使用自定义模型权限，请覆盖<code>DjangoModelPermissions</code>并设置<code>.perms_map</code>属性。有关详细信息，请参阅源代码。</p>
+<h4 id="queryset"><a class="toclink" href="#queryset">使用不包含<code>queryset</code>属性的视图。</a></h4>
+<p>如果你在重写了<code>get_queryset()</code>方法的视图中使用此权限，这个视图上可能没有<code>queryset</code>属性。在这种情况下，我们建议还使用保护性的查询集来标记视图，以便此类可以确定所需的权限。比如：</p>
+<pre><code>queryset = User.objects.none()  # DjangoModelPermissions需要一个queryset
+</code></pre>
+<h2 id="djangomodelpermissionsoranonreadonly"><a class="toclink" href="#djangomodelpermissionsoranonreadonly">DjangoModelPermissionsOrAnonReadOnly</a></h2>
+<p>与<code>DjangoModelPermissions</code>类似，但也允许未经身份验证的用户具有对API的只读访问权限。</p>
+<h2 id="djangoobjectpermissions"><a class="toclink" href="#djangoobjectpermissions">DjangoObjectPermissions</a></h2>
+<p>此权限类与Django的标准<a href="https://docs.djangoproject.com/en/stable/topics/auth/customizing/#handling-object-permissions">对象权限框架</a>相关联，该框架允许模型上的每个对象的权限。为了使用此权限类，你还需要添加支持对象级权限的权限后端，例如<a href="https://github.com/lukaszb/django-guardian">django-guardian</a>。</p>
+<p>与<code>DjangoModelPermissions</code>一样，此权限只能应用于具有<code>.queryset</code>属性或<code>.get_queryset()</code>方法的视图。只有在用户通过身份验证并且具有<em>相关的每个对象权限</em>和相关的<em>模型权限</em>后，才会被授予权限。</p>
+<ul>
+<li><code>POST</code> 请求要求用户对模型实例具有<code>添加</code>权限。</li>
+<li><code>PUT</code> 和<code>PATCH</code> 请求要求用户对模型示例具有<code>更改</code>权限。</li>
+<li><code>DELETE</code> 请求要求用户对模型示例具有<code>删除</code>权限。</li>
+</ul>
+<p>请注意，<code>DjangoObjectPermissions</code> <strong>不需要</strong> <code>django-guardian</code>软件包，并且应当同样支持其他对象级别的后端。</p>
+<p>与<code>DjangoModelPermissions</code>一样，你可以通过重写<code>DjangoObjectPermissions</code>并设置<code>.perms_map</code>属性来使用自定义模型权限。有关详细信息，请参阅源代码。</p>
+<hr />
+<p><strong>注意</strong>：如果你需要<code>GET</code>,<code>HEAD</code>和<code>OPTIONS</code>请求的对象级<code>视图</code>权限，那么你还需要考虑添加<code>DjangoObjectPermissionsFilter</code>类，以确保相应API只返回包含用户具有适当视图权限的对象的结果。</p>
+<hr />
+<hr />
+<h1 id="_6"><a class="toclink" href="#_6">自定义权限</a></h1>
+<p>要实现自定义权限，请重写<code>BasePermission</code>并实现以下方法中的一个或两个</p>
+<ul>
+<li><code>.has_permission(self, request, view)</code></li>
+<li><code>.has_object_permission(self, request, view, obj)</code></li>
+</ul>
+<p>如果请求被授予访问权限，方法应该返回<code>True</code>，否则返回<code>False</code>。</p>
+<p>如果你需要测试请求是读取操作还是写入操作，则应该根据常量<code>SAFE_METHODS</code>检查请求方法，<code>SAFE_METHODS</code>是包含<code>'GET'</code>, <code>'OPTIONS'</code>和<code>'HEAD'</code>的元组。例如：</p>
+<pre><code>if request.method in permissions.SAFE_METHODS:
+    # 检查只读请求的权限
+else:
+    # 检查读取请求的权限
+</code></pre>
+<hr />
+<p><strong>注意</strong>: 仅当视图级<code>has_permission</code>检查已通过时，才会调用实例级<code>has_object_permission</code>方法。另请注意，为了运行实例级别检查，视图代码应显式调用<code>.check_object_permissions(request, obj)</code>。如果你使用的是通用视图，那么默认会为你处理。</p>
+<hr />
+<p>如果校验失败，自定义权限将引发<code>PermissionDenied</code>异常。要更改与异常关联的错误消息，请直接在自定义权限上实现消息属性。否则将使用<code>PermissionDenied</code>的<code>default_detail</code>属性。</p>
+<pre><code>from rest_framework import permissions
+
+class CustomerAccessPermission(permissions.BasePermission):
+    message = 'Adding customers not allowed.'
+
+    def has_permission(self, request, view):
+         ...
+</code></pre>
+<h2 id="_7"><a class="toclink" href="#_7">示例</a></h2>
+<p>以下是根据黑名单检查传入请求的IP地址的权限类的示例，如果IP已被列入黑名单，则拒绝该请求。</p>
+<pre><code>from rest_framework import permissions
+
+class BlacklistPermission(permissions.BasePermission):
+    """
+    对列入黑名单的IP进行全局权限检查。
+    """
+
+    def has_permission(self, request, view):
+        ip_addr = request.META['REMOTE_ADDR']
+        blacklisted = Blacklist.objects.filter(ip_addr=ip_addr).exists()
+        return not blacklisted
+</code></pre>
+<p>除了针对所有传入请求运行的全局权限外，还可以创建对象级权限，这些权限仅针对影响特定对象实例的操作运行。例如：</p>
+<pre><code>class IsOwnerOrReadOnly(permissions.BasePermission):
+    """
+    对象级权限仅允许对象的所有者对其进行编辑
+    假设模型实例具有`owner`属性。
+    """
+
+    def has_object_permission(self, request, view, obj):
+        # 任何请求都允许读取权限，
+        # 所以我们总是允许GET，HEAD或OPTIONS 请求.
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        # 示例必须要有一个名为`owner`的属性
+        return obj.owner == request.user
+</code></pre>
+<p>请注意，通用视图将检查适当的对象级权限，但如果你正在编写自己的自定义视图，则需要确保检查自己的对象级权限检查。你可以通过在获得对象实例后从视图中调用<code>self.check_object_permission(request，obj)</code>来执行此操作.如果任何对象级权限检查失败，此调用将引发适当的<code>APIException</code>，否则将简单地返回。</p>
+<p>另请注意，通用视图仅检查检索单个模型实例的视图的对象级权限。如果你需要列表视图的对象级过滤，则需要单独过滤查询集。有关详细信息，请参阅<a href="../filtering_zh/">filtering文档</a>过滤文档。</p>
+<hr />
+<h1 id="_8"><a class="toclink" href="#_8">第三方包</a></h1>
+<p>以下第三方包都可以使用。</p>
+<h2 id="composed-permissions"><a class="toclink" href="#composed-permissions">Composed Permissions</a></h2>
+<p><a href="https://github.com/niwibe/djangorestframework-composed-permissions">Composed Permissions</a>提供了一种简单的方法，使用小的可重用组件来定义复杂和多深度（使用逻辑运算符）权限对象。</p>
+<h2 id="rest-condition"><a class="toclink" href="#rest-condition">REST Condition</a></h2>
+<p><a href="https://github.com/caxap/rest_condition">REST Condition</a>包是用于以简单方便的方式构建复杂权限的另一个扩展。该扩展允许你将权限与逻辑运算符组合在一起。</p>
+<h2 id="dry-rest-permissions"><a class="toclink" href="#dry-rest-permissions">DRY Rest Permissions</a></h2>
+<p><a href="https://github.com/Helioscene/dry-rest-permissions">DRY Rest Permissions</a>包提供了为单个默认和自定义操作定义不同权限的功能。此包适用于具有从应用程序数据模型中定义的关系派生的权限的应用程序。它还支持通过API的序列化程序返回到客户端应用程序的权限检查。此外，它还支持向默认和自定义列表操作添加权限，以限制他们为每个用户检索的数据。</p>
+<h2 id="django-rest-framework-roles"><a class="toclink" href="#django-rest-framework-roles">Django Rest Framework Roles</a></h2>
+<p><a href="https://github.com/computer-lab/django-rest-framework-roles">Django Rest Framework Roles</a>包使你可以更轻松地通过多种类型的用户对API进行参数化。</p>
+<h2 id="django-rest-framework-api-key"><a class="toclink" href="#django-rest-framework-api-key">Django Rest Framework API Key</a></h2>
+<p><a href="https://github.com/manosim/django-rest-framework-api-key">Django Rest Framework API Key</a>包允许你确保向服务器发出的每个请求都需要一个API密钥标头。您可以从django管理界面生成一个。</p>
             
 
           </div> <!--/span-->
@@ -211,13 +740,16 @@
   <!-- Le javascript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
   <script src="../../js/jquery-1.8.1-min.js"></script>
   <script src="../../js/prettify-1.0.js"></script>
   <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
-  <script>var base_url = '../..';</script>
-  <script src="../../mkdocs/js/require.js"></script>
   <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
 
   <script>
     var shiftWindow = function() {

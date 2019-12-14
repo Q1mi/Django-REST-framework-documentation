@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title></title>
+  <title>Tutorial 3: Class-based Views - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/tutorial/3-class-based-views/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST">
-  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
+  <meta name="description" content="Django, API, REST, Tutorial 3: Class-based Views">
+  <meta name="author" content="Tom Christie">
 
   <!-- Le styles -->
   <link href="../../css/prettify.css" rel="stylesheet">
@@ -57,21 +57,284 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            下一页 <i class="icon-arrow-right icon-white"></i>
-          </a>
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
           <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            <i class="icon-arrow-left icon-white"></i> 上一页
+            Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <a class="brand" href="https://www.django-rest-framework.org/">Django REST framework</a>
           <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../api-guide/requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
             
           </div>
           <!--/.nav-collapse -->
@@ -110,21 +373,28 @@
                 
 
                 
+                  <li class="main">
+                    <a href="#tutorial-3-class-based-views">Tutorial 3: Class-based Views</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#rewriting-our-api-using-class-based-views">Rewriting our API using class-based views</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#using-mixins">Using mixins</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#using-generic-class-based-views">Using generic class-based views</a>
+                    </li>
+                  
+                
 
                   <div class="promo">
                     <hr/>
-                    <!--<div id="sidebarInclude"></div>-->
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/zfb_qr.png?raw=true" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/wechat_qr.png?raw=true" alt="微信二维码">
-                      </div>
-                    </div>
+                    <div id="sidebarInclude">
                   </div>
               </ul>
 
@@ -135,7 +405,135 @@
             
               
 
-              
+              <h1 id="tutorial-3-class-based-views"><a class="toclink" href="#tutorial-3-class-based-views">Tutorial 3: Class-based Views</a></h1>
+<p>We can also write our API views using class-based views, rather than function based views.  As we'll see this is a powerful pattern that allows us to reuse common functionality, and helps us keep our code <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY</a>.</p>
+<h2 id="rewriting-our-api-using-class-based-views"><a class="toclink" href="#rewriting-our-api-using-class-based-views">Rewriting our API using class-based views</a></h2>
+<p>We'll start by rewriting the root view as a class-based view.  All this involves is a little bit of refactoring of <code>views.py</code>.</p>
+<pre><code>from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+from django.http import Http404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+
+class SnippetList(APIView):
+    """
+    List all snippets, or create a new snippet.
+    """
+    def get(self, request, format=None):
+        snippets = Snippet.objects.all()
+        serializer = SnippetSerializer(snippets, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = SnippetSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+</code></pre>
+<p>So far, so good.  It looks pretty similar to the previous case, but we've got better separation between the different HTTP methods.  We'll also need to update the instance view in <code>views.py</code>.</p>
+<pre><code>class SnippetDetail(APIView):
+    """
+    Retrieve, update or delete a snippet instance.
+    """
+    def get_object(self, pk):
+        try:
+            return Snippet.objects.get(pk=pk)
+        except Snippet.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = SnippetSerializer(snippet)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = SnippetSerializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        snippet.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+</code></pre>
+<p>That's looking good.  Again, it's still pretty similar to the function based view right now.</p>
+<p>We'll also need to refactor our <code>urls.py</code> slightly now that we're using class-based views.</p>
+<pre><code>from django.conf.urls import url
+from rest_framework.urlpatterns import format_suffix_patterns
+from snippets import views
+
+urlpatterns = [
+    url(r'^snippets/$', views.SnippetList.as_view()),
+    url(r'^snippets/(?P&lt;pk&gt;[0-9]+)/$', views.SnippetDetail.as_view()),
+]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
+</code></pre>
+<p>Okay, we're done.  If you run the development server everything should be working just as before.</p>
+<h2 id="using-mixins"><a class="toclink" href="#using-mixins">Using mixins</a></h2>
+<p>One of the big wins of using class-based views is that it allows us to easily compose reusable bits of behaviour.</p>
+<p>The create/retrieve/update/delete operations that we've been using so far are going to be pretty similar for any model-backed API views we create.  Those bits of common behaviour are implemented in REST framework's mixin classes.</p>
+<p>Let's take a look at how we can compose the views by using the mixin classes.  Here's our <code>views.py</code> module again.</p>
+<pre><code>from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+from rest_framework import mixins
+from rest_framework import generics
+
+class SnippetList(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+</code></pre>
+<p>We'll take a moment to examine exactly what's happening here.  We're building our view using <code>GenericAPIView</code>, and adding in <code>ListModelMixin</code> and <code>CreateModelMixin</code>.</p>
+<p>The base class provides the core functionality, and the mixin classes provide the <code>.list()</code> and <code>.create()</code> actions.  We're then explicitly binding the <code>get</code> and <code>post</code> methods to the appropriate actions.  Simple enough stuff so far.</p>
+<pre><code>class SnippetDetail(mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin,
+                    generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+</code></pre>
+<p>Pretty similar.  Again we're using the <code>GenericAPIView</code> class to provide the core functionality, and adding in mixins to provide the <code>.retrieve()</code>, <code>.update()</code> and <code>.destroy()</code> actions.</p>
+<h2 id="using-generic-class-based-views"><a class="toclink" href="#using-generic-class-based-views">Using generic class-based views</a></h2>
+<p>Using the mixin classes we've rewritten the views to use slightly less code than before, but we can go one step further.  REST framework provides a set of already mixed-in generic views that we can use to trim down our <code>views.py</code> module even more.</p>
+<pre><code>from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+from rest_framework import generics
+
+
+class SnippetList(generics.ListCreateAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
+
+
+class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Snippet.objects.all()
+    serializer_class = SnippetSerializer
+</code></pre>
+<p>Wow, that's pretty concise.  We've gotten a huge amount for free, and our code looks like good, clean, idiomatic Django.</p>
+<p>Next we'll move onto <a href="../4-authentication-and-permissions/">part 4 of the tutorial</a>, where we'll take a look at how we can deal with authentication and permissions for our API.</p>
             
 
           </div> <!--/span-->
@@ -153,13 +551,16 @@
   <!-- Le javascript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
   <script src="../../js/jquery-1.8.1-min.js"></script>
   <script src="../../js/prettify-1.0.js"></script>
   <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
-  <script>var base_url = '../..';</script>
-  <script src="../../mkdocs/js/require.js"></script>
   <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
 
   <script>
     var shiftWindow = function() {

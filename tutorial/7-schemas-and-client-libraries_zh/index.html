@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title></title>
+  <title>7 - Schemas and client libraries - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/tutorial/7-schemas-and-client-libraries_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST">
-  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
+  <meta name="description" content="Django, API, REST, 7 - Schemas and client libraries">
+  <meta name="author" content="Tom Christie">
 
   <!-- Le styles -->
   <link href="../../css/prettify.css" rel="stylesheet">
@@ -57,21 +57,284 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            下一页 <i class="icon-arrow-right icon-white"></i>
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../../api-guide/requests_zh/">
+            Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            <i class="icon-arrow-left icon-white"></i> 上一页
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../6-viewsets-and-routers_zh/">
+            <i class="icon-arrow-left icon-white"></i> Previous
           </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <a class="brand" href="https://www.django-rest-framework.org/">Django REST framework</a>
           <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../api-guide/requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
             
           </div>
           <!--/.nav-collapse -->
@@ -110,21 +373,40 @@
                 
 
                 
+                  <li class="main">
+                    <a href="#tutorial-7">Tutorial 7: 概要和客户端库</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#core-api">Core API</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_1">添加概要</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_2">使用命令行客户端</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_3">验证我们的客户端</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_4">回顾我们所做的</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_5">越来越成功</a>
+                    </li>
+                  
+                
 
                   <div class="promo">
                     <hr/>
-                    <!--<div id="sidebarInclude"></div>-->
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/zfb_qr.png?raw=true" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="https://github.com/Q1mi/image/blob/master/qr/wechat_qr.png?raw=true" alt="微信二维码">
-                      </div>
-                    </div>
+                    <div id="sidebarInclude">
                   </div>
               </ul>
 
@@ -135,7 +417,160 @@
             
               
 
-              
+              <h1 id="tutorial-7"><a class="toclink" href="#tutorial-7">Tutorial 7: 概要和客户端库</a></h1>
+<p>概要是一种机器可读文档，用于描述可用的API路径，其URLS以及它们支持的操作。</p>
+<p>概要可以是自动生成文档的有用工具，也可以用于驱动可以与API进行交互的动态客户端库。</p>
+<h2 id="core-api"><a class="toclink" href="#core-api">Core API</a></h2>
+<p>为了提供概要支持REST框架使用<a href="http://www.coreapi.org">Core API</a>。</p>
+<p>Core API是用于描述API的文档规范。它用于提供可用路径的内部表示形式和API公开的可能的交互。它可以用于服务器端或客户端。</p>
+<p>当使用服务器端时，coreAPI允许API支持呈现范围广泛的概要或超媒体格式。</p>
+<p>当使用客户端时，核心API允许动态驱动的客户端库，它可以与任何公开受支持的概要或超媒体格式的API交互。</p>
+<h2 id="_1"><a class="toclink" href="#_1">添加概要</a></h2>
+<p>REST框架支持明确定义的概要视图或自动生成的概要。由于我们使用的是视图集和路由器，我们可以简单地使用自动概要生成。</p>
+<p>你需要安装<code>coreapi</code> python包才能包含API概要。</p>
+<pre><code>$ pip install coreapi
+</code></pre>
+<p>现在我们可以通过在URL配置中包含一个自动生成的概要视图来为API添加概要。</p>
+<pre><code>from rest_framework.schemas import get_schema_view
+
+schema_view = get_schema_view(title='Pastebin API')
+
+urlpatterns = [
+    url('^schema/$', schema_view),
+    ...
+]
+</code></pre>
+<p>如果你在浏览器中访问API根路径，那么你现在应该可以看到<code>corejson</code>表示形式是一个可用选项。</p>
+<p><img alt="Schema format" src="../../img/corejson-format.png" /></p>
+<p>我们也可以通过在<code>Accept</code>标头中指定所需的内容类型从命令行请求概要。</p>
+<pre><code>$ http http://127.0.0.1:8000/schema/ Accept:application/coreapi+json
+HTTP/1.0 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/coreapi+json
+
+{
+    "_meta": {
+        "title": "Pastebin API"
+    },
+    "_type": "document",
+    ...
+</code></pre>
+<p>默认输出样式是使用<a href="http://www.coreapi.org/specification/encoding/#core-json-encoding">Core JSON</a>编码。</p>
+<p>还支持其他概要格式，如<a href="https://openapis.org/">Open API</a>（以前叫Swagger）。</p>
+<h2 id="_2"><a class="toclink" href="#_2">使用命令行客户端</a></h2>
+<p>现在我们的API暴露了一个概要路径，我们可以使用一个动态的客户端库与API进行交互。为了演示这个，我们来使用Core API命令行客户端。</p>
+<p>命令行客户端作为一个<code>coreapi-cli</code>包提供：</p>
+<pre><code>$ pip install coreapi-cli
+</code></pre>
+<p>现在检查它在命令行上是否可用...</p>
+<pre><code>$ coreapi
+Usage: coreapi [OPTIONS] COMMAND [ARGS]...
+
+  Command line client for interacting with CoreAPI services.
+
+  Visit http://www.coreapi.org for more information.
+
+Options:
+  --version  Display the package version number.
+  --help     Show this message and exit.
+
+Commands:
+...
+</code></pre>
+<p>首先，我们将使用命令行客户端加载API概要。</p>
+<pre><code>$ coreapi get http://127.0.0.1:8000/schema/
+&lt;Pastebin API "http://127.0.0.1:8000/schema/"&gt;
+    snippets: {
+        highlight(id)
+        list()
+        read(id)
+    }
+    users: {
+        list()
+        read(id)
+    }
+</code></pre>
+<p>我们还没有认证，所以现在我们只能看到只读路径，这与我们设置的API权限是一致的。</p>
+<p>我们使用命令行客户端，尝试列出现有的代码片段：</p>
+<pre><code>$ coreapi action snippets list
+[
+    {
+        "url": "http://127.0.0.1:8000/snippets/1/",
+        "id": 1,
+        "highlight": "http://127.0.0.1:8000/snippets/1/highlight/",
+        "owner": "lucy",
+        "title": "Example",
+        "code": "print('hello, world!')",
+        "linenos": true,
+        "language": "python",
+        "style": "friendly"
+    },
+    ...
+</code></pre>
+<p>一些API路径需要命名参数。例如，要获取特定代码片段的高亮HTML表示，我们需要提供一个id。</p>
+<pre><code>$ coreapi action snippets highlight --param id=1
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Example&lt;/title&gt;
+  ...
+</code></pre>
+<h2 id="_3"><a class="toclink" href="#_3">验证我们的客户端</a></h2>
+<p>如果我们想要创建，编辑和删除代码片段，我们需要进行有效性用户身份验证。在这种情况下，我们只需使用基本的auth。</p>
+<p>请确保使用实际的用户名和密码替换下面的<code>&lt;username&gt;</code>和<code>&lt;password&gt;</code>。</p>
+<pre><code>$ coreapi credentials add 127.0.0.1 &lt;username&gt;:&lt;password&gt; --auth basic
+Added credentials
+127.0.0.1 "Basic &lt;...&gt;"
+</code></pre>
+<p>现在，如果我们再次提取概要，我们应该能够看到一组可用的交互。</p>
+<pre><code>$ coreapi reload
+Pastebin API "http://127.0.0.1:8000/schema/"&gt;
+    snippets: {
+        create(code, [title], [linenos], [language], [style])
+        delete(id)
+        highlight(id)
+        list()
+        partial_update(id, [title], [code], [linenos], [language], [style])
+        read(id)
+        update(id, code, [title], [linenos], [language], [style])
+    }
+    users: {
+        list()
+        read(id)
+    }
+</code></pre>
+<p>我们现在能够与这些路径行交互。例如，要创建一个新的代码片段:</p>
+<pre><code>$ coreapi action snippets create --param title="Example" --param code="print('hello, world')"
+{
+    "url": "http://127.0.0.1:8000/snippets/7/",
+    "id": 7,
+    "highlight": "http://127.0.0.1:8000/snippets/7/highlight/",
+    "owner": "lucy",
+    "title": "Example",
+    "code": "print('hello, world')",
+    "linenos": false,
+    "language": "python",
+    "style": "friendly"
+}
+</code></pre>
+<p>然后删除一个代码片段：</p>
+<pre><code>$ coreapi action snippets delete --param id=7
+</code></pre>
+<p>除了命令行客户端，开发人员还可以使用客户端库与你的API进行交互。Python客户端库是第一个可用的库，并且计划即将发布一个Javascript客户端库。</p>
+<p>有关定制模式生成和使用Core API客户端库的更多详细信息，您需要参考完整的文档。</p>
+<h2 id="_4"><a class="toclink" href="#_4">回顾我们所做的</a></h2>
+<p>使用非常少的代码，我们现在有一个代码收集系统的webAPI，它是完全的浏览器可浏览的，包括一个概要驱动的客户端库和带有身份验证、每个对象的权限控制和多个渲染器格式支持。</p>
+<p>我们已经走过了设计过程的每个步骤，并且看到如果我们需要自定义任何东西，我们都可以按部就班的简单地使用常规的Django视图实现。</p>
+<p>你可以查看GitHub上的<a href="https://github.com/tomchristie/rest-framework-tutorial">最终教程代码</a>，或者尝试下<a href="http://restframework.herokuapp.com/">沙箱中</a>的实例。</p>
+<h2 id="_5"><a class="toclink" href="#_5">越来越成功</a></h2>
+<p>我们已经完成了我们的教程。如果你想要更多地参与到REST框架项目中，以下是你可以开始的几个地方：</p>
+<ul>
+<li>通过审查和提交问题，并pull requests，为<a href="https://github.com/tomchristie/django-rest-framework">GitHub</a>做出贡献。</li>
+<li>加入<a href="https://groups.google.com/forum/?fromgroups#!forum/django-rest-framework">REST framework 讨论组</a>，并帮助构建社区。</li>
+<li>在Twitter成为<a href="https://twitter.com/_tomchristie">作者</a>的粉丝，并打个招呼。</li>
+</ul>
+<p><strong>现在就去构建非常棒的东西吧。</strong></p>
             
 
           </div> <!--/span-->
@@ -153,13 +588,16 @@
   <!-- Le javascript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
   <script src="../../js/jquery-1.8.1-min.js"></script>
   <script src="../../js/prettify-1.0.js"></script>
   <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
-  <script>var base_url = '../..';</script>
-  <script src="../../mkdocs/js/require.js"></script>
   <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
 
   <script>
     var shiftWindow = function() {
