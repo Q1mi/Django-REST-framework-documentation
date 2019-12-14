@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/topics/writable-nested-serializers/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Writable nested serializers - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+</li>
+                                    
+<li >
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../api-guide/requests_zh/">Requests</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/responses_zh/">Responses</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/views_zh/">Views</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/generic-views_zh/">Generic views</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/routers_zh/">Routers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/parsers_zh/">Parsers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/renderers_zh/">Renderers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/serializers_zh/">Serializers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/fields_zh/">Serializer fields</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/relations/">Serializer relations</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/validators/">Validators</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/authentication_zh/">Authentication</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/permissions_zh/">Permissions</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/throttling/">Throttling</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/filtering_zh/">Filtering</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/pagination/">Pagination</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/versioning_zh/">Versioning</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/metadata/">Metadata</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/schemas/">Schemas</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/reverse/">Returning URLs</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/exceptions/">Exceptions</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/status-codes/">Status codes</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/testing/">Testing</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/settings/">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../documenting-your-api/">Documenting your API</a>
+</li>
+                                    
+<li >
+    <a href="../api-clients/">API Clients</a>
+</li>
+                                    
+<li >
+    <a href="../internationalization/">Internationalization</a>
+</li>
+                                    
+<li >
+    <a href="../ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li >
+    <a href="../html-and-forms/">HTML & Forms</a>
+</li>
+                                    
+<li >
+    <a href="../browser-enhancements/">Browser Enhancements</a>
+</li>
+                                    
+<li >
+    <a href="../browsable-api/">The Browsable API</a>
+</li>
+                                    
+<li >
+    <a href="../rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li >
+    <a href="../third-party-packages/">Third Party Packages</a>
+</li>
+                                    
+<li >
+    <a href="../tutorials-and-resources/">Tutorials and Resources</a>
+</li>
+                                    
+<li >
+    <a href="../contributing/">Contributing to REST framework</a>
+</li>
+                                    
+<li >
+    <a href="../project-management/">Project management</a>
+</li>
+                                    
+<li >
+    <a href="../3.0-announcement/">3.0 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../3.1-announcement/">3.1 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../3.2-announcement/">3.2 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../3.3-announcement/">3.3 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../3.4-announcement/">3.4 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../3.5-announcement/">3.5 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../kickstarter-announcement/">Kickstarter Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../mozilla-grant/">Mozilla Grant</a>
+</li>
+                                    
+<li >
+    <a href="../funding/">Funding</a>
+</li>
+                                    
+<li >
+    <a href="../release-notes/">Release Notes</a>
+</li>
+                                    
+<li >
+    <a href="../jobs/">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li>
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/topics/writable-nested-serializers.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#writable-nested-serializers">Writable nested serializers</a></li>
+            <li><a href="#one-to-many-data-structures">One-to-many data structures</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<blockquote>
+<p>To save HTTP requests, it may be convenient to send related documents along with the request.</p>
+<p>&mdash; <a href="http://jsonapi.org/format/#url-based-json-api">JSON API specification for Ember Data</a>.</p>
+</blockquote>
+<h1 id="writable-nested-serializers"><a class="toclink" href="#writable-nested-serializers">Writable nested serializers</a></h1>
+<p>Although flat data structures serve to properly delineate between the individual entities in your service, there are cases where it may be more appropriate or convenient to use nested data structures.</p>
+<p>Nested data structures are easy enough to work with if they're read-only - simply nest your serializer classes and you're good to go.  However, there are a few more subtleties to using writable nested serializers, due to the dependencies between the various model instances, and the need to save or delete multiple instances in a single action.</p>
+<h2 id="one-to-many-data-structures"><a class="toclink" href="#one-to-many-data-structures">One-to-many data structures</a></h2>
+<p><em>Example of a <strong>read-only</strong> nested serializer.  Nothing complex to worry about here.</em></p>
+<pre><code>class ToDoItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ToDoItem
+        fields = ('text', 'is_completed')
+
+class ToDoListSerializer(serializers.ModelSerializer):
+    items = ToDoItemSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = ToDoList
+        fields = ('title', 'items')
+</code></pre>
+<p>Some example output from our serializer.</p>
+<pre><code>{
+    'title': 'Leaving party preperations',
+    'items': [
+        {'text': 'Compile playlist', 'is_completed': True},
+        {'text': 'Send invites', 'is_completed': False},
+        {'text': 'Clean house', 'is_completed': False}
+    ]
+}
+</code></pre>
+<p>Let's take a look at updating our nested one-to-many data structure.</p>
+<h3 id="validation-errors"><a class="toclink" href="#validation-errors">Validation errors</a></h3>
+<h3 id="adding-and-removing-items"><a class="toclink" href="#adding-and-removing-items">Adding and removing items</a></h3>
+<h3 id="making-patch-requests"><a class="toclink" href="#making-patch-requests">Making PATCH requests</a></h3></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

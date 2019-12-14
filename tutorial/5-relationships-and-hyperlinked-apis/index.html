@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/tutorial/5-relationships-and-hyperlinked-apis/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Tutorial 5: Relationships & Hyperlinked APIs - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+
+                <!-- Collapsed navigation -->
+                <div class="navbar-header">
+                    <!-- Expander button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                </div>
+
+                <!-- Expanded navigation -->
+                <div class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li >
+                                <a href="../..">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../quickstart_zh/">Quickstart</a>
+</li>
+                                    
+<li >
+    <a href="../1-serialization_zh/">1 - Serialization</a>
+</li>
+                                    
+<li >
+    <a href="../2-requests-and-responses_zh/">2 - Requests and responses</a>
+</li>
+                                    
+<li >
+    <a href="../3-class-based-views_zh/">3 - Class based views</a>
+</li>
+                                    
+<li >
+    <a href="../4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+</li>
+                                    
+<li >
+    <a href="../5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li >
+    <a href="../6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+</li>
+                                    
+<li >
+    <a href="../7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../api-guide/requests_zh/">Requests</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/responses_zh/">Responses</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/views_zh/">Views</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/generic-views_zh/">Generic views</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/routers_zh/">Routers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/parsers_zh/">Parsers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/renderers_zh/">Renderers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/serializers_zh/">Serializers</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/fields_zh/">Serializer fields</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/relations/">Serializer relations</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/validators/">Validators</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/authentication_zh/">Authentication</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/permissions_zh/">Permissions</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/throttling/">Throttling</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/filtering_zh/">Filtering</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/pagination/">Pagination</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/versioning_zh/">Versioning</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/metadata/">Metadata</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/schemas/">Schemas</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/reverse/">Returning URLs</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/exceptions/">Exceptions</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/status-codes/">Status codes</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/testing/">Testing</a>
+</li>
+                                    
+<li >
+    <a href="../../api-guide/settings/">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li >
+    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/api-clients/">API Clients</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/internationalization/">Internationalization</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/browsable-api/">The Browsable API</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/contributing/">Contributing to REST framework</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/project-management/">Project management</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/funding/">Funding</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/release-notes/">Release Notes</a>
+</li>
+                                    
+<li >
+    <a href="../../topics/jobs/">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li>
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/tutorial/5-relationships-and-hyperlinked-apis.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#tutorial-5-relationships-hyperlinked-apis">Tutorial 5: Relationships &amp; Hyperlinked APIs</a></li>
+            <li><a href="#creating-an-endpoint-for-the-root-of-our-api">Creating an endpoint for the root of our API</a></li>
+            <li><a href="#creating-an-endpoint-for-the-highlighted-snippets">Creating an endpoint for the highlighted snippets</a></li>
+            <li><a href="#hyperlinking-our-api">Hyperlinking our API</a></li>
+            <li><a href="#making-sure-our-url-patterns-are-named">Making sure our URL patterns are named</a></li>
+            <li><a href="#adding-pagination">Adding pagination</a></li>
+            <li><a href="#browsing-the-api">Browsing the API</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h1 id="tutorial-5-relationships-hyperlinked-apis"><a class="toclink" href="#tutorial-5-relationships-hyperlinked-apis">Tutorial 5: Relationships &amp; Hyperlinked APIs</a></h1>
+<p>At the moment relationships within our API are represented by using primary keys.  In this part of the tutorial we'll improve the cohesion and discoverability of our API, by instead using hyperlinking for relationships.</p>
+<h2 id="creating-an-endpoint-for-the-root-of-our-api"><a class="toclink" href="#creating-an-endpoint-for-the-root-of-our-api">Creating an endpoint for the root of our API</a></h2>
+<p>Right now we have endpoints for 'snippets' and 'users', but we don't have a single entry point to our API.  To create one, we'll use a regular function-based view and the <code>@api_view</code> decorator we introduced earlier. In your <code>snippets/views.py</code> add:</p>
+<pre><code>from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        'users': reverse('user-list', request=request, format=format),
+        'snippets': reverse('snippet-list', request=request, format=format)
+    })
+</code></pre>
+<p>Two things should be noticed here. First, we're using REST framework's <code>reverse</code> function in order to return fully-qualified URLs; second, URL patterns are identified by convenience names that we will declare later on in our <code>snippets/urls.py</code>.</p>
+<h2 id="creating-an-endpoint-for-the-highlighted-snippets"><a class="toclink" href="#creating-an-endpoint-for-the-highlighted-snippets">Creating an endpoint for the highlighted snippets</a></h2>
+<p>The other obvious thing that's still missing from our pastebin API is the code highlighting endpoints.</p>
+<p>Unlike all our other API endpoints, we don't want to use JSON, but instead just present an HTML representation.  There are two styles of HTML renderer provided by REST framework, one for dealing with HTML rendered using templates, the other for dealing with pre-rendered HTML.  The second renderer is the one we'd like to use for this endpoint.</p>
+<p>The other thing we need to consider when creating the code highlight view is that there's no existing concrete generic view that we can use.  We're not returning an object instance, but instead a property of an object instance.</p>
+<p>Instead of using a concrete generic view, we'll use the base class for representing instances, and create our own <code>.get()</code> method.  In your <code>snippets/views.py</code> add:</p>
+<pre><code>from rest_framework import renderers
+from rest_framework.response import Response
+
+class SnippetHighlight(generics.GenericAPIView):
+    queryset = Snippet.objects.all()
+    renderer_classes = (renderers.StaticHTMLRenderer,)
+
+    def get(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
+</code></pre>
+<p>As usual we need to add the new views that we've created in to our URLconf.
+We'll add a url pattern for our new API root in <code>snippets/urls.py</code>:</p>
+<pre><code>url(r'^$', views.api_root),
+</code></pre>
+<p>And then add a url pattern for the snippet highlights:</p>
+<pre><code>url(r'^snippets/(?P&lt;pk&gt;[0-9]+)/highlight/$', views.SnippetHighlight.as_view()),
+</code></pre>
+<h2 id="hyperlinking-our-api"><a class="toclink" href="#hyperlinking-our-api">Hyperlinking our API</a></h2>
+<p>Dealing with relationships between entities is one of the more challenging aspects of Web API design.  There are a number of different ways that we might choose to represent a relationship:</p>
+<ul>
+<li>Using primary keys.</li>
+<li>Using hyperlinking between entities.</li>
+<li>Using a unique identifying slug field on the related entity.</li>
+<li>Using the default string representation of the related entity.</li>
+<li>Nesting the related entity inside the parent representation.</li>
+<li>Some other custom representation.</li>
+</ul>
+<p>REST framework supports all of these styles, and can apply them across forward or reverse relationships, or apply them across custom managers such as generic foreign keys.</p>
+<p>In this case we'd like to use a hyperlinked style between entities.  In order to do so, we'll modify our serializers to extend <code>HyperlinkedModelSerializer</code> instead of the existing <code>ModelSerializer</code>.</p>
+<p>The <code>HyperlinkedModelSerializer</code> has the following differences from <code>ModelSerializer</code>:</p>
+<ul>
+<li>It does not include the <code>id</code> field by default.</li>
+<li>It includes a <code>url</code> field, using <code>HyperlinkedIdentityField</code>.</li>
+<li>Relationships use <code>HyperlinkedRelatedField</code>,
+  instead of <code>PrimaryKeyRelatedField</code>.</li>
+</ul>
+<p>We can easily re-write our existing serializers to use hyperlinking. In your <code>snippets/serializers.py</code> add:</p>
+<pre><code>class SnippetSerializer(serializers.HyperlinkedModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+    highlight = serializers.HyperlinkedIdentityField(view_name='snippet-highlight', format='html')
+
+    class Meta:
+        model = Snippet
+        fields = ('url', 'id', 'highlight', 'owner',
+                  'title', 'code', 'linenos', 'language', 'style')
+
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    snippets = serializers.HyperlinkedRelatedField(many=True, view_name='snippet-detail', read_only=True)
+
+    class Meta:
+        model = User
+        fields = ('url', 'id', 'username', 'snippets')
+</code></pre>
+<p>Notice that we've also added a new <code>'highlight'</code> field.  This field is of the same type as the <code>url</code> field, except that it points to the <code>'snippet-highlight'</code> url pattern, instead of the <code>'snippet-detail'</code> url pattern.</p>
+<p>Because we've included format suffixed URLs such as <code>'.json'</code>, we also need to indicate on the <code>highlight</code> field that any format suffixed hyperlinks it returns should use the <code>'.html'</code> suffix.</p>
+<h2 id="making-sure-our-url-patterns-are-named"><a class="toclink" href="#making-sure-our-url-patterns-are-named">Making sure our URL patterns are named</a></h2>
+<p>If we're going to have a hyperlinked API, we need to make sure we name our URL patterns.  Let's take a look at which URL patterns we need to name.</p>
+<ul>
+<li>The root of our API refers to <code>'user-list'</code> and <code>'snippet-list'</code>.</li>
+<li>Our snippet serializer includes a field that refers to <code>'snippet-highlight'</code>.</li>
+<li>Our user serializer includes a field that refers to <code>'snippet-detail'</code>.</li>
+<li>Our snippet and user serializers include <code>'url'</code> fields that by default will refer to <code>'{model_name}-detail'</code>, which in this case will be <code>'snippet-detail'</code> and <code>'user-detail'</code>.</li>
+</ul>
+<p>After adding all those names into our URLconf, our final <code>snippets/urls.py</code> file should look like this:</p>
+<pre><code>from django.conf.urls import url, include
+from rest_framework.urlpatterns import format_suffix_patterns
+from snippets import views
+
+# API endpoints
+urlpatterns = format_suffix_patterns([
+    url(r'^$', views.api_root),
+    url(r'^snippets/$',
+        views.SnippetList.as_view(),
+        name='snippet-list'),
+    url(r'^snippets/(?P&lt;pk&gt;[0-9]+)/$',
+        views.SnippetDetail.as_view(),
+        name='snippet-detail'),
+    url(r'^snippets/(?P&lt;pk&gt;[0-9]+)/highlight/$',
+        views.SnippetHighlight.as_view(),
+        name='snippet-highlight'),
+    url(r'^users/$',
+        views.UserList.as_view(),
+        name='user-list'),
+    url(r'^users/(?P&lt;pk&gt;[0-9]+)/$',
+        views.UserDetail.as_view(),
+        name='user-detail')
+])
+
+# Login and logout views for the browsable API
+urlpatterns += [
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework')),
+]
+</code></pre>
+<h2 id="adding-pagination"><a class="toclink" href="#adding-pagination">Adding pagination</a></h2>
+<p>The list views for users and code snippets could end up returning quite a lot of instances, so really we'd like to make sure we paginate the results, and allow the API client to step through each of the individual pages.</p>
+<p>We can change the default list style to use pagination, by modifying our <code>tutorial/settings.py</code> file slightly.  Add the following setting:</p>
+<pre><code>REST_FRAMEWORK = {
+    'PAGE_SIZE': 10
+}
+</code></pre>
+<p>Note that settings in REST framework are all namespaced into a single dictionary setting, named 'REST_FRAMEWORK', which helps keep them well separated from your other project settings.</p>
+<p>We could also customize the pagination style if we needed too, but in this case we'll just stick with the default.</p>
+<h2 id="browsing-the-api"><a class="toclink" href="#browsing-the-api">Browsing the API</a></h2>
+<p>If we open a browser and navigate to the browsable API, you'll find that you can now work your way around the API simply by following links.</p>
+<p>You'll also be able to see the 'highlight' links on the snippet instances, that will take you to the highlighted code HTML representations.</p>
+<p>In <a href="../6-viewsets-and-routers/">part 6</a> of the tutorial we'll look at how we can use ViewSets and Routers to reduce the amount of code we need to build our API.</p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
