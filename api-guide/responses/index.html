@@ -1,492 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="Q1mi">
-        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/responses/">
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Responses - Django REST framework中文站点</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<html lang="zh-CN">
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title></title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST">
+  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
 
-    <body>
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
-                </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
 
-                <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">主页</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../requests_zh/">Requests</a>
-</li>
-                                    
-<li >
-    <a href="../responses_zh/">Responses</a>
-</li>
-                                    
-<li >
-    <a href="../views_zh/">Views</a>
-</li>
-                                    
-<li >
-    <a href="../generic-views_zh/">Generic views</a>
-</li>
-                                    
-<li >
-    <a href="../viewsets_zh/">Viewsets</a>
-</li>
-                                    
-<li >
-    <a href="../routers_zh/">Routers</a>
-</li>
-                                    
-<li >
-    <a href="../parsers_zh/">Parsers</a>
-</li>
-                                    
-<li >
-    <a href="../renderers_zh/">Renderers</a>
-</li>
-                                    
-<li >
-    <a href="../serializers_zh/">Serializers</a>
-</li>
-                                    
-<li >
-    <a href="../fields_zh/">Serializer fields</a>
-</li>
-                                    
-<li >
-    <a href="../relations/">Serializer relations</a>
-</li>
-                                    
-<li >
-    <a href="../validators/">Validators</a>
-</li>
-                                    
-<li >
-    <a href="../authentication_zh/">Authentication</a>
-</li>
-                                    
-<li >
-    <a href="../permissions_zh/">Permissions</a>
-</li>
-                                    
-<li >
-    <a href="../throttling/">Throttling</a>
-</li>
-                                    
-<li >
-    <a href="../filtering_zh/">Filtering</a>
-</li>
-                                    
-<li >
-    <a href="../pagination/">Pagination</a>
-</li>
-                                    
-<li >
-    <a href="../versioning_zh/">Versioning</a>
-</li>
-                                    
-<li >
-    <a href="../content-negotiation/">Content negotiation</a>
-</li>
-                                    
-<li >
-    <a href="../metadata/">Metadata</a>
-</li>
-                                    
-<li >
-    <a href="../schemas/">Schemas</a>
-</li>
-                                    
-<li >
-    <a href="../format-suffixes/">Format suffixes</a>
-</li>
-                                    
-<li >
-    <a href="../reverse/">Returning URLs</a>
-</li>
-                                    
-<li >
-    <a href="../exceptions/">Exceptions</a>
-</li>
-                                    
-<li >
-    <a href="../status-codes/">Status codes</a>
-</li>
-                                    
-<li >
-    <a href="../testing/">Testing</a>
-</li>
-                                    
-<li >
-    <a href="../settings/">Settings</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/api-clients/">API Clients</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/internationalization/">Internationalization</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/browsable-api/">The Browsable API</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/contributing/">Contributing to REST framework</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/project-management/">Project management</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/funding/">Funding</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/release-notes/">Release Notes</a>
-</li>
-                                    
-<li >
-    <a href="../../topics/jobs/">Jobs</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li>
-                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/responses.md"><i class="fa fa-github"></i> Edit on GitHub</a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+            下一页 <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+            <i class="icon-arrow-left icon-white"></i> 上一页
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <div class="nav-collapse collapse">
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
         </div>
 
-        <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#responses">Responses</a></li>
-        <li class="main "><a href="#creating-responses">Creating responses</a></li>
-            <li><a href="#response">Response()</a></li>
-        <li class="main "><a href="#attributes">Attributes</a></li>
-            <li><a href="#data">.data</a></li>
-            <li><a href="#status_code">.status_code</a></li>
-            <li><a href="#content">.content</a></li>
-            <li><a href="#template_name">.template_name</a></li>
-            <li><a href="#accepted_renderer">.accepted_renderer</a></li>
-            <li><a href="#accepted_media_type">.accepted_media_type</a></li>
-            <li><a href="#renderer_context">.renderer_context</a></li>
-        <li class="main "><a href="#standard-httpresponse-attributes">Standard HttpResponse attributes</a></li>
-            <li><a href="#render">.render()</a></li>
-    </ul>
-</div></div>
-                <div class="col-md-9" role="main">
-<div class="source-links">
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
 
-    <span class="label label-primary">r</span>
+                
 
-    <span class="label label-primary">e</span>
-
-    <span class="label label-primary">s</span>
-
-    <span class="label label-primary">p</span>
-
-    <span class="label label-primary">o</span>
-
-    <span class="label label-primary">n</span>
-
-    <span class="label label-primary">s</span>
-
-    <span class="label label-primary">e</span>
-
-    <span class="label label-primary">.</span>
-
-    <span class="label label-primary">p</span>
-
-    <span class="label label-primary">y</span>
-
-</div>
-
-
-<h1 id="responses"><a class="toclink" href="#responses">Responses</a></h1>
-<blockquote>
-<p>Unlike basic HttpResponse objects, TemplateResponse objects retain the details of the context that was provided by the view to compute the response.  The final output of the response is not computed until it is needed, later in the response process.</p>
-<p>&mdash; <a href="https://docs.djangoproject.com/en/stable/stable/template-response/">Django documentation</a></p>
-</blockquote>
-<p>REST framework supports HTTP content negotiation by providing a <code>Response</code> class which allows you to return content that can be rendered into multiple content types, depending on the client request.</p>
-<p>The <code>Response</code> class subclasses Django's <code>SimpleTemplateResponse</code>.  <code>Response</code> objects are initialised with data, which should consist of native Python primitives.  REST framework then uses standard HTTP content negotiation to determine how it should render the final response content.</p>
-<p>There's no requirement for you to use the <code>Response</code> class, you can also return regular <code>HttpResponse</code> or <code>StreamingHttpResponse</code> objects from your views if required.  Using the <code>Response</code> class simply provides a nicer interface for returning content-negotiated Web API responses, that can be rendered to multiple formats.</p>
-<p>Unless you want to heavily customize REST framework for some reason, you should always use an <code>APIView</code> class or <code>@api_view</code> function for views that return <code>Response</code> objects.  Doing so ensures that the view can perform content negotiation and select the appropriate renderer for the response, before it is returned from the view.</p>
-<hr />
-<h1 id="creating-responses"><a class="toclink" href="#creating-responses">Creating responses</a></h1>
-<h2 id="response"><a class="toclink" href="#response">Response()</a></h2>
-<p><strong>Signature:</strong> <code>Response(data, status=None, template_name=None, headers=None, content_type=None)</code></p>
-<p>Unlike regular <code>HttpResponse</code> objects, you do not instantiate <code>Response</code> objects with rendered content.  Instead you pass in unrendered data, which may consist of any Python primitives.</p>
-<p>The renderers used by the <code>Response</code> class cannot natively handle complex datatypes such as Django model instances, so you need to serialize the data into primitive datatypes before creating the <code>Response</code> object.</p>
-<p>You can use REST framework's <code>Serializer</code> classes to perform this data serialization, or use your own custom serialization.</p>
-<p>Arguments:</p>
-<ul>
-<li><code>data</code>: The serialized data for the response.</li>
-<li><code>status</code>: A status code for the response.  Defaults to 200.  See also <a href="../status-codes/">status codes</a>.</li>
-<li><code>template_name</code>: A template name to use if <code>HTMLRenderer</code> is selected.</li>
-<li><code>headers</code>: A dictionary of HTTP headers to use in the response.</li>
-<li><code>content_type</code>: The content type of the response.  Typically, this will be set automatically by the renderer as determined by content negotiation, but there may be some cases where you need to specify the content type explicitly.</li>
-</ul>
-<hr />
-<h1 id="attributes"><a class="toclink" href="#attributes">Attributes</a></h1>
-<h2 id="data"><a class="toclink" href="#data">.data</a></h2>
-<p>The unrendered content of a <code>Request</code> object.</p>
-<h2 id="status_code"><a class="toclink" href="#status_code">.status_code</a></h2>
-<p>The numeric status code of the HTTP response.</p>
-<h2 id="content"><a class="toclink" href="#content">.content</a></h2>
-<p>The rendered content of the response.  The <code>.render()</code> method must have been called before <code>.content</code> can be accessed.</p>
-<h2 id="template_name"><a class="toclink" href="#template_name">.template_name</a></h2>
-<p>The <code>template_name</code>, if supplied.  Only required if <code>HTMLRenderer</code> or some other custom template renderer is the accepted renderer for the response.</p>
-<h2 id="accepted_renderer"><a class="toclink" href="#accepted_renderer">.accepted_renderer</a></h2>
-<p>The renderer instance that will be used to render the response.</p>
-<p>Set automatically by the <code>APIView</code> or <code>@api_view</code> immediately before the response is returned from the view.</p>
-<h2 id="accepted_media_type"><a class="toclink" href="#accepted_media_type">.accepted_media_type</a></h2>
-<p>The media type that was selected by the content negotiation stage.</p>
-<p>Set automatically by the <code>APIView</code> or <code>@api_view</code> immediately before the response is returned from the view.</p>
-<h2 id="renderer_context"><a class="toclink" href="#renderer_context">.renderer_context</a></h2>
-<p>A dictionary of additional context information that will be passed to the renderer's <code>.render()</code> method.</p>
-<p>Set automatically by the <code>APIView</code> or <code>@api_view</code> immediately before the response is returned from the view.</p>
-<hr />
-<h1 id="standard-httpresponse-attributes"><a class="toclink" href="#standard-httpresponse-attributes">Standard HttpResponse attributes</a></h1>
-<p>The <code>Response</code> class extends <code>SimpleTemplateResponse</code>, and all the usual attributes and methods are also available on the response.  For example you can set headers on the response in the standard way:</p>
-<pre><code>response = Response()
-response['Cache-Control'] = 'no-cache'
-</code></pre>
-<h2 id="render"><a class="toclink" href="#render">.render()</a></h2>
-<p><strong>Signature:</strong> <code>.render()</code></p>
-<p>As with any other <code>TemplateResponse</code>, this method is called to render the serialized data of the response into the final response content.  When <code>.render()</code> is called, the response content will be set to the result of calling the <code>.render(data, accepted_media_type, renderer_context)</code> method on the <code>accepted_renderer</code> instance.</p>
-<p>You won't typically need to call <code>.render()</code> yourself, as it's handled by Django's standard response cycle.</p></div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                  <div class="promo">
+                    <hr/>
+                    <!--<div id="sidebarInclude"></div>-->
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="https://github.com/Q1mi/image/blob/master/qr/zfb_qr.png?raw=true" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="https://github.com/Q1mi/image/blob/master/qr/wechat_qr.png?raw=true" alt="微信二维码">
+                      </div>
                     </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+                  </div>
+              </ul>
 
-    </body>
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/r">
+                    <span class="label label-info">r</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/e">
+                    <span class="label label-info">e</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/s">
+                    <span class="label label-info">s</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/o">
+                    <span class="label label-info">o</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/n">
+                    <span class="label label-info">n</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/s">
+                    <span class="label label-info">s</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/e">
+                    <span class="label label-info">e</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/.">
+                    <span class="label label-info">.</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/tomchristie/django-rest-framework/tree/master/rest_framework/y">
+                    <span class="label label-info">y</span>
+                  </a>
+                
+              
+
+              
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
+  <script>var base_url = '../..';</script>
+  <script src="../../mkdocs/js/require.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
 </html>

@@ -1,436 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="Q1mi">
-        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/topics/ajax-csrf-cors_zh/">
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>AJAX, CSRF & CORS - Django REST framework中文站点</title>
-        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+<html lang="zh-CN">
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap-3.0.3.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title></title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, Django REST framework, 中文文档, DRF, API, REST">
+  <meta name="keyword" content="Django REST framework,中文文档,DRF,Django,API,RESTful API,RESTful,web开发,前后端分离,django rest framework 翻译">
 
-    <body>
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
 
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-                <!-- Collapsed navigation -->
-                <div class="navbar-header">
-                    <!-- Expander button -->
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
-                </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
 
-                <!-- Expanded navigation -->
-                <div class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li >
-                                <a href="../..">主页</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-</li>
-                                    
-<li >
-    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../../api-guide/requests_zh/">Requests</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/responses_zh/">Responses</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/views_zh/">Views</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/generic-views_zh/">Generic views</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/routers_zh/">Routers</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/parsers_zh/">Parsers</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/renderers_zh/">Renderers</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/serializers_zh/">Serializers</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/fields_zh/">Serializer fields</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/relations/">Serializer relations</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/validators/">Validators</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/authentication_zh/">Authentication</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/permissions_zh/">Permissions</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/throttling/">Throttling</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/filtering_zh/">Filtering</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/pagination/">Pagination</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/versioning_zh/">Versioning</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/metadata/">Metadata</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/schemas/">Schemas</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/reverse/">Returning URLs</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/exceptions/">Exceptions</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/status-codes/">Status codes</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/testing/">Testing</a>
-</li>
-                                    
-<li >
-    <a href="../../api-guide/settings/">Settings</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li >
-    <a href="../documenting-your-api/">Documenting your API</a>
-</li>
-                                    
-<li >
-    <a href="../api-clients/">API Clients</a>
-</li>
-                                    
-<li >
-    <a href="../internationalization/">Internationalization</a>
-</li>
-                                    
-<li class="active">
-    <a href="./">AJAX, CSRF & CORS</a>
-</li>
-                                    
-<li >
-    <a href="../html-and-forms/">HTML & Forms</a>
-</li>
-                                    
-<li >
-    <a href="../browser-enhancements/">Browser Enhancements</a>
-</li>
-                                    
-<li >
-    <a href="../browsable-api/">The Browsable API</a>
-</li>
-                                    
-<li >
-    <a href="../rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-</li>
-                                    
-<li >
-    <a href="../third-party-packages/">Third Party Packages</a>
-</li>
-                                    
-<li >
-    <a href="../tutorials-and-resources/">Tutorials and Resources</a>
-</li>
-                                    
-<li >
-    <a href="../contributing/">Contributing to REST framework</a>
-</li>
-                                    
-<li >
-    <a href="../project-management/">Project management</a>
-</li>
-                                    
-<li >
-    <a href="../3.0-announcement/">3.0 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../3.1-announcement/">3.1 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../3.2-announcement/">3.2 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../3.3-announcement/">3.3 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../3.4-announcement/">3.4 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../3.5-announcement/">3.5 Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../kickstarter-announcement/">Kickstarter Announcement</a>
-</li>
-                                    
-<li >
-    <a href="../mozilla-grant/">Mozilla Grant</a>
-</li>
-                                    
-<li >
-    <a href="../funding/">Funding</a>
-</li>
-                                    
-<li >
-    <a href="../release-notes/">Release Notes</a>
-</li>
-                                    
-<li >
-    <a href="../jobs/">Jobs</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li >
-                                <a rel="next" href="../internationalization/">
-                                    <i class="fa fa-arrow-left"></i> Previous
-                                </a>
-                            </li>
-                            <li >
-                                <a rel="prev" href="../html-and-forms/">
-                                    Next <i class="fa fa-arrow-right"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/topics/ajax-csrf-cors_zh.md"><i class="fa fa-github"></i> Edit on GitHub</a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+            下一页 <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+            <i class="icon-arrow-left icon-white"></i> 上一页
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> 搜索</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework中文文档</a>
+          <div class="nav-collapse collapse">
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
         </div>
 
-        <div class="container">
-                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="main active"><a href="#ajaxcsrfcors">使用AJAX，CSRF和CORS</a></li>
-            <li><a href="#javascript">Javascript客户端</a></li>
-            <li><a href="#csrf">CSRF保护</a></li>
-            <li><a href="#cors">CORS</a></li>
-    </ul>
-</div></div>
-                <div class="col-md-9" role="main">
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
 
-<h1 id="ajaxcsrfcors"><a class="toclink" href="#ajaxcsrfcors">使用AJAX，CSRF和CORS</a></h1>
-<blockquote>
-<p>"仔细观察您自己的网站上的可能的CSRF/XSRF漏洞。它们是最糟糕的漏洞 &mdash; 非常容易被攻击者利用。但对于软件开发人员来说，至少直到你被攻击了你才能直观的理解。"</p>
-<p>&mdash; <a href="http://www.codinghorror.com/blog/2008/10/preventing-csrf-and-xsrf-attacks.html">Jeff Atwood</a></p>
-</blockquote>
-<h2 id="javascript"><a class="toclink" href="#javascript">Javascript客户端</a></h2>
-<p>如果你正在构建一个JavaScript客户端来和Web API对接，你将需要考虑客户端是否可以使用网站其他部分使用的身份验证策略，并确定是否需要使用CSRF令牌或CORS标头。</p>
-<p>与正在交互的API相同的上下文中发起的AJAX请求通常将使用 <code>SessionAuthentication</code>。 这确保一旦用户登录，任何AJAX请求都可以使用与网站其他部分相同的基于会话的身份验证进行身份验证。</p>
-<p>与其通信的API在不同站点上发起的AJAX请求通常需要使用基于非会话的身份验证方案，例如<code>TokenAuthentication</code>。</p>
-<h2 id="csrf"><a class="toclink" href="#csrf">CSRF保护</a></h2>
-<p><a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)">Cross Site Request Forgery</a>保护是防止特定类型的攻击的机制，当用户没有注销登出网站并且具有有效的会话时，这种攻击可能发生。在这种情况下，恶意站点可能会在登录会话的上下文中针对目标站点执行攻击操作。</p>
-<p>为了防范这些类型的攻击，你需要做两件事情：</p>
-<ol>
-<li>确保“安全”的HTTP操作（如：<code>GET</code>，<code>HEAD</code>和<code>OPTIONS</code>）不能用于更改任何服务器端状态。</li>
-<li>确保“不安全”的HTTP操作（如：<code>POST</code>，<code>PUT</code>，<code>PATCH</code>和<code>DELETE</code>）始终需要有效的CSRF令牌。</li>
-</ol>
-<p>如果你使用的是<code>SessionAuthentication</code> 则需要为任何<code>POST</code>，<code>PUT</code>，<code>PATCH</code>或<code>DELETE</code>操作包含有效的CSRF令牌。</p>
-<p>为了使用AJAX请求，你需要在HTTP标头中包含CSRF令牌，如<a href="https://docs.djangoproject.com/en/stable/ref/csrf/#ajax">Django文档中所述</a>。</p>
-<h2 id="cors"><a class="toclink" href="#cors">CORS</a></h2>
-<p><a href="http://www.w3.org/TR/cors/">Cross-Origin Resource Sharing</a>是允许客户端与托管在不同域上的API交互的机制。CORS的工作原理是要求服务器包含一组特定的标头信息，允许浏览器确定是否和何时允许跨域请求。</p>
-<p>在REST框架中处理CORS的最佳方法是在中间件中添加所需的响应头信息。这样可以确保CORS得到透明支持，而无需更改视图中的任何行为。</p>
-<p><a href="https://github.com/ottoyiu/">Otto Yiu</a>维护着能在REST框架搭建的API下正常使用的<a href="https://github.com/ottoyiu/django-cors-headers/">django-cors-headers</a>包。</p></div>
-        </div>
+                
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
-
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form role="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                  <div class="promo">
+                    <hr/>
+                    <!--<div id="sidebarInclude"></div>-->
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="https://github.com/Q1mi/image/blob/master/qr/zfb_qr.png?raw=true" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="https://github.com/Q1mi/image/blob/master/qr/wechat_qr.png?raw=true" alt="微信二维码">
+                      </div>
                     </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="Keyboard Shortcuts Modal" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="exampleModalLabel">Keyboard Shortcuts</h4>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+                  </div>
+              </ul>
 
-    </body>
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+
+              
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <!--<script src="https://fund.django-rest-framework.org/sidebar_include.js"></script>-->
+  <script>var base_url = '../..';</script>
+  <script src="../../mkdocs/js/require.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
 </html>
