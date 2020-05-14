@@ -6,7 +6,7 @@ pre {
 
 .dropdown .dropdown-menu {
   display: none;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .dropdown.open .dropdown-menu {
@@ -73,6 +73,12 @@ pre {
   word-wrap: normal;
   white-space: pre;
 }
+
+code, pre {
+    font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
+    font-size: 13px;
+}
+
 
 /* Preserve the spacing of the navbar across different screen sizes. */
 .navbar-inner {
@@ -160,9 +166,19 @@ body, .navbar .navbar-inner .container-fluid{
   margin: 0 auto;
 }
 
-body{
-  background: url("../img/grid.png") repeat-x;
-  background-attachment: fixed;
+/* Replacement for `body { background-attachment: fixed; }`, which
+   has performance issues when scrolling on large displays. */
+body::before {
+    content: ' ';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #f8f8f8;
+    background: url(../img/grid.png) repeat-x;
+    will-change: transform;
+    z-index: -1;
 }
 
 
@@ -417,3 +433,9 @@ ul.sponsor {
 .toclink {
   color: #333;
 }
+
+.book-cover img {
+  margin: 0 !important;
+  display: inline-block !important;
+}
+
