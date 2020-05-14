@@ -1,4 +1,7 @@
-source: validators.py
+---
+source:
+    - validators.py
+---
 
 # Validators
 
@@ -84,7 +87,7 @@ It has two required arguments, and a single optional `messages` argument:
 The validator should be applied to *serializer classes*, like so:
 
     from rest_framework.validators import UniqueTogetherValidator
-    
+
     class ExampleSerializer(serializers.Serializer):
         # ...
         class Meta:
@@ -94,13 +97,13 @@ The validator should be applied to *serializer classes*, like so:
             validators = [
                 UniqueTogetherValidator(
                     queryset=ToDoItem.objects.all(),
-                    fields=('list', 'position')
+                    fields=['list', 'position']
                 )
             ]
 
 ---
 
-**Note**: The `UniqueTogetherValidation` class always imposes an implicit constraint that all the fields it applies to are always treated as required. Fields with `default` values are an exception to this as they always supply a value even when omitted from user input.
+**Note**: The `UniqueTogetherValidator` class always imposes an implicit constraint that all the fields it applies to are always treated as required. Fields with `default` values are an exception to this as they always supply a value even when omitted from user input.
 
 ---
 
@@ -149,8 +152,6 @@ If you want the date field to be visible, but not editable by the user, then set
 
     published = serializers.DateTimeField(read_only=True, default=timezone.now)
 
-The field will not be writable to the user, but the default value will still be passed through to the `validated_data`.
-
 #### Using with a hidden date field.
 
 If you want the date field to be entirely hidden from the user, then use `HiddenField`. This field type does not accept user input, but instead always returns its default value to the `validated_data` in the serializer.
@@ -159,7 +160,7 @@ If you want the date field to be entirely hidden from the user, then use `Hidden
 
 ---
 
-**Note**: The `UniqueFor<Range>Validation` classes impose an implicit constraint that the fields they are applied to are always treated as required. Fields with `default` values are an exception to this as they always supply a value even when omitted from user input.
+**Note**: The `UniqueFor<Range>Validator` classes impose an implicit constraint that the fields they are applied to are always treated as required. Fields with `default` values are an exception to this as they always supply a value even when omitted from user input.
 
 ---
 
@@ -189,7 +190,6 @@ A default class that can be used to *only set a default argument during create o
 It takes a single argument, which is the default value or callable that should be used during create operations.
 
     created_at = serializers.DateTimeField(
-        read_only=True,
         default=serializers.CreateOnlyDefault(timezone.now)
     )
 
@@ -218,12 +218,12 @@ in the `.validate()` method, or else in the view.
 For example:
 
     class BillingRecordSerializer(serializers.ModelSerializer):
-        def validate(self, data):
+        def validate(self, attrs):
             # Apply custom validation either here, or in the view.
 
         class Meta:
-            fields = ('client', 'date', 'amount')
-            extra_kwargs = {'client': {'required': 'False'}}
+            fields = ['client', 'date', 'amount']
+            extra_kwargs = {'client': {'required': False}}
             validators = []  # Remove a default "unique together" constraint.
 
 ## Updating nested serializers
@@ -276,13 +276,13 @@ A validator may be any callable that raises a `serializers.ValidationError` on f
 
 You can specify custom field-level validation by adding `.validate_<field_name>` methods
 to your `Serializer` subclass. This is documented in the
-[Serializer docs](http://www.django-rest-framework.org/api-guide/serializers/#field-level-validation)
+[Serializer docs](https://www.django-rest-framework.org/api-guide/serializers/#field-level-validation)
 
 ## Class-based
 
 To write a class-based validator, use the `__call__` method. Class-based validators are useful as they allow you to parameterize and reuse behavior.
 
-    class MultipleOf(object):
+    class MultipleOf:
         def __init__(self, base):
             self.base = base
 
@@ -291,13 +291,17 @@ To write a class-based validator, use the `__call__` method. Class-based validat
                 message = 'This field must be a multiple of %d.' % self.base
                 raise serializers.ValidationError(message)
 
-#### Using `set_context()`
+#### Accessing the context
 
-In some advanced cases you might want a validator to be passed the serializer field it is being used with as additional context. You can do so by declaring a `set_context` method on a class-based validator.
+In some advanced cases you might want a validator to be passed the serializer
+field it is being used with as additional context. You can do so by setting
+a `requires_context = True` attribute on the validator. The `__call__` method
+will then be called with the `serializer_field`
+or `serializer` as an additional argument.
 
-    def set_context(self, serializer_field):
-        # Determine if this is an update or a create operation.
-        # In `__call__` we can then use that information to modify the validation behavior.
-        self.is_update = serializer_field.parent.instance is not None
+    requires_context = True
+
+    def __call__(self, value, serializer_field):
+        ...
 
 [cite]: https://docs.djangoproject.com/en/stable/ref/validators/

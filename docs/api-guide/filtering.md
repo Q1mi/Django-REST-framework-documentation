@@ -1,4 +1,7 @@
-source: filters.py
+---
+source:
+    - filters.py
+---
 
 # Filtering
 
@@ -92,7 +95,7 @@ Generic filters can also present themselves as HTML controls in the browsable AP
 The default filter backends may be set globally, using the `DEFAULT_FILTER_BACKENDS` setting. For example.
 
     REST_FRAMEWORK = {
-        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     }
 
 You can also set the filter backends on a per-view, or per-viewset basis,
@@ -106,7 +109,7 @@ using the `GenericAPIView` class-based views.
     class UserListView(generics.ListAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+        filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 
 ## Filtering and object lookups
 
@@ -127,7 +130,7 @@ Note that you can use both an overridden `.get_queryset()` and generic filtering
         """
         model = Product
         serializer_class = ProductSerializer
-        filter_class = ProductFilter
+        filterset_class = ProductFilter
 
         def get_queryset(self):
             user = self.request.user
@@ -139,17 +142,17 @@ Note that you can use both an overridden `.get_queryset()` and generic filtering
 
 ## DjangoFilterBackend
 
-The `django-filter` library includes a `DjangoFilterBackend` class which
+The [`django-filter`][django-filter-docs] library includes a `DjangoFilterBackend` class which
 supports highly customizable field filtering for REST framework.
 
-To use `DjangoFilterBackend`, first install `django-filter`.
+To use `DjangoFilterBackend`, first install `django-filter`. Then add `django_filters` to Django's `INSTALLED_APPS`
 
     pip install django-filter
 
 You should now either add the filter backend to your settings:
 
     REST_FRAMEWORK = {
-        'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
     }
 
 Or add the filter backend to an individual View or ViewSet.
@@ -158,104 +161,24 @@ Or add the filter backend to an individual View or ViewSet.
 
     class UserListView(generics.ListAPIView):
         ...
-        filter_backends = (DjangoFilterBackend,)
+        filter_backends = [DjangoFilterBackend]
 
-If you are using the browsable API or admin API you may also want to install `django-crispy-forms`, which will enhance the presentation of the filter forms in HTML views, by allowing them to render Bootstrap 3 HTML.
-
-    pip install django-crispy-forms
-
-With crispy forms installed and added to Django's `INSTALLED_APPS`, the browsable API will present a filtering control for `DjangoFilterBackend`, like so:
-
-![Django Filter](../img/django-filter.png)
-
-#### Specifying filter fields
-
-If all you need is simple equality-based filtering, you can set a `filter_fields` attribute on the view, or viewset, listing the set of fields you wish to filter against.
+If all you need is simple equality-based filtering, you can set a `filterset_fields` attribute on the view, or viewset, listing the set of fields you wish to filter against.
 
     class ProductList(generics.ListAPIView):
         queryset = Product.objects.all()
         serializer_class = ProductSerializer
-        filter_backends = (filters.DjangoFilterBackend,)
-        filter_fields = ('category', 'in_stock')
+        filter_backends = [DjangoFilterBackend]
+        filterset_fields = ['category', 'in_stock']
 
 This will automatically create a `FilterSet` class for the given fields, and will allow you to make requests such as:
 
     http://example.com/api/products?category=clothing&in_stock=True
 
-#### Specifying a FilterSet
+For more advanced filtering requirements you can specify a `FilterSet` class that should be used by the view.
+You can read more about `FilterSet`s in the [django-filter documentation][django-filter-docs].
+It's also recommended that you read the section on [DRF integration][django-filter-drf-docs].
 
-For more advanced filtering requirements you can specify a `FilterSet` class that should be used by the view.  For example:
-
-    import django_filters
-    from myapp.models import Product
-    from myapp.serializers import ProductSerializer
-    from rest_framework import generics
-
-    class ProductFilter(django_filters.rest_framework.FilterSet):
-        min_price = django_filters.NumberFilter(name="price", lookup_expr='gte')
-        max_price = django_filters.NumberFilter(name="price", lookup_expr='lte')
-        class Meta:
-            model = Product
-            fields = ['category', 'in_stock', 'min_price', 'max_price']
-
-    class ProductList(generics.ListAPIView):
-        queryset = Product.objects.all()
-        serializer_class = ProductSerializer
-        filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
-        filter_class = ProductFilter
-
-
-Which will allow you to make requests such as:
-
-    http://example.com/api/products?category=clothing&max_price=10.00
-
-You can also span relationships using `django-filter`, let's assume that each
-product has foreign key to `Manufacturer` model, so we create filter that
-filters using `Manufacturer` name. For example:
-
-    import django_filters
-    from myapp.models import Product
-    from myapp.serializers import ProductSerializer
-    from rest_framework import generics
-
-    class ProductFilter(django_filters.rest_framework.FilterSet):
-        class Meta:
-            model = Product
-            fields = ['category', 'in_stock', 'manufacturer__name']
-
-This enables us to make queries like:
-
-    http://example.com/api/products?manufacturer__name=foo
-
-This is nice, but it exposes the Django's double underscore convention as part of the API.  If you instead want to explicitly name the filter argument you can instead explicitly include it on the `FilterSet` class:
-
-    import django_filters
-    from myapp.models import Product
-    from myapp.serializers import ProductSerializer
-    from rest_framework import generics
-
-    class ProductFilter(django_filters.rest_framework.FilterSet):
-        manufacturer = django_filters.CharFilter(name="manufacturer__name")
-
-        class Meta:
-            model = Product
-            fields = ['category', 'in_stock', 'manufacturer']
-
-And now you can execute:
-
-    http://example.com/api/products?manufacturer=foo
-
-For more details on using filter sets see the [django-filter documentation][django-filter-docs].
-
----
-
-**Hints & Tips**
-
-* By default filtering is not enabled.  If you want to use `DjangoFilterBackend` remember to make sure it is installed by using the `'DEFAULT_FILTER_BACKENDS'` setting.
-* When using boolean fields, you should use the values `True` and `False` in the URL query parameters, rather than `0`, `1`, `true` or `false`.  (The allowed boolean values are currently hardwired in Django's [NullBooleanSelect implementation][nullbooleanselect].)
-* `django-filter` supports filtering across relationships, using Django's double-underscore syntax.
-
----
 
 ## SearchFilter
 
@@ -267,11 +190,13 @@ When in use, the browsable API will include a `SearchFilter` control:
 
 The `SearchFilter` class will only be applied if the view has a `search_fields` attribute set.  The `search_fields` attribute should be a list of names of text type fields on the model, such as `CharField` or `TextField`.
 
+    from rest_framework import filters
+
     class UserListView(generics.ListAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        filter_backends = (filters.SearchFilter,)
-        search_fields = ('username', 'email')
+        filter_backends = [filters.SearchFilter]
+        search_fields = ['username', 'email']
 
 This will allow the client to filter the items in the list by making queries such as:
 
@@ -279,7 +204,11 @@ This will allow the client to filter the items in the list by making queries suc
 
 You can also perform a related lookup on a ForeignKey or ManyToManyField with the lookup API double-underscore notation:
 
-    search_fields = ('username', 'email', 'profile__profession')
+    search_fields = ['username', 'email', 'profile__profession']
+    
+For [JSONField][JSONField] and [HStoreField][HStoreField] fields you can filter based on nested values within the data structure using the same double-underscore notation:
+
+    search_fields = ['data__breed', 'data__owner__other_pets__0__name']
 
 By default, searches will use case-insensitive partial matches.  The search parameter may contain multiple search terms, which should be whitespace and/or comma separated.  If multiple search terms are used then objects will be returned in the list only if all the provided terms are matched.
 
@@ -287,14 +216,24 @@ The search behavior may be restricted by prepending various characters to the `s
 
 * '^' Starts-with search.
 * '=' Exact matches.
-* '@' Full-text search.  (Currently only supported Django's MySQL backend.)
+* '@' Full-text search.  (Currently only supported Django's [PostgreSQL backend](https://docs.djangoproject.com/en/dev/ref/contrib/postgres/search/).)
 * '$' Regex search.
 
 For example:
 
-    search_fields = ('=username', '=email')
+    search_fields = ['=username', '=email']
 
-By default, the search parameter is named `'search`', but this may be overridden with the `SEARCH_PARAM` setting.
+By default, the search parameter is named `'search'`, but this may be overridden with the `SEARCH_PARAM` setting.
+
+To dynamically change search fields based on request content, it's possible to subclass the `SearchFilter` and override the `get_search_fields()` function. For example, the following subclass will only search on `title` if the query parameter `title_only` is in the request:
+
+    from rest_framework import filters
+
+    class CustomSearchFilter(filters.SearchFilter):
+        def get_search_fields(self, view, request):
+            if request.query_params.get('title_only'):
+                return ['title']
+            return super(CustomSearchFilter, self).get_search_fields(view, request)
 
 For more details, see the [Django documentation][search-django-admin].
 
@@ -327,8 +266,8 @@ It's recommended that you explicitly specify which fields the API should allowin
     class UserListView(generics.ListAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        filter_backends = (filters.OrderingFilter,)
-        ordering_fields = ('username', 'email')
+        filter_backends = [filters.OrderingFilter]
+        ordering_fields = ['username', 'email']
 
 This helps prevent unexpected data leakage, such as allowing users to order against a password hash field or other sensitive data.
 
@@ -339,7 +278,7 @@ If you are confident that the queryset being used by the view doesn't contain an
     class BookingsListView(generics.ListAPIView):
         queryset = Booking.objects.all()
         serializer_class = BookingSerializer
-        filter_backends = (filters.OrderingFilter,)
+        filter_backends = [filters.OrderingFilter]
         ordering_fields = '__all__'
 
 ### Specifying a default ordering
@@ -351,52 +290,11 @@ Typically you'd instead control this by setting `order_by` on the initial querys
     class UserListView(generics.ListAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        filter_backends = (filters.OrderingFilter,)
-        ordering_fields = ('username', 'email')
-        ordering = ('username',)
+        filter_backends = [filters.OrderingFilter]
+        ordering_fields = ['username', 'email']
+        ordering = ['username']
 
 The `ordering` attribute may be either a string or a list/tuple of strings.
-
----
-
-## DjangoObjectPermissionsFilter
-
-The `DjangoObjectPermissionsFilter` is intended to be used together with the [`django-guardian`][guardian] package, with custom `'view'` permissions added.  The filter will ensure that querysets only returns objects for which the user has the appropriate view permission.
-
-If you're using `DjangoObjectPermissionsFilter`, you'll probably also want to add an appropriate object permissions class, to ensure that users can only operate on instances if they have the appropriate object permissions.  The easiest way to do this is to subclass `DjangoObjectPermissions` and add `'view'` permissions to the `perms_map` attribute.
-
-A complete example using both `DjangoObjectPermissionsFilter` and `DjangoObjectPermissions` might look something like this.
-
-**permissions.py**:
-
-    class CustomObjectPermissions(permissions.DjangoObjectPermissions):
-		"""
-		Similar to `DjangoObjectPermissions`, but adding 'view' permissions.
-		"""
-        perms_map = {
-            'GET': ['%(app_label)s.view_%(model_name)s'],
-            'OPTIONS': ['%(app_label)s.view_%(model_name)s'],
-            'HEAD': ['%(app_label)s.view_%(model_name)s'],
-            'POST': ['%(app_label)s.add_%(model_name)s'],
-            'PUT': ['%(app_label)s.change_%(model_name)s'],
-            'PATCH': ['%(app_label)s.change_%(model_name)s'],
-            'DELETE': ['%(app_label)s.delete_%(model_name)s'],
-        }
-
-**views.py**:
-
-    class EventViewSet(viewsets.ModelViewSet):
-    	"""
-    	Viewset that only lists events if user has 'view' permissions, and only
-    	allows operations on individual events if user has appropriate 'view', 'add',
-    	'change' or 'delete' permissions.
-		"""
-        queryset = Event.objects.all()
-        serializer_class = EventSerializer
-        filter_backends = (filters.DjangoObjectPermissionsFilter,)
-        permission_classes = (myapp.permissions.CustomObjectPermissions,)
-
-For more information on adding `'view'` permissions for models, see the [relevant section][view-permissions] of the `django-guardian` documentation, and [this blogpost][view-permissions-blogpost].
 
 ---
 
@@ -432,8 +330,11 @@ The method should return a rendered HTML string.
 ## Pagination & schemas
 
 You can also make the filter controls available to the schema autogeneration
-that REST framework provides, by implementing a `get_schema_fields()` method,
-which should return a list of `coreapi.Field` instances.
+that REST framework provides, by implementing a `get_schema_fields()` method. This method should have the following signature:
+
+`get_schema_fields(self, view)`
+
+The method should return a list of `coreapi.Field` instances.
 
 # Third party packages
 
@@ -456,14 +357,12 @@ The [djangorestframework-word-filter][django-rest-framework-word-search-filter] 
 [drf-url-filter][drf-url-filter] is a simple Django app to apply filters on drf `ModelViewSet`'s `Queryset` in a clean, simple and configurable way. It also supports validations on incoming query params and their values. A beautiful python package `Voluptuous` is being used for validations on the incoming query parameters. The best part about voluptuous is you can define your own validations as per your query params requirements.
 
 [cite]: https://docs.djangoproject.com/en/stable/topics/db/queries/#retrieving-specific-objects-with-filters
-[django-filter]: https://github.com/alex/django-filter
 [django-filter-docs]: https://django-filter.readthedocs.io/en/latest/index.html
-[guardian]: https://django-guardian.readthedocs.io/
-[view-permissions]: https://django-guardian.readthedocs.io/en/latest/userguide/assign.html
-[view-permissions-blogpost]: http://blog.nyaruka.com/adding-a-view-permission-to-django-models
-[nullbooleanselect]: https://github.com/django/django/blob/master/django/forms/widgets.py
+[django-filter-drf-docs]: https://django-filter.readthedocs.io/en/latest/guide/rest_framework.html
 [search-django-admin]: https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields
 [django-rest-framework-filters]: https://github.com/philipn/django-rest-framework-filters
 [django-rest-framework-word-search-filter]: https://github.com/trollknurr/django-rest-framework-word-search-filter
 [django-url-filter]: https://github.com/miki725/django-url-filter
 [drf-url-filter]: https://github.com/manjitkumar/drf-url-filters
+[HStoreField]: https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/fields/#hstorefield
+[JSONField]: https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/fields/#jsonfield

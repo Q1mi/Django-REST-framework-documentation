@@ -1,4 +1,7 @@
-source: response.py
+---
+source:
+    - response.py
+---
 
 # Responses
 
@@ -42,7 +45,7 @@ Arguments:
 
 ## .data
 
-The unrendered content of a `Request` object.
+The unrendered, serialized data of the response.
 
 ## .status_code
 
@@ -91,5 +94,5 @@ As with any other `TemplateResponse`, this method is called to render the serial
 
 You won't typically need to call `.render()` yourself, as it's handled by Django's standard response cycle.
 
-[cite]: https://docs.djangoproject.com/en/stable/stable/template-response/
+[cite]: https://docs.djangoproject.com/en/stable/ref/template-response/
 [statuscodes]: status-codes.md
