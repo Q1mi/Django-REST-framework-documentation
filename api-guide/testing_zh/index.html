@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>测试 - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/testing_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, 测试">
+  <meta name="author" content="李文周">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#_1">测试</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#apirequesfactory">APIRequesFactory</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#apiclient">APIClient</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#requestsclient">RequestsClient</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#coreapiclient">CoreAPIClient</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_10">测试样例</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_12">测试响应</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_15">配置</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+
+              <h1 id="_1"><a class="toclink" href="#_1">测试</a></h1>
+<h2 id="apirequesfactory"><a class="toclink" href="#apirequesfactory">APIRequesFactory</a></h2>
+<p>延申django本身存在的<code>RequestFactory</code>类</p>
+<h3 id="_2"><a class="toclink" href="#_2">创建测试请求</a></h3>
+<p>这个<code>APIRequestFactory</code>类支持与Django标准<code>RequestFactory</code>类几乎相同的API。这意味着类似<code>.get()</code>，<code>.post()</code>，<code>.put()</code>，<code>.patch()</code>，<code>delete()</code>，<code>.head()</code>和<code>.options()</code>等标准方法全部支持。</p>
+<pre><code class="python">from rest_framework.test import APIRequestFactory
+
+# 使用标准的RequestFactory API去创建从POST来的请求
+factory = APIRequestFactory()
+request = factory.post('/notes/', {'title': 'new idea'})
+</code></pre>
+
+<h4 id="format"><a class="toclink" href="#format">使用<code>format</code>参数</a></h4>
+<p>创建请求主体的方法，例如<code>post</code>，<code>put</code>和<code>patch</code>，包含<code>format</code>，这使得使用多部分表单数据以外的内容类型轻松生成请求。例如：</p>
+<pre><code class="python"># 创建一个JSON POST请求
+factory = APIRequestFactory()
+request = factory.post('/notes/', {'title': 'new idea'}, format='json')
+</code></pre>
+
+<p>默认情况下，可用格式为<code>multipart</code>和<code>json</code>。为了与Django现有的<code>RequestFactory</code>，默认格式为<code>multipart</code>。
+要支持更多的请求格式集，或更改默认格式，请参见配置部分。</p>
+<h4 id="_3"><a class="toclink" href="#_3">明确编码请求主体</a></h4>
+<p>如果需要明确编码请求主体，可以通过设置<code>content_type</code>标志，例如：</p>
+<pre><code class="python">request = factory.post('/notes/'， json.dumps({'title': 'new idea'}), content_type='application/json')
+</code></pre>
+
+<h4 id="putpatch"><a class="toclink" href="#putpatch">使用表格数据进行PUT和PATCH</a></h4>
+<p>值得注意的是Django的<code>RequestFactory</code>和REST framework的<code>APIRequestFactory</code>之间的区别是，将为除<code>.post()</code>之外的方法编码多部份表单数据。
+例如，使用<code>APIRequestFactory</code>，可以像这样发送表单PUT请求：</p>
+<pre><code class="python">factory = APIRequestFactory()
+request = factory.put('/notes/547/', {'title': 'remember to email dave'})
+</code></pre>
+
+<p>使用Django的<code>RequestFactory</code>，需要自己对数据进行显式编码：</p>
+<pre><code class="python">from django.test.client import encode_multipart, RequestFactory
+
+factory = RequestFactory()
+data = {'title': 'remember to email dave'}
+content = encode_multipart('BoUnDaRyStRiNg', data)
+content_type = 'multipart/form-data; boundary=BoUnDaRyStRiNg'
+request = factory.put('/notes/547/', content, content_type=content_type)
+</code></pre>
+
+<h3 id="_4"><a class="toclink" href="#_4">强制验证</a></h3>
+<p>当测试视图直接使用请求工厂时，通常能够方便的直接对请求进行身份验证，而不必构造正确的身份验证凭据。</p>
+<p>要强制验证请求，请使用<code>force_authenticate()</code>方法。</p>
+<pre><code class="python">from rest_framework.test import force_authenticate
+
+factory = APIRequestFactory()
+user = User.objects.get(username='olivia')
+view = AccountDetail.as_view()
+
+# 让一个验证请求到view中。。。
+request = factory.get('/accounts/django-superstars/')
+force_authenticate(request, user=user)
+response = view(request)
+</code></pre>
+
+<p>这个方法为<code>force_authenticate(request, user=None, token=None)</code>。当调用时，可以设置user和token其中一个。</p>
+<p>例如，当使用token强制进行身份验证时，你可以执行以下操作：</p>
+<pre><code class="python">user = User.objects.get(username='olivia')
+request = factory.get('/accounts/django-superstars/')
+force_authenticate(request, user=user, token=user.token)
+</code></pre>
+
+<hr />
+<p><strong>Note</strong>：使用<code>APIRequestFactory</code>时，返回的对象是Django标准的<code>HttpRequest</code>，而不是REST framework的<code>Request</code>对象，后者仅在调用view后才生成。
+这意味着直接在请求对象上设置属性可能并不总是具有预期的效果。 例如，直接设置<code>.token</code>将无效，而直接设置<code>.user</code>仅在使用会话身份验证时才有效。</p>
+<pre><code class="python"># 只有在使用SessionAuthentication时，请求才会进行身份验证。
+request = factory.get('/accounts/django-superstars/')
+request.user = user
+response = view(request)
+</code></pre>
+
+<hr />
+<h3 id="csrf"><a class="toclink" href="#csrf">强制CSRF验证</a></h3>
+<p>默认情况下，使用<code>APIRequestFactory</code>创建的请求在传递到REST framework视图时不会应用CSRF验证。如果需要显式打开CSRF验证，则可以通过在实例化工厂时设置force_csrf_checks标志来实现。</p>
+<pre><code class="python">factory = APIRequestFactory(enforce_csrf_checks=True)
+</code></pre>
+
+<hr />
+<p><strong>Note</strong>：值得注意的是，Django的标准<code>RequestFactory</code>不需要包含此选项，因为在使用常规Django时，CSRF验证在中间件中进行，而中间件在直接测试视图时不会运行。 使用REST framework时，CSRF验证在视图内部进行，因此请求工厂需要禁用视图级CSRF检查。</p>
+<hr />
+<h2 id="apiclient"><a class="toclink" href="#apiclient">APIClient</a></h2>
+<p>扩展Django现有的Client类。</p>
+<h3 id="_5"><a class="toclink" href="#_5">创建请求</a></h3>
+<p><code>APIClient</code>类支持与Django的标准<code>Client</code>类相同的请求接口。 这意味着标准的<code>.get()</code>、<code>.post()</code>、<code>.put()</code>、<code>.patch()</code>、<code>.delete()</code>、<code>.head()</code>和<code>.options()</code>方法都可用。 例如：</p>
+<pre><code class="python">from rest_framework.test import APIClient
+
+client = APIClient()
+client.post('/notes/', {'title': 'new idea'}, format='json')
+</code></pre>
+
+<p>要支持更多的请求格式集，或更改默认格式，请参见配置部分。</p>
+<h3 id="_6"><a class="toclink" href="#_6">验证</a></h3>
+<h4 id="loginkwargs"><a class="toclink" href="#loginkwargs">.login(**kwargs)</a></h4>
+<p><code>login</code>方法的功能与Django常规<code>Client</code>类的功能完全相同。 这使您可以针对任何包含<code>SessionAuthentication</code>的视图对请求进行身份验证。</p>
+<pre><code class="python"># 在已登录会话的上下文中发出所有请求。
+client = APIClient()
+client.login(username='lauren', password='secret')
+</code></pre>
+
+<p>需要注销，请照常调用注销方法。</p>
+<pre><code class="python"># 注销
+client.logout()
+</code></pre>
+
+<p><code>login</code>方法适用于测试使用会话身份验证的API，例如包含与API进行AJAX交互的网站。</p>
+<h4 id="credentialskwargs"><a class="toclink" href="#credentialskwargs">.credentials(**kwargs)</a></h4>
+<p><code>credentials</code>方法可用于设置请求头，然后测试客户端会将其包含在所有后续请求中。</p>
+<pre><code class="python">from rest_framework.authtoken.models import Token
+from rest_framework.test import APIClient
+
+# 在所有请求上都包含适当的Authorization头。
+token = Token.objects.get(user__username='lauren')
+client = APIClient()
+client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+</code></pre>
+
+<p>请注意，第二次调用<code>credentials</code>将覆盖所有现有credentials。 您可以通过不带任何参数的方法来取消设置任何现有的credentials。</p>
+<h4 id="force_authenticateusernone-tokennone"><a class="toclink" href="#force_authenticateusernone-tokennone">.force_authenticate(user=None, token=None)</a></h4>
+<p>有时您可能想绕过身份验证，并简单地强制将测试客户端的所有请求自动视为已身份验证。
+如果您正在测试API但又不想构造有效的身份验证凭据来发出测试请求，则这可能是一个有用的快捷方式。</p>
+<pre><code class="python">user = User.objects.get(username='lauren')
+client = APIClient()
+client.force_authenticate(user=user)
+</code></pre>
+
+<p>要取消对后续请求的身份验证，请调用<code>force_authenticate</code>将用户和/或令牌设置为<code>None</code>。</p>
+<pre><code class="python">client.force_authenticate(user=None)
+</code></pre>
+
+<h3 id="csrf_1"><a class="toclink" href="#csrf_1">CSRF验证</a></h3>
+<p>默认情况下，使用<code>APIClient</code>时不应用CSRF验证。 如果需要显式启用CSRF验证，则可以通过在实例化客户端时设置<code>force_csrf_checks</code>来实现。</p>
+<pre><code class="python">client = APIClient(enforce_csrf_checks=True)
+</code></pre>
+
+<p>与往常一样，CSRF验证仅适用于任何经过会话身份验证的视图。 这意味着仅当通过调用<code>login()</code>登录客户端后，CSRF验证才会发生。</p>
+<h2 id="requestsclient"><a class="toclink" href="#requestsclient">RequestsClient</a></h2>
+<p>REST framework还包括一个客户端，用于使用流行的Python库<code>requests</code>与应用程序进行交互。这在以下情况下可能有用：
+- 您期望主要通过另一个Python服务与API交互，并希望在与客户端看到的相同的级别上测试该服务。
+- 您希望以这样的方式编写测试，使其也可以在临时环境或实时环境中运行。 （请参见下面的“实时测试”。）
+这将显示与您直接使用请求会话完全相同的界面。</p>
+<pre><code class="python">client = RequestsClient()
+response = client.get('http://testserver/users/')
+assert response.status_code == 200
+</code></pre>
+
+<p>请注意，请求客户端要求您传递完全限定的URL。</p>
+<h3 id="requestsclient_1"><a class="toclink" href="#requestsclient_1"><code>RequestsClient</code>和使用数据库</a></h3>
+<p>如果您要编写仅与服务接口交互的测试，则<code>RequestsClient</code>类很有用。 这比使用标准Django测试客户端要严格一些，因为这意味着所有交互都应通过API进行。
+如果使用的是<code>RequestsClient</code>，则需要确保测试设置和结果断言是作为常规API调用执行的，而不是直接与数据库模型进行交互。 例如，您不必列出<code>Customer.objects.count（）== 3</code>，而是列出客户端点，并确保它包含三个记录。</p>
+<h3 id="_7"><a class="toclink" href="#_7">请求头&amp;认证</a></h3>
+<p>可以使用与使用标准<code>request.Session</code>实例相同的方式来提供自定义请求头和身份验证凭据。</p>
+<pre><code class="python">from requests.auth import HTTPBasicAuth
+
+client.auth = HTTPBasicAuth('user', 'pass')
+client.headers.update({'x-test': 'true'})
+</code></pre>
+
+<h3 id="csrf_2"><a class="toclink" href="#csrf_2">CSRF</a></h3>
+<p>如果您使用的是<code>SessionAuthentication</code>，则需要为所有<code>POST</code>，<code>PUT</code>，<code>PATCH</code>或<code>DELETE</code>请求包括一个CSRF令牌。
+您可以按照基于JavaScript的客户端将使用的相同流程进行操作。 首先发出<code>GET</code>请求以获得CRSF令牌，然后在随后的请求中显示该令牌。
+例如...</p>
+<pre><code class="python">client = RequestsClient()
+
+# 获取CSRF token.
+response = client.get('/homepage/')
+assert response.status_code == 200
+csrftoken = response.cookies['csrftoken']
+
+# 与API交互
+response = client.post('/organisations/', json={
+    'name': 'MegaCorp',
+    'status': 'active'
+}, headers={'X-CSRFToken': csrftoken})
+assert response.status_code == 200
+</code></pre>
+
+<h3 id="_8"><a class="toclink" href="#_8">现场测试</a></h3>
+<p>通过谨慎使用<code>RequestsClient</code>和<code>CoreAPIClient</code>都可以编写可以在开发中运行或直接在登台服务器或生产环境中运行的测试用例。
+使用这种样式创建一些核心功能的基本测试是验证实时服务的有效方法。 这样做可能需要仔细注意设置和卸载，以确保测试以不直接影响客户数据的方式运行。</p>
+<h2 id="coreapiclient"><a class="toclink" href="#coreapiclient">CoreAPIClient</a></h2>
+<p>CoreAPIClient允许您使用Python <code>coreapi</code> 客户端库与API进行交互。</p>
+<pre><code class="python"># 提取API模式
+client = CoreAPIClient()
+schema = client.get('http://testserver/schema/')
+
+# 创建一个新的organisation
+params = {'name': 'MegaCorp', 'status': 'active'}
+client.action(schema, ['organisations', 'create'], params)
+
+# 确保列表中存在该组织
+data = client.action(schema, ['organisations', 'list'])
+assert(len(data) == 1)
+assert(data == [{'name': 'MegaCorp', 'status': 'active'}])
+</code></pre>
+
+<h3 id="_9"><a class="toclink" href="#_9">请求头&amp;认证</a></h3>
+<p>自定义请求头和身份验证可用于跟<code>RequestsClient</code>相似的<code>CoreAPIClient</code>一起使用。</p>
+<pre><code class="python">from requests.auth import HTTPBasicAuth
+
+client = CoreAPIClient()
+client.session.auth = HTTPBasicAuth('user', 'pass')
+client.session.headers.update({'x-test': 'true'})
+</code></pre>
+
+<h2 id="_10"><a class="toclink" href="#_10">测试样例</a></h2>
+<p>REST framework包括以下测试用例类，它们反映了现有的Django测试用例类，但是使用<code>APIClient</code>而不是Django的默认<code>Client</code>。
+- APISimpleTestCase
+- APITransactionTestCase
+- APITestCase
+- APILiveServerTestCase</p>
+<h3 id="_11"><a class="toclink" href="#_11">实例</a></h3>
+<p>您可以像使用常规Django测试用例类那样使用任何REST framework的用例类。<code>self.client</code>属性将是一个<code>APIClient</code>实例。</p>
+<pre><code class="python">from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
+from myproject.apps.core.models import Account
+
+class AccountTests(APITestCase):
+    def test_create_account(self):
+        &quot;&quot;&quot;
+        确保我们可以创建一个新的帐户对象。
+        &quot;&quot;&quot;
+        url = reverse('account-list')
+        data = {'name': 'DabApps'}
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Account.objects.count(), 1)
+        self.assertEqual(Account.objects.get().name, 'DabApps')
+</code></pre>
+
+<h2 id="_12"><a class="toclink" href="#_12">测试响应</a></h2>
+<h3 id="_13"><a class="toclink" href="#_13">检查响应数据</a></h3>
+<p>在检查测试响应的有效性时，通常更方便的方法是检查创建响应的数据，而不是检查完全呈现的响应。
+例如，检查<code>response.data</code>更容易：</p>
+<pre><code class="python">response = self.client.get('/users/4/')
+self.assertEqual(response.data, {'id': 4, 'username': 'lauren'})
+</code></pre>
+
+<p>而不是检查<code>response.content</code>的解析结果：</p>
+<pre><code class="python">response = self.client.get('/users/4/')
+self.assertEqual(json.loads(response.content), {'id': 4, 'username': 'lauren'})
+</code></pre>
+
+<h3 id="_14"><a class="toclink" href="#_14">渲染响应</a></h3>
+<p>如果您直接使用<code>APIRequestFactory</code>测试视图，则返回的响应将不会渲染，因为模板响应的渲染是由Django的内部请求-响应周期执行的。 为了访问<code>response.content</code>，您首先需要渲染响应。</p>
+<pre><code class="python">view = UserDetail.as_view()
+request = factory.get('/users/4')
+response = view(request, pk='4')
+response.render()  # Cannot access `response.content` without this.
+self.assertEqual(response.content, '{&quot;username&quot;: &quot;lauren&quot;, &quot;id&quot;: 4}')
+</code></pre>
+
+<h2 id="_15"><a class="toclink" href="#_15">配置</a></h2>
+<h3 id="_16"><a class="toclink" href="#_16">设置默认格式</a></h3>
+<p>可以使用<code>TEST_REQUEST_DEFAULT_FORMAT</code>设置项来设置用于发出测试请求的默认格式。 例如，要在默认情况下始终将JSON用于测试请求而不是标准的多部分表单请求，请在<code>settings.py</code>文件中设置以下内容：</p>
+<pre><code class="python">REST_FRAMEWORK = {
+    ...
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json'
+}
+</code></pre>
+
+<h3 id="_17"><a class="toclink" href="#_17">设置可用格式</a></h3>
+<p>如果您需要使用multipart或json请求之外的其他测试请求，则可以通过设置<code>TEST_REQUEST_RENDERER_CLASSES</code>设置来进行。
+例如，要增加对在测试请求中使用<code>format ='html'</code>的支持，您的<code>settings.py</code>文件中可能会有类似的内容。</p>
+<pre><code class="python">REST_FRAMEWORK = {
+    ...
+    'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.renderers.MultiPartRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer'
+    )
+}
+</code></pre>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>
