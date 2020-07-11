@@ -1,4 +1,3 @@
-source: versioning.py
 
 # Versioning
 

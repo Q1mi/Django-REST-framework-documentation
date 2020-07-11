@@ -1,4 +1,3 @@
-source: response.py
 
 # Responses
 

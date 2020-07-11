@@ -1,4 +1,3 @@
-source: authentication.py
 
 # 认证
 

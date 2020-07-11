@@ -5,13 +5,15 @@ site_author: Q1mi
 
 repo_url: https://github.com/Q1mi/Django-REST-framework-documentation
 
-theme_dir: docs_theme
+theme:
+    name: mkdocs
+    custom_dir: docs_theme
 
 markdown_extensions:
  - toc:
     anchorlink: True
 
-pages:
+nav:
  - 主页: 'index.md'
  - 教程:
     - 'Quickstart': 'tutorial/quickstart_zh.md'
@@ -32,7 +34,7 @@ pages:
     - 'Parsers': 'api-guide/parsers_zh.md'
     - 'Renderers': 'api-guide/renderers_zh.md'
     - 'Serializers': 'api-guide/serializers_zh.md'
-    - 'Serializer fields': 'api-guide/fields.md'
+    - 'Serializer fields': 'api-guide/fields_zh.md'
     - 'Serializer relations': 'api-guide/relations.md'
     - 'Validators': 'api-guide/validators.md'
     - 'Authentication': 'api-guide/authentication_zh.md'

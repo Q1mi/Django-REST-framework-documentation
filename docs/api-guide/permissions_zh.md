@@ -1,4 +1,4 @@
-source: permissions.py
+URLsource: permissions.py
 
 # 权限
 

@@ -1,3 +1,4 @@
+
 # Filtering
 
 > “ 由Django Manager提供的根QuerySet描述了数据库表中的所有对象。可是通常你需要的只是选择完整对象中的一个子集而已。

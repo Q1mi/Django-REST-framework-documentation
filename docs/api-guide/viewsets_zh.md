@@ -1,4 +1,3 @@
-source: viewsets.py
 
 # ViewSets
 
