@@ -29,6 +29,8 @@ QQ群号：930578836
 ## 翻译人员
 
 * [Q1mi](https://github.com/Q1mi)
+* [ScienceYuan](https://github.com/ScienceYuan)
+* [leveleven](https://github.com/leveleven)
 
 ## 以下章节已完成翻译
 
@@ -59,6 +61,7 @@ QQ群号：930578836
 * [Authentication](/Django-REST-framework-documentation/api-guide/authentication_zh/)
 * [Permissions](/Django-REST-framework-documentation/api-guide/permissions_zh/)
 * [Versioning](/Django-REST-framework-documentation/api-guide/versioning_zh/)
+* [Testing](/Django-REST-framework-documentation/api-guide/testing_zh/)
 
 ### 主题
 

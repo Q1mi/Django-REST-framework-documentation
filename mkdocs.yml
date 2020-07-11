@@ -50,7 +50,7 @@ nav:
     - 'Returning URLs': 'api-guide/reverse.md'
     - 'Exceptions': 'api-guide/exceptions.md'
     - 'Status codes': 'api-guide/status-codes.md'
-    - 'Testing': 'api-guide/testing.md'
+    - 'Testing': 'api-guide/testing_zh.md'
     - 'Settings': 'api-guide/settings.md'
  - 主题:
      - 'Documenting your API': 'topics/documenting-your-api.md'
