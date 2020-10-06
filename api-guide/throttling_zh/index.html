@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Throttling - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/throttling_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Throttling">
+  <meta name="author" content="李文周">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../filtering_zh/">
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../permissions_zh/">
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination_zh/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation_zh/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata_zh/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes_zh/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse_zh/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes_zh/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing_zh/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#throttling">Throttling （限流）</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#how-throttling-is-determined">How throttling is determined （如何决定限流）</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#setting-the-throttling-policy">Setting the throttling policy （设定限流策略）</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#how-clients-are-identified">How clients are identified （如何识别客户端)</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#setting-up-the-cache">Setting up the cache (设置缓存)</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#api-reference">API Reference</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#anonratethrottle">AnonRateThrottle</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#userratethrottle">UserRateThrottle</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#scopedratethrottle">ScopedRateThrottle</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#custom-throttles">Custom throttles （自定义限流）</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#example">Example</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/h">
+                    <span class="label label-info">h</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
+                    <span class="label label-info">r</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/o">
+                    <span class="label label-info">o</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/l">
+                    <span class="label label-info">l</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
+                    <span class="label label-info">i</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
+                    <span class="label label-info">n</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/g">
+                    <span class="label label-info">g</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
+                    <span class="label label-info">.</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
+                    <span class="label label-info">y</span>
+                  </a>
+                
+              
+
+              <h1 id="throttling"><a class="toclink" href="#throttling">Throttling （限流）</a></h1>
+<blockquote>
+<p>HTTP/1.1 420 Enhance Your Calm</p>
+<p><a href="https://dev.twitter.com/docs/error-codes-responses">Twitter API rate limiting response</a></p>
+</blockquote>
+<p>类似于[权限]，限流器决定是否应当授权请求。限流器指示临时状态，并被用于控制客户端能够向API发出请求的频率。</p>
+<p>与权限一样，多个限流器可能会被应用。您的API或许会对未经认证的请求进行限制，而对于已经认证的请求进行相对更少的限制。</p>
+<p>另一个您可能会想要使用多个限流器的情况是由于某些服务特别耗费资源，因此您需要对API的不同部分施加不同的限制。</p>
+<p>如果需要同时应用突发限制流量和持续限制流量，也可以使用多个限流器。例如，您可能希望将用户限制为每分钟最多60个请求，每天最多1000个请求。</p>
+<p>限流器不一定仅指限制请求的频次。例如，存储服务可能还需要限制带宽，而付费数据服务则可能需要限制被访问的记录的特定数量。</p>
+<h2 id="how-throttling-is-determined"><a class="toclink" href="#how-throttling-is-determined">How throttling is determined （如何决定限流）</a></h2>
+<p>与权限和身份验证一样，REST框架中的限制总是被定义为一系列的类。</p>
+<p>在运行视图主体之前，列表中的每一个限流器会被检查。如果任何限流器检查异常，则将抛出<code>exceptions.Throttled</code>，并且视图主体将不会运行。</p>
+<h2 id="setting-the-throttling-policy"><a class="toclink" href="#setting-the-throttling-policy">Setting the throttling policy （设定限流策略）</a></h2>
+<p>通过使用 <code>DEFAULT_THROTTLE_CLASSES</code> 和 <code>DEFAULT_THROTTLE_RATES</code> 默认限流策略将被全局设定,例如：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',
+        'user': '1000/day'
+    }
+}
+</code></pre>
+<p>被用于 <code>DEFAULT_THROTTLE_RATES</code> 中的流量描述可能包括 <code>second</code>, <code>minute</code>, <code>hour</code> or <code>day</code> 作为限流周期</p>
+<p>对于基于 <code>APIView</code> 类的视图，您可以以每个视图或每个视图集为基础设置限流策略</p>
+<pre><code>from rest_framework.response import Response
+from rest_framework.throttling import UserRateThrottle
+from rest_framework.views import APIView
+
+class ExampleView(APIView):
+    throttle_classes = (UserRateThrottle,)
+
+    def get(self, request, format=None):
+        content = {
+            'status': 'request was permitted'
+        }
+        return Response(content)
+</code></pre>
+<p>或者，如果您使用带有 <code>@api_view</code> 装饰器的基于函数的视图</p>
+<pre><code>@api_view(['GET'])
+@throttle_classes([UserRateThrottle])
+def example_view(request, format=None):
+    content = {
+        'status': 'request was permitted'
+    }
+    return Response(content)
+</code></pre>
+<h2 id="how-clients-are-identified"><a class="toclink" href="#how-clients-are-identified">How clients are identified （如何识别客户端)</a></h2>
+<p><code>X-Forwarded-For HTTP</code> 请求头和 <code>REMOTE_ADDR WSGI</code> 变量用于唯一地标识用户的IP地址。如果存在 <code>X-Forwarded-For</code> 请求头，则将使用它，否则将使用WSGI环境中 <code>REMOTE_ADDR</code> 变量的值。</p>
+<p>如果需要严格标识唯一的客户端IP地址，则需要首先通过设置 <code>NUM_proxies</code> 设置来配置API后运行的应用程序代理的数量。此设置应为零或更大的整数。如果设置为非零，那么一旦第一次排除任何应用程序代理IP地址，客户端IP将被标识为 <code>·X-Forwarded-For·</code> 标头中的最后一个IP地址。如果设置为零，则 <code>Remote-Addr</code> 头将始终用于标识IP地址。</p>
+<p>重要的是要了解，如果配置 <code>NUM_PROXIES</code> 设置，那么一个唯一的<a href="http://en.wikipedia.org/wiki/Network_address_translation">NAT'd</a>网关后面的所有客户端都将被视为单个客户端。</p>
+<p>关于 <code>X-Forwarded-For</code> 请求头如何工作以及标识远程客户端IP的更多上下文可以在<a href="http://oxpedia.org/wiki/index.php?title=AppSuite:Grizzly#Multiple_Proxies_in_front_of_the_cluster">这里</a>找到。</p>
+<h2 id="setting-up-the-cache"><a class="toclink" href="#setting-up-the-cache">Setting up the cache (设置缓存)</a></h2>
+<p>REST框架提供的节流类使用Django的缓存后端。您应该确保已设置适当的<a href="https://docs.djangoproject.com/en/stable/ref/settings/#caches">缓存设置</a>。对于简单设置，后端的默认值 <code>LocMemCache</code> 即可。有关更多详细信息，请参见Django的<a href="https://docs.djangoproject.com/en/stable/topics/cache/#setting-up-the-cache">缓存文档</a>。</p>
+<p>如果您需要使用 <code>'default'</code> 以外的缓存，则可以通过创建自定义的节流类并设置缓存属性来实现。 例如：</p>
+<pre><code>class CustomAnonRateThrottle(AnonRateThrottle):
+    cache = get_cache('alternate')
+</code></pre>
+<p>您需要记住，还需要在 <code>'DEFAULT_THROTTLE_CLASSES'</code> 设置键中设置您的自定义限流器，或使用 <code>throttle_classes</code> 视图属性。</p>
+<hr />
+<h1 id="api-reference"><a class="toclink" href="#api-reference">API Reference</a></h1>
+<h2 id="anonratethrottle"><a class="toclink" href="#anonratethrottle">AnonRateThrottle</a></h2>
+<p><code>AnonRateThrottle</code> 会限制未经身份验证的用户。传入请求的IP地址用于生成唯一的密钥以进行限制。</p>
+<p>允许的请求频次由以下之一确定（按优先顺序）。</p>
+<ul>
+<li>类的 <code>rate</code> 属性，可以通过重写 <code>AnonRateThrottle</code> 并设置该属性来提供。</li>
+<li><code>DEFAULT_THROTTLE_RATES['anon']</code> 设置。</li>
+</ul>
+<p>如果要限制来自未知源的请求速率，则<code>AnonRateThrottle</code> 是合适的。</p>
+<h2 id="userratethrottle"><a class="toclink" href="#userratethrottle">UserRateThrottle</a></h2>
+<p><code>UserRateThrottle</code> 将通过API将用户限制为给定的请求速率。用户ID用于生成唯一的密钥以进行限制。未经身份验证的请求将退回到使用传入请求的IP地址来生成唯一密钥以进行限制。</p>
+<p>允许的请求速率由以下之一确定（按优先顺序）。</p>
+<ul>
+<li>类的 <code>rate</code> 属性，可以通过重写 <code>UserRateThrottle</code> 并设置该属性来提供。</li>
+<li><code>DEFAULT_THROTTLE_RATES['user']</code> 设置。</li>
+</ul>
+<p>一个API可能同时具有多个 <code>UserRateThrottles</code>。为此，请重写 <code>UserRateThrottle</code> 并为每个类设置一个唯一的“作用域”。</p>
+<p>例如，可以通过使用以下类来实现多个用户节流率...</p>
+<pre><code>class BurstRateThrottle(UserRateThrottle):
+    scope = 'burst'
+
+class SustainedRateThrottle(UserRateThrottle):
+    scope = 'sustained'
+</code></pre>
+<p>...和以下设置。</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'example.throttles.BurstRateThrottle',
+        'example.throttles.SustainedRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'burst': '60/min',
+        'sustained': '1000/day'
+    }
+}
+</code></pre>
+<p><code>UserRateThrottle</code> is suitable if you want simple global rate restrictions per-user.</p>
+<h2 id="scopedratethrottle"><a class="toclink" href="#scopedratethrottle">ScopedRateThrottle</a></h2>
+<p><code>ScopedRateThrottle</code> 类可用于限制对API特定部分的访问。仅当所访问的视图包含. <code>throttle_scope</code> 属性时，才会应用此限流器。然后，通过将请求的“范围”与唯一的用户ID或IP地址串联起来，即可形成唯一的限制键。</p>
+<p>允许的请求速率由 <code>DEFAULT_THROTTLE_RATES</code>设置使用请求“scope”中的键确定。</p>
+<p>例如，给定以下视图...</p>
+<pre><code>class ContactListView(APIView):
+    throttle_scope = 'contacts'
+    ...
+
+class ContactDetailView(APIView):
+    throttle_scope = 'contacts'
+    ...
+
+class UploadView(APIView):
+    throttle_scope = 'uploads'
+    ...
+</code></pre>
+<p>...和以下设置。</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.ScopedRateThrottle',
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'contacts': '1000/day',
+        'uploads': '20/day'
+    }
+}
+</code></pre>
+<p>用户对 <code>ContactListView</code> 或 <code>ContactDetailView</code> 的请求将被限制为每天共计1000个请求。用户对 <code>UploadView</code> 的请求将被限制为每天共计20个请求。</p>
+<hr />
+<h1 id="custom-throttles"><a class="toclink" href="#custom-throttles">Custom throttles （自定义限流）</a></h1>
+<p>若要创建自定义限流器，请重写 <code>BaseThrottle</code> 并使用 <code>.allow_request(self, request, view)</code>。如果允许请求，则该方法应返回 <code>True</code> ，否则返回 <code>False</code>。</p>
+<p>你也可以选择性地重写 <code>.wait()</code>方法。如果被使用，<code>.wait()</code> 应返回尝试下一个请求前建议的等待秒数，或者 <code>None</code>。只有在 <code>.allow_request()</code> 先前已返回 <code>False</code> 时才会调用 <code>.wait()</code>方法。</p>
+<p>如果使用了 <code>.wait()</code> 方法并限制了请求，则响应中将包含 <code>Retry-After</code> 头。</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<p>下面是一个限流的例子，它将在每10个请求中随机地限制1个。</p>
+<pre><code>import random
+
+class RandomRateThrottle(throttling.BaseThrottle):
+    def allow_request(self, request, view):
+        return random.randint(1, 10) != 1
+</code></pre>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>

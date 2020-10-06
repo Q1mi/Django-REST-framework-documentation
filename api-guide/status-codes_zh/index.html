@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Status codes - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/status-codes_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Status codes">
+  <meta name="author" content="李文周">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../testing_zh/">
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../exceptions/">
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling_zh/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination_zh/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation_zh/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata_zh/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes_zh/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse_zh/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing_zh/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#status-codes">Status Codes (状态码)</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#informational-1xx">Informational - 1xx</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#successful-2xx">Successful - 2xx</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#redirection-3xx">Redirection - 3xx</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#client-error-4xx">Client Error - 4xx</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#server-error-5xx">Server Error - 5xx</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#helper-functions">Helper functions （辅助函数）</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
+                    <span class="label label-info">s</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/a">
+                    <span class="label label-info">a</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/u">
+                    <span class="label label-info">u</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
+                    <span class="label label-info">s</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
+                    <span class="label label-info">.</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
+                    <span class="label label-info">y</span>
+                  </a>
+                
+              
+
+              <h1 id="status-codes"><a class="toclink" href="#status-codes">Status Codes (状态码)</a></h1>
+<blockquote>
+<p>418 I'm a teapot - Any attempt to brew coffee with a teapot should result in the error code "418 I'm a teapot".  The resulting entity body MAY be short and stout.</p>
+<p>&mdash; <a href="http://www.ietf.org/rfc/rfc2324.txt">RFC 2324</a>, Hyper Text Coffee Pot Control Protocol</p>
+</blockquote>
+<p>不建议在响应中使用裸露的状态码。REST框架包含一组可以使用以使代码更加明显和可读的命名常量。</p>
+<pre><code>from rest_framework import status
+from rest_framework.response import Response
+
+def empty_view(self):
+    content = {'please move along': 'nothing to see here'}
+    return Response(content, status=status.HTTP_404_NOT_FOUND)
+</code></pre>
+<p>下面列出了 <code>state</code> 模块中包含的全套HTTP状态码。</p>
+<p>该模块还包括一组辅助函数，用于测试状态码是否在给定范围内。</p>
+<pre><code>from rest_framework import status
+from rest_framework.test import APITestCase
+
+class ExampleTestCase(APITestCase):
+    def test_url_root(self):
+        url = reverse('index')
+        response = self.client.get(url)
+        self.assertTrue(status.is_success(response.status_code))
+</code></pre>
+<p>有关正确使用HTTP状态代码的更多信息 <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">RFC 2616</a> 和 <a href="http://tools.ietf.org/html/rfc6585">RFC 6585</a>.</p>
+<h2 id="informational-1xx"><a class="toclink" href="#informational-1xx">Informational - 1xx</a></h2>
+<p>此类状态代码表示临时响应。默认情况下，REST框架中没有使用1xx状态代码。</p>
+<pre><code>HTTP_100_CONTINUE
+HTTP_101_SWITCHING_PROTOCOLS
+</code></pre>
+<h2 id="successful-2xx"><a class="toclink" href="#successful-2xx">Successful - 2xx</a></h2>
+<p>此类状态码表示已成功接收、理解和接受客户端的请求。</p>
+<pre><code>HTTP_200_OK
+HTTP_201_CREATED
+HTTP_202_ACCEPTED
+HTTP_203_NON_AUTHORITATIVE_INFORMATION
+HTTP_204_NO_CONTENT
+HTTP_205_RESET_CONTENT
+HTTP_206_PARTIAL_CONTENT
+HTTP_207_MULTI_STATUS
+</code></pre>
+<h2 id="redirection-3xx"><a class="toclink" href="#redirection-3xx">Redirection - 3xx</a></h2>
+<p>此类状态码表示用户代理需要采取进一步的操作才能完成请求。</p>
+<pre><code>HTTP_300_MULTIPLE_CHOICES
+HTTP_301_MOVED_PERMANENTLY
+HTTP_302_FOUND
+HTTP_303_SEE_OTHER
+HTTP_304_NOT_MODIFIED
+HTTP_305_USE_PROXY
+HTTP_306_RESERVED
+HTTP_307_TEMPORARY_REDIRECT
+</code></pre>
+<h2 id="client-error-4xx"><a class="toclink" href="#client-error-4xx">Client Error - 4xx</a></h2>
+<p>此类状态码用于客户端似乎出错的情况。除了响应HEAD请求时，服务器应该包含一个实体对象，其中包含对错误情况的解释，以及它是临时的还是持续的。</p>
+<pre><code>HTTP_400_BAD_REQUEST
+HTTP_401_UNAUTHORIZED
+HTTP_402_PAYMENT_REQUIRED
+HTTP_403_FORBIDDEN
+HTTP_404_NOT_FOUND
+HTTP_405_METHOD_NOT_ALLOWED
+HTTP_406_NOT_ACCEPTABLE
+HTTP_407_PROXY_AUTHENTICATION_REQUIRED
+HTTP_408_REQUEST_TIMEOUT
+HTTP_409_CONFLICT
+HTTP_410_GONE
+HTTP_411_LENGTH_REQUIRED
+HTTP_412_PRECONDITION_FAILED
+HTTP_413_REQUEST_ENTITY_TOO_LARGE
+HTTP_414_REQUEST_URI_TOO_LONG
+HTTP_415_UNSUPPORTED_MEDIA_TYPE
+HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE
+HTTP_417_EXPECTATION_FAILED
+HTTP_422_UNPROCESSABLE_ENTITY
+HTTP_423_LOCKED
+HTTP_424_FAILED_DEPENDENCY
+HTTP_428_PRECONDITION_REQUIRED
+HTTP_429_TOO_MANY_REQUESTS
+HTTP_431_REQUEST_HEADER_FIELDS_TOO_LARGE
+HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS
+</code></pre>
+<h2 id="server-error-5xx"><a class="toclink" href="#server-error-5xx">Server Error - 5xx</a></h2>
+<p>此类响应状态码表示服务器意识到自身出错或无法执行请求的情况。除了响应HEAD请求的时候，服务器应该包含一个实体，其中包含对错误情况的解释，以及它是临时的还是持续的。</p>
+<pre><code>HTTP_500_INTERNAL_SERVER_ERROR
+HTTP_501_NOT_IMPLEMENTED
+HTTP_502_BAD_GATEWAY
+HTTP_503_SERVICE_UNAVAILABLE
+HTTP_504_GATEWAY_TIMEOUT
+HTTP_505_HTTP_VERSION_NOT_SUPPORTED
+HTTP_507_INSUFFICIENT_STORAGE
+HTTP_511_NETWORK_AUTHENTICATION_REQUIRED
+</code></pre>
+<h2 id="helper-functions"><a class="toclink" href="#helper-functions">Helper functions （辅助函数）</a></h2>
+<p>下列helper函数可用于标识响应代码的类别。</p>
+<pre><code>is_informational()  # 1xx
+is_success()        # 2xx
+is_redirect()       # 3xx
+is_client_error()   # 4xx
+is_server_error()   # 5xx
+</code></pre>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>

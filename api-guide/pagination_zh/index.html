@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Pagination - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/pagination_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Pagination">
+  <meta name="author" content="李文周">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../versioning_zh/">
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../filtering_zh/">
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling_zh/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation_zh/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata_zh/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes_zh/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse_zh/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes_zh/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing_zh/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#pagination">Pagination (分页)</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#setting-the-pagination-style">Setting the pagination style (设置分页样式)</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#modifying-the-pagination-style">Modifying the pagination style (调整分页样式)</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#api-reference">API Reference</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#pagenumberpagination">PageNumberPagination</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#limitoffsetpagination">LimitOffsetPagination</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#cursorpagination">CursorPagination</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#custom-pagination-styles">Custom pagination styles (自定义分页样式)</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#example">Example</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#using-your-custom-pagination-class">Using your custom pagination class （使用自定义分页类）</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#pagination-schemas">Pagination &amp; schemas （分页和模式）</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#html-pagination-controls-html">HTML pagination controls （HTML分页控件）</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#customizing-the-controls">Customizing the controls （自定义控件)</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#third-party-packages">Third party packages</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#drf-extensions">DRF-extensions</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#drf-proxy-pagination">drf-proxy-pagination</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/a">
+                    <span class="label label-info">a</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/g">
+                    <span class="label label-info">g</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
+                    <span class="label label-info">i</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
+                    <span class="label label-info">n</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/a">
+                    <span class="label label-info">a</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
+                    <span class="label label-info">i</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/o">
+                    <span class="label label-info">o</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
+                    <span class="label label-info">n</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
+                    <span class="label label-info">.</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
+                    <span class="label label-info">y</span>
+                  </a>
+                
+              
+
+              <h1 id="pagination"><a class="toclink" href="#pagination">Pagination (分页)</a></h1>
+<blockquote>
+<p>Django provides a few classes that help you manage paginated data – that is, data that’s split across several pages, with “Previous/Next” links.</p>
+<p>&mdash; <a href="https://docs.djangoproject.com/en/stable/topics/pagination/">Django 文档</a></p>
+</blockquote>
+<p>REST框架包括对可定制的分页样式的支持。 这使您可以调整使大型结果集被拆分为单独的数据页面。</p>
+<p>分页API可以支持以下两者之一：</p>
+<ul>
+<li>作为响应内容的一部分提供的分页链接。</li>
+<li>包含在响应标头中的分页链接，例如 <code>Content-Range</code> 或 <code>Link</code>。</li>
+</ul>
+<p>当前内置样式都使用作为响应内容一部分的链接。当使用可浏览的API时，这种样式更容易访问。</p>
+<p>只有在使用常规视图或视图集时才自动执行分页。如果使用的是常规的 <code>APIView</code> ，则需要自行调用分页API以确保返回分页的响应。请参见 <code>mixins.ListModelMixin</code> 以及  <code>generics.GenericAPIView</code> 类作为示例。</p>
+<p>Pagination can be turned off by setting the pagination class to <code>None</code>.
+可以通过将Pagination类设置为 <code>None</code> 来关闭分页。</p>
+<h2 id="setting-the-pagination-style"><a class="toclink" href="#setting-the-pagination-style">Setting the pagination style (设置分页样式)</a></h2>
+<p>可以使用 <code>DEFAULT_PAGINATION_CLASS</code> 和 <code>PAGE_SIZE</code> 设置键全局设置分页样式。例如，为了使用内置的限制/偏移分页，可以执行以下操作</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
+</code></pre>
+<p>注意，您需要同时设置分页类和应该使用的页面大小。默认情况下， <code>DEFAULT_PAGINATION_CLASS</code> 和 <code>PAGE_SIZE</code> 均为 <code>None</code> 。</p>
+<p>也可以使用 <code>pagination_class</code> 属性在单个视图上设置分页类。通常，您希望在整个API中使用相同的分页样式，尽管您可能希望根据每个视图改变分页的各个方面，例如默认或最大页面大小。</p>
+<h2 id="modifying-the-pagination-style"><a class="toclink" href="#modifying-the-pagination-style">Modifying the pagination style (调整分页样式)</a></h2>
+<p>如果要修改分页样式的特定方面，则需要重写其中一个分页类，并设置要更改的属性。</p>
+<pre><code>class LargeResultsSetPagination(PageNumberPagination):
+    page_size = 1000
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 100
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+</code></pre>
+<p>然后，可以使用 <code>.pagination_class</code> 属性将新样式应用于视图：</p>
+<pre><code>class BillingRecordsView(generics.ListAPIView):
+    queryset = Billing.objects.all()
+    serializer_class = BillingRecordsSerializer
+    pagination_class = LargeResultsSetPagination
+</code></pre>
+<p>或者使用默认的 <code>DEFAULT_PAGINATION_CLASS</code> 设置键全局应用样式。例如：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'apps.core.pagination.StandardResultsSetPagination'
+}
+</code></pre>
+<hr />
+<h1 id="api-reference"><a class="toclink" href="#api-reference">API Reference</a></h1>
+<h2 id="pagenumberpagination"><a class="toclink" href="#pagenumberpagination">PageNumberPagination</a></h2>
+<p>此分页样式接受请求查询参数中的单个数字页码。</p>
+<p><strong>Request</strong>:</p>
+<pre><code>GET https://api.example.org/accounts/?page=4
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code>HTTP 200 OK
+{
+    "count": 1023
+    "next": "https://api.example.org/accounts/?page=5",
+    "previous": "https://api.example.org/accounts/?page=3",
+    "results": [
+       …
+    ]
+}
+</code></pre>
+<h4 id="setup"><a class="toclink" href="#setup">Setup (设置)</a></h4>
+<p>为了全局启用 <code>PageNumberPagination</code> 样式，请使用以下配置，并根据需要设置 <code>PAGE_SIZE</code> ：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+}
+</code></pre>
+<p>在 <code>GenericAPIView</code> 子类中，还可以设置 <code>pagination_class</code> 属性，以在每个视图的基础上选择 <code>PageNumberPagination</code>。</p>
+<h4 id="configuration"><a class="toclink" href="#configuration">Configuration (配置)</a></h4>
+<p><code>PageNumberPagination</code> 类包含许多属性，通过重写其中的一些属性可以修改分页属性</p>
+<p>为了设置这些属性，应当重写 <code>PageNumberPagination</code> 类，然后如上所述启用自定义分页类。</p>
+<ul>
+<li><code>django_paginator_class</code> —— 要使用的django paginator类。默认为 <code>django.core.paginator.Paginator</code> ，适用于大多数情况。</li>
+<li><code>page_size</code> —— 表示页面大小的数值。如果设置，则覆盖 <code>PAGE_SIZE</code> 设置。其默认值与 <code>PAGE_SIZE</code> 设置键相同。</li>
+<li><code>page_query_param</code> —— 一个字符串值，指示用于分页控件的查询参数的名称。</li>
+<li><code>page_size_query_param</code> —— 如果设置，这是一个字符串值，指示允许客户端根据每个请求设置页面大小的查询参数的名称。默认值为 <code>None</code>，表示客户端可能无法控制请求的页面大小。</li>
+<li><code>max_page_size</code> —— 如果设置，这是一个数字值，指示允许的最大请求页面大小。此属性仅在设置了 <code>page_size_query_param</code> 时有效。</li>
+<li><code>last_page_strings</code> —— 一个字符串值的列表或元组，指示可与<code>page_query_param</code> 一起使用的值，以请求集合中的最后一页。默认为 <code>('last',)</code>。</li>
+<li><code>template</code> —— 在可浏览API中呈现分页控件时要使用的模板名称。可以重写以修改呈现样式，或设置为 <code>None</code> 以完全禁用HTML分页控件。默认为 <code>"rest_framework/pagination/numbers.html"</code>。</li>
+</ul>
+<hr />
+<h2 id="limitoffsetpagination"><a class="toclink" href="#limitoffsetpagination">LimitOffsetPagination</a></h2>
+<p>这种分页样式反映了查找多个数据库记录时使用的语法。客户端包括“limit”和“offset”查询参数。limit指示要返回的项目的最大数目，这相当于其他样式中的 <code>page_size</code>。offset指示查询相对于完整的未分页项的起始位置。</p>
+<p><strong>Request</strong>:</p>
+<pre><code>GET https://api.example.org/accounts/?limit=100&amp;offset=400
+</code></pre>
+<p><strong>Response</strong>:</p>
+<pre><code>HTTP 200 OK
+{
+    "count": 1023
+    "next": "https://api.example.org/accounts/?limit=100&amp;offset=500",
+    "previous": "https://api.example.org/accounts/?limit=100&amp;offset=300",
+    "results": [
+       …
+    ]
+}
+</code></pre>
+<h4 id="setup_1"><a class="toclink" href="#setup_1">Setup (设置)</a></h4>
+<p>为了全局启用 <code>LimitOffsetPagination</code>样式，请使用以下配置：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination'
+}
+</code></pre>
+<p>可选地，您也可以设置 <code>PAGE_SIZE</code> 键。如果还使用了 <code>PAGE_SIZE</code> 参数，那么 <code>limit</code> query参数将是可选的，并且可以被客户端忽略。</p>
+<p>在 <code>GenericAPIView</code> 子类中，您还可以设置 <code>pagination_class</code> 属性，以便在每个视图的基础上选择 <code>LimitOffsetPagination</code>。</p>
+<h4 id="configuration_1"><a class="toclink" href="#configuration_1">Configuration (配置)</a></h4>
+<p><code>LimitOffsetPagination</code> 类包含许多可以重写以修改分页样式的属性。</p>
+<p>为了设置这些属性，需要重写 <code>LimitOffsetPagination</code> 类，然后如上所述启用自定义分页类。</p>
+<ul>
+<li><code>default_limit</code> —— 数值，指示在客户端未在查询参数中提供限制时使用的限制。默认为与 <code>PAGE_SIZE</code> 设置键相同的值。</li>
+<li><code>limit_query_param</code> —— 字符串值，指示“limit”查询参数的名称。默认为 <code>'limit'</code>。</li>
+<li><code>offset_query_param</code> —— 字符串值，指示“offset”查询参数的名称。默认为 <code>'offset'</code>。</li>
+<li><code>max_limit</code> —— 如果设置，这是一个数值，指示客户端可能请求的最大允许限制。默认为 <code>None</code>。</li>
+<li><code>template</code> —— 在可浏览API中呈现分页控件时要使用的模板名称。可以重写以修改呈现样式，或设置为 <code>None</code> 以完全禁用HTML分页控件。默认为 <code>"rest_framework/pagination/numbers.html"</code>。</li>
+</ul>
+<hr />
+<h2 id="cursorpagination"><a class="toclink" href="#cursorpagination">CursorPagination</a></h2>
+<p>基于cursor的分页提供了一个不透明的“游标”指示器，客户端可以使用它对结果集进行分页。这种分页样式只显示正向和反向控件，而不允许客户端导航到任意位置。</p>
+<p>基于cursor的分页要求结果集中的项具有唯一的、不变的顺序。此顺序通常可能是记录上的创建时间戳，因为它提为分页供了一致的顺序。</p>
+<p>基于cursor的分页比其他方案更复杂。它还要求结果集呈现固定的顺序，并且不允许客户端任意索引结果集。但是，它确实提供了以下好处：</p>
+<ul>
+<li>提供一致的分页视图。当恰当地使用时，<code>CursorPagination</code> 可以确保客户端在翻阅记录时永远不会看到同一个项目两次，即使在分页过程中其他客户端正在插入新的项目时亦是如此。</li>
+<li>支持使用非常大的数据集。对于极其庞大的数据集，使用基于offset的分页样式进行分页可能会变得效率低下或无法使用。基于cursor的分页方案具有固定时间的属性，并且不会随着数据集大小的增加而减慢。</li>
+</ul>
+<h4 id="details-and-limitations"><a class="toclink" href="#details-and-limitations">Details and limitations</a></h4>
+<p>正确使用基于cursor的分页需要注意一些细节。你需要考虑你希望该方案适用于什么样的顺序。默认值是按 <code>"-created"</code> 排序。这假设模型实例上<strong>必须有一个“created”时间戳字段</strong>，并且将呈现一个“timeline”样式的，最新添加的项在前面的分页视图。</p>
+<p>可以通过重写分页类中的 <code>'ordering'</code> 属性，或将 <code>OrderingFilter</code> 筛选器类与 <code>CursorPagination</code> 一起使用来修改排序。当与 <code>OrderingFilter</code> 一起使用时，您应该考虑严格限制用户可以按其排序的字段。</p>
+<p>正确使用cursor分页应使用有满足以下条件的排序字段：</p>
+<ul>
+<li>应当是一个不变的值，例如时间戳、slug或其他在创建时只设置一次的字段。</li>
+<li>应当是独一无二的，或者几乎是独一无二的。毫秒精度的时间戳就是一个很好的例子。cursor分页的这种实现使用了一种智能的"position plus offset" 样式，允许它正确地支持不严格唯一的值作为排序。</li>
+<li>应当为可强制转化为字符串的不可为null的值。</li>
+<li>不应当是浮点数。精度误差容易导致不正确的结果。提示：改用小数。（如果已经有一个浮点数字段，并且必须根据它进行分页，那么<a href="https://gist.github.com/keturn/8bc88525a183fd41c73ffb729b8865be#file-fpcursorpagination-py">这里提供了一个使用小数限制精度的 <code>CursorPagination</code> 子类示例。</a>）</li>
+<li>字段应具有数据库索引。</li>
+</ul>
+<p>使用不满足这些约束的排序字段通常仍然有效，但是您将失去游标分页的一些好处。</p>
+<p>关于我们用于游标分页的实现的更多技术细节，<a href="http://cramer.io/2011/03/08/building-cursors-for-the-disqus-api">"Building cursors for the Disqus API"</a> 博客文章对基本方法进行了很好的概述。</p>
+<h4 id="setup_2"><a class="toclink" href="#setup_2">Setup （设置）</a></h4>
+<p>为了全局启用 <code>CursorPagination</code> 样式，请使用以下配置，根据需要修改 <code>PAGE_SIZE</code> ：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    'PAGE_SIZE': 100
+}
+</code></pre>
+<p>在 <code>GenericAPIView</code> 子类中，还可以设置 <code>pagination_class</code> 属性，以在每个视图的基础上选择 <code>CursorPagination</code>。</p>
+<h4 id="configuration_2"><a class="toclink" href="#configuration_2">Configuration (配置)</a></h4>
+<p><code>CursorPagination</code> 类包含许多可以重写以修改分页样式的属性，。</p>
+<p>为了设置这些属性，需要重写 <code>CursorPagination</code> 类，然后如上所述启用自定义分页类。</p>
+<ul>
+<li><code>page_size</code> = 表示 <code>PAGE_SIZE</code> 的数值。如果设置，则覆盖页面大小设置。默认为与 <code>PAGE_SIZE</code> 设置键相同的值。</li>
+<li><code>cursor_query_param</code> = 字符串值，指示“cursor”查询参数的名称。默认为 <code>'cursor'</code>。</li>
+<li><code>ordering</code> = 这应当是一个字符串或字符串列表，指示将对其应用基于cursor的分页的字段。例如： <code>ordering='slug'</code>。默认为 <code>-created</code>。也可以通过在视图上使用 <code>OrderingFilter</code> 覆盖此值。</li>
+<li><code>template</code> = 在可浏览API中呈现分页控件时要使用的模板的名称。可以重写以修改呈现样式，或设置为“无”以完全禁用HTML分页控件。默认为 <code>"rest_framework/pagination/previous_and_next.html"</code>。</li>
+</ul>
+<hr />
+<h1 id="custom-pagination-styles"><a class="toclink" href="#custom-pagination-styles">Custom pagination styles (自定义分页样式)</a></h1>
+<p>为了创建自定义分页序列化程序类，应将 <code>pagination.BasePagination</code> 子类化，并重写  <code>paginate_queryset(self, queryset, request, view=None)</code> 和 <code>get_paginated_response(self, data)</code> 方法：</p>
+<ul>
+<li><code>paginate_queryset</code> 方法被传递给初始的queryset，它应该返回一个iterable对象，该对象只包含请求页中的数据。</li>
+<li>The <code>get_paginated_response</code> m方法传递序列化的页数据，并应返回一个 <code>Response</code> 。</li>
+</ul>
+<p>注意，<code>paginate_queryset</code> 方法可能会在分页实例上设置state，该state （？）稍后可能会由<code>get_paginated_response</code> 方法使用。</p>
+<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
+<p>假设我们想用一个修改过的格式替换默认的分页输出样式，该格式在嵌套的“links”键中包含下一页和上一页的链接。我们可以规定一个自定义分页类，如下所示：</p>
+<pre><code>class CustomPagination(pagination.PageNumberPagination):
+    def get_paginated_response(self, data):
+        return Response({
+            'links': {
+               'next': self.get_next_link(),
+               'previous': self.get_previous_link()
+            },
+            'count': self.page.paginator.count,
+            'results': data
+        })
+</code></pre>
+<p>然后我们需要在配置中设置自定义类：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'my_project.apps.core.pagination.CustomPagination',
+    'PAGE_SIZE': 100
+}
+</code></pre>
+<p>注意，如果您关心在可浏览API中如何在响应中显示键的顺序，那么在构造分页响应主体时，您可能会选择使用 <code>OrderedDict</code>，但这是可选的。</p>
+<!-- ## Header based pagination
+
+Let's modify the built-in `PageNumberPagination` style, so that instead of include the pagination links in the body of the response, we'll instead include a `Link` header, in a [similar style to the GitHub API][github-link-pagination].
+
+    class LinkHeaderPagination(pagination.PageNumberPagination):
+        def get_paginated_response(self, data):
+            next_url = self.get_next_link()
+            previous_url = self.get_previous_link()
+
+            if next_url is not None and previous_url is not None:
+                link = '<{next_url}>; rel="next", <{previous_url}>; rel="prev"'
+            elif next_url is not None:
+                link = '<{next_url}>; rel="next"'
+            elif previous_url is not None:
+                link = '<{previous_url}>; rel="prev"'
+            else:
+                link = ''
+
+            link = link.format(next_url=next_url, previous_url=previous_url)
+            headers = {'Link': link} if link else {}
+
+            return Response(data, headers=headers) -->
+
+<h2 id="using-your-custom-pagination-class"><a class="toclink" href="#using-your-custom-pagination-class">Using your custom pagination class （使用自定义分页类）</a></h2>
+<p>为了在默认情况下使用自定义分页类，请使用 <code>DEFAULT_PAGINATION_CLASS</code> 设置：</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'my_project.apps.core.pagination.LinkHeaderPagination',
+    'PAGE_SIZE': 100
+}
+</code></pre>
+<p>列表终端的API响应现在将包括一个 <code>Link</code> 头，而不是将分页链接作为响应正文的一部分，例如：</p>
+<p><img alt="Link Header" src="../../img/link-header-pagination.png" /></p>
+<p><em>A custom pagination style, using the 'Link' header'</em></p>
+<hr />
+<h2 id="pagination-schemas"><a class="toclink" href="#pagination-schemas">Pagination &amp; schemas （分页和模式）</a></h2>
+<p>还可以通过应用 <code>get_schema_fields()</code> 方法，使分页控件可用于REST框架提供的模式自动生成。此方法应当有以下签名：</p>
+<p><code>get_schema_fields(self, view)</code></p>
+<p>此方法应当返回一个coreapi.Field实例的列表。</p>
+<hr />
+<h1 id="html-pagination-controls-html"><a class="toclink" href="#html-pagination-controls-html">HTML pagination controls （HTML分页控件）</a></h1>
+<p>默认情况下，使用分页类将导致HTML分页控件在可浏览的API中显示。有两种内置的显示样式。 <code>PageNumberPagination</code> 和 <code>LimitOffsetPagination</code> 类显示带有上一页和下一页控件的页码列表。 <code>CursorPagination</code> 类显示的样式更简单，仅显示上一页和下一页控件。</p>
+<h2 id="customizing-the-controls"><a class="toclink" href="#customizing-the-controls">Customizing the controls （自定义控件)</a></h2>
+<p>您可以重写呈现HTML分页控件的模板。两种内置样式是：</p>
+<ul>
+<li><code>rest_framework/pagination/numbers.html</code></li>
+<li><code>rest_framework/pagination/previous_and_next.html</code></li>
+</ul>
+<p>在全局模板目录中提供具有这些路径之一的模板将覆盖相关分页类的默认渲染。</p>
+<p>或者，可以通过以下方式完全禁用HTML分页控件：将现有类的子类化，将 <code>template = None</code> 设置为该类的属性。然后，您需要配置 <code>DEFAULT_PAGINATION_CLASS</code> 设置键，以将自定义类作为默认的分页样式使用。</p>
+<h4 id="low-level-api"><a class="toclink" href="#low-level-api">Low-level API</a></h4>
+<p>当 <code>display_page_controls</code> 属性在分页实例中时，决定分页类是否显示控件的低级API被暴露出来。如果自定义分页类要求显示HTML分页控件，则应在 <code>paginate_queryset</code> 方法中将其设置为 <code>True</code>。</p>
+<p><code>.to_html()</code> 和 <code>.get_html_context()</code> 方法也可以在自定义分页类中重写，以便进一步自定义控件的渲染方式。</p>
+<hr />
+<h1 id="third-party-packages"><a class="toclink" href="#third-party-packages">Third party packages</a></h1>
+<p>The following third party packages are also available.</p>
+<h2 id="drf-extensions"><a class="toclink" href="#drf-extensions">DRF-extensions</a></h2>
+<p>The <a href="http://chibisov.github.io/drf-extensions/docs/"><code>DRF-extensions</code> package</a> includes a <a href="http://chibisov.github.io/drf-extensions/docs/#paginatebymaxmixin"><code>PaginateByMaxMixin</code> mixin class</a> that allows your API clients to specify <code>?page_size=max</code> to obtain the maximum allowed page size.</p>
+<h2 id="drf-proxy-pagination"><a class="toclink" href="#drf-proxy-pagination">drf-proxy-pagination</a></h2>
+<p>The <a href="https://github.com/tuffnatty/drf-proxy-pagination"><code>drf-proxy-pagination</code> package</a> includes a <code>ProxyPagination</code> class which allows to choose pagination class with a query parameter.</p>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>

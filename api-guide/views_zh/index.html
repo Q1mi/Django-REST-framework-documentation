@@ -180,7 +180,7 @@
                   </li>
                   
                   <li >
-                    <a href="../throttling/">Throttling</a>
+                    <a href="../throttling_zh/">Throttling</a>
                   </li>
                   
                   <li >
@@ -188,7 +188,7 @@
                   </li>
                   
                   <li >
-                    <a href="../pagination/">Pagination</a>
+                    <a href="../pagination_zh/">Pagination</a>
                   </li>
                   
                   <li >
@@ -196,11 +196,11 @@
                   </li>
                   
                   <li >
-                    <a href="../content-negotiation/">Content negotiation</a>
+                    <a href="../content-negotiation_zh/">Content negotiation</a>
                   </li>
                   
                   <li >
-                    <a href="../metadata/">Metadata</a>
+                    <a href="../metadata_zh/">Metadata</a>
                   </li>
                   
                   <li >
@@ -208,11 +208,11 @@
                   </li>
                   
                   <li >
-                    <a href="../format-suffixes/">Format suffixes</a>
+                    <a href="../format-suffixes_zh/">Format suffixes</a>
                   </li>
                   
                   <li >
-                    <a href="../reverse/">Returning URLs</a>
+                    <a href="../reverse_zh/">Returning URLs</a>
                   </li>
                   
                   <li >
@@ -220,7 +220,7 @@
                   </li>
                   
                   <li >
-                    <a href="../status-codes/">Status codes</a>
+                    <a href="../status-codes_zh/">Status codes</a>
                   </li>
                   
                   <li >
@@ -502,7 +502,7 @@ class ListUsers(APIView):
 <h3 id="perform_content_negotiationself-request-forcefalse"><a class="toclink" href="#perform_content_negotiationself-request-forcefalse">.perform_content_negotiation(self, request, force=False)</a></h3>
 <h2 id="dispatch-methods"><a class="toclink" href="#dispatch-methods">Dispatch methods</a></h2>
 <p>下面这些方法会被视图的<code>.dispatch()</code>方法直接调用。它们在调用<code>.get</code>, <code>.post()</code>, <code>put()</code>, <code>patch()</code>和<code>delete()</code>之类的请求处理方法之前或者之后执行任何需要执行的操作。</p>
-<h3 id="initialself-request-42args-kwargs"><a class="toclink" href="#initialself-request-42args-kwargs">.initial(self, request, *args, **kwargs)</a></h3>
+<h3 id="initialself-request-args-kwargs"><a class="toclink" href="#initialself-request-args-kwargs">.initial(self, request, *args, **kwargs)</a></h3>
 <p>在处理方法调用之前进行任何需要的动作。
 这个方法用于执行权限认证和限制，并且执行内容协商。
 你通常不需要重写此方法。</p>
@@ -510,10 +510,10 @@ class ListUsers(APIView):
 <p>任何被处理请求的方法抛出的异常都会被传递给这个方法，这个方法既不返回<code>Response</code>的实例，也不重新抛出异常。</p>
 <p>默认的实现会处理<code>rest_framework.expceptions.APIException</code>的任何子类异常，以及Django的<code>Http404</code>和<code>PermissionDenied</code>异常，并且返回一个适当的错误响应。</p>
 <p>如果你需要在自己的API中自定义返回的错误响应，你需要重写这个方法。</p>
-<h3 id="initialize_requestself-request-42args-kwargs"><a class="toclink" href="#initialize_requestself-request-42args-kwargs">.initialize_request(self, request, *args, **kwargs)</a></h3>
+<h3 id="initialize_requestself-request-args-kwargs"><a class="toclink" href="#initialize_requestself-request-args-kwargs">.initialize_request(self, request, *args, **kwargs)</a></h3>
 <p>确保传递给请求处理方法的请求对象是<code>Request</code>的实例，而不是通常的Django<code>HttpResquest</code>的实例。</p>
 <p>你通常不需要重写这个方法。</p>
-<h3 id="finalize_responseself-request-response-42args-kwargs"><a class="toclink" href="#finalize_responseself-request-response-42args-kwargs">.finalize_response(self, request, response, *args, **kwargs)</a></h3>
+<h3 id="finalize_responseself-request-response-args-kwargs"><a class="toclink" href="#finalize_responseself-request-response-args-kwargs">.finalize_response(self, request, response, *args, **kwargs)</a></h3>
 <p>确保任何从处理请求的方法返回的<code>Response</code>对象被渲染到由内容协商决定的正确内容类型。</p>
 <p>你通常不需要重写这个方法。</p>
 <hr />

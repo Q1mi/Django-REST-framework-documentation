@@ -180,7 +180,7 @@
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/throttling/">Throttling</a>
+                    <a href="../../api-guide/throttling_zh/">Throttling</a>
                   </li>
                   
                   <li >
@@ -188,7 +188,7 @@
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/pagination/">Pagination</a>
+                    <a href="../../api-guide/pagination_zh/">Pagination</a>
                   </li>
                   
                   <li >
@@ -196,11 +196,11 @@
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+                    <a href="../../api-guide/content-negotiation_zh/">Content negotiation</a>
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/metadata/">Metadata</a>
+                    <a href="../../api-guide/metadata_zh/">Metadata</a>
                   </li>
                   
                   <li >
@@ -208,11 +208,11 @@
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+                    <a href="../../api-guide/format-suffixes_zh/">Format suffixes</a>
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/reverse/">Returning URLs</a>
+                    <a href="../../api-guide/reverse_zh/">Returning URLs</a>
                   </li>
                   
                   <li >
@@ -220,7 +220,7 @@
                   </li>
                   
                   <li >
-                    <a href="../../api-guide/status-codes/">Status codes</a>
+                    <a href="../../api-guide/status-codes_zh/">Status codes</a>
                   </li>
                   
                   <li >
@@ -563,7 +563,7 @@ def create(self, validated_data):
 <p>The reason behind this is that Django's <code>ValidationError</code> class is intended for use with HTML forms and its API makes using it slightly awkward with nested validation errors that can occur in serializers.</p>
 <p>For most users this change shouldn't require any updates to your codebase, but it is worth ensuring that whenever raising validation errors you should prefer using the <code>serializers.ValidationError</code> exception class, and not Django's built-in exception.</p>
 <p>We strongly recommend that you use the namespaced import style of <code>import serializers</code> and not <code>from serializers import ValidationError</code> in order to avoid any potential confusion.</p>
-<h4 id="change-to-validate_ltfield_namegt"><a class="toclink" href="#change-to-validate_ltfield_namegt">Change to <code>validate_&lt;field_name&gt;</code>.</a></h4>
+<h4 id="change-to-validate_field_name"><a class="toclink" href="#change-to-validate_field_name">Change to <code>validate_&lt;field_name&gt;</code>.</a></h4>
 <p>The <code>validate_&lt;field_name&gt;</code> method hooks that can be attached to serializer classes change their signature slightly and return type. Previously these would take a dictionary of all incoming data, and a key representing the field name, and would return a dictionary including the validated data for that field:</p>
 <pre><code>def validate_score(self, attrs, source):
     if attrs['score'] % 10 != 0:
@@ -589,7 +589,7 @@ def create(self, validated_data):
     raise serializers.ValidationError({'my_field': 'A field error'})
 </code></pre>
 <p>This ensures you can still write validation that compares all the input fields, but that marks the error against a particular field.</p>
-<h4 id="removal-of-transform_ltfield_namegt"><a class="toclink" href="#removal-of-transform_ltfield_namegt">Removal of <code>transform_&lt;field_name&gt;</code>.</a></h4>
+<h4 id="removal-of-transform_field_name"><a class="toclink" href="#removal-of-transform_field_name">Removal of <code>transform_&lt;field_name&gt;</code>.</a></h4>
 <p>The under-used <code>transform_&lt;field_name&gt;</code> on serializer classes is no longer provided. Instead you should just override <code>to_representation()</code> if you need to apply any modifications to the representation style.</p>
 <p>For example:</p>
 <pre><code>def to_representation(self, instance):

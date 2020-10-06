@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Format suffixes - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/format-suffixes_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Format suffixes">
+  <meta name="author" content="李文周">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../reverse_zh/">
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../schemas/">
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields_zh/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling_zh/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination_zh/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation_zh/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata_zh/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse_zh/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes_zh/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing_zh/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing/">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management/">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes/">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs/">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#format-suffixes">Format suffixes （格式后缀）</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#format_suffix_patterns">format_suffix_patterns （格式后缀模式）</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#query-parameter-formats">Query parameter formats (查询参数格式)</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#accept-headers-vs-format-suffixes">Accept headers vs. format suffixes</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/u">
+                    <span class="label label-info">u</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
+                    <span class="label label-info">r</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/l">
+                    <span class="label label-info">l</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/a">
+                    <span class="label label-info">a</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
+                    <span class="label label-info">t</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
+                    <span class="label label-info">e</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
+                    <span class="label label-info">r</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
+                    <span class="label label-info">n</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
+                    <span class="label label-info">s</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
+                    <span class="label label-info">.</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
+                    <span class="label label-info">p</span>
+                  </a>
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
+                    <span class="label label-info">y</span>
+                  </a>
+                
+              
+
+              <h1 id="format-suffixes"><a class="toclink" href="#format-suffixes">Format suffixes （格式后缀）</a></h1>
+<blockquote>
+<p>Section 6.2.1 并没有说应当总是使用内容协商</p>
+<p>&mdash; Roy Fielding, <a href="http://tech.groups.yahoo.com/group/rest-discuss/message/5857">REST discuss mailing list</a></p>
+</blockquote>
+<p>webapi的一种常见模式是在url上使用文件扩展名来为给定的媒体类型提供端点。例如，'http://example.com/api/users.json'来提供JSON显示。</p>
+<p>将格式后缀模式添加到API的URLconf中的每个条目是容易出错的，而且是不DRY的，因此REST框架提供了一种快捷方式，可以将这些模式添加到URLconf中。</p>
+<h2 id="format_suffix_patterns"><a class="toclink" href="#format_suffix_patterns">format_suffix_patterns （格式后缀模式）</a></h2>
+<p><strong>Signature</strong>: format_suffix_patterns(urlpatterns, suffix_required=False, allowed=None)</p>
+<p>返回一个URL模式列表，其中的所提供的每个URL模式附加了格式后缀</p>
+<p>参数：</p>
+<ul>
+<li><strong>urlpatterns</strong>: 必需。一个URL模式列表。</li>
+<li><strong>suffix_required</strong>:  可选。一个布尔值，指示URL中的后缀是可选的还是必需的。默认值为False，这意味着后缀在默认情况下是可选的。</li>
+<li><strong>allowed</strong>:  Optional.  可选。一个有效格式后缀的列表或元组。如果未提供，将使用通配符格式后缀模式。</li>
+</ul>
+<p>Example:</p>
+<pre><code>from rest_framework.urlpatterns import format_suffix_patterns
+from blog import views
+
+urlpatterns = [
+    url(r'^/$', views.apt_root),
+    url(r'^comments/$', views.comment_list),
+    url(r'^comments/(?P&lt;pk&gt;[0-9]+)/$', views.comment_detail)
+]
+
+urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
+</code></pre>
+<p>当使用 <code>format_suffix_patterns</code> 时，必须确保将 <code>'format'</code> 关键字参数添加到相应的视图中。例如：</p>
+<pre><code>@api_view(('GET', 'POST'))
+def comment_list(request, format=None):
+    # do stuff...
+</code></pre>
+<p>或基于类的视图：</p>
+<pre><code>class CommentList(APIView):
+    def get(self, request, format=None):
+        # do stuff...
+
+    def post(self, request, format=None):
+        # do stuff...
+</code></pre>
+<p>使用的kwarg名称可以通过使用 <code>FORMAT_SUFFIX_KWARG</code> 设置进行修改。</p>
+<p>还要注意，<code>format_suffix_patterns</code> 不支持降为 <code>include</code> URL模式。</p>
+<h3 id="using-with-i18n_patterns-i18n_"><a class="toclink" href="#using-with-i18n_patterns-i18n_">Using with <code>i18n_patterns</code> (与i18n_模式一同使用)</a></h3>
+<p>如果使用Django提供的 <code>i18n_patterns</code> 函数，以及 <code>format_suffix_patterns</code>，则应确保将 <code>i18n_patterns</code> 函数被应用为最终函数或最外层函数。例如：</p>
+<pre><code>url patterns = [
+    …
+]
+
+urlpatterns = i18n_patterns(
+    format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
+)
+</code></pre>
+<hr />
+<h2 id="query-parameter-formats"><a class="toclink" href="#query-parameter-formats">Query parameter formats (查询参数格式)</a></h2>
+<p>格式后缀的替代方法是在查询参数中包含请求的格式。REST框架在默认情况下提供了这个选项，并且在可浏览API中使用以在不同的可用表现形式之间切换。</p>
+<p>为了使用其简短格式选择表示形式，请使用 <code>format</code> 参数查询。例如：<code>http://example.com/organizations/？format=csv</code>。</p>
+<p>可以使用 <code>URL_FORMAT_OVERRIDE</code> 设置来修改此查询参数的名称。将该值设置为 <code>None</code> 可禁用此行为。</p>
+<hr />
+<h2 id="accept-headers-vs-format-suffixes"><a class="toclink" href="#accept-headers-vs-format-suffixes">Accept headers vs. format suffixes</a></h2>
+<p>一些Web社区似乎有一种观点，即文件名扩展名不是RESTful模式，应当始终使用 <code>HTTP Accept</code>报文头。</p>
+<p>这实际上是一种误解。例如，引用Roy Fielding的以下讨论了查询参数media type indicators与file extension media type indicators的相对优点言论：</p>
+<p>&ldquo;这就是为什么我总是喜欢扩展。这两个选择都与REST无关。&ldquo; &mdash; 罗伊菲尔丁，<a href="http://tech.groups.yahoo.com/group/rest-discuss/message/14844">REST discuss mailing list</a></p>
+<p>这段引文没有提到Accept headers，但它明确表示格式后缀应该被视为可接受的模式。</p>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>
