@@ -31,6 +31,7 @@ QQ群号：930578836
 * [Q1mi](https://github.com/Q1mi)
 * [ScienceYuan](https://github.com/ScienceYuan)
 * [leveleven](https://github.com/leveleven)
+* [Liniian](https://github.com/Liniian)
 
 ## 以下章节已完成翻译
 
@@ -57,10 +58,17 @@ QQ群号：930578836
 * [Renderers](/Django-REST-framework-documentation/api-guide/renderers_zh/)
 * [Serializers](/Django-REST-framework-documentation/api-guide/serializers_zh/)
 * [Serializer fields](/Django-REST-framework-documentation/api-guide/fields_zh/)
+* [Throttling](/Django-REST-framework-documentation/api-guide/throttling_zh/)
 * [Filtering](/Django-REST-framework-documentation/api-guide/filtering_zh/)
+* [Pagination](/Django-REST-framework-documentation/api-guide/pagination_zh/)
 * [Authentication](/Django-REST-framework-documentation/api-guide/authentication_zh/)
 * [Permissions](/Django-REST-framework-documentation/api-guide/permissions_zh/)
 * [Versioning](/Django-REST-framework-documentation/api-guide/versioning_zh/)
+* [Content negotiation](/Django-REST-framework-documentation/api-guide/content-negotiation_zh/)
+* [Format suffixes](/Django-REST-framework-documentation/api-guide/format-suffixes_zh/)
+* [Metadata](/Django-REST-framework-documentation/api-guide/metadata_zh/)
+* [Returning URLs](/Django-REST-framework-documentation/api-guide/reverse_zh/)
+* [Status codes](/Django-REST-framework-documentation/api-guide/status-codes_zh/)
 * [Testing](/Django-REST-framework-documentation/api-guide/testing_zh/)
 
 ### 主题
