@@ -1,92 +1,72 @@
-<style>
-.promo li a {
-    float: left;
-    width: 130px;
-    height: 20px;
-    text-align: center;
-    margin: 10px 30px;
-    padding: 150px 0 0 0;
-    background-position: 0 50%;
-    background-size: 130px auto;
-    background-repeat: no-repeat;
-    font-size: 120%;
-    color: black;
-}
-.promo li {
-    list-style: none;
-}
-</style>
+## Django REST framework 中文文档
 
-<p class="badges" height=20px>
-    <iframe src="https://ghbtns.com/github-btn.html?user=encode&amp;repo=django-rest-framework&amp;type=watch&amp;count=true" class="github-star-button" allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
+最开始是2015年还在搜狗上班的时候，有个项目用到DRF框架的时候随手翻译的。
 
-    <a href="https://travis-ci.org/encode/django-rest-framework?branch=master">
-        <img src="https://secure.travis-ci.org/encode/django-rest-framework.svg?branch=master" class="status-badge">
-    </a>
+如果本文对你有帮助，请在[github](https://github.com/Q1mi/Django-REST-framework-documentation/tree/master/)上 **star** 该项目。
 
-    <a href="https://pypi.org/project/djangorestframework/">
-        <img src="https://img.shields.io/pypi/v/djangorestframework.svg" class="status-badge">
-    </a>
-</p>
+当然我也十分欢迎你加入该项目并提交PR推送你的翻译。
 
----
+（说句题外话，一个翻译项目就没有必要抄袭了吧。。。我都无奈了。。。）
 
-<p>
-<h1 style="position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0,0,0,0);
-    border: 0;">Django REST Framework</h1>
+## Django REST framework 技术交流QQ群
 
-<img alt="Django REST Framework" title="Logo by Jake 'Sid' Smith" src="img/logo.png" width="600px" style="display: block; margin: 0 auto 0 auto">
-</p>
+QQ群号：930578836
 
-Django REST framework is a powerful and flexible toolkit for building Web APIs.
+## 翻译人员
 
-Some reasons you might want to use REST framework:
+* [Q1mi](https://github.com/Q1mi)
+* [ScienceYuan](https://github.com/ScienceYuan)
+* [leveleven](https://github.com/leveleven)
+* [Liniian](https://github.com/Liniian)
 
-* The [Web browsable API][sandbox] is a huge usability win for your developers.
-* [Authentication policies][authentication] including packages for [OAuth1a][oauth1-section] and [OAuth2][oauth2-section].
-* [Serialization][serializers] that supports both [ORM][modelserializer-section] and [non-ORM][serializer-section] data sources.
-* Customizable all the way down - just use [regular function-based views][functionview-section] if you don't need the [more][generic-views] [powerful][viewsets] [features][routers].
-* Extensive documentation, and [great community support][group].
-* Used and trusted by internationally recognised companies including [Mozilla][mozilla], [Red Hat][redhat], [Heroku][heroku], and [Eventbrite][eventbrite].
+## 以下章节已完成翻译
 
----
+### 教程
 
-## Funding
+* [Quickstart](/Django-REST-framework-documentation/tutorial/quickstart_zh/)
+* [1-Serialization](/Django-REST-framework-documentation/tutorial/1-serialization_zh/)
+* [2-requests-and-responses](/Django-REST-framework-documentation/tutorial/2-requests-and-responses_zh/)
+* [3-class-based-views](/Django-REST-framework-documentation/tutorial/3-class-based-views_zh/)
+* [4-authentication-and-permissions](/Django-REST-framework-documentation/tutorial/4-authentication-and-permissions_zh/)
+* [5-relationships-and-hyperlinked-apis](/Django-REST-framework-documentation/tutorial/5-relationships-and-hyperlinked-apis_zh/)
+* [6-viewsets-and-routers](/Django-REST-framework-documentation/tutorial/6-viewsets-and-routers_zh/)
+* [7-schemas-and-client-libraries](/Django-REST-framework-documentation/tutorial/7-schemas-and-client-libraries_zh/)
 
-REST framework is a *collaboratively funded project*. If you use
-REST framework commercially we strongly encourage you to invest in its
-continued development by **[signing up for a paid plan][funding]**.
+### API指南
 
-*Every single sign-up helps us make REST framework long-term financially sustainable.*
+* [Requests](/Django-REST-framework-documentation/api-guide/requests_zh/)
+* [Responses](/Django-REST-framework-documentation/api-guide/responses_zh/)
+* [Views](/Django-REST-framework-documentation/api-guide/views_zh/)
+* [Generic Views](/Django-REST-framework-documentation/api-guide/generic-views_zh/)
+* [Viewets](/Django-REST-framework-documentation/api-guide/viewsets_zh/)
+* [Routers](/Django-REST-framework-documentation/api-guide/routers_zh/)
+* [Parsers](/Django-REST-framework-documentation/api-guide/parsers_zh/)
+* [Renderers](/Django-REST-framework-documentation/api-guide/renderers_zh/)
+* [Serializers](/Django-REST-framework-documentation/api-guide/serializers_zh/)
+* [Serializer fields](/Django-REST-framework-documentation/api-guide/fields_zh/)
+* [Throttling](/Django-REST-framework-documentation/api-guide/throttling_zh/)
+* [Filtering](/Django-REST-framework-documentation/api-guide/filtering_zh/)
+* [Pagination](/Django-REST-framework-documentation/api-guide/pagination_zh/)
+* [Authentication](/Django-REST-framework-documentation/api-guide/authentication_zh/)
+* [Permissions](/Django-REST-framework-documentation/api-guide/permissions_zh/)
+* [Versioning](/Django-REST-framework-documentation/api-guide/versioning_zh/)
+* [Content negotiation](/Django-REST-framework-documentation/api-guide/content-negotiation_zh/)
+* [Format suffixes](/Django-REST-framework-documentation/api-guide/format-suffixes_zh/)
+* [Metadata](/Django-REST-framework-documentation/api-guide/metadata_zh/)
+* [Returning URLs](/Django-REST-framework-documentation/api-guide/reverse_zh/)
+* [Status codes](/Django-REST-framework-documentation/api-guide/status-codes_zh/)
+* [Testing](/Django-REST-framework-documentation/api-guide/testing_zh/)
 
-<ul class="premium-promo promo">
-    <li><a href="https://getsentry.com/welcome/" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/sentry130.png)">Sentry</a></li>
-    <li><a href="https://getstream.io/try-the-api/?utm_source=drf&utm_medium=banner&utm_campaign=drf" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/stream-130.png)">Stream</a></li>
-    <li><a href="https://software.esg-usa.com" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/esg-new-logo.png)">ESG</a></li>
-    <li><a href="https://rollbar.com" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/rollbar2.png)">Rollbar</a></li>
-    <li><a href="https://cadre.com" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/cadre.png)">Cadre</a></li>
-    <li><a href="https://hubs.ly/H0f30Lf0" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/kloudless-plus-text.png)">Kloudless</a></li>
-    <li><a href="https://lightsonsoftware.com" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/lightson-dark.png)">Lights On Software</a></li>
-    <li><a href="https://retool.com/?utm_source=djangorest&utm_medium=sponsorship" style="background-image: url(https://fund-rest-framework.s3.amazonaws.com/retool-sidebar.png)">Retool</a></li>
-</ul>
-<div style="clear: both; padding-bottom: 20px;"></div>
+### 主题
 
-*Many thanks to all our [wonderful sponsors][sponsors], and in particular to our premium backers, [Sentry](https://getsentry.com/welcome/), [Stream](https://getstream.io/?utm_source=drf&utm_medium=banner&utm_campaign=drf), [ESG](https://software.esg-usa.com/), [Rollbar](https://rollbar.com/?utm_source=django&utm_medium=sponsorship&utm_campaign=freetrial), [Cadre](https://cadre.com), [Kloudless](https://hubs.ly/H0f30Lf0), [Lights On Software](https://lightsonsoftware.com), and [Retool](https://retool.com/?utm_source=djangorest&utm_medium=sponsorship).*
-
----
+* [ajax-csrf-cors](/Django-REST-framework-documentation/topics/ajax-csrf-cors_zh/)
 
 ## Requirements
 
 REST framework requires the following:
 
-* Python (3.5, 3.6, 3.7, 3.8)
-* Django (2.2, 3.0)
+* Python (3.5, 3.6, 3.7, 3.8, 3.9)
+* Django (2.2, 3.0, 3.1)
 
 We **highly recommend** and only officially support the latest patch release of
 each Python and Django series.
@@ -122,7 +102,7 @@ If you're intending to use the browsable API you'll probably also want to add RE
 
     urlpatterns = [
         ...
-        url(r'^api-auth/', include('rest_framework.urls'))
+        path('api-auth/', include('rest_framework.urls'))
     ]
 
 Note that the URL path can be whatever you want.
@@ -179,93 +159,3 @@ You can now open the API in your browser at [http://127.0.0.1:8000/](http://127.
 ## Quickstart
 
 Can't wait to get started? The [quickstart guide][quickstart] is the fastest way to get up and running, and building APIs with REST framework.
-
-## Development
-
-See the [Contribution guidelines][contributing] for information on how to clone
-the repository, run the test suite and contribute changes back to REST
-Framework.
-
-## Support
-
-For support please see the [REST framework discussion group][group], try the  `#restframework` channel on `irc.freenode.net`, search [the IRC archives][botbot], or raise a  question on [Stack Overflow][stack-overflow], making sure to include the ['django-rest-framework'][django-rest-framework-tag] tag.
-
-For priority support please sign up for a [professional or premium sponsorship plan](https://fund.django-rest-framework.org/topics/funding/).
-
-For updates on REST framework development, you may also want to follow [the author][twitter] on Twitter.
-
-<a style="padding-top: 10px" href="https://twitter.com/_tomchristie" class="twitter-follow-button" data-show-count="false">Follow @_tomchristie</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
-## Security
-
-If you believe you’ve found something in Django REST framework which has security implications, please **do not raise the issue in a public forum**.
-
-Send a description of the issue via email to [rest-framework-security@googlegroups.com][security-mail].  The project maintainers will then work with you to resolve any issues where required, prior to any public disclosure.
-
-## License
-
-Copyright © 2011-present, [Encode OSS Ltd](https://www.encode.io/).
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-* Neither the name of the copyright holder nor the names of its
-  contributors may be used to endorse or promote products derived from
-  this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-[mozilla]: https://www.mozilla.org/en-US/about/
-[redhat]: https://www.redhat.com/
-[heroku]: https://www.heroku.com/
-[eventbrite]: https://www.eventbrite.co.uk/about/
-[pyyaml]: https://pypi.org/project/PyYAML/
-[uriteemplate]: https://pypi.org/project/uritemplate/
-[markdown]: https://pypi.org/project/Markdown/
-[pygments]: https://pypi.org/project/Pygments/
-[django-filter]: https://pypi.org/project/django-filter/
-[django-guardian]: https://github.com/django-guardian/django-guardian
-[index]: .
-[oauth1-section]: api-guide/authentication/#django-rest-framework-oauth
-[oauth2-section]: api-guide/authentication/#django-oauth-toolkit
-[serializer-section]: api-guide/serializers#serializers
-[modelserializer-section]: api-guide/serializers#modelserializer
-[functionview-section]: api-guide/views#function-based-views
-[sandbox]: https://restframework.herokuapp.com/
-[sponsors]: https://fund.django-rest-framework.org/topics/funding/#our-sponsors
-
-[quickstart]: tutorial/quickstart.md
-
-[generic-views]: api-guide/generic-views.md
-[viewsets]: api-guide/viewsets.md
-[routers]: api-guide/routers.md
-[serializers]: api-guide/serializers.md
-[authentication]: api-guide/authentication.md
-
-[contributing]: community/contributing.md
-[funding]: community/funding.md
-
-[group]: https://groups.google.com/forum/?fromgroups#!forum/django-rest-framework
-[botbot]: https://botbot.me/freenode/restframework/
-[stack-overflow]: https://stackoverflow.com/
-[django-rest-framework-tag]: https://stackoverflow.com/questions/tagged/django-rest-framework
-[security-mail]: mailto:rest-framework-security@googlegroups.com
-[twitter]: https://twitter.com/_tomchristie

@@ -5,7 +5,9 @@ site_author: Q1mi
 
 repo_url: https://github.com/Q1mi/Django-REST-framework-documentation
 
-theme_dir: docs_theme
+theme:
+    name: mkdocs
+    custom_dir: docs_theme
 
 markdown_extensions:
  - toc:
