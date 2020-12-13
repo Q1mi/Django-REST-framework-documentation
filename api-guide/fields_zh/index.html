@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Fields zh - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/fields_zh/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Fields zh">
+  <meta name="author" content="李文周">
+
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
+
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../fields/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../caching_zh/">Caching</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages.md">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources.md">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing.md">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management.md">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement.md">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement.md">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement.md">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement.md">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement.md">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement.md">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement.md">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant.md">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding.md">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes.md">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs.md">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
+
+                
+                  <li class="main">
+                    <a href="#_1">序列化字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_2">核心参数</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_3">布尔字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#booleanfield">BooleanField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#nullbooleanfield">NullBooleanField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_4">字符串字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#charfield">CharField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#emailfield">EmailField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#regexfield">RegexField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#slugfield">SlugField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#urlfield">URLField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#uuidfield">UUIDField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#filepathfield">FilePathField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#ipaddressfield">IPAddressField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_5">数字字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#integerfield">IntegerField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#floatfield">FloatField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#decimalfield">DecimalField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_7">日期时间字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#datetimefield">DateTimeField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#datefield">DateField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#timefield">TimeField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#durationfield">DurationField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_8">选择字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#choicefield">ChoiceField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#multiplechoicefield">MultipleChoiceField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_9">文件上传字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_10">解析和文件上传</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#filefield">FileField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#imagefield">ImageField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_11">复合字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#listfield">ListField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#dictfield">DictField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#hstorefield">HStoreField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#jsonfield">JSONField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_12">杂项字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#readonlyfield">ReadOnlyField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#hiddenfield">HiddenField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#modelfield">ModelField</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#serializermethodfield">SerializerMethodField</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_13">自定义字段</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_14">示例</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_17">第三方包</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#drf-compound-fields">DRF Compound Fields</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#drf-extra-fields">DRF Extra Fields</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#djangrestframework-recursive">djangrestframework-recursive</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#django-rest-framework-gis">django-rest-framework-gis</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#django-rest-framework-hstore">django-rest-framework-hstore</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+
+              <hr />
+<p>源文件：
+    - fields.py</p>
+<hr />
+<h1 id="_1"><a class="toclink" href="#_1">序列化字段</a></h1>
+<blockquote>
+<p>每一个Form类的字段不仅负责验证数据，同样需要“清理”数据 &mdash; 标准化为统一的格式。
+&mdash; <a href="https://docs.djangoproject.com/en/stable/ref/forms/api/#django.forms.Form.cleaned_data">Django documentation</a></p>
+</blockquote>
+<p>序列化字段负责在原始数据和内部数据类型之间转换。它们同样负责校验输入的值，以及从父级对象查询和设置值。</p>
+<hr />
+<p><strong>NOTE:</strong> 序列化的字段在<code>fields.py</code>中定义，但是根据惯例，你应该使用<code>from rest_framework import serializers</code>然后使用<code>serializers.&lt;FieldName&gt;</code>来引用它们。</p>
+<hr />
+<h2 id="_2"><a class="toclink" href="#_2">核心参数</a></h2>
+<p>每一个序列化字段类的构造函数都至少接收这些参数。一下字段类接口额外的，特定字段类型的参数，但是下面这些参数是一定会接收的。</p>
+<h3 id="read_only"><a class="toclink" href="#read_only"><code>read_only</code></a></h3>
+<p>只读字段只能包含在API的输出中，但是不应该包含在创建或者更新的操作。任何错误的包含在序列化输入的只读字段都会被忽略。</p>
+<p>将其设置为<code>True</code>确保序列化时使用这个字段，但是创建或者更新的反序列化操作时不会使用。</p>
+<p>默认是<code>False</code></p>
+<h3 id="write_only"><a class="toclink" href="#write_only"><code>Write_only</code></a></h3>
+<p>将其设置为<code>True</code>确保在创建或者更新的反序列化操作时使用，但是序列化时不适用这个字段。</p>
+<h3 id="required"><a class="toclink" href="#required"><code>required</code></a></h3>
+<p>如果在反序列化时候没有提供这个字段，通常会抛出一个错误。如果在反序列化操作中不需要这个字段，将其设置为<code>False</code>。</p>
+<p>将其设置为<code>False</code>同样允许在序列化实例时忽略对象属性或者字段的键。如果这个键不存在，则该键根本不会出现在输出中。</p>
+<p>默认是<code>True</code></p>
+<h3 id="default"><a class="toclink" href="#default"><code>default</code></a></h3>
+<p>如果设置了这个参数，提供的默认值会在这个字段没有提供输入值的时候使用。如果没有设置，默认不填充这个属性。</p>
+<p>部分更新操作不会接受<code>default</code>的值，部分更新情况下，仅返回输入数据中提供字段校验后的值。</p>
+<p>可以设置为函数或其他可调用对象，这种情况下，每次使用该值都会对其评估。被调用时不接受参数，如果可调用的对象有<code>requires_context = True</code>属性，则序列化字段将作为参数传进可调用对象中。</p>
+<p>例如：</p>
+<pre><code class="python">class CurrentUserDefault:
+    &quot;&quot;&quot;
+    可以作为序列化字段参数`default=...`的值。
+    返回当前用户
+    &quot;&quot;&quot;
+    requires_context = True
+
+    def __call__(self, serializer_field):
+        return serializer_field.context['request'].user
+</code></pre>
+
+<p>当序列化实例时，如果实例或者字典没有对应的属性或键，会返回默认值。</p>
+<p>记住设置字段的<code>default</code>值，意味着这个字段不是必须的，同时包含<code>default</code>和<code>required</code>关键字参数都是无效的，并且会引发错误。</p>
+<h3 id="allow_null"><a class="toclink" href="#allow_null"><code>allow_null</code></a></h3>
+<p>一般情况下，如果向序列化字段传递<code>None</code>是会抛出异常的。如果<code>None</code>可以作为值，将这个参数设置为<code>True</code></p>
+<p>默认是<code>False</code></p>
+<h3 id="source"><a class="toclink" href="#source"><code>source</code></a></h3>
+<p>用于填充这个字段的属性名称。可以是一个仅接受<code>self</code>参数的方法，例如<code>URLField(source='get_absolute_url')</code>，或者使用点分符遍历属性，例如<code>EmailField(source='user.email')</code>。当使用点分符序列化字段时，如果在属性遍历期间不存在任何对象或该对象为空，则可能需要提供“默认”值。</p>
+<p>该值<code>source='*'</code>具有特殊含义，用于指示应将整个对象传递给该字段。这对于创建嵌套表示或对于需要访问完整对象才能确定输出表示的字段很有用。</p>
+<p>默认为字段名称。</p>
+<h3 id="validators"><a class="toclink" href="#validators"><code>validators</code></a></h3>
+<p>验证器功能列表，应将其应用于输入字段输入，并引发验证错误或简单地返回。验证器函数通常应该提高<code>serializers.ValidationError</code>，但是<code>ValidationError</code>还支持Django的内置函数，以便与Django代码库或第三方Django软件包中定义的验证器兼容。</p>
+<h3 id="error_message"><a class="toclink" href="#error_message"><code>error_message</code></a></h3>
+<p>错误代码到错误消息的字典。</p>
+<h3 id="label"><a class="toclink" href="#label"><code>label</code></a></h3>
+<p>一个简短的文本字符串，可用作HTML表单字段或其他描述性元素中的字段名称。</p>
+<h3 id="help_text"><a class="toclink" href="#help_text"><code>help_text</code></a></h3>
+<p>可用作在HTML表单字段或其他描述性元素中对该字段进行描述的文本字符串。</p>
+<h3 id="initial"><a class="toclink" href="#initial"><code>initial</code></a></h3>
+<p>该值应用于预先填充HTML表单字段的值。您可以将callable传递给它，就像处理任何常规Django一样<code>Field</code>：</p>
+<pre><code class="python">import datetime
+from rest_framework import serializers
+class ExampleSerializer(serializers.Serializer):
+    day = serializers.DateField(initial=datetime.date.today)
+</code></pre>
+
+<h3 id="style"><a class="toclink" href="#style"><code>style</code></a></h3>
+<p>键值对字典，可用于控制渲染器应如何渲染字段。</p>
+<p>这里的两个例子是<code>'input_type'</code>和<code>'base_template'</code>：</p>
+<pre><code class="python"># Use &lt;input type=&quot;password&quot;&gt; for the input.
+password = serializers.CharField(
+    style={'input_type': 'password'}
+)
+
+# Use a radio input instead of a select input.
+color_channel = serializers.ChoiceField(
+    choices=['red', 'green', 'blue'],
+    style={'base_template': 'radio.html'}
+)
+</code></pre>
+
+<p>有关更多详细信息，请参见 <a href="../../topics/html-and-forms/">HTML &amp; Forms</a> 文档。</p>
+<hr />
+<h1 id="_3"><a class="toclink" href="#_3">布尔字段</a></h1>
+<h2 id="booleanfield"><a class="toclink" href="#booleanfield">BooleanField</a></h2>
+<p>布尔值的表示。</p>
+<p>使用HTML编码的表单输入时，请注意，即使省略了值，也将始终将其设置为<code>False</code>，即使该字段<code>default=True</code>指定了选项。这是因为HTML复选框输入通过忽略该值来表示未选中状态，因此REST框架将忽略视为其为空复选框输入。</p>
+<p>注意，Django2.1移除了<code>models.BooleanField</code>中的<code>blank</code>关键字参数。在Django 2.1之前，<code>models.BooleanField</code>字段始终为<code>blank = True</code>。所以从Django2.1开始，默认的<code>serializers.BooleanField</code>实例将被生成没有<code>required</code> 关键字参数的值（即等同于<code>required = True</code>）而之前版本的Django，将生成默认的BooleanField实例带有<code>required = False</code>选项。如果你想手动控制它的行为，在序列化程序类上显式声明<code>BooleanField</code>，或者使用<code>extra_kwargs</code>选项来设置<code>required</code>参数。</p>
+<h2 id="nullbooleanfield"><a class="toclink" href="#nullbooleanfield">NullBooleanField</a></h2>
+<p>表示布尔值，也接受None为有效值。</p>
+<p>对应于<code>django.db.models.fields.NullBooleanField</code>.</p>
+<p><strong>签名：</strong> <code>NullBooleanField()</code></p>
+<hr />
+<h1 id="_4"><a class="toclink" href="#_4">字符串字段</a></h1>
+<h2 id="charfield"><a class="toclink" href="#charfield">CharField</a></h2>
+<p>表示文本。（可选）验证文本是否短于max_length和长于min_length。</p>
+<p>对应于<code>django.db.models.fields.CharField</code>或<code>django.db.models.fields.TextField</code>。</p>
+<p><strong>签名：</strong> <code>CharField(max_length=None, min_length=None, allow_blank=False, trim_whitespace=True)</code></p>
+<ul>
+<li><code>max_length</code> - 验证输入的字符数不超过此数量。</li>
+<li><code>min_length</code> - 验证输入的字符数不少于此。</li>
+<li><code>allow_blank</code> - 如果设置为<code>True</code>，则应将空字符串视为有效值。如果设置为，<code>False</code>则认为空字符串无效，并将引发验证错误。默认为<code>False</code>。</li>
+<li><code>trim_whitespace</code> - 如果设置为，<code>True</code>则修剪前后的空白。默认为<code>True</code>。</li>
+</ul>
+<p>该 <code>allow_null</code>选项也可用于字符串字段，尽管不建议使用<code>allow_blank</code>。设置<code>allow_blank=True</code>和<code>allow_null=True</code>都是有效的，但是这样做意味着对于字符串表示而言，将存在两种不同类型的空值，这可能导致数据不一致和细微的应用程序错误。</p>
+<h2 id="emailfield"><a class="toclink" href="#emailfield">EmailField</a></h2>
+<p>表示文本形式，将文本验证为有效的电子邮件地址。</p>
+<p>对应于<code>django.db.models.fields.EmailField</code></p>
+<p><strong>签名：</strong> <code>EmailField(max_length=None, min_length=None, allow_blank=False)</code></p>
+<h2 id="regexfield"><a class="toclink" href="#regexfield">RegexField</a></h2>
+<p>表示文本形式，用于验证给定值是否与某个正则表达式匹配。</p>
+<p>对应于<code>django.forms.fields.RegexField</code>。</p>
+<p><strong>签名：</strong> <code>RegexField(regex, max_length=None, min_length=None, allow_blank=False)</code></p>
+<p>强制<code>regex</code>参数可以是字符串，也可以是已编译的python正则表达式对象。</p>
+<p>使用Django的<code>django.core.validators.RegexValidator</code>进行验证。</p>
+<h2 id="slugfield"><a class="toclink" href="#slugfield">SlugField</a></h2>
+<p>一个验证输入满足表达式<code>[a-zA-Z0-9_-]+</code>的RegexField字段。</p>
+<p>对应于<code>django.db.models.fields.SlugField</code>.</p>
+<p><strong>签名：</strong> <code>SlugField(max_length=50, min_length=None, allow_blank=False)</code></p>
+<h2 id="urlfield"><a class="toclink" href="#urlfield">URLField</a></h2>
+<p>一个验证输入满足URL格式的<code>RegexField</code>字段。要求使用以下格式的完全限定网址<code>http://&lt;host&gt;/&lt;path&gt;</code>.</p>
+<p>对应于 <code>django.db.models.fields.URLField</code>。 使用Django的 <code>django.core.validators.URLValidator</code>进行验证。</p>
+<p><strong>签名：</strong> <code>URLField(max_length=200, min_length=None, allow_blank=False)</code></p>
+<h2 id="uuidfield"><a class="toclink" href="#uuidfield">UUIDField</a></h2>
+<p>确保输入为有效UUID字符串的字段。该<code>to_internal_value</code>方法将返回一个<code>uuid.UUID</code>实例。在输出时，该字段将返回标准连字符格式的字符串，例如：</p>
+<pre><code class="python">&quot;de305d54-75b4-431b-adb2-eb6b9e546013&quot;
+</code></pre>
+
+<p><strong>签名：</strong> <code>UUIDField(format='hex_verbose')</code></p>
+<ul>
+<li>format: 确定uuid值的表示格式<ul>
+<li><code>'hex_verbose'</code> - 规范的十六进制表示形式，包括连字符： <code>"5ce0e9a5-5ffa-654b-cee0-1238041fb31a"</code></li>
+<li><code>'hex'</code> - UUID的紧凑十六进制表示形式，不包括连字符： <code>"5ce0e9a55ffa654bcee01238041fb31a"</code></li>
+<li><code>'int'</code> - UUID的128位整数表示： <code>"123456789012312313134124512351145145114"</code></li>
+<li><code>'urn'</code> - UUID的RFC 4122 URN表示形式： <code>"urn:uuid:5ce0e9a5-5ffa-654b-cee0-1238041fb31a"</code> 更改<code>format</code>参数仅影响表示形式值。 所有格式均被<code>to_internal_value</code>接受。</li>
+</ul>
+</li>
+</ul>
+<h2 id="filepathfield"><a class="toclink" href="#filepathfield">FilePathField</a></h2>
+<p>一个字段，其选择仅限于文件系统上某个目录中的文件名</p>
+<p>对应于 <code>django.forms.fields.FilePathField</code>.</p>
+<p><strong>签名：</strong> <code>FilePathField(path, match=None, recursive=False, allow_files=True, allow_folders=False, required=None, **kwargs)</code></p>
+<ul>
+<li><code>path</code> - 目录的绝对文件系统路径，应从中选择此FilePathField。</li>
+<li><code>match</code> - FilePathField将用于过滤文件名的正则表达式（作为字符串）。</li>
+<li><code>recursive</code> - 指定是否应包含路径的所有子目录。默认值为<code>False</code>。</li>
+<li><code>allow_files</code> - 指定是否应包含指定位置的文件。默认值为<code>True</code>。这个参数和下面的 <code>allow_folders</code> 必须有一个为 <code>True</code>。</li>
+<li><code>allow_folders</code> - 指定是否应包含指定位置的文件夹。默认值为<code>False</code>。 这个参数和上面的 <code>allow_files</code> 必须有一个为 <code>True</code>。</li>
+</ul>
+<h2 id="ipaddressfield"><a class="toclink" href="#ipaddressfield">IPAddressField</a></h2>
+<p>确保输入为有效IPv4或IPv6字符串的字段。</p>
+<p>对应于 <code>django.forms.fields.IPAddressField</code> 和 <code>django.forms.fields.GenericIPAddressField</code>.</p>
+<p><strong>签名：</strong>: <code>IPAddressField(protocol='both', unpack_ipv4=False, **options)</code></p>
+<ul>
+<li><code>protocol</code> 将有效输入限制为指定的协议。接受的值是“两个”（默认），“ IPv4”或“ IPv6”。匹配不区分大小写。</li>
+<li><code>unpack_ipv4</code> 解压缩IPv4映射的地址，如:: ffff：192.0.2.1。如果启用此选项，则该地址将解压缩为192.0.2.1。默认设置为禁用。只能在协议设置为“ both”时使用。</li>
+</ul>
+<h1 id="_5"><a class="toclink" href="#_5">数字字段</a></h1>
+<h2 id="integerfield"><a class="toclink" href="#integerfield">IntegerField</a></h2>
+<p>表示整数</p>
+<p>对应于 <code>django.db.models.fields.IntegerField</code>, <code>django.db.models.fields.SmallIntegerField</code>, <code>django.db.models.fields.PositiveIntegerField</code> 和 <code>django.db.models.fields.PositiveSmallIntegerField</code>。</p>
+<p><strong>签名</strong>: <code>IntegerField(max_value=None, min_value=None)</code></p>
+<ul>
+<li><code>max_value</code> 验证提供的数字不大于此值。</li>
+<li><code>min_value</code> 验证提供的数字不小于此值。</li>
+</ul>
+<h2 id="floatfield"><a class="toclink" href="#floatfield">FloatField</a></h2>
+<p>表示浮点</p>
+<p>对应于 <code>django.db.models.fields.FloatField</code>.</p>
+<p><strong>Signature</strong>: <code>FloatField(max_value=None, min_value=None)</code></p>
+<ul>
+<li><code>max_value</code> 验证提供的数字不大于此值。</li>
+<li><code>min_value</code> 验证提供的数字不小于此值。</li>
+</ul>
+<h2 id="decimalfield"><a class="toclink" href="#decimalfield">DecimalField</a></h2>
+<p>表示十进制形式，在Python中由Decimal实例表示。</p>
+<p>对应于 <code>django.db.models.fields.DecimalField</code>。</p>
+<p><strong>签名</strong>: <code>DecimalField(max_digits, decimal_places, coerce_to_string=None, max_value=None, min_value=None)</code></p>
+<ul>
+<li><code>max_digits</code> 数字中允许的最大位数。它必须是<code>None</code>或大于或等于的整数<code>decimal_places</code>。</li>
+<li><code>decimal_places</code> 与数字一起存储的小数位数。</li>
+<li><code>coerce_to_string</code> 如果表示形式应该返回字符串值就设置为<code>True</code>, 或者应该返回<code>Decimal</code>对象的话就设置为 <code>False</code>。除非覆盖，否则默认为设置中<code>COERCE_DECIMAL_TO_STRING</code>设置键相同值的<code>True</code>值。 如果<code>Decimal</code>对象由序列化程序返回，则最终输出格式将由渲染器确定。请注意，设置<code>localize</code>会将值强制设为<code>True</code>。</li>
+<li><code>max_value</code> 验证提供的数字不大于此值。</li>
+<li><code>min_value</code> 验证提供的数字不小于此值。</li>
+<li><code>localize</code> 设置为<code>True</code>启用以基于当前语言环境本地化输入和输出。这也将迫使<code>coerce_to_string</code>到<code>True</code>。默认为<code>False</code>。请注意，如果你<code>USE_L10N=True</code>在设置文件中进行了设置，则会启用数据格式设置。</li>
+<li><code>rounding</code> 设置取值到配置精度的舍入模式。有效值是[<code>decimal</code> 模块的舍入模式][python-decimal-rounding-modes]。默认是<code>None</code>。</li>
+</ul>
+<h4 id="_6"><a class="toclink" href="#_6">使用示例</a></h4>
+<p>要验证最大为999且分辨率为2位小数的数字，请使用：</p>
+<pre><code>serializers.DecimalField(max_digits=5, decimal_places=2)
+</code></pre>
+<p>并使用十进制小数位数来验证小于十亿的数字：</p>
+<pre><code>serializers.DecimalField(max_digits=19, decimal_places=10)
+</code></pre>
+<p>该字段还带有一个可选参数<code>coerce_to_string</code>。如果设置为<code>True</code>表示将作为字符串输出。如果设置为<code>False</code>，表示将作为<code>Decimal</code>实例保留，最终表示将由渲染器确定。</p>
+<p>如果未设置，则默认为与<code>COERCE_DECIMAL_TO_STRING</code>设置相同的值，<code>True</code>除非另行设置。</p>
+<h1 id="_7"><a class="toclink" href="#_7">日期时间字段</a></h1>
+<h2 id="datetimefield"><a class="toclink" href="#datetimefield">DateTimeField</a></h2>
+<p>表示日期和时间。</p>
+<p>对应于 <code>django.db.models.fields.DateTimeField</code>.</p>
+<p><strong>签名：</strong> <code>DateTimeField(format=api_settings.DATETIME_FORMAT, input_formats=None)</code></p>
+<ul>
+<li><code>format</code> - 代表输出格式的字符串。如果未指定，则默认为与<code>DATETIME_FORMAT</code>设置键相同的值，<code>'iso-8601'</code>除非设置，否则为默认值。设置为格式字符串表示<code>to_representation</code>应将返回值强制为字符串输出。格式字符串如下所述。将此值设置为<code>None</code>表示应由<code>to_representation</code>返回Python <code>datetime</code>对象。在这种情况下，日期时间编码将由渲染器确定。</li>
+<li><code>input_formats</code> - 表示可用于解析日期的输入格式的字符串列表。如果未指定，<code>DATETIME_INPUT_FORMATS</code>将使用该设置，默认为<code>['iso-8601']</code>。</li>
+<li><code>default_timezone</code> - 一个<code>pytz.timezone</code>表示的时区。如果没有指定，并且<code>USE_TZ</code>设置打开，这个参数的默认值是[当前时区][django-current-timezone]。如果<code>USE_TZ</code>没有打开，会使用原始的日期对象。</li>
+</ul>
+<h4 id="datetimefield-format-strings"><a class="toclink" href="#datetimefield-format-strings"><code>DateTimeField</code> format strings.</a></h4>
+<p>格式字符串可以是显式指定格式的<a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a>，也可以是特殊字符串<code>'iso-8601'</code>，它指示应使用<a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a>样式的日期时间。（例如<code>'2013-01-29T12:34:56.000000Z'</code>）</p>
+<p>当将值<code>None</code>用于格式时，<code>datetime</code>对象将由<code>to_representation</code>返回，并且最终输出表示形式将由renderer类确定。</p>
+<h4 id="auto_now-and-auto_now_add-model-fields"><a class="toclink" href="#auto_now-and-auto_now_add-model-fields"><code>auto_now</code> and <code>auto_now_add</code> model fields.</a></h4>
+<p>使用<code>ModelSerializer</code>或<code>HyperlinkedModelSerializer</code>，请注意，默认情况下带有<code>auto_now=True</code>或任何模型字段<code>auto_now_add=True</code>都将使用<code>read_only=True</code>的序列化器字段。</p>
+<p>如果要覆盖此行为，则需要<code>DateTimeField</code>在序列化程序上显式声明。例如：</p>
+<pre><code>class CommentSerializer(serializers.ModelSerializer):
+    created = serializers.DateTimeField()
+
+    class Meta:
+        model = Comment
+</code></pre>
+<h2 id="datefield"><a class="toclink" href="#datefield">DateField</a></h2>
+<p>表示日期</p>
+<p>对应于 <code>django.db.models.fields.DateField</code></p>
+<p><strong>签名：</strong> <code>DateField(format=api_settings.DATE_FORMAT, input_formats=None)</code></p>
+<ul>
+<li><code>format</code> - 代表输出格式的字符串。如果未指定，则默认为与<code>DATE_FORMAT</code>设置键相同的值，除非设置，否则默认值为<code>'iso-8601'</code>。设置为格式字符串表示<code>to_representation</code>应将返回值强制为字符串输出。格式字符串如下所述。将此值设置为<code>None</code>表示Python的<code>date</code>对象应由<code>to_representation</code>返回。在这种情况下，时间编码将由渲染器确定。</li>
+<li><code>input_formats</code> - 表示可用于解析日期的输入格式的字符串列表。如果未指定，<code>DATE_INPUT_FORMATS</code>将使用该设置，默认为<code>['iso-8601']</code>。</li>
+</ul>
+<h4 id="datefield_1"><a class="toclink" href="#datefield_1"><code>DateField</code> 格式化字符串</a></h4>
+<p>格式字符串可以是显式指定格式的<a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a>，也可以是特殊字符串<code>'iso-8601'</code>，它指示应使用<a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a>样式时间。（例如<code>'2013-01-29'</code>）</p>
+<h2 id="timefield"><a class="toclink" href="#timefield">TimeField</a></h2>
+<p>表示时间</p>
+<p>对应于 <code>django.db.models.fields.TimeField</code></p>
+<p><strong>签名：</strong> <code>TimeField(format=api_settings.TIME_FORMAT, input_formats=None)</code></p>
+<ul>
+<li><code>format</code> - 代表输出格式的字符串。如果未指定，则默认为与<code>TIME_FORMAT</code>设置键相同的值，<code>'iso-8601'</code>除非设置，否则为默认值。设置为格式字符串表示<code>to_representation</code>应将返回值强制为字符串输出。格式字符串如下所述。将此值设置为<code>None</code>表示Python <code>time</code>对象应由<code>to_representation</code>返回。在这种情况下，时间编码将由渲染器确定。</li>
+<li><code>input_formats</code> - 表示可用于解析日期的输入格式的字符串列表。如果未指定，<code>TIME_INPUT_FORMATS</code>将使用该设置，默认为<code>['iso-8601']</code></li>
+</ul>
+<h4 id="timefield-format-strings"><a class="toclink" href="#timefield-format-strings"><code>TimeField</code> format strings</a></h4>
+<p>格式字符串可以是显式指定格式的<a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime 格式</a>，也可以是特殊字符串<code>'iso-8601'</code>，它指示应使用<a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a>样式时间。（例如<code>'12:34:56.000000'</code>）</p>
+<h2 id="durationfield"><a class="toclink" href="#durationfield">DurationField</a></h2>
+<p>表示时间间隔
+对应于 <code>django.db.models.fields.DurationField</code></p>
+<p>在这些字段的<code>validated_data</code>将包含一个<code>datetime.timedelta</code>实例。该表示形式是遵循此格式的字符串<code>'[DD] [HH:[MM:]]ss[.uuuuuu]'</code>。</p>
+<p><strong>签名：</strong> <code>DurationField()</code></p>
+<ul>
+<li><code>max_value</code> 验证提供的间隔不大于这个值。</li>
+<li><code>min_value</code> 验证提供的间隔不小于这个值。</li>
+</ul>
+<hr />
+<h1 id="_8"><a class="toclink" href="#_8">选择字段</a></h1>
+<h2 id="choicefield"><a class="toclink" href="#choicefield">ChoiceField</a></h2>
+<p>可以接受有限选择集中的值的字段。</p>
+<p><code>ModelSerializer</code>如果相应的模型字段包含<code>choices=…</code>参数，则用于自动生成字段。</p>
+<p><strong>签名：</strong> <code>ChoiceField(choices)</code></p>
+<ul>
+<li><code>choices</code> - 有效值列表或<code>(key, display_name)</code>元组列表。</li>
+<li><code>allow_blank</code> - 如果设置为<code>True</code>，则应将空字符串视为有效值。如果设置为，<code>False</code>则认为空字符串无效，并将引发验证错误。默认为<code>False</code>。</li>
+<li><code>html_cutoff</code> - 如果设置，则将是HTML select下拉列表将显示的最大选择数。可以用来确保自动生成的ChoiceFields具有非常大的选择范围，不会阻止模板的呈现。默认为<code>None</code>。</li>
+<li><code>html_cutoff_text</code> - 如果设置了此选项，则如果在HTML选择下拉列表中已截断最大数量的项目，则它将显示文本指示器。默认为<code>"More than {count} items…"</code>。</li>
+</ul>
+<p>无论是<code>allow_blank</code>与<code>allow_null</code>上有效的选项<code>ChoiceField</code>，但我们强烈建议您只使用一个，而不是两个。<code>allow_blank</code>应该首选用于文本选择，并且<code>allow_null</code>应该首选用于数字或其他非文本选择。</p>
+<h2 id="multiplechoicefield"><a class="toclink" href="#multiplechoicefield">MultipleChoiceField</a></h2>
+<p>一个可以接受一组零个，一个或多个值的字段，这些值是从一组有限的选择中选择的。接受一个强制性参数。<code>to_internal_value</code>返回<code>set</code>包含所选值的。</p>
+<p><strong>签名：</strong> <code>MultipleChoiceField(choices)</code></p>
+<ul>
+<li><code>choices</code> - 有效值列表或<code>(key, display_name)</code>元组列表。</li>
+<li><code>allow_blank</code> - 如果设置为<code>True</code>，则应将空字符串视为有效值。如果设置为，<code>False</code>则认为空字符串无效，并将引发验证错误。默认为<code>False</code>。</li>
+<li><code>html_cutoff</code> - 如果设置，则将是HTML select下拉列表将显示的最大选择数。可以用来确保自动生成的ChoiceFields具有非常大的选择范围，不会阻止模板的呈现。默认为<code>None</code>。</li>
+<li><code>html_cutoff_text</code> - 如果设置了此选项，则如果在HTML选择下拉列表中已截断最大数量的项目，则它将显示文本指示器。默认为<code>"More than {count} items…"</code>。</li>
+</ul>
+<p>与<code>ChoiceField</code>一样，<code>allow_blank</code>和<code>allow_null</code>选项都有效，尽管强烈建议您仅使用一个，而不要同时使用。<code>allow_blank</code>应该首选用于文本选择，并且<code>allow_null</code>应该首选用于数字或其他非文本选择。</p>
+<hr />
+<h1 id="_9"><a class="toclink" href="#_9">文件上传字段</a></h1>
+<h4 id="_10"><a class="toclink" href="#_10">解析和文件上传</a></h4>
+<p><code>FileField</code> 和 <code>ImageField</code>类是仅适用于使用<code>MultiPartParser</code>或<code>FileUploadParser</code>的。大多数解析器（例如JSON）不支持文件上传。Django的常规<a href="https://docs.djangoproject.com/en/stable/ref/settings/#std:setting-FILE_UPLOAD_HANDLERS">FILE_UPLOAD_HANDLERS</a>用于处理上传的文件。</p>
+<h2 id="filefield"><a class="toclink" href="#filefield">FileField</a></h2>
+<p>表示文件。执行Django的标准FileField验证。</p>
+<p>对应于 <code>django.forms.fields.FileField</code>.</p>
+<p><strong>签名：</strong> <code>FileField(max_length=None, allow_empty_file=False, use_url=UPLOADED_FILES_USE_URL)</code></p>
+<ul>
+<li><code>max_length</code> - 指定文件名的最大长度。</li>
+<li><code>allow_empty_file</code> - 指定是否允许空文件。</li>
+<li><code>use_url</code> - 如果设置为<code>True</code>则URL字符串值将用于输出表示。如果设置为<code>False</code>则文件名字符串值将用于输出表示。默认为<code>UPLOADED_FILES_USE_URL</code>设置键的值，除非另有设置，否则为默认值<code>True</code>。</li>
+</ul>
+<h2 id="imagefield"><a class="toclink" href="#imagefield">ImageField</a></h2>
+<p>表示图片。 验证上传的文件内容是否与已知图像格式匹配。</p>
+<p>对应于 <code>django.forms.fields.ImageField</code>.</p>
+<p><strong>签名：</strong> <code>ImageField(max_length=None, allow_empty_file=False, use_url=UPLOADED_FILES_USE_URL)</code></p>
+<ul>
+<li><code>max_length</code> - 指定文件名的最大长度。</li>
+<li><code>allow_empty_file</code> - 指定是否允许空文件。</li>
+<li><code>use_url</code> - 如果设置为<code>True</code>则URL字符串值将用于输出表示。如果设置为<code>False</code>则文件名字符串值将用于输出表示。默认为<code>UPLOADED_FILES_USE_URL</code>设置键的值，除非另有设置，否则为默认值<code>True</code>。</li>
+</ul>
+<p>需要安装<code>Pillow</code>包或<code>PIL</code>包。推荐使用<code>Pillow</code>包，因为<code>PIL</code>包已经不积极维护。</p>
+<hr />
+<h1 id="_11"><a class="toclink" href="#_11">复合字段</a></h1>
+<h2 id="listfield"><a class="toclink" href="#listfield">ListField</a></h2>
+<p>验证对象列表的字段类。</p>
+<p><strong>签名</strong>: <code>ListField(child, min_length=None, max_length=None)</code></p>
+<ul>
+<li><code>child</code> - 应该用于验证列表中对象的字段实例。如果未提供此参数，则将不验证列表中的对象。</li>
+<li><code>min_length</code> - 验证列表中包含的元素不少于此数量。</li>
+<li><code>max_length</code> - 验证列表中所包含的元素数量不超过此数量。</li>
+</ul>
+<p>例如，要验证整数列表，可以使用如下所示的内容：</p>
+<pre><code>scores = serializers.ListField(
+   child=serializers.IntegerField(min_value=0, max_value=100)
+)
+</code></pre>
+<p><code>ListField</code>类还支持声明式样式，该样式允许你编写可重用的列表字段类。</p>
+<pre><code>class StringListField(serializers.ListField):
+    child = serializers.CharField()
+</code></pre>
+<p>现在，我们可以在整个应用程序中重用自定义的<code>StringListField</code>类，而不必为其提供<code>child</code>参数。</p>
+<h2 id="dictfield"><a class="toclink" href="#dictfield">DictField</a></h2>
+<p>一个验证对象字典的字段类。 <code>DictField</code> 中的key都总是假定为字符串值。</p>
+<p><strong>签名</strong>: <code>DictField(child)</code></p>
+<ul>
+<li><code>child</code> - 应该用于验证字典中值的字段实例。如果未提供此参数，则将不验证映射中的值。</li>
+<li><code>allow_empty</code> - 指定是否允许空字典。</li>
+</ul>
+<p>例如，要创建一个验证字符串到字符串映射的字段，你可以编写如下代码：</p>
+<pre><code>document = DictField(child=CharField())
+</code></pre>
+<p>你也可以像使用一样使用声明式样式<code>ListField</code>。例如：</p>
+<pre><code>class DocumentField(DictField):
+    child = CharField()
+</code></pre>
+<h2 id="hstorefield"><a class="toclink" href="#hstorefield">HStoreField</a></h2>
+<p>预留的<code>DictField</code>兼容Django的postgres<code>HStoreField</code>字段。</p>
+<p><strong>签名：</strong> <code>HStoreField(child=&lt;A_FIELD_INSTANCE&gt;, allow_empty=True)</code></p>
+<ul>
+<li><code>child</code> - 应该用于验证字典中值的字段实例。如果未提供此参数，则将不验证映射中的值。</li>
+<li><code>allow_empty</code> - 指定是否允许空字典。</li>
+</ul>
+<p>注意子字段<strong>必须</strong>是<code>CharField</code>的实例，因为hstore的扩展存储值为字符串。</p>
+<h2 id="jsonfield"><a class="toclink" href="#jsonfield">JSONField</a></h2>
+<p>一个字段类，用于验证传入的数据结构是否包含有效的JSON原语。在其备用二进制模式下，它将表示并验证JSON编码的二进制字符串。</p>
+<p><strong>签名</strong>: <code>JSONField(binary)</code></p>
+<ul>
+<li><code>binary</code> - 如果设置为<code>True</code>则该字段将输出并验证JSON编码的字符串，而不是原始数据结构。默认为<code>False</code>。</li>
+<li><code>encoder</code> - 使用这个编码器序列化输入的对象。默认是<code>None</code>。</li>
+</ul>
+<hr />
+<h1 id="_12"><a class="toclink" href="#_12">杂项字段</a></h1>
+<h2 id="readonlyfield"><a class="toclink" href="#readonlyfield">ReadOnlyField</a></h2>
+<p>一个字段类，仅返回该字段的值而无需修改。</p>
+<p><code>ModelSerializer</code>当包含与属性而不是模型字段相关的字段名称时，默认情况下使用此字段。</p>
+<p><strong>签名</strong>: <code>ReadOnlyField()</code></p>
+<p>例如，如果<code>has_expired</code>是<code>Account</code>模型的属性，则以下序列化器将自动将其生成为<code>ReadOnlyField</code>：</p>
+<pre><code>class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ('id', 'account_name', 'has_expired')
+</code></pre>
+<h2 id="hiddenfield"><a class="toclink" href="#hiddenfield">HiddenField</a></h2>
+<p>一个字段类，它不基于用户输入获取值，而是从默认值或可调用对象获取其值。</p>
+<p><strong>签名</strong>: <code>HiddenField()</code></p>
+<p>例如，要包括一个始终提供当前时间的字段作为序列化程序验证数据的一部分，则可以使用以下内容：</p>
+<pre><code>modified = serializers.HiddenField(default=timezone.now)
+</code></pre>
+<p><code>HiddenField</code>通常只有在你需要基于某些预先提供的字段值来运行某些验证，而又不想将所有这些字段公开给最终用户时，才需要使用该类。</p>
+<p>有关 <code>HiddenField</code> 的更多示例，请参照<a href="../validators/">validators</a> 文档。</p>
+<h2 id="modelfield"><a class="toclink" href="#modelfield">ModelField</a></h2>
+<p>可以绑定到任意模型字段的通用字段。 <code>ModelField</code>类将序列化/反序列化任务委托给与其关联的model字段。 此字段可用于为自定义模型字段创建序列化程序字段，而不必创建新的自定义序列化程序字段。</p>
+<p>该字段用于<code>ModelSerializer</code>对应于自定义模型字段类。</p>
+<p><strong>签名:</strong> <code>ModelField(model_field=&lt;Django ModelField instance&gt;)</code></p>
+<p><code>ModelField</code>一般用于内部使用，但如果需要的话可以通过你的API使用。为了正确地实例化<code>ModelField</code>，必须传递一个附加到实例化模型的字段。例如：<code>ModelField(model_field=MyModel()._meta.get_field('custom_field'))</code>。</p>
+<h2 id="serializermethodfield"><a class="toclink" href="#serializermethodfield">SerializerMethodField</a></h2>
+<p>这是一个只读字段。它通过在附加的序列化器类上调用一个方法来获取其值。它可以用于将任何类型的数据添加到对象的序列化表示中。</p>
+<p><strong>签名</strong>: <code>SerializerMethodField(method_name=None)</code></p>
+<ul>
+<li><code>method_name</code> - 要调用的序列化程序上的方法的名称。如果未包括，则默认为<code>get_&lt;field_name&gt;</code>。</li>
+</ul>
+<p><code>method_name</code>参数引用的序列化程序方法应接受单个参数（除了之外<code>self</code>），该参数是要序列化的对象。它应该返回要包含在对象的序列化表示中的任何内容。例如：</p>
+<pre><code>from django.contrib.auth.models import User
+from django.utils.timezone import now
+from rest_framework import serializers
+
+class UserSerializer(serializers.ModelSerializer):
+    days_since_joined = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+
+    def get_days_since_joined(self, obj):
+        return (now() - obj.date_joined).days
+</code></pre>
+<hr />
+<h1 id="_13"><a class="toclink" href="#_13">自定义字段</a></h1>
+<p>如果要创建自定义字段，则需要继承<code>Field</code>类，然后重写<code>.to_representation()</code>和<code>.to_internal_value()</code>方法之一或二者。这两种方法用于在初始数据类型和原始的可序列化数据类型之间进行转换。基本数据类型通常是任何数字，字符串，布尔，<code>date/time/datetime</code>或<code>None</code>。它们也可以是仅包含其他原始对象的任何列表或字典之类的对象。根据您使用的渲染器，可能支持其他类型。</p>
+<p><code>.to_representation()</code> 调用该方法可将初始数据类型转换为原始的可序列化数据类型。</p>
+<p><code>to_internal_value()</code>调用该方法可将原始数据类型恢复为其内部python表示形式。如果数据无效，则此方法应抛出一个 <code>serializers.ValidationError</code>。</p>
+<h2 id="_14"><a class="toclink" href="#_14">示例</a></h2>
+<h3 id="_15"><a class="toclink" href="#_15">基础自定义字段</a></h3>
+<p>让我们看一个序列化代表RGB颜色值的类的示例：</p>
+<pre><code>class Color:
+    """
+    A color represented in the RGB colorspace.
+    """
+    def __init__(self, red, green, blue):
+        assert(red &gt;= 0 and green &gt;= 0 and blue &gt;= 0)
+        assert(red &lt; 256 and green &lt; 256 and blue &lt; 256)
+        self.red, self.green, self.blue = red, green, blue
+
+class ColorField(serializers.Field):
+    """
+    Color objects are serialized into 'rgb(#, #, #)' notation.
+    """
+    def to_representation(self, value):
+        return "rgb(%d, %d, %d)" % (value.red, value.green, value.blue)
+
+    def to_internal_value(self, data):
+        data = data.strip('rgb(').rstrip(')')
+        red, green, blue = [int(col) for col in data.split(',')]
+        return Color(red, green, blue)
+</code></pre>
+<p>默认情况下，字段值被视为映射到对象上的属性。如果需要自定义如何访问和设置字段值，则需要覆盖<code>.get_attribute()</code>和/或<code>.get_value()</code>。</p>
+<p>例如，让我们创建一个字段，该字段可用来表示要序列化的对象的类名：</p>
+<pre><code>class ClassNameField(serializers.Field):
+    def get_attribute(self, instance):
+        # We pass the object instance onto `to_representation`,
+        # not just the field attribute.
+        return instance
+
+    def to_representation(self, value):
+        """
+        Serialize the value's class name.
+        """
+        return value.__class__.__name__
+</code></pre>
+<h4 id="_16"><a class="toclink" href="#_16">抛出验证异常</a></h4>
+<p>我们上面的<code>ColorField</code>类目前不执行任何数据验证。
+为了指示无效数据，我们应该引发一个<code>serializers.ValidationError</code>，如下所示：</p>
+<pre><code>def to_internal_value(self, data):
+    if not isinstance(data, str):
+        msg = 'Incorrect type. Expected a string, but got %s'
+        raise ValidationError(msg % type(data).__name__)
+
+    if not re.match(r'^rgb\([0-9]+,[0-9]+,[0-9]+\)$', data):
+        raise ValidationError('Incorrect format. Expected `rgb(#,#,#)`.')
+
+    data = data.strip('rgb(').rstrip(')')
+    red, green, blue = [int(col) for col in data.split(',')]
+
+    if any([col &gt; 255 or col &lt; 0 for col in (red, green, blue)]):
+        raise ValidationError('Value out of range. Must be between 0 and 255.')
+
+    return Color(red, green, blue)
+</code></pre>
+<p><code>.fail()</code>方法是引发的快捷方式<code>ValidationError</code>，它从<code>error_messages</code>字典中获取消息字符串。例如：</p>
+<pre><code>default_error_messages = {
+    'incorrect_type': 'Incorrect type. Expected a string, but got {input_type}',
+    'incorrect_format': 'Incorrect format. Expected `rgb(#,#,#)`.',
+    'out_of_range': 'Value out of range. Must be between 0 and 255.'
+}
+
+def to_internal_value(self, data):
+    if not isinstance(data, str):
+        self.fail('incorrect_type', input_type=type(data).__name__)
+
+    if not re.match(r'^rgb\([0-9]+,[0-9]+,[0-9]+\)$', data):
+        self.fail('incorrect_format')
+
+    data = data.strip('rgb(').rstrip(')')
+    red, green, blue = [int(col) for col in data.split(',')]
+
+    if any([col &gt; 255 or col &lt; 0 for col in (red, green, blue)]):
+        self.fail('out_of_range')
+
+    return Color(red, green, blue)
+</code></pre>
+<p>这种样式使您的错误消息与代码更清晰地分开，因此应首选。</p>
+<h3 id="source_1"><a class="toclink" href="#source_1">使用<code>source='*'</code></a></h3>
+<p>这里我们来看一个例子，一个 <em>平面</em> 的<code>DataPoint</code>模型，有<code>x_coordinate</code>和<code>y_coordinate</code>字段。</p>
+<pre><code>class DataPoint(models.Model):
+    label = models.CharField(max_length=50)
+    x_coordinate = models.SmallIntegerField()
+    y_coordinate = models.SmallIntegerField()
+</code></pre>
+<p>使用自定义字段和<code>source='*'</code>，我们可以生成坐标对的嵌套表示：</p>
+<pre><code>class CoordinateField(serializers.Field):
+
+    def to_representation(self, value):
+        ret = {
+            "x": value.x_coordinate,
+            "y": value.y_coordinate
+        }
+        return ret
+
+    def to_internal_value(self, data):
+        ret = {
+            "x_coordinate": data["x"],
+            "y_coordinate": data["y"],
+        }
+        return ret
+
+
+class DataPointSerializer(serializers.ModelSerializer):
+    coordinates = CoordinateField(source='*')
+
+    class Meta:
+        model = DataPoint
+        fields = ['label', 'coordinates']
+</code></pre>
+<p>注意这个例子不能进行验证。部分因为这个原因，在真实的项目中，使用有<code>source='*'</code>参数的序列化器和两个有自己的<code>source</code>参数指向关联的字段的<code>IntegerField</code>实例来表示嵌套坐标更好。</p>
+<ul>
+<li>
+<p><code>to_representation</code> 传入整个<code>DataPoint</code>对象，必须将其映射到所需的输出。</p>
+<pre><code>&gt;&gt;&gt; instance = DataPoint(label='Example', x_coordinate=1, y_coordinate=2)
+&gt;&gt;&gt; out_serializer = DataPointSerializer(instance)
+&gt;&gt;&gt; out_serializer.data
+ReturnDict([('label', 'Example'), ('coordinates', {'x': 1, 'y': 2})])
+</code></pre>
+</li>
+<li>
+<p>除非我们的字段时只读的，<code>to_internal_value</code>必须映射回适合更新目标对象的字典。使用<code>source='*'</code>，<code>to_internal_value</code>的返回可以更新验证的数据字典，而不是单个键。</p>
+<pre><code>&gt;&gt;&gt; data = {
+...     "label": "Second Example",
+...     "coordinates": {
+...         "x": 3,
+...         "y": 4,
+...     }
+... }
+&gt;&gt;&gt; in_serializer = DataPointSerializer(data=data)
+&gt;&gt;&gt; in_serializer.is_valid()
+True
+&gt;&gt;&gt; in_serializer.validated_data
+OrderedDict([('label', 'Second Example'),
+             ('y_coordinate', 4),
+             ('x_coordinate', 3)])
+</code></pre>
+</li>
+</ul>
+<p>为了完整性，让我们再次做同样的事情，但使用上面建议的嵌套序列化程序方法：</p>
+<pre><code>class NestedCoordinateSerializer(serializers.Serializer):
+    x = serializers.IntegerField(source='x_coordinate')
+    y = serializers.IntegerField(source='y_coordinate')
+
+
+class DataPointSerializer(serializers.ModelSerializer):
+    coordinates = NestedCoordinateSerializer(source='*')
+
+    class Meta:
+        model = DataPoint
+        fields = ['label', 'coordinates']
+</code></pre>
+<p>这里在<code>IntegerField</code>声明中处理目标和源属性对(<code>x</code>和<code>x_coherate</code>，<code>y</code>和<code>y_cocoate</code>)之间的映射。它就是接受<code>source=‘*’</code>的<code>NestedConsulateSerializer</code>。</p>
+<p>我们的新<code>DataPointSerializer</code>与自定义字段方法行为相同。</p>
+<p>序列化：</p>
+<pre><code>&gt;&gt;&gt; out_serializer.data
+ReturnDict([('label', 'testing'),
+            ('coordinates', OrderedDict([('x', 1), ('y', 2)]))])
+</code></pre>
+<p>反序列化：</p>
+<pre><code>&gt;&gt;&gt; in_serializer = DataPointSerializer(data=data)
+&gt;&gt;&gt; in_serializer.is_valid()
+True
+&gt;&gt;&gt; in_serializer.validated_data
+OrderedDict([('label', 'still testing'),
+             ('x_coordinate', 3),
+             ('y_coordinate', 4)])
+</code></pre>
+<p>我们同样有内置的验证器：</p>
+<pre><code>&gt;&gt;&gt; invalid_data = {
+...     "label": "still testing",
+...     "coordinates": {
+...         "x": 'a',
+...         "y": 'b',
+...     }
+... }
+&gt;&gt;&gt; invalid_serializer = DataPointSerializer(data=invalid_data)
+&gt;&gt;&gt; invalid_serializer.is_valid()
+False
+&gt;&gt;&gt; invalid_serializer.errors
+ReturnDict([('coordinates',
+             {'x': ['A valid integer is required.'],
+              'y': ['A valid integer is required.']})])
+</code></pre>
+<p>因此，嵌套序列化程序方法将是第一个尝试的方法。当嵌套的序列化程序变得不可行或过于复杂时，您可以使用自定义字段方法。</p>
+<h1 id="_17"><a class="toclink" href="#_17">第三方包</a></h1>
+<p>以下第三方软件包也可使用。</p>
+<h2 id="drf-compound-fields"><a class="toclink" href="#drf-compound-fields">DRF Compound Fields</a></h2>
+<p><a href="https://drf-compound-fields.readthedocs.io">drf-compound-fields</a>包提供了“复合”序列化器字段，例如简单值列表，可以由其他字段来描述，而不是带有<code>many = True</code>选项的序列化器。 还提供了用于键入字典和值的字段，这些字段可以是特定类型，也可以是该类型的项目的列表。</p>
+<h2 id="drf-extra-fields"><a class="toclink" href="#drf-extra-fields">DRF Extra Fields</a></h2>
+<p><a href="https://github.com/Hipo/drf-extra-fields">drf-extra-fields</a> 包为REST框架提供了额外的序列化器字段，包括<code>Base64ImageField</code>和<code>PointField</code>类。</p>
+<h2 id="djangrestframework-recursive"><a class="toclink" href="#djangrestframework-recursive">djangrestframework-recursive</a></h2>
+<p><a href="https://github.com/heywbj/django-rest-framework-recursive">djangorestframework-recursive</a> 包提供了一个<code>RecursiveField</code>，用于序列化和反序列化递归结构</p>
+<h2 id="django-rest-framework-gis"><a class="toclink" href="#django-rest-framework-gis">django-rest-framework-gis</a></h2>
+<p><a href="https://github.com/djangonauts/django-rest-framework-gis">django-rest-framework-gis</a> 包为django rest框架提供了地理插件，例如<code>GeometryField</code>字段和GeoJSON序列化器。</p>
+<h2 id="django-rest-framework-hstore"><a class="toclink" href="#django-rest-framework-hstore">django-rest-framework-hstore</a></h2>
+<p>The <a href="https://github.com/djangonauts/django-rest-framework-hstore">django-rest-framework-hstore</a> 包提供了一个<code>HStoreField</code>来支持 <a href="https://github.com/djangonauts/django-hstore">django-hstore</a> <code>DictionaryField</code> 模型字段。</p>
+            
+
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
+
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
+
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
+</html>
