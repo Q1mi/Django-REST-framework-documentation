@@ -1,544 +1,417 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/filtering/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Filtering - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Filtering - Django REST framework中文站点</title>
-  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/filtering/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Filtering">
-  <meta name="author" content="李文周">
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-  <!-- Le styles -->
-  <link href="../../css/prettify.css" rel="stylesheet">
-  <link href="../../css/bootstrap.css" rel="stylesheet">
-  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="../../css/default.css" rel="stylesheet">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18852272-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  <style>
-  #sidebarInclude img {
-      margin-bottom: 10px;
-  }
-  #sidebarInclude a.promo {
-      color: black;
-  }
-    @media (max-width: 767px) {
-      div.promo {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body onload="prettyPrint()" class="-page">
-
-  <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            Next <i class="icon-arrow-right icon-white"></i>
-          </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            <i class="icon-arrow-left icon-white"></i> Previous
-          </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
-          <div class="nav-collapse collapse">
-            
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-               
-              <li >
-                <a href="../..">主页</a>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../requests_zh/">Requests</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../responses_zh/">Responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../views_zh/">Views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../generic-views_zh/">Generic views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../viewsets_zh/">Viewsets</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../routers_zh/">Routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../parsers_zh/">Parsers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../renderers_zh/">Renderers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../serializers_zh/">Serializers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../fields_zh/">Serializer fields</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../relations/">Serializer relations</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../validators/">Validators</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../authentication_zh/">Authentication</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../permissions_zh/">Permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../throttling_zh/">Throttling</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../filtering_zh/">Filtering</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../pagination_zh/">Pagination</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../versioning_zh/">Versioning</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../content-negotiation_zh/">Content negotiation</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../metadata_zh/">Metadata</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../schemas/">Schemas</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../format-suffixes_zh/">Format suffixes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../reverse_zh/">Returning URLs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../exceptions/">Exceptions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../status-codes_zh/">Status codes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../testing_zh/">Testing</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../settings/">Settings</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/api-clients/">API Clients</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/internationalization/">Internationalization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browsable-api/">The Browsable API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/contributing/">Contributing to REST framework</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/project-management/">Project management</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/funding/">Funding</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/release-notes/">Release Notes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/jobs/">Jobs</a>
-                  </li>
-                  
-                </ul>
-              </li>
-               
-
-            </ul>
-            
-          </div>
-          <!--/.nav-collapse -->
-
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/filtering.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
-    <div class="body-content">
-      <div class="container-fluid">
-        <!-- Search Modal -->
-        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Documentation search</h3>
-          </div>
-
-          <div class="modal-body">
-            <form role="form" autocomplete="off">
-              <div class="form-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-              </div>
-            </form>
-            <div id="mkdocs-search-results"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3">
-            <div id="table-of-contents">
-              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
-                
-
-                
-                  <li class="main">
-                    <a href="#filtering">Filtering</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#filtering-against-the-current-user">Filtering against the current user</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#filtering-against-the-url">Filtering against the URL</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#filtering-against-query-parameters">Filtering against query parameters</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#generic-filtering">Generic Filtering</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#setting-filter-backends">Setting filter backends</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#filtering-and-object-lookups">Filtering and object lookups</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#overriding-the-initial-queryset">Overriding the initial queryset</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#api-guide">API Guide</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#djangofilterbackend">DjangoFilterBackend</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#searchfilter">SearchFilter</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#orderingfilter">OrderingFilter</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#djangoobjectpermissionsfilter">DjangoObjectPermissionsFilter</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#custom-generic-filtering">Custom generic filtering</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#example">Example</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#customizing-the-interface">Customizing the interface</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#pagination-schemas">Pagination &amp; schemas</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#third-party-packages">Third party packages</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#django-rest-framework-filters-package">Django REST framework filters package</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#django-rest-framework-full-word-search-filter">Django REST framework full word search filter</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#django-url-filter">Django URL Filter</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#drf-url-filters">drf-url-filters</a>
-                    </li>
-                  
-                
-
-                  <div class="promo">
-                    <hr />
-                    <div id="sidebarInclude" style="display: none;"></div>
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
-                      </div>
-                    </div>
-                  </div>
-              </ul>
-
-            </div>
-          </div>
-
-          <div id="main-content" class="span9">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/f">
-                    <span class="label label-info">f</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
-                    <span class="label label-info">i</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/l">
-                    <span class="label label-info">l</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
-                    <span class="label label-info">t</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
-                    <span class="label label-info">e</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
-                    <span class="label label-info">r</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
-                    <span class="label label-info">.</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
-                    <span class="label label-info">y</span>
-                  </a>
-                
-              
+            <li class="nav-item" data-level="1"><a href="#filtering" class="nav-link">Filtering</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#filtering-against-the-current-user" class="nav-link">Filtering against the current user</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filtering-against-the-url" class="nav-link">Filtering against the URL</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filtering-against-query-parameters" class="nav-link">Filtering against query parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#generic-filtering" class="nav-link">Generic Filtering</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#setting-filter-backends" class="nav-link">Setting filter backends</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filtering-and-object-lookups" class="nav-link">Filtering and object lookups</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#overriding-the-initial-queryset" class="nav-link">Overriding the initial queryset</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#api-guide" class="nav-link">API Guide</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#djangofilterbackend" class="nav-link">DjangoFilterBackend</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#searchfilter" class="nav-link">SearchFilter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#orderingfilter" class="nav-link">OrderingFilter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#custom-generic-filtering" class="nav-link">Custom generic filtering</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#example" class="nav-link">Example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#customizing-the-interface" class="nav-link">Customizing the interface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pagination-schemas" class="nav-link">Pagination &amp; schemas</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#third-party-packages" class="nav-link">Third party packages</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-filters-package" class="nav-link">Django REST framework filters package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-full-word-search-filter" class="nav-link">Django REST framework full word search filter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-url-filter" class="nav-link">Django URL Filter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#drf-url-filters" class="nav-link">drf-url-filters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+<div class="source-links">
 
-              <h1 id="filtering"><a class="toclink" href="#filtering">Filtering</a></h1>
+    <span class="label label-primary">filters.py</span>
+
+</div>
+
+
+<h1 id="filtering"><a class="toclink" href="#filtering">Filtering</a></h1>
 <blockquote>
 <p>The root QuerySet provided by the Manager describes all objects in the database table.  Usually, though, you'll need to select only a subset of the complete set of objects.</p>
 <p>&mdash; <a href="https://docs.djangoproject.com/en/stable/topics/db/queries/#retrieving-specific-objects-with-filters">Django documentation</a></p>
@@ -607,7 +480,7 @@ class PurchaseList(generics.ListAPIView):
 <h2 id="setting-filter-backends"><a class="toclink" href="#setting-filter-backends">Setting filter backends</a></h2>
 <p>The default filter backends may be set globally, using the <code>DEFAULT_FILTER_BACKENDS</code> setting. For example.</p>
 <pre><code>REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 </code></pre>
 <p>You can also set the filter backends on a per-view, or per-viewset basis,
@@ -620,7 +493,7 @@ from rest_framework import generics
 class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
 </code></pre>
 <h2 id="filtering-and-object-lookups"><a class="toclink" href="#filtering-and-object-lookups">Filtering and object lookups</a></h2>
 <p>Note that if a filter backend is configured for a view, then as well as being used to filter list views, it will also be used to filter the querysets used for returning a single object.</p>
@@ -636,7 +509,7 @@ class UserListView(generics.ListAPIView):
     """
     model = Product
     serializer_class = ProductSerializer
-    filter_class = ProductFilter
+    filterset_class = ProductFilter
 
     def get_queryset(self):
         user = self.request.user
@@ -645,14 +518,14 @@ class UserListView(generics.ListAPIView):
 <hr />
 <h1 id="api-guide"><a class="toclink" href="#api-guide">API Guide</a></h1>
 <h2 id="djangofilterbackend"><a class="toclink" href="#djangofilterbackend">DjangoFilterBackend</a></h2>
-<p>The <code>django-filter</code> library includes a <code>DjangoFilterBackend</code> class which
+<p>The <a href="https://django-filter.readthedocs.io/en/latest/index.html"><code>django-filter</code></a> library includes a <code>DjangoFilterBackend</code> class which
 supports highly customizable field filtering for REST framework.</p>
-<p>To use <code>DjangoFilterBackend</code>, first install <code>django-filter</code>.</p>
+<p>To use <code>DjangoFilterBackend</code>, first install <code>django-filter</code>. Then add <code>django_filters</code> to Django's <code>INSTALLED_APPS</code></p>
 <pre><code>pip install django-filter
 </code></pre>
 <p>You should now either add the filter backend to your settings:</p>
 <pre><code>REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 </code></pre>
 <p>Or add the filter backend to an individual View or ViewSet.</p>
@@ -660,117 +533,64 @@ supports highly customizable field filtering for REST framework.</p>
 
 class UserListView(generics.ListAPIView):
     ...
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = [DjangoFilterBackend]
 </code></pre>
-<p>If you are using the browsable API or admin API you may also want to install <code>django-crispy-forms</code>, which will enhance the presentation of the filter forms in HTML views, by allowing them to render Bootstrap 3 HTML.</p>
-<pre><code>pip install django-crispy-forms
-</code></pre>
-<p>With crispy forms installed and added to Django's <code>INSTALLED_APPS</code>, the browsable API will present a filtering control for <code>DjangoFilterBackend</code>, like so:</p>
-<p><img alt="Django Filter" src="../../img/django-filter.png" /></p>
-<h4 id="specifying-filter-fields"><a class="toclink" href="#specifying-filter-fields">Specifying filter fields</a></h4>
-<p>If all you need is simple equality-based filtering, you can set a <code>filter_fields</code> attribute on the view, or viewset, listing the set of fields you wish to filter against.</p>
+<p>If all you need is simple equality-based filtering, you can set a <code>filterset_fields</code> attribute on the view, or viewset, listing the set of fields you wish to filter against.</p>
 <pre><code>class ProductList(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filter_fields = ('category', 'in_stock')
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'in_stock']
 </code></pre>
 <p>This will automatically create a <code>FilterSet</code> class for the given fields, and will allow you to make requests such as:</p>
 <pre><code>http://example.com/api/products?category=clothing&amp;in_stock=True
 </code></pre>
-<h4 id="specifying-a-filterset"><a class="toclink" href="#specifying-a-filterset">Specifying a FilterSet</a></h4>
-<p>For more advanced filtering requirements you can specify a <code>FilterSet</code> class that should be used by the view.  For example:</p>
-<pre><code>import django_filters
-from myapp.models import Product
-from myapp.serializers import ProductSerializer
-from rest_framework import generics
-
-class ProductFilter(django_filters.rest_framework.FilterSet):
-    min_price = django_filters.NumberFilter(name="price", lookup_expr='gte')
-    max_price = django_filters.NumberFilter(name="price", lookup_expr='lte')
-    class Meta:
-        model = Product
-        fields = ['category', 'in_stock', 'min_price', 'max_price']
-
-class ProductList(generics.ListAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
-    filter_class = ProductFilter
-</code></pre>
-<p>Which will allow you to make requests such as:</p>
-<pre><code>http://example.com/api/products?category=clothing&amp;max_price=10.00
-</code></pre>
-<p>You can also span relationships using <code>django-filter</code>, let's assume that each
-product has foreign key to <code>Manufacturer</code> model, so we create filter that
-filters using <code>Manufacturer</code> name. For example:</p>
-<pre><code>import django_filters
-from myapp.models import Product
-from myapp.serializers import ProductSerializer
-from rest_framework import generics
-
-class ProductFilter(django_filters.rest_framework.FilterSet):
-    class Meta:
-        model = Product
-        fields = ['category', 'in_stock', 'manufacturer__name']
-</code></pre>
-<p>This enables us to make queries like:</p>
-<pre><code>http://example.com/api/products?manufacturer__name=foo
-</code></pre>
-<p>This is nice, but it exposes the Django's double underscore convention as part of the API.  If you instead want to explicitly name the filter argument you can instead explicitly include it on the <code>FilterSet</code> class:</p>
-<pre><code>import django_filters
-from myapp.models import Product
-from myapp.serializers import ProductSerializer
-from rest_framework import generics
-
-class ProductFilter(django_filters.rest_framework.FilterSet):
-    manufacturer = django_filters.CharFilter(name="manufacturer__name")
-
-    class Meta:
-        model = Product
-        fields = ['category', 'in_stock', 'manufacturer']
-</code></pre>
-<p>And now you can execute:</p>
-<pre><code>http://example.com/api/products?manufacturer=foo
-</code></pre>
-<p>For more details on using filter sets see the <a href="https://django-filter.readthedocs.io/en/latest/index.html">django-filter documentation</a>.</p>
-<hr />
-<p><strong>Hints &amp; Tips</strong></p>
-<ul>
-<li>By default filtering is not enabled.  If you want to use <code>DjangoFilterBackend</code> remember to make sure it is installed by using the <code>'DEFAULT_FILTER_BACKENDS'</code> setting.</li>
-<li>When using boolean fields, you should use the values <code>True</code> and <code>False</code> in the URL query parameters, rather than <code>0</code>, <code>1</code>, <code>true</code> or <code>false</code>.  (The allowed boolean values are currently hardwired in Django's <a href="https://github.com/django/django/blob/master/django/forms/widgets.py">NullBooleanSelect implementation</a>.)</li>
-<li><code>django-filter</code> supports filtering across relationships, using Django's double-underscore syntax.</li>
-</ul>
-<hr />
+<p>For more advanced filtering requirements you can specify a <code>FilterSet</code> class that should be used by the view.
+You can read more about <code>FilterSet</code>s in the <a href="https://django-filter.readthedocs.io/en/latest/index.html">django-filter documentation</a>.
+It's also recommended that you read the section on <a href="https://django-filter.readthedocs.io/en/latest/guide/rest_framework.html">DRF integration</a>.</p>
 <h2 id="searchfilter"><a class="toclink" href="#searchfilter">SearchFilter</a></h2>
 <p>The <code>SearchFilter</code> class supports simple single query parameter based searching, and is based on the <a href="https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields">Django admin's search functionality</a>.</p>
 <p>When in use, the browsable API will include a <code>SearchFilter</code> control:</p>
 <p><img alt="Search Filter" src="../../img/search-filter.png" /></p>
 <p>The <code>SearchFilter</code> class will only be applied if the view has a <code>search_fields</code> attribute set.  The <code>search_fields</code> attribute should be a list of names of text type fields on the model, such as <code>CharField</code> or <code>TextField</code>.</p>
-<pre><code>class UserListView(generics.ListAPIView):
+<pre><code>from rest_framework import filters
+
+class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('username', 'email')
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username', 'email']
 </code></pre>
 <p>This will allow the client to filter the items in the list by making queries such as:</p>
 <pre><code>http://example.com/api/users?search=russell
 </code></pre>
 <p>You can also perform a related lookup on a ForeignKey or ManyToManyField with the lookup API double-underscore notation:</p>
-<pre><code>search_fields = ('username', 'email', 'profile__profession')
+<pre><code>search_fields = ['username', 'email', 'profile__profession']
+</code></pre>
+<p>For <a href="https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/fields/#jsonfield">JSONField</a> and <a href="https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/fields/#hstorefield">HStoreField</a> fields you can filter based on nested values within the data structure using the same double-underscore notation:</p>
+<pre><code>search_fields = ['data__breed', 'data__owner__other_pets__0__name']
 </code></pre>
 <p>By default, searches will use case-insensitive partial matches.  The search parameter may contain multiple search terms, which should be whitespace and/or comma separated.  If multiple search terms are used then objects will be returned in the list only if all the provided terms are matched.</p>
 <p>The search behavior may be restricted by prepending various characters to the <code>search_fields</code>.</p>
 <ul>
 <li>'^' Starts-with search.</li>
 <li>'=' Exact matches.</li>
-<li>'@' Full-text search.  (Currently only supported Django's MySQL backend.)</li>
+<li>'@' Full-text search.  (Currently only supported Django's <a href="https://docs.djangoproject.com/en/dev/ref/contrib/postgres/search/">PostgreSQL backend</a>.)</li>
 <li>'$' Regex search.</li>
 </ul>
 <p>For example:</p>
-<pre><code>search_fields = ('=username', '=email')
+<pre><code>search_fields = ['=username', '=email']
 </code></pre>
-<p>By default, the search parameter is named <code>'search</code>', but this may be overridden with the <code>SEARCH_PARAM</code> setting.</p>
+<p>By default, the search parameter is named <code>'search'</code>, but this may be overridden with the <code>SEARCH_PARAM</code> setting.</p>
+<p>To dynamically change search fields based on request content, it's possible to subclass the <code>SearchFilter</code> and override the <code>get_search_fields()</code> function. For example, the following subclass will only search on <code>title</code> if the query parameter <code>title_only</code> is in the request:</p>
+<pre><code>from rest_framework import filters
+
+class CustomSearchFilter(filters.SearchFilter):
+    def get_search_fields(self, view, request):
+        if request.query_params.get('title_only'):
+            return ['title']
+        return super(CustomSearchFilter, self).get_search_fields(view, request)
+</code></pre>
 <p>For more details, see the <a href="https://docs.djangoproject.com/en/stable/ref/contrib/admin/#django.contrib.admin.ModelAdmin.search_fields">Django documentation</a>.</p>
 <hr />
 <h2 id="orderingfilter"><a class="toclink" href="#orderingfilter">OrderingFilter</a></h2>
@@ -791,8 +611,8 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 <pre><code>class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    filter_backends = (filters.OrderingFilter,)
-    ordering_fields = ('username', 'email')
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['username', 'email']
 </code></pre>
 <p>This helps prevent unexpected data leakage, such as allowing users to order against a password hash field or other sensitive data.</p>
 <p>If you <em>don't</em> specify an <code>ordering_fields</code> attribute on the view, the filter class will default to allowing the user to filter on any readable fields on the serializer specified by the <code>serializer_class</code> attribute.</p>
@@ -800,7 +620,7 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 <pre><code>class BookingsListView(generics.ListAPIView):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
-    filter_backends = (filters.OrderingFilter,)
+    filter_backends = [filters.OrderingFilter]
     ordering_fields = '__all__'
 </code></pre>
 <h3 id="specifying-a-default-ordering"><a class="toclink" href="#specifying-a-default-ordering">Specifying a default ordering</a></h3>
@@ -809,44 +629,11 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 <pre><code>class UserListView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    filter_backends = (filters.OrderingFilter,)
-    ordering_fields = ('username', 'email')
-    ordering = ('username',)
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['username', 'email']
+    ordering = ['username']
 </code></pre>
 <p>The <code>ordering</code> attribute may be either a string or a list/tuple of strings.</p>
-<hr />
-<h2 id="djangoobjectpermissionsfilter"><a class="toclink" href="#djangoobjectpermissionsfilter">DjangoObjectPermissionsFilter</a></h2>
-<p>The <code>DjangoObjectPermissionsFilter</code> is intended to be used together with the <a href="https://django-guardian.readthedocs.io/"><code>django-guardian</code></a> package, with custom <code>'view'</code> permissions added.  The filter will ensure that querysets only returns objects for which the user has the appropriate view permission.</p>
-<p>If you're using <code>DjangoObjectPermissionsFilter</code>, you'll probably also want to add an appropriate object permissions class, to ensure that users can only operate on instances if they have the appropriate object permissions.  The easiest way to do this is to subclass <code>DjangoObjectPermissions</code> and add <code>'view'</code> permissions to the <code>perms_map</code> attribute.</p>
-<p>A complete example using both <code>DjangoObjectPermissionsFilter</code> and <code>DjangoObjectPermissions</code> might look something like this.</p>
-<p><strong>permissions.py</strong>:</p>
-<pre><code>class CustomObjectPermissions(permissions.DjangoObjectPermissions):
-    """
-    Similar to `DjangoObjectPermissions`, but adding 'view' permissions.
-    """
-    perms_map = {
-        'GET': ['%(app_label)s.view_%(model_name)s'],
-        'OPTIONS': ['%(app_label)s.view_%(model_name)s'],
-        'HEAD': ['%(app_label)s.view_%(model_name)s'],
-        'POST': ['%(app_label)s.add_%(model_name)s'],
-        'PUT': ['%(app_label)s.change_%(model_name)s'],
-        'PATCH': ['%(app_label)s.change_%(model_name)s'],
-        'DELETE': ['%(app_label)s.delete_%(model_name)s'],
-    }
-</code></pre>
-<p><strong>views.py</strong>:</p>
-<pre><code>class EventViewSet(viewsets.ModelViewSet):
-    """
-    Viewset that only lists events if user has 'view' permissions, and only
-    allows operations on individual events if user has appropriate 'view', 'add',
-    'change' or 'delete' permissions.
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    filter_backends = (filters.DjangoObjectPermissionsFilter,)
-    permission_classes = (myapp.permissions.CustomObjectPermissions,)
-</code></pre>
-<p>For more information on adding <code>'view'</code> permissions for models, see the <a href="https://django-guardian.readthedocs.io/en/latest/userguide/assign.html">relevant section</a> of the <code>django-guardian</code> documentation, and <a href="http://blog.nyaruka.com/adding-a-view-permission-to-django-models">this blogpost</a>.</p>
 <hr />
 <h1 id="custom-generic-filtering"><a class="toclink" href="#custom-generic-filtering">Custom generic filtering</a></h1>
 <p>You can also provide your own generic filtering backend, or write an installable app for other developers to use.</p>
@@ -868,8 +655,9 @@ class ProductFilter(django_filters.rest_framework.FilterSet):
 <p>The method should return a rendered HTML string.</p>
 <h2 id="pagination-schemas"><a class="toclink" href="#pagination-schemas">Pagination &amp; schemas</a></h2>
 <p>You can also make the filter controls available to the schema autogeneration
-that REST framework provides, by implementing a <code>get_schema_fields()</code> method,
-which should return a list of <code>coreapi.Field</code> instances.</p>
+that REST framework provides, by implementing a <code>get_schema_fields()</code> method. This method should have the following signature:</p>
+<p><code>get_schema_fields(self, view)</code></p>
+<p>The method should return a list of <code>coreapi.Field</code> instances.</p>
 <h1 id="third-party-packages"><a class="toclink" href="#third-party-packages">Third party packages</a></h1>
 <p>The following third party packages provide additional filter implementations.</p>
 <h2 id="django-rest-framework-filters-package"><a class="toclink" href="#django-rest-framework-filters-package">Django REST framework filters package</a></h2>
@@ -879,56 +667,84 @@ which should return a list of <code>coreapi.Field</code> instances.</p>
 <h2 id="django-url-filter"><a class="toclink" href="#django-url-filter">Django URL Filter</a></h2>
 <p><a href="https://github.com/miki725/django-url-filter">django-url-filter</a> provides a safe way to filter data via human-friendly URLs. It works very similar to DRF serializers and fields in a sense that they can be nested except they are called filtersets and filters. That provides easy way to filter related data. Also this library is generic-purpose so it can be used to filter other sources of data and not only Django <code>QuerySet</code>s.</p>
 <h2 id="drf-url-filters"><a class="toclink" href="#drf-url-filters">drf-url-filters</a></h2>
-<p><a href="https://github.com/manjitkumar/drf-url-filters">drf-url-filter</a> is a simple Django app to apply filters on drf <code>ModelViewSet</code>'s <code>Queryset</code> in a clean, simple and configurable way. It also supports validations on incoming query params and their values. A beautiful python package <code>Voluptuous</code> is being used for validations on the incoming query parameters. The best part about voluptuous is you can define your own validations as per your query params requirements.</p>
-            
+<p><a href="https://github.com/manjitkumar/drf-url-filters">drf-url-filter</a> is a simple Django app to apply filters on drf <code>ModelViewSet</code>'s <code>Queryset</code> in a clean, simple and configurable way. It also supports validations on incoming query params and their values. A beautiful python package <code>Voluptuous</code> is being used for validations on the incoming query parameters. The best part about voluptuous is you can define your own validations as per your query params requirements.</p></div>
+            </div>
+        </div>
 
-          </div> <!--/span-->
-        </div> <!--/row-->
-      </div> <!--/.fluid-container-->
-    </div> <!--/.body content-->
-    <div id="push"></div>
-  </div> <!--/.wrapper -->
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
-  <footer class="span12">
-    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
-    </p>
-  </footer>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
-  <script src="../../js/jquery-1.8.1-min.js"></script>
-  <script src="../../js/prettify-1.0.js"></script>
-  <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <script src="../../js/theme.js"></script>
-
-  <script>var base_url = '../..';</script>
-  
-  <script src="../../search/main.js" defer></script>
-  
-
-  <script>
-    var shiftWindow = function() {
-      scrollBy(0, -50)
-    };
-
-    if (location.hash) shiftWindow();
-    window.addEventListener("hashchange", shiftWindow);
-
-    $('.dropdown-menu').on('click touchstart', function(event) {
-      event.stopPropagation();
-    });
-
-    // Dynamically force sidenav/dropdown to no higher than browser window
-    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-
-    $(function() {
-      $(window).resize(function() {
-        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-      });
-    });
-  </script>
-</body>
-
+    </body>
 </html>

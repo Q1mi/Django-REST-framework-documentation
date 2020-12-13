@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/coreapi/7-schemas-and-client-libraries/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Tutorial 7: Schemas & client libraries - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api-guide/requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/coreapi/7-schemas-and-client-libraries.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#tutorial-7-schemas-client-libraries" class="nav-link">Tutorial 7: Schemas &amp; client libraries</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#core-api" class="nav-link">Core API</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#adding-a-schema" class="nav-link">Adding a schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#using-a-command-line-client" class="nav-link">Using a command line client</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#authenticating-our-client" class="nav-link">Authenticating our client</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#reviewing-our-work" class="nav-link">Reviewing our work</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#onwards-and-upwards" class="nav-link">Onwards and upwards</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="tutorial-7-schemas-client-libraries"><a class="toclink" href="#tutorial-7-schemas-client-libraries">Tutorial 7: Schemas &amp; client libraries</a></h1>
+<p>A schema is a machine-readable document that describes the available API
+endpoints, their URLS, and what operations they support.</p>
+<p>Schemas can be a useful tool for auto-generated documentation, and can also
+be used to drive dynamic client libraries that can interact with the API.</p>
+<h2 id="core-api"><a class="toclink" href="#core-api">Core API</a></h2>
+<p>In order to provide schema support REST framework uses <a href="https://www.coreapi.org/">Core API</a>.</p>
+<p>Core API is a document specification for describing APIs. It is used to provide
+an internal representation format of the available endpoints and possible
+interactions that an API exposes. It can either be used server-side, or
+client-side.</p>
+<p>When used server-side, Core API allows an API to support rendering to a wide
+range of schema or hypermedia formats.</p>
+<p>When used client-side, Core API allows for dynamically driven client libraries
+that can interact with any API that exposes a supported schema or hypermedia
+format.</p>
+<h2 id="adding-a-schema"><a class="toclink" href="#adding-a-schema">Adding a schema</a></h2>
+<p>REST framework supports either explicitly defined schema views, or
+automatically generated schemas. Since we're using viewsets and routers,
+we can simply use the automatic schema generation.</p>
+<p>You'll need to install the <code>coreapi</code> python package in order to include an
+API schema, and <code>pyyaml</code> to render the schema into the commonly used
+YAML-based OpenAPI format.</p>
+<pre><code>$ pip install coreapi pyyaml
+</code></pre>
+<p>We can now include a schema for our API, by including an autogenerated schema
+view in our URL configuration.</p>
+<pre><code class="python">from rest_framework.schemas import get_schema_view
+
+schema_view = get_schema_view(title='Pastebin API')
+
+urlpatterns = [
+    path('schema/', schema_view),
+    ...
+]
+</code></pre>
+
+<p>If you visit the <code>/schema/</code> endpoint in a browser you should now see <code>corejson</code>
+representation become available as an option.</p>
+<p><img alt="Schema format" src="../../img/corejson-format.png" /></p>
+<p>We can also request the schema from the command line, by specifying the desired
+content type in the <code>Accept</code> header.</p>
+<pre><code>$ http http://127.0.0.1:8000/schema/ Accept:application/coreapi+json
+HTTP/1.0 200 OK
+Allow: GET, HEAD, OPTIONS
+Content-Type: application/coreapi+json
+
+{
+    "_meta": {
+        "title": "Pastebin API"
+    },
+    "_type": "document",
+    ...
+</code></pre>
+<p>The default output style is to use the <a href="https://www.coreapi.org/specification/encoding/#core-json-encoding">Core JSON</a> encoding.</p>
+<p>Other schema formats, such as <a href="https://openapis.org/">Open API</a> (formerly Swagger) are
+also supported.</p>
+<h2 id="using-a-command-line-client"><a class="toclink" href="#using-a-command-line-client">Using a command line client</a></h2>
+<p>Now that our API is exposing a schema endpoint, we can use a dynamic client
+library to interact with the API. To demonstrate this, let's use the
+Core API command line client.</p>
+<p>The command line client is available as the <code>coreapi-cli</code> package:</p>
+<pre><code>$ pip install coreapi-cli
+</code></pre>
+<p>Now check that it is available on the command line...</p>
+<pre><code>$ coreapi
+Usage: coreapi [OPTIONS] COMMAND [ARGS]...
+
+  Command line client for interacting with CoreAPI services.
+
+  Visit https://www.coreapi.org/ for more information.
+
+Options:
+  --version  Display the package version number.
+  --help     Show this message and exit.
+
+Commands:
+...
+</code></pre>
+<p>First we'll load the API schema using the command line client.</p>
+<pre><code>$ coreapi get http://127.0.0.1:8000/schema/
+&lt;Pastebin API "http://127.0.0.1:8000/schema/"&gt;
+    snippets: {
+        highlight(id)
+        list()
+        read(id)
+    }
+    users: {
+        list()
+        read(id)
+    }
+</code></pre>
+<p>We haven't authenticated yet, so right now we're only able to see the read only
+endpoints, in line with how we've set up the permissions on the API.</p>
+<p>Let's try listing the existing snippets, using the command line client:</p>
+<pre><code>$ coreapi action snippets list
+[
+    {
+        "url": "http://127.0.0.1:8000/snippets/1/",
+        "id": 1,
+        "highlight": "http://127.0.0.1:8000/snippets/1/highlight/",
+        "owner": "lucy",
+        "title": "Example",
+        "code": "print('hello, world!')",
+        "linenos": true,
+        "language": "python",
+        "style": "friendly"
+    },
+    ...
+</code></pre>
+<p>Some of the API endpoints require named parameters. For example, to get back
+the highlight HTML for a particular snippet we need to provide an id.</p>
+<pre><code>$ coreapi action snippets highlight --param id=1
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
+
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Example&lt;/title&gt;
+  ...
+</code></pre>
+<h2 id="authenticating-our-client"><a class="toclink" href="#authenticating-our-client">Authenticating our client</a></h2>
+<p>If we want to be able to create, edit and delete snippets, we'll need to
+authenticate as a valid user. In this case we'll just use basic auth.</p>
+<p>Make sure to replace the <code>&lt;username&gt;</code> and <code>&lt;password&gt;</code> below with your
+actual username and password.</p>
+<pre><code>$ coreapi credentials add 127.0.0.1 &lt;username&gt;:&lt;password&gt; --auth basic
+Added credentials
+127.0.0.1 "Basic &lt;...&gt;"
+</code></pre>
+<p>Now if we fetch the schema again, we should be able to see the full
+set of available interactions.</p>
+<pre><code>$ coreapi reload
+Pastebin API "http://127.0.0.1:8000/schema/"&gt;
+    snippets: {
+        create(code, [title], [linenos], [language], [style])
+        delete(id)
+        highlight(id)
+        list()
+        partial_update(id, [title], [code], [linenos], [language], [style])
+        read(id)
+        update(id, code, [title], [linenos], [language], [style])
+    }
+    users: {
+        list()
+        read(id)
+    }
+</code></pre>
+<p>We're now able to interact with these endpoints. For example, to create a new
+snippet:</p>
+<pre><code>$ coreapi action snippets create --param title="Example" --param code="print('hello, world')"
+{
+    "url": "http://127.0.0.1:8000/snippets/7/",
+    "id": 7,
+    "highlight": "http://127.0.0.1:8000/snippets/7/highlight/",
+    "owner": "lucy",
+    "title": "Example",
+    "code": "print('hello, world')",
+    "linenos": false,
+    "language": "python",
+    "style": "friendly"
+}
+</code></pre>
+<p>And to delete a snippet:</p>
+<pre><code>$ coreapi action snippets delete --param id=7
+</code></pre>
+<p>As well as the command line client, developers can also interact with your
+API using client libraries. The Python client library is the first of these
+to be available, and a Javascript client library is planned to be released
+soon.</p>
+<p>For more details on customizing schema generation and using Core API
+client libraries you'll need to refer to the full documentation.</p>
+<h2 id="reviewing-our-work"><a class="toclink" href="#reviewing-our-work">Reviewing our work</a></h2>
+<p>With an incredibly small amount of code, we've now got a complete pastebin Web API, which is fully web browsable, includes a schema-driven client library, and comes complete with authentication, per-object permissions, and multiple renderer formats.</p>
+<p>We've walked through each step of the design process, and seen how if we need to customize anything we can gradually work our way down to simply using regular Django views.</p>
+<p>You can review the final <a href="https://github.com/encode/rest-framework-tutorial">tutorial code</a> on GitHub, or try out a live example in <a href="https://restframework.herokuapp.com/">the sandbox</a>.</p>
+<h2 id="onwards-and-upwards"><a class="toclink" href="#onwards-and-upwards">Onwards and upwards</a></h2>
+<p>We've reached the end of our tutorial.  If you want to get more involved in the REST framework project, here are a few places you can start:</p>
+<ul>
+<li>Contribute on <a href="https://github.com/encode/django-rest-framework">GitHub</a> by reviewing and submitting issues, and making pull requests.</li>
+<li>Join the <a href="https://groups.google.com/forum/?fromgroups#!forum/django-rest-framework">REST framework discussion group</a>, and help build the community.</li>
+<li>Follow <a href="https://twitter.com/_tomchristie">the author</a> on Twitter and say hi.</li>
+</ul>
+<p><strong>Now go build awesome things.</strong></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

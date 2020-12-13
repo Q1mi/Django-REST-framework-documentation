@@ -1,514 +1,400 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/settings/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Settings - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Settings - Django REST framework中文站点</title>
-  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/settings/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Settings">
-  <meta name="author" content="李文周">
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-  <!-- Le styles -->
-  <link href="../../css/prettify.css" rel="stylesheet">
-  <link href="../../css/bootstrap.css" rel="stylesheet">
-  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="../../css/default.css" rel="stylesheet">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18852272-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  <style>
-  #sidebarInclude img {
-      margin-bottom: 10px;
-  }
-  #sidebarInclude a.promo {
-      color: black;
-  }
-    @media (max-width: 767px) {
-      div.promo {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body onload="prettyPrint()" class="-page">
-
-  <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../../topics/documenting-your-api/">
-            Next <i class="icon-arrow-right icon-white"></i>
-          </a>
-          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../testing_zh/">
-            <i class="icon-arrow-left icon-white"></i> Previous
-          </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
-          <div class="nav-collapse collapse">
-            
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-               
-              <li >
-                <a href="../..">主页</a>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown active">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../requests_zh/">Requests</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../responses_zh/">Responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../views_zh/">Views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../generic-views_zh/">Generic views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../viewsets_zh/">Viewsets</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../routers_zh/">Routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../parsers_zh/">Parsers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../renderers_zh/">Renderers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../serializers_zh/">Serializers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../fields_zh/">Serializer fields</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../relations/">Serializer relations</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../validators/">Validators</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../authentication_zh/">Authentication</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../permissions_zh/">Permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../throttling_zh/">Throttling</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../filtering_zh/">Filtering</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../pagination_zh/">Pagination</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../versioning_zh/">Versioning</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../content-negotiation_zh/">Content negotiation</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../metadata_zh/">Metadata</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../schemas/">Schemas</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../format-suffixes_zh/">Format suffixes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../reverse_zh/">Returning URLs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../exceptions/">Exceptions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../status-codes_zh/">Status codes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../testing_zh/">Testing</a>
-                  </li>
-                  
-                  <li class="active" >
-                    <a href="./">Settings</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/api-clients/">API Clients</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/internationalization/">Internationalization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browsable-api/">The Browsable API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/contributing/">Contributing to REST framework</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/project-management/">Project management</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/funding/">Funding</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/release-notes/">Release Notes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/jobs/">Jobs</a>
-                  </li>
-                  
-                </ul>
-              </li>
-               
-
-            </ul>
-            
-          </div>
-          <!--/.nav-collapse -->
-
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../testing/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../topics/documenting-your-api/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/settings.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
-    <div class="body-content">
-      <div class="container-fluid">
-        <!-- Search Modal -->
-        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Documentation search</h3>
-          </div>
-
-          <div class="modal-body">
-            <form role="form" autocomplete="off">
-              <div class="form-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-              </div>
-            </form>
-            <div id="mkdocs-search-results"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3">
-            <div id="table-of-contents">
-              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
-                
-
-                
-                  <li class="main">
-                    <a href="#settings">Settings</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#accessing-settings">Accessing settings</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#api-reference">API Reference</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#api-policy-settings">API policy settings</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#generic-view-settings">Generic view settings</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#versioning-settings">Versioning settings</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#authentication-settings">Authentication settings</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#test-settings">Test settings</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#schema-generation-controls">Schema generation controls</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#content-type-controls">Content type controls</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#date-and-time-formatting">Date and time formatting</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#encodings">Encodings</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#view-names-and-descriptions">View names and descriptions</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#html-select-field-cutoffs">HTML Select Field cutoffs</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#miscellaneous-settings">Miscellaneous settings</a>
-                    </li>
-                  
-                
-
-                  <div class="promo">
-                    <hr />
-                    <div id="sidebarInclude" style="display: none;"></div>
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
-                      </div>
-                    </div>
-                  </div>
-              </ul>
-
-            </div>
-          </div>
-
-          <div id="main-content" class="span9">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
-                    <span class="label label-info">e</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
-                    <span class="label label-info">t</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
-                    <span class="label label-info">t</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
-                    <span class="label label-info">i</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
-                    <span class="label label-info">n</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/g">
-                    <span class="label label-info">g</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
-                    <span class="label label-info">.</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
-                    <span class="label label-info">y</span>
-                  </a>
-                
-              
+            <li class="nav-item" data-level="1"><a href="#settings" class="nav-link">Settings</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#accessing-settings" class="nav-link">Accessing settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#api-reference" class="nav-link">API Reference</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#api-policy-settings" class="nav-link">API policy settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#generic-view-settings" class="nav-link">Generic view settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#versioning-settings" class="nav-link">Versioning settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#authentication-settings" class="nav-link">Authentication settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#test-settings" class="nav-link">Test settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#schema-generation-controls" class="nav-link">Schema generation controls</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#content-type-controls" class="nav-link">Content type controls</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#date-and-time-formatting" class="nav-link">Date and time formatting</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#encodings" class="nav-link">Encodings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#view-names-and-descriptions" class="nav-link">View names and descriptions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#html-select-field-cutoffs" class="nav-link">HTML Select Field cutoffs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#miscellaneous-settings" class="nav-link">Miscellaneous settings</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+<div class="source-links">
 
-              <h1 id="settings"><a class="toclink" href="#settings">Settings</a></h1>
+    <span class="label label-primary">settings.py</span>
+
+</div>
+
+
+<h1 id="settings"><a class="toclink" href="#settings">Settings</a></h1>
 <blockquote>
 <p>Namespaces are one honking great idea - let's do more of those!</p>
 <p>&mdash; <a href="https://www.python.org/dev/peps/pep-0020/">The Zen of Python</a></p>
@@ -516,12 +402,12 @@
 <p>Configuration for REST framework is all namespaced inside a single Django setting, named <code>REST_FRAMEWORK</code>.</p>
 <p>For example your project's <code>settings.py</code> file might include something like this:</p>
 <pre><code>REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
+    'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
-    ),
-    'DEFAULT_PARSER_CLASSES': (
+    ],
+    'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
-    )
+    ]
 }
 </code></pre>
 <h2 id="accessing-settings"><a class="toclink" href="#accessing-settings">Accessing settings</a></h2>
@@ -529,7 +415,7 @@
 you should use the <code>api_settings</code> object.  For example.</p>
 <pre><code>from rest_framework.settings import api_settings
 
-print api_settings.DEFAULT_AUTHENTICATION_CLASSES
+print(api_settings.DEFAULT_AUTHENTICATION_CLASSES)
 </code></pre>
 <p>The <code>api_settings</code> object will check for any user-defined settings, and otherwise fall back to the default values.  Any setting that uses string import paths to refer to a class will automatically import and return the referenced class, instead of the string literal.</p>
 <hr />
@@ -539,72 +425,59 @@ print api_settings.DEFAULT_AUTHENTICATION_CLASSES
 <h4 id="default_renderer_classes"><a class="toclink" href="#default_renderer_classes">DEFAULT_RENDERER_CLASSES</a></h4>
 <p>A list or tuple of renderer classes, that determines the default set of renderers that may be used when returning a <code>Response</code> object.</p>
 <p>Default:</p>
-<pre><code>(
+<pre><code>[
     'rest_framework.renderers.JSONRenderer',
     'rest_framework.renderers.BrowsableAPIRenderer',
-)
+]
 </code></pre>
 <h4 id="default_parser_classes"><a class="toclink" href="#default_parser_classes">DEFAULT_PARSER_CLASSES</a></h4>
 <p>A list or tuple of parser classes, that determines the default set of parsers used when accessing the <code>request.data</code> property.</p>
 <p>Default:</p>
-<pre><code>(
+<pre><code>[
     'rest_framework.parsers.JSONParser',
     'rest_framework.parsers.FormParser',
     'rest_framework.parsers.MultiPartParser'
-)
+]
 </code></pre>
 <h4 id="default_authentication_classes"><a class="toclink" href="#default_authentication_classes">DEFAULT_AUTHENTICATION_CLASSES</a></h4>
 <p>A list or tuple of authentication classes, that determines the default set of authenticators used when accessing the <code>request.user</code> or <code>request.auth</code> properties.</p>
 <p>Default:</p>
-<pre><code>(
+<pre><code>[
     'rest_framework.authentication.SessionAuthentication',
     'rest_framework.authentication.BasicAuthentication'
-)
+]
 </code></pre>
 <h4 id="default_permission_classes"><a class="toclink" href="#default_permission_classes">DEFAULT_PERMISSION_CLASSES</a></h4>
 <p>A list or tuple of permission classes, that determines the default set of permissions checked at the start of a view. Permission must be granted by every class in the list.</p>
 <p>Default:</p>
-<pre><code>(
+<pre><code>[
     'rest_framework.permissions.AllowAny',
-)
+]
 </code></pre>
 <h4 id="default_throttle_classes"><a class="toclink" href="#default_throttle_classes">DEFAULT_THROTTLE_CLASSES</a></h4>
 <p>A list or tuple of throttle classes, that determines the default set of throttles checked at the start of a view.</p>
-<p>Default: <code>()</code></p>
+<p>Default: <code>[]</code></p>
 <h4 id="default_content_negotiation_class"><a class="toclink" href="#default_content_negotiation_class">DEFAULT_CONTENT_NEGOTIATION_CLASS</a></h4>
 <p>A content negotiation class, that determines how a renderer is selected for the response, given an incoming request.</p>
 <p>Default: <code>'rest_framework.negotiation.DefaultContentNegotiation'</code></p>
+<h4 id="default_schema_class"><a class="toclink" href="#default_schema_class">DEFAULT_SCHEMA_CLASS</a></h4>
+<p>A view inspector class that will be used for schema generation.</p>
+<p>Default: <code>'rest_framework.schemas.openapi.AutoSchema'</code></p>
 <hr />
 <h2 id="generic-view-settings"><a class="toclink" href="#generic-view-settings">Generic view settings</a></h2>
 <p><em>The following settings control the behavior of the generic class-based views.</em></p>
-<h4 id="default_pagination_serializer_class"><a class="toclink" href="#default_pagination_serializer_class">DEFAULT_PAGINATION_SERIALIZER_CLASS</a></h4>
-<hr />
-<p><strong>This setting has been removed.</strong></p>
-<p>The pagination API does not use serializers to determine the output format, and
-you'll need to instead override the `get_paginated_response method on a
-pagination class in order to specify how the output format is controlled.</p>
-<hr />
 <h4 id="default_filter_backends"><a class="toclink" href="#default_filter_backends">DEFAULT_FILTER_BACKENDS</a></h4>
 <p>A list of filter backend classes that should be used for generic filtering.
 If set to <code>None</code> then generic filtering is disabled.</p>
-<h4 id="paginate_by"><a class="toclink" href="#paginate_by">PAGINATE_BY</a></h4>
-<hr />
-<p><strong>This setting has been removed.</strong></p>
-<p>See the pagination documentation for further guidance on <a href="../pagination/#modifying-the-pagination-style">setting the pagination style</a>.</p>
-<hr />
+<h4 id="default_pagination_class"><a class="toclink" href="#default_pagination_class">DEFAULT_PAGINATION_CLASS</a></h4>
+<p>The default class to use for queryset pagination. If set to <code>None</code>, pagination
+is disabled by default. See the pagination documentation for further guidance on
+<a href="../pagination/#setting-the-pagination-style">setting</a> and
+<a href="../pagination/#modifying-the-pagination-style">modifying</a> the pagination style.</p>
+<p>Default: <code>None</code></p>
 <h4 id="page_size"><a class="toclink" href="#page_size">PAGE_SIZE</a></h4>
 <p>The default page size to use for pagination.  If set to <code>None</code>, pagination is disabled by default.</p>
 <p>Default: <code>None</code></p>
-<h4 id="paginate_by_param"><a class="toclink" href="#paginate_by_param">PAGINATE_BY_PARAM</a></h4>
-<hr />
-<p><strong>This setting has been removed.</strong></p>
-<p>See the pagination documentation for further guidance on <a href="../pagination/#modifying-the-pagination-style">setting the pagination style</a>.</p>
-<hr />
-<h4 id="max_paginate_by"><a class="toclink" href="#max_paginate_by">MAX_PAGINATE_BY</a></h4>
-<hr />
-<p><strong>This setting is pending deprecation.</strong></p>
-<p>See the pagination documentation for further guidance on <a href="../pagination/#modifying-the-pagination-style">setting the pagination style</a>.</p>
-<hr />
 <h3 id="search_param"><a class="toclink" href="#search_param">SEARCH_PARAM</a></h3>
 <p>The name of a query parameter, which can be used to specify the search term used by <code>SearchFilter</code>.</p>
 <p>Default: <code>search</code></p>
@@ -626,7 +499,9 @@ If set to <code>None</code> then generic filtering is disabled.</p>
 <h2 id="authentication-settings"><a class="toclink" href="#authentication-settings">Authentication settings</a></h2>
 <p><em>The following settings control the behavior of unauthenticated requests.</em></p>
 <h4 id="unauthenticated_user"><a class="toclink" href="#unauthenticated_user">UNAUTHENTICATED_USER</a></h4>
-<p>The class that should be used to initialize <code>request.user</code> for unauthenticated requests.</p>
+<p>The class that should be used to initialize <code>request.user</code> for unauthenticated requests.
+(If removing authentication entirely, e.g. by removing <code>django.contrib.auth</code> from
+<code>INSTALLED_APPS</code>, set <code>UNAUTHENTICATED_USER</code> to <code>None</code>.)</p>
 <p>Default: <code>django.contrib.auth.models.AnonymousUser</code></p>
 <h4 id="unauthenticated_token"><a class="toclink" href="#unauthenticated_token">UNAUTHENTICATED_TOKEN</a></h4>
 <p>The class that should be used to initialize <code>request.auth</code> for unauthenticated requests.</p>
@@ -642,10 +517,10 @@ If set to <code>None</code> then generic filtering is disabled.</p>
 <p>The renderer classes that are supported when building test requests.</p>
 <p>The format of any of these renderer classes may be used when constructing a test request, for example: <code>client.post('/users', {'username': 'jamie'}, format='json')</code></p>
 <p>Default:</p>
-<pre><code>(
+<pre><code>[
     'rest_framework.renderers.MultiPartRenderer',
     'rest_framework.renderers.JSONRenderer'
-)
+]
 </code></pre>
 <hr />
 <h2 id="schema-generation-controls"><a class="toclink" href="#schema-generation-controls">Schema generation controls</a></h2>
@@ -708,7 +583,7 @@ internally in the codebase.</p>
 <p>When set to <code>False</code>, JSON responses will escape non-ascii characters, like so:</p>
 <pre><code>{"unicode black star":"\u2605"}
 </code></pre>
-<p>Both styles conform to <a href="http://www.ietf.org/rfc/rfc4627.txt">RFC 4627</a>, and are syntactically valid JSON. The unicode style is preferred as being more user-friendly when inspecting API responses.</p>
+<p>Both styles conform to <a href="https://www.ietf.org/rfc/rfc4627.txt">RFC 4627</a>, and are syntactically valid JSON. The unicode style is preferred as being more user-friendly when inspecting API responses.</p>
 <p>Default: <code>True</code></p>
 <h4 id="compact_json"><a class="toclink" href="#compact_json">COMPACT_JSON</a></h4>
 <p>When set to <code>True</code>, JSON responses will return compact representations, with no spacing after <code>':'</code> and <code>','</code> characters. For example:</p>
@@ -718,6 +593,10 @@ internally in the codebase.</p>
 <pre><code>{"is_admin": false, "email": "jane@example"}
 </code></pre>
 <p>The default style is to return minified responses, in line with <a href="https://github.com/interagent/http-api-design#keep-json-minified-in-all-responses">Heroku's API design guidelines</a>.</p>
+<p>Default: <code>True</code></p>
+<h4 id="strict_json"><a class="toclink" href="#strict_json">STRICT_JSON</a></h4>
+<p>When set to <code>True</code>, JSON rendering and parsing will only observe syntactically valid JSON, raising an exception for the extended float values (<code>nan</code>, <code>inf</code>, <code>-inf</code>) accepted by Python's <code>json</code> module. This is the recommended setting, as these values are not generally supported. e.g., neither Javascript's <code>JSON.Parse</code> nor PostgreSQL's JSON data type accept these values.</p>
+<p>When set to <code>False</code>, JSON rendering and parsing will be permissive. However, these values are still invalid and will need to be specially handled in your code.</p>
 <p>Default: <code>True</code></p>
 <h4 id="coerce_decimal_to_string"><a class="toclink" href="#coerce_decimal_to_string">COERCE_DECIMAL_TO_STRING</a></h4>
 <p>When returning decimal objects in API representations that do not support a native decimal type, it is normally best to return the value as a string. This avoids the loss of precision that occurs with binary floating point implementations.</p>
@@ -729,22 +608,31 @@ internally in the codebase.</p>
 <h4 id="view_name_function"><a class="toclink" href="#view_name_function">VIEW_NAME_FUNCTION</a></h4>
 <p>A string representing the function that should be used when generating view names.</p>
 <p>This should be a function with the following signature:</p>
-<pre><code>view_name(cls, suffix=None)
+<pre><code>view_name(self)
 </code></pre>
 <ul>
-<li><code>cls</code>: The view class.  Typically the name function would inspect the name of the class when generating a descriptive name, by accessing <code>cls.__name__</code>.</li>
-<li><code>suffix</code>: The optional suffix used when differentiating individual views in a viewset.</li>
+<li><code>self</code>: The view instance.  Typically the name function would inspect the name of the class when generating a descriptive name, by accessing <code>self.__class__.__name__</code>.</li>
+</ul>
+<p>If the view instance inherits <code>ViewSet</code>, it may have been initialized with several optional arguments:</p>
+<ul>
+<li><code>name</code>: A name explicitly provided to a view in the viewset. Typically, this value should be used as-is when provided.</li>
+<li><code>suffix</code>: Text used when differentiating individual views in a viewset. This argument is mutually exclusive to <code>name</code>.</li>
+<li><code>detail</code>: Boolean that differentiates an individual view in a viewset as either being a 'list' or 'detail' view.</li>
 </ul>
 <p>Default: <code>'rest_framework.views.get_view_name'</code></p>
 <h4 id="view_description_function"><a class="toclink" href="#view_description_function">VIEW_DESCRIPTION_FUNCTION</a></h4>
 <p>A string representing the function that should be used when generating view descriptions.</p>
 <p>This setting can be changed to support markup styles other than the default markdown.  For example, you can use it to support <code>rst</code> markup in your view docstrings being output in the browsable API.</p>
 <p>This should be a function with the following signature:</p>
-<pre><code>view_description(cls, html=False)
+<pre><code>view_description(self, html=False)
 </code></pre>
 <ul>
-<li><code>cls</code>: The view class.  Typically the description function would inspect the docstring of the class when generating a description, by accessing <code>cls.__doc__</code></li>
+<li><code>self</code>: The view instance.  Typically the description function would inspect the docstring of the class when generating a description, by accessing <code>self.__class__.__doc__</code></li>
 <li><code>html</code>: A boolean indicating if HTML output is required.  <code>True</code> when used in the browsable API, and <code>False</code> when used in generating <code>OPTIONS</code> responses.</li>
+</ul>
+<p>If the view instance inherits <code>ViewSet</code>, it may have been initialized with several optional arguments:</p>
+<ul>
+<li><code>description</code>: A description explicitly provided to the view in the viewset. Typically, this is set by extra viewset <code>action</code>s, and should be used as-is.</li>
 </ul>
 <p>Default: <code>'rest_framework.views.get_view_description'</code></p>
 <h2 id="html-select-field-cutoffs"><a class="toclink" href="#html-select-field-cutoffs">HTML Select Field cutoffs</a></h2>
@@ -775,56 +663,84 @@ internally in the codebase.</p>
 <p>Default: <code>'url'</code></p>
 <h4 id="num_proxies"><a class="toclink" href="#num_proxies">NUM_PROXIES</a></h4>
 <p>An integer of 0 or more, that may be used to specify the number of application proxies that the API runs behind.  This allows throttling to more accurately identify client IP addresses.  If set to <code>None</code> then less strict IP matching will be used by the throttle classes.</p>
-<p>Default: <code>None</code></p>
-            
+<p>Default: <code>None</code></p></div>
+            </div>
+        </div>
 
-          </div> <!--/span-->
-        </div> <!--/row-->
-      </div> <!--/.fluid-container-->
-    </div> <!--/.body content-->
-    <div id="push"></div>
-  </div> <!--/.wrapper -->
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
-  <footer class="span12">
-    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
-    </p>
-  </footer>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
-  <script src="../../js/jquery-1.8.1-min.js"></script>
-  <script src="../../js/prettify-1.0.js"></script>
-  <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <script src="../../js/theme.js"></script>
-
-  <script>var base_url = '../..';</script>
-  
-  <script src="../../search/main.js" defer></script>
-  
-
-  <script>
-    var shiftWindow = function() {
-      scrollBy(0, -50)
-    };
-
-    if (location.hash) shiftWindow();
-    window.addEventListener("hashchange", shiftWindow);
-
-    $('.dropdown-menu').on('click touchstart', function(event) {
-      event.stopPropagation();
-    });
-
-    // Dynamically force sidenav/dropdown to no higher than browser window
-    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-
-    $(function() {
-      $(window).resize(function() {
-        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-      });
-    });
-  </script>
-</body>
-
+    </body>
 </html>

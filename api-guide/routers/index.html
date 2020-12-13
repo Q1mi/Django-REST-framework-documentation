@@ -1,509 +1,387 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/routers/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Routers - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Routers - Django REST framework中文站点</title>
-  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/routers/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Routers">
-  <meta name="author" content="李文周">
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-  <!-- Le styles -->
-  <link href="../../css/prettify.css" rel="stylesheet">
-  <link href="../../css/bootstrap.css" rel="stylesheet">
-  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="../../css/default.css" rel="stylesheet">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18852272-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  <style>
-  #sidebarInclude img {
-      margin-bottom: 10px;
-  }
-  #sidebarInclude a.promo {
-      color: black;
-  }
-    @media (max-width: 767px) {
-      div.promo {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body onload="prettyPrint()" class="-page">
-
-  <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            Next <i class="icon-arrow-right icon-white"></i>
-          </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            <i class="icon-arrow-left icon-white"></i> Previous
-          </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
-          <div class="nav-collapse collapse">
-            
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-               
-              <li >
-                <a href="../..">主页</a>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../requests_zh/">Requests</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../responses_zh/">Responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../views_zh/">Views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../generic-views_zh/">Generic views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../viewsets_zh/">Viewsets</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../routers_zh/">Routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../parsers_zh/">Parsers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../renderers_zh/">Renderers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../serializers_zh/">Serializers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../fields_zh/">Serializer fields</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../relations/">Serializer relations</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../validators/">Validators</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../authentication_zh/">Authentication</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../permissions_zh/">Permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../throttling_zh/">Throttling</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../filtering_zh/">Filtering</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../pagination_zh/">Pagination</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../versioning_zh/">Versioning</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../content-negotiation_zh/">Content negotiation</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../metadata_zh/">Metadata</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../schemas/">Schemas</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../format-suffixes_zh/">Format suffixes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../reverse_zh/">Returning URLs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../exceptions/">Exceptions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../status-codes_zh/">Status codes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../testing_zh/">Testing</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../settings/">Settings</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/api-clients/">API Clients</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/internationalization/">Internationalization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browsable-api/">The Browsable API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/contributing/">Contributing to REST framework</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/project-management/">Project management</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/funding/">Funding</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/release-notes/">Release Notes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/jobs/">Jobs</a>
-                  </li>
-                  
-                </ul>
-              </li>
-               
-
-            </ul>
-            
-          </div>
-          <!--/.nav-collapse -->
-
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/routers.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
-    <div class="body-content">
-      <div class="container-fluid">
-        <!-- Search Modal -->
-        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Documentation search</h3>
-          </div>
-
-          <div class="modal-body">
-            <form role="form" autocomplete="off">
-              <div class="form-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-              </div>
-            </form>
-            <div id="mkdocs-search-results"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3">
-            <div id="table-of-contents">
-              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
-                
-
-                
-                  <li class="main">
-                    <a href="#routers">Routers</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#usage">Usage</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#api-guide">API Guide</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#simplerouter">SimpleRouter</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#defaultrouter">DefaultRouter</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#custom-routers">Custom Routers</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#customizing-dynamic-routes">Customizing dynamic routes</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#example">Example</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#advanced-custom-routers">Advanced custom routers</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#third-party-packages">Third Party Packages</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#drf-nested-routers">DRF Nested Routers</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#modelrouter-wqdbrest">ModelRouter (wq.db.rest)</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#drf-extensions">DRF-extensions</a>
-                    </li>
-                  
-                
-
-                  <div class="promo">
-                    <hr />
-                    <div id="sidebarInclude" style="display: none;"></div>
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
-                      </div>
-                    </div>
-                  </div>
-              </ul>
-
-            </div>
-          </div>
-
-          <div id="main-content" class="span9">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
-                    <span class="label label-info">r</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/o">
-                    <span class="label label-info">o</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/u">
-                    <span class="label label-info">u</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/t">
-                    <span class="label label-info">t</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
-                    <span class="label label-info">e</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
-                    <span class="label label-info">r</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
-                    <span class="label label-info">.</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
-                    <span class="label label-info">y</span>
-                  </a>
-                
-              
+            <li class="nav-item" data-level="1"><a href="#routers" class="nav-link">Routers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#usage" class="nav-link">Usage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#api-guide" class="nav-link">API Guide</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#simplerouter" class="nav-link">SimpleRouter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#defaultrouter" class="nav-link">DefaultRouter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#custom-routers" class="nav-link">Custom Routers</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#customizing-dynamic-routes" class="nav-link">Customizing dynamic routes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#example" class="nav-link">Example</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#advanced-custom-routers" class="nav-link">Advanced custom routers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#third-party-packages" class="nav-link">Third Party Packages</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#drf-nested-routers" class="nav-link">DRF Nested Routers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#modelrouter-wqdbrest" class="nav-link">ModelRouter (wq.db.rest)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#drf-extensions" class="nav-link">DRF-extensions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+<div class="source-links">
 
-              <h1 id="routers"><a class="toclink" href="#routers">Routers</a></h1>
+    <span class="label label-primary">routers.py</span>
+
+</div>
+
+
+<h1 id="routers"><a class="toclink" href="#routers">Routers</a></h1>
 <blockquote>
 <p>Resource routing allows you to quickly declare all of the common routes for a given resourceful controller.  Instead of declaring separate routes for your index... a resourceful route declares them in a single line of code.</p>
-<p>&mdash; <a href="http://guides.rubyonrails.org/routing.html">Ruby on Rails Documentation</a></p>
+<p>&mdash; <a href="https://guides.rubyonrails.org/routing.html">Ruby on Rails Documentation</a></p>
 </blockquote>
 <p>Some Web frameworks such as Rails provide functionality for automatically determining how the URLs for an application should be mapped to the logic that deals with handling incoming requests.</p>
 <p>REST framework adds support for automatic URL routing to Django, and provides you with a simple, quick and consistent way of wiring your view logic to a set of URLs.</p>
@@ -523,7 +401,7 @@ urlpatterns = router.urls
 </ul>
 <p>Optionally, you may also specify an additional argument:</p>
 <ul>
-<li><code>base_name</code> - The base to use for the URL names that are created.  If unset the basename will be automatically generated based on the <code>queryset</code> attribute of the viewset, if it has one.  Note that if the viewset does not include a <code>queryset</code> attribute then you must set <code>base_name</code> when registering the viewset.</li>
+<li><code>basename</code> - The base to use for the URL names that are created.  If unset the basename will be automatically generated based on the <code>queryset</code> attribute of the viewset, if it has one.  Note that if the viewset does not include a <code>queryset</code> attribute then you must set <code>basename</code> when registering the viewset.</li>
 </ul>
 <p>The example above would generate the following URL patterns:</p>
 <ul>
@@ -533,15 +411,15 @@ urlpatterns = router.urls
 <li>URL pattern: <code>^accounts/{pk}/$</code>  Name: <code>'account-detail'</code></li>
 </ul>
 <hr />
-<p><strong>Note</strong>: The <code>base_name</code> argument is used to specify the initial part of the view name pattern.  In the example above, that's the <code>user</code> or <code>account</code> part.</p>
-<p>Typically you won't <em>need</em> to specify the <code>base_name</code> argument, but if you have a viewset where you've defined a custom <code>get_queryset</code> method, then the viewset may not have a <code>.queryset</code> attribute set.  If you try to register that viewset you'll see an error like this:</p>
-<pre><code>'base_name' argument not specified, and could not automatically determine the name from the viewset, as it does not have a '.queryset' attribute.
+<p><strong>Note</strong>: The <code>basename</code> argument is used to specify the initial part of the view name pattern.  In the example above, that's the <code>user</code> or <code>account</code> part.</p>
+<p>Typically you won't <em>need</em> to specify the <code>basename</code> argument, but if you have a viewset where you've defined a custom <code>get_queryset</code> method, then the viewset may not have a <code>.queryset</code> attribute set.  If you try to register that viewset you'll see an error like this:</p>
+<pre><code>'basename' argument not specified, and could not automatically determine the name from the viewset, as it does not have a '.queryset' attribute.
 </code></pre>
-<p>This means you'll need to explicitly set the <code>base_name</code> argument when registering the viewset, as it could not be automatically determined from the model name.</p>
+<p>This means you'll need to explicitly set the <code>basename</code> argument when registering the viewset, as it could not be automatically determined from the model name.</p>
 <hr />
 <h3 id="using-include-with-routers"><a class="toclink" href="#using-include-with-routers">Using <code>include</code> with routers</a></h3>
 <p>The <code>.urls</code> attribute on a router instance is simply a standard list of URL patterns. There are a number of different styles for how you can include these URLs.</p>
-<p>For example, you can append <code>router.urls</code> to a list of existing views…</p>
+<p>For example, you can append <code>router.urls</code> to a list of existing views...</p>
 <pre><code>router = routers.SimpleRouter()
 router.register(r'users', UserViewSet)
 router.register(r'accounts', AccountViewSet)
@@ -552,83 +430,81 @@ urlpatterns = [
 
 urlpatterns += router.urls
 </code></pre>
-<p>Alternatively you can use Django's <code>include</code> function, like so…</p>
+<p>Alternatively you can use Django's <code>include</code> function, like so...</p>
 <pre><code>urlpatterns = [
     url(r'^forgot-password/$', ForgotPasswordFormView.as_view()),
     url(r'^', include(router.urls)),
 ]
 </code></pre>
-<p>Router URL patterns can also be namespaces.</p>
+<p>You may use <code>include</code> with an application namespace:</p>
 <pre><code>urlpatterns = [
     url(r'^forgot-password/$', ForgotPasswordFormView.as_view()),
-    url(r'^api/', include(router.urls, namespace='api')),
+    url(r'^api/', include((router.urls, 'app_name'))),
 ]
 </code></pre>
-<p>If using namespacing with hyperlinked serializers you'll also need to ensure that any <code>view_name</code> parameters on the serializers correctly reflect the namespace. In the example above you'd need to include a parameter such as <code>view_name='api:user-detail'</code> for serializer fields hyperlinked to the user detail view.</p>
-<h3 id="extra-link-and-actions"><a class="toclink" href="#extra-link-and-actions">Extra link and actions</a></h3>
-<p>Any methods on the viewset decorated with <code>@detail_route</code> or <code>@list_route</code> will also be routed.
-For example, given a method like this on the <code>UserViewSet</code> class:</p>
+<p>Or both an application and instance namespace:</p>
+<pre><code>urlpatterns = [
+    url(r'^forgot-password/$', ForgotPasswordFormView.as_view()),
+    url(r'^api/', include((router.urls, 'app_name'), namespace='instance_name')),
+]
+</code></pre>
+<p>See Django's <a href="https://docs.djangoproject.com/en/1.11/topics/http/urls/#url-namespaces">URL namespaces docs</a> and the <a href="https://docs.djangoproject.com/en/2.0/ref/urls/#include"><code>include</code> API reference</a> for more details.</p>
+<hr />
+<p><strong>Note</strong>: If using namespacing with hyperlinked serializers you'll also need to ensure that any <code>view_name</code> parameters
+on the serializers correctly reflect the namespace. In the examples above you'd need to include a parameter such as
+<code>view_name='app_name:user-detail'</code> for serializer fields hyperlinked to the user detail view.</p>
+<p>The automatic <code>view_name</code> generation uses a pattern like <code>%(model_name)-detail</code>. Unless your models names actually clash
+you may be better off <strong>not</strong> namespacing your Django REST Framework views when using hyperlinked serializers.</p>
+<hr />
+<h3 id="routing-for-extra-actions"><a class="toclink" href="#routing-for-extra-actions">Routing for extra actions</a></h3>
+<p>A viewset may <a href="../viewsets/#marking-extra-actions-for-routing">mark extra actions for routing</a> by decorating a method with the <code>@action</code> decorator. These extra actions will be included in the generated routes. For example, given the <code>set_password</code> method on the <code>UserViewSet</code> class:</p>
 <pre><code>from myapp.permissions import IsAdminOrIsSelf
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 
 class UserViewSet(ModelViewSet):
     ...
 
-    @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf])
+    @action(methods=['post'], detail=True, permission_classes=[IsAdminOrIsSelf])
     def set_password(self, request, pk=None):
         ...
 </code></pre>
-<p>The following URL pattern would additionally be generated:</p>
+<p>The following route would be generated:</p>
 <ul>
-<li>URL pattern: <code>^users/{pk}/set_password/$</code>  Name: <code>'user-set-password'</code></li>
+<li>URL pattern: <code>^users/{pk}/set_password/$</code></li>
+<li>URL name: <code>'user-set-password'</code></li>
 </ul>
-<p>If you do not want to use the default URL generated for your custom action, you can instead use the url_path parameter to customize it.</p>
+<p>By default, the URL pattern is based on the method name, and the URL name is the combination of the <code>ViewSet.basename</code> and the hyphenated method name.
+If you don't want to use the defaults for either of these values, you can instead provide the <code>url_path</code> and <code>url_name</code> arguments to the <code>@action</code> decorator.</p>
 <p>For example, if you want to change the URL for our custom action to <code>^users/{pk}/change-password/$</code>, you could write:</p>
 <pre><code>from myapp.permissions import IsAdminOrIsSelf
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 
 class UserViewSet(ModelViewSet):
     ...
 
-    @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf], url_path='change-password')
+    @action(methods=['post'], detail=True, permission_classes=[IsAdminOrIsSelf],
+            url_path='change-password', url_name='change_password')
     def set_password(self, request, pk=None):
         ...
 </code></pre>
 <p>The above example would now generate the following URL pattern:</p>
 <ul>
-<li>URL pattern: <code>^users/{pk}/change-password/$</code>  Name: <code>'user-change-password'</code></li>
+<li>URL path: <code>^users/{pk}/change-password/$</code></li>
+<li>URL name: <code>'user-change_password'</code></li>
 </ul>
-<p>In the case you do not want to use the default name generated for your custom action, you can use the url_name parameter to customize it.</p>
-<p>For example, if you want to change the name of our custom action to <code>'user-change-password'</code>, you could write:</p>
-<pre><code>from myapp.permissions import IsAdminOrIsSelf
-from rest_framework.decorators import detail_route
-
-class UserViewSet(ModelViewSet):
-    ...
-
-    @detail_route(methods=['post'], permission_classes=[IsAdminOrIsSelf], url_name='change-password')
-    def set_password(self, request, pk=None):
-        ...
-</code></pre>
-<p>The above example would now generate the following URL pattern:</p>
-<ul>
-<li>URL pattern: <code>^users/{pk}/set_password/$</code>  Name: <code>'user-change-password'</code></li>
-</ul>
-<p>You can also use url_path and url_name parameters together to obtain extra control on URL generation for custom views.</p>
-<p>For more information see the viewset documentation on <a href="../viewsets/#marking-extra-actions-for-routing">marking extra actions for routing</a>.</p>
 <h1 id="api-guide"><a class="toclink" href="#api-guide">API Guide</a></h1>
 <h2 id="simplerouter"><a class="toclink" href="#simplerouter">SimpleRouter</a></h2>
-<p>This router includes routes for the standard set of <code>list</code>, <code>create</code>, <code>retrieve</code>, <code>update</code>, <code>partial_update</code> and <code>destroy</code> actions.  The viewset can also mark additional methods to be routed, using the <code>@detail_route</code> or <code>@list_route</code> decorators.</p>
+<p>This router includes routes for the standard set of <code>list</code>, <code>create</code>, <code>retrieve</code>, <code>update</code>, <code>partial_update</code> and <code>destroy</code> actions.  The viewset can also mark additional methods to be routed, using the <code>@action</code> decorator.</p>
 <table border=1>
     <tr><th>URL Style</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
     <tr><td rowspan=2>{prefix}/</td><td>GET</td><td>list</td><td rowspan=2>{basename}-list</td></tr></tr>
     <tr><td>POST</td><td>create</td></tr>
-    <tr><td>{prefix}/{methodname}/</td><td>GET, or as specified by `methods` argument</td><td>`@list_route` decorated method</td><td>{basename}-{methodname}</td></tr>
+    <tr><td>{prefix}/{url_path}/</td><td>GET, or as specified by `methods` argument</td><td>`@action(detail=False)` decorated method</td><td>{basename}-{url_name}</td></tr>
     <tr><td rowspan=4>{prefix}/{lookup}/</td><td>GET</td><td>retrieve</td><td rowspan=4>{basename}-detail</td></tr></tr>
     <tr><td>PUT</td><td>update</td></tr>
     <tr><td>PATCH</td><td>partial_update</td></tr>
     <tr><td>DELETE</td><td>destroy</td></tr>
-    <tr><td>{prefix}/{lookup}/{methodname}/</td><td>GET, or as specified by `methods` argument</td><td>`@detail_route` decorated method</td><td>{basename}-{methodname}</td></tr>
+    <tr><td>{prefix}/{lookup}/{url_path}/</td><td>GET, or as specified by `methods` argument</td><td>`@action(detail=True)` decorated method</td><td>{basename}-{url_name}</td></tr>
 </table>
 
 <p>By default the URLs created by <code>SimpleRouter</code> are appended with a trailing slash.
@@ -648,19 +524,19 @@ This behavior can be modified by setting the <code>trailing_slash</code> argumen
     <tr><td>[.format]</td><td>GET</td><td>automatically generated root view</td><td>api-root</td></tr></tr>
     <tr><td rowspan=2>{prefix}/[.format]</td><td>GET</td><td>list</td><td rowspan=2>{basename}-list</td></tr></tr>
     <tr><td>POST</td><td>create</td></tr>
-    <tr><td>{prefix}/{methodname}/[.format]</td><td>GET, or as specified by `methods` argument</td><td>`@list_route` decorated method</td><td>{basename}-{methodname}</td></tr>
+    <tr><td>{prefix}/{url_path}/[.format]</td><td>GET, or as specified by `methods` argument</td><td>`@action(detail=False)` decorated method</td><td>{basename}-{url_name}</td></tr>
     <tr><td rowspan=4>{prefix}/{lookup}/[.format]</td><td>GET</td><td>retrieve</td><td rowspan=4>{basename}-detail</td></tr></tr>
     <tr><td>PUT</td><td>update</td></tr>
     <tr><td>PATCH</td><td>partial_update</td></tr>
     <tr><td>DELETE</td><td>destroy</td></tr>
-    <tr><td>{prefix}/{lookup}/{methodname}/[.format]</td><td>GET, or as specified by `methods` argument</td><td>`@detail_route` decorated method</td><td>{basename}-{methodname}</td></tr>
+    <tr><td>{prefix}/{lookup}/{url_path}/[.format]</td><td>GET, or as specified by `methods` argument</td><td>`@action(detail=True)` decorated method</td><td>{basename}-{url_name}</td></tr>
 </table>
 
 <p>As with <code>SimpleRouter</code> the trailing slashes on the URL routes can be removed by setting the <code>trailing_slash</code> argument to <code>False</code> when instantiating the router.</p>
 <pre><code>router = DefaultRouter(trailing_slash=False)
 </code></pre>
 <h1 id="custom-routers"><a class="toclink" href="#custom-routers">Custom Routers</a></h1>
-<p>Implementing a custom router isn't something you'd need to do very often, but it can be useful if you have specific requirements about how the your URLs for your API are structured.  Doing so allows you to encapsulate the URL structure in a reusable way that ensures you don't have to write your URL patterns explicitly for each new view.</p>
+<p>Implementing a custom router isn't something you'd need to do very often, but it can be useful if you have specific requirements about how the URLs for your API are structured.  Doing so allows you to encapsulate the URL structure in a reusable way that ensures you don't have to write your URL patterns explicitly for each new view.</p>
 <p>The simplest way to implement a custom router is to subclass one of the existing router classes.  The <code>.routes</code> attribute is used to template the URL patterns that will be mapped to each viewset. The <code>.routes</code> attribute is a list of <code>Route</code> named tuples.</p>
 <p>The arguments to the <code>Route</code> named tuple are:</p>
 <p><strong>url</strong>: A string representing the URL to be routed.  May include the following format strings:</p>
@@ -674,17 +550,19 @@ This behavior can be modified by setting the <code>trailing_slash</code> argumen
 <ul>
 <li><code>{basename}</code> - The base to use for the URL names that are created.</li>
 </ul>
-<p><strong>initkwargs</strong>: A dictionary of any additional arguments that should be passed when instantiating the view.  Note that the <code>suffix</code> argument is reserved for identifying the viewset type, used when generating the view name and breadcrumb links.</p>
+<p><strong>initkwargs</strong>: A dictionary of any additional arguments that should be passed when instantiating the view.  Note that the <code>detail</code>, <code>basename</code>, and <code>suffix</code> arguments are reserved for viewset introspection and are also used by the browsable API to generate the view name and breadcrumb links.</p>
 <h2 id="customizing-dynamic-routes"><a class="toclink" href="#customizing-dynamic-routes">Customizing dynamic routes</a></h2>
-<p>You can also customize how the <code>@list_route</code> and <code>@detail_route</code> decorators are routed.
-To route either or both of these decorators, include a <code>DynamicListRoute</code> and/or <code>DynamicDetailRoute</code> named tuple in the <code>.routes</code> list.</p>
-<p>The arguments to <code>DynamicListRoute</code> and <code>DynamicDetailRoute</code> are:</p>
-<p><strong>url</strong>: A string representing the URL to be routed. May include the same format strings as <code>Route</code>, and additionally accepts the <code>{methodname}</code> and <code>{methodnamehyphen}</code> format strings.</p>
-<p><strong>name</strong>: The name of the URL as used in <code>reverse</code> calls. May include the following format strings: <code>{basename}</code>, <code>{methodname}</code> and <code>{methodnamehyphen}</code>.</p>
+<p>You can also customize how the <code>@action</code> decorator is routed. Include the <code>DynamicRoute</code> named tuple in the <code>.routes</code> list, setting the <code>detail</code> argument as appropriate for the list-based and detail-based routes. In addition to <code>detail</code>, the arguments to <code>DynamicRoute</code> are:</p>
+<p><strong>url</strong>: A string representing the URL to be routed. May include the same format strings as <code>Route</code>, and additionally accepts the <code>{url_path}</code> format string.</p>
+<p><strong>name</strong>: The name of the URL as used in <code>reverse</code> calls. May include the following format strings:</p>
+<ul>
+<li><code>{basename}</code> - The base to use for the URL names that are created.</li>
+<li><code>{url_name}</code> - The <code>url_name</code> provided to the <code>@action</code>.</li>
+</ul>
 <p><strong>initkwargs</strong>: A dictionary of any additional arguments that should be passed when instantiating the view.</p>
 <h2 id="example"><a class="toclink" href="#example">Example</a></h2>
 <p>The following example will only route to the <code>list</code> and <code>retrieve</code> actions, and does not use the trailing slash convention.</p>
-<pre><code>from rest_framework.routers import Route, DynamicDetailRoute, SimpleRouter
+<pre><code>from rest_framework.routers import Route, DynamicRoute, SimpleRouter
 
 class CustomReadOnlyRouter(SimpleRouter):
     """
@@ -695,17 +573,20 @@ class CustomReadOnlyRouter(SimpleRouter):
             url=r'^{prefix}$',
             mapping={'get': 'list'},
             name='{basename}-list',
+            detail=False,
             initkwargs={'suffix': 'List'}
         ),
         Route(
             url=r'^{prefix}/{lookup}$',
             mapping={'get': 'retrieve'},
             name='{basename}-detail',
+            detail=True,
             initkwargs={'suffix': 'Detail'}
         ),
-        DynamicDetailRoute(
-            url=r'^{prefix}/{lookup}/{methodnamehyphen}$',
-            name='{basename}-{methodnamehyphen}',
+        DynamicRoute(
+            url=r'^{prefix}/{lookup}/{url_path}$',
+            name='{basename}-{url_name}',
+            detail=True,
             initkwargs={}
         )
     ]
@@ -720,8 +601,8 @@ class CustomReadOnlyRouter(SimpleRouter):
     serializer_class = UserSerializer
     lookup_field = 'username'
 
-    @detail_route()
-    def group_names(self, request):
+    @action(detail=True)
+    def group_names(self, request, pk=None):
         """
         Returns a list of all the group names that the given
         user belongs to.
@@ -740,75 +621,103 @@ urlpatterns = router.urls
     <tr><th>URL</th><th>HTTP Method</th><th>Action</th><th>URL Name</th></tr>
     <tr><td>/users</td><td>GET</td><td>list</td><td>user-list</td></tr>
     <tr><td>/users/{username}</td><td>GET</td><td>retrieve</td><td>user-detail</td></tr>
-    <tr><td>/users/{username}/group-names</td><td>GET</td><td>group_names</td><td>user-group-names</td></tr>
+    <tr><td>/users/{username}/group_names</td><td>GET</td><td>group_names</td><td>user-group-names</td></tr>
 </table>
 
 <p>For another example of setting the <code>.routes</code> attribute, see the source code for the <code>SimpleRouter</code> class.</p>
 <h2 id="advanced-custom-routers"><a class="toclink" href="#advanced-custom-routers">Advanced custom routers</a></h2>
 <p>If you want to provide totally custom behavior, you can override <code>BaseRouter</code> and override the <code>get_urls(self)</code> method.  The method should inspect the registered viewsets and return a list of URL patterns.  The registered prefix, viewset and basename tuples may be inspected by accessing the <code>self.registry</code> attribute.</p>
-<p>You may also want to override the <code>get_default_base_name(self, viewset)</code> method, or else always explicitly set the <code>base_name</code> argument when registering your viewsets with the router.</p>
+<p>You may also want to override the <code>get_default_basename(self, viewset)</code> method, or else always explicitly set the <code>basename</code> argument when registering your viewsets with the router.</p>
 <h1 id="third-party-packages"><a class="toclink" href="#third-party-packages">Third Party Packages</a></h1>
 <p>The following third party packages are also available.</p>
 <h2 id="drf-nested-routers"><a class="toclink" href="#drf-nested-routers">DRF Nested Routers</a></h2>
 <p>The <a href="https://github.com/alanjds/drf-nested-routers">drf-nested-routers package</a> provides routers and relationship fields for working with nested resources.</p>
 <h2 id="modelrouter-wqdbrest"><a class="toclink" href="#modelrouter-wqdbrest">ModelRouter (wq.db.rest)</a></h2>
-<p>The <a href="http://wq.io/wq.db">wq.db package</a> provides an advanced <a href="http://wq.io/docs/router">ModelRouter</a> class (and singleton instance) that extends <code>DefaultRouter</code> with a <code>register_model()</code> API. Much like Django's <code>admin.site.register</code>, the only required argument to <code>rest.router.register_model</code> is a model class.  Reasonable defaults for a url prefix, serializer, and viewset will be inferred from the model and global configuration.</p>
+<p>The <a href="https://wq.io/wq.db">wq.db package</a> provides an advanced <a href="https://wq.io/docs/router">ModelRouter</a> class (and singleton instance) that extends <code>DefaultRouter</code> with a <code>register_model()</code> API. Much like Django's <code>admin.site.register</code>, the only required argument to <code>rest.router.register_model</code> is a model class.  Reasonable defaults for a url prefix, serializer, and viewset will be inferred from the model and global configuration.</p>
 <pre><code>from wq.db import rest
 from myapp.models import MyModel
 
 rest.router.register_model(MyModel)
 </code></pre>
 <h2 id="drf-extensions"><a class="toclink" href="#drf-extensions">DRF-extensions</a></h2>
-<p>The <a href="http://chibisov.github.io/drf-extensions/docs/"><code>DRF-extensions</code> package</a> provides <a href="http://chibisov.github.io/drf-extensions/docs/#routers">routers</a> for creating <a href="http://chibisov.github.io/drf-extensions/docs/#nested-routes">nested viewsets</a>, <a href="http://chibisov.github.io/drf-extensions/docs/#collection-level-controllers">collection level controllers</a> with <a href="http://chibisov.github.io/drf-extensions/docs/#controller-endpoint-name">customizable endpoint names</a>.</p>
-            
+<p>The <a href="https://chibisov.github.io/drf-extensions/docs/"><code>DRF-extensions</code> package</a> provides <a href="https://chibisov.github.io/drf-extensions/docs/#routers">routers</a> for creating <a href="https://chibisov.github.io/drf-extensions/docs/#nested-routes">nested viewsets</a>, <a href="https://chibisov.github.io/drf-extensions/docs/#collection-level-controllers">collection level controllers</a> with <a href="https://chibisov.github.io/drf-extensions/docs/#controller-endpoint-name">customizable endpoint names</a>.</p></div>
+            </div>
+        </div>
 
-          </div> <!--/span-->
-        </div> <!--/row-->
-      </div> <!--/.fluid-container-->
-    </div> <!--/.body content-->
-    <div id="push"></div>
-  </div> <!--/.wrapper -->
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
-  <footer class="span12">
-    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
-    </p>
-  </footer>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
-  <script src="../../js/jquery-1.8.1-min.js"></script>
-  <script src="../../js/prettify-1.0.js"></script>
-  <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <script src="../../js/theme.js"></script>
-
-  <script>var base_url = '../..';</script>
-  
-  <script src="../../search/main.js" defer></script>
-  
-
-  <script>
-    var shiftWindow = function() {
-      scrollBy(0, -50)
-    };
-
-    if (location.hash) shiftWindow();
-    window.addEventListener("hashchange", shiftWindow);
-
-    $('.dropdown-menu').on('click touchstart', function(event) {
-      event.stopPropagation();
-    });
-
-    // Dynamically force sidenav/dropdown to no higher than browser window
-    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-
-    $(function() {
-      $(window).resize(function() {
-        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-      });
-    });
-  </script>
-</body>
-
+    </body>
 </html>

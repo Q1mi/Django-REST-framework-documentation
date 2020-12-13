@@ -1,558 +1,428 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/permissions/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Permissions - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Permissions - Django REST framework中文站点</title>
-  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/permissions/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Permissions">
-  <meta name="author" content="李文周">
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-  <!-- Le styles -->
-  <link href="../../css/prettify.css" rel="stylesheet">
-  <link href="../../css/bootstrap.css" rel="stylesheet">
-  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="../../css/default.css" rel="stylesheet">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18852272-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  <style>
-  #sidebarInclude img {
-      margin-bottom: 10px;
-  }
-  #sidebarInclude a.promo {
-      color: black;
-  }
-    @media (max-width: 767px) {
-      div.promo {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body onload="prettyPrint()" class="-page">
-
-  <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            Next <i class="icon-arrow-right icon-white"></i>
-          </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            <i class="icon-arrow-left icon-white"></i> Previous
-          </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
-          <div class="nav-collapse collapse">
-            
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-               
-              <li >
-                <a href="../..">主页</a>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../requests_zh/">Requests</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../responses_zh/">Responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../views_zh/">Views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../generic-views_zh/">Generic views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../viewsets_zh/">Viewsets</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../routers_zh/">Routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../parsers_zh/">Parsers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../renderers_zh/">Renderers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../serializers_zh/">Serializers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../fields_zh/">Serializer fields</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../relations/">Serializer relations</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../validators/">Validators</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../authentication_zh/">Authentication</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../permissions_zh/">Permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../throttling_zh/">Throttling</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../filtering_zh/">Filtering</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../pagination_zh/">Pagination</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../versioning_zh/">Versioning</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../content-negotiation_zh/">Content negotiation</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../metadata_zh/">Metadata</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../schemas/">Schemas</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../format-suffixes_zh/">Format suffixes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../reverse_zh/">Returning URLs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../exceptions/">Exceptions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../status-codes_zh/">Status codes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../testing_zh/">Testing</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../settings/">Settings</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/api-clients/">API Clients</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/internationalization/">Internationalization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browsable-api/">The Browsable API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/contributing/">Contributing to REST framework</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/project-management/">Project management</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/funding/">Funding</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/release-notes/">Release Notes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/jobs/">Jobs</a>
-                  </li>
-                  
-                </ul>
-              </li>
-               
-
-            </ul>
-            
-          </div>
-          <!--/.nav-collapse -->
-
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/permissions.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
-    <div class="body-content">
-      <div class="container-fluid">
-        <!-- Search Modal -->
-        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Documentation search</h3>
-          </div>
-
-          <div class="modal-body">
-            <form role="form" autocomplete="off">
-              <div class="form-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-              </div>
-            </form>
-            <div id="mkdocs-search-results"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3">
-            <div id="table-of-contents">
-              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
-                
-
-                
-                  <li class="main">
-                    <a href="#permissions">Permissions</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#how-permissions-are-determined">How permissions are determined</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#object-level-permissions">Object level permissions</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#setting-the-permission-policy">Setting the permission policy</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#api-reference">API Reference</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#allowany">AllowAny</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#isauthenticated">IsAuthenticated</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#isadminuser">IsAdminUser</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#isauthenticatedorreadonly">IsAuthenticatedOrReadOnly</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#djangomodelpermissions">DjangoModelPermissions</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#djangomodelpermissionsoranonreadonly">DjangoModelPermissionsOrAnonReadOnly</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#djangoobjectpermissions">DjangoObjectPermissions</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#custom-permissions">Custom permissions</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#examples">Examples</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#third-party-packages">Third party packages</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#composed-permissions">Composed Permissions</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#rest-condition">REST Condition</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#dry-rest-permissions">DRY Rest Permissions</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#django-rest-framework-roles">Django Rest Framework Roles</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#django-rest-framework-api-key">Django Rest Framework API Key</a>
-                    </li>
-                  
-                
-
-                  <div class="promo">
-                    <hr />
-                    <div id="sidebarInclude" style="display: none;"></div>
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
-                      </div>
-                    </div>
-                  </div>
-              </ul>
-
-            </div>
-          </div>
-
-          <div id="main-content" class="span9">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
-                    <span class="label label-info">e</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/r">
-                    <span class="label label-info">r</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/m">
-                    <span class="label label-info">m</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
-                    <span class="label label-info">i</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
-                    <span class="label label-info">i</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/o">
-                    <span class="label label-info">o</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/n">
-                    <span class="label label-info">n</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
-                    <span class="label label-info">.</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
-                    <span class="label label-info">y</span>
-                  </a>
-                
-              
+            <li class="nav-item" data-level="1"><a href="#permissions" class="nav-link">Permissions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#how-permissions-are-determined" class="nav-link">How permissions are determined</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#object-level-permissions" class="nav-link">Object level permissions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setting-the-permission-policy" class="nav-link">Setting the permission policy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#api-reference" class="nav-link">API Reference</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#allowany" class="nav-link">AllowAny</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#isauthenticated" class="nav-link">IsAuthenticated</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#isadminuser" class="nav-link">IsAdminUser</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#isauthenticatedorreadonly" class="nav-link">IsAuthenticatedOrReadOnly</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#djangomodelpermissions" class="nav-link">DjangoModelPermissions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#djangomodelpermissionsoranonreadonly" class="nav-link">DjangoModelPermissionsOrAnonReadOnly</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#djangoobjectpermissions" class="nav-link">DjangoObjectPermissions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#custom-permissions" class="nav-link">Custom permissions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#examples" class="nav-link">Examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#third-party-packages" class="nav-link">Third party packages</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#drf-access-policy" class="nav-link">DRF - Access Policy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#composed-permissions" class="nav-link">Composed Permissions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#rest-condition" class="nav-link">REST Condition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#dry-rest-permissions" class="nav-link">DRY Rest Permissions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-roles" class="nav-link">Django Rest Framework Roles</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-api-key" class="nav-link">Django REST Framework API Key</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-role-filters" class="nav-link">Django Rest Framework Role Filters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+<div class="source-links">
 
-              <h1 id="permissions"><a class="toclink" href="#permissions">Permissions</a></h1>
+    <span class="label label-primary">permissions.py</span>
+
+</div>
+
+
+<h1 id="permissions"><a class="toclink" href="#permissions">Permissions</a></h1>
 <blockquote>
 <p>Authentication or identification by itself is not usually sufficient to gain access to information or code.  For that, the entity requesting access must have authorization.</p>
 <p>&mdash; <a href="https://developer.apple.com/library/mac/#documentation/security/Conceptual/AuthenticationAndAuthorizationGuide/Authorization/Authorization.html">Apple Developer Documentation</a></p>
 </blockquote>
 <p>Together with <a href="../authentication/">authentication</a> and <a href="../throttling/">throttling</a>, permissions determine whether a request should be granted or denied access.</p>
 <p>Permission checks are always run at the very start of the view, before any other code is allowed to proceed.  Permission checks will typically use the authentication information in the <code>request.user</code> and <code>request.auth</code> properties to determine if the incoming request should be permitted.</p>
-<p>Permissions are used to grant or deny access different classes of users to different parts of the API.</p>
-<p>The simplest style of permission would be to allow access to any authenticated user, and deny access to any unauthenticated user. This corresponds the <code>IsAuthenticated</code> class in REST framework.</p>
+<p>Permissions are used to grant or deny access for different classes of users to different parts of the API.</p>
+<p>The simplest style of permission would be to allow access to any authenticated user, and deny access to any unauthenticated user. This corresponds to the <code>IsAuthenticated</code> class in REST framework.</p>
 <p>A slightly less strict style of permission would be to allow full access to authenticated users, but allow read-only access to unauthenticated users. This corresponds to the <code>IsAuthenticatedOrReadOnly</code> class in REST framework.</p>
 <h2 id="how-permissions-are-determined"><a class="toclink" href="#how-permissions-are-determined">How permissions are determined</a></h2>
 <p>Permissions in REST framework are always defined as a list of permission classes.</p>
@@ -573,25 +443,34 @@ or if you override the <code>get_object</code> method on a generic view, then yo
 <p>This will either raise a <code>PermissionDenied</code> or <code>NotAuthenticated</code> exception, or simply return if the view has the appropriate permissions.</p>
 <p>For example:</p>
 <pre><code>def get_object(self):
-    obj = get_object_or_404(self.get_queryset())
+    obj = get_object_or_404(self.get_queryset(), pk=self.kwargs["pk"])
     self.check_object_permissions(self.request, obj)
     return obj
 </code></pre>
+<hr />
+<p><strong>Note</strong>: With the exception of <code>DjangoObjectPermissions</code>, the provided
+permission classes in <code>rest_framework.permissions</code> <strong>do not</strong> implement the
+methods necessary to check object permissions.</p>
+<p>If you wish to use the provided permission classes in order to check object
+permissions, <strong>you must</strong> subclass them and implement the
+<code>has_object_permission()</code> method described in the <a href="#custom-permissions"><em>Custom
+permissions</em></a> section (below).</p>
+<hr />
 <h4 id="limitations-of-object-level-permissions"><a class="toclink" href="#limitations-of-object-level-permissions">Limitations of object level permissions</a></h4>
 <p>For performance reasons the generic views will not automatically apply object level permissions to each instance in a queryset when returning a list of objects.</p>
 <p>Often when you're using object level permissions you'll also want to <a href="../filtering/">filter the queryset</a> appropriately, to ensure that users only have visibility onto instances that they are permitted to view.</p>
 <h2 id="setting-the-permission-policy"><a class="toclink" href="#setting-the-permission-policy">Setting the permission policy</a></h2>
 <p>The default permission policy may be set globally, using the <code>DEFAULT_PERMISSION_CLASSES</code> setting.  For example.</p>
 <pre><code>REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
+    'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ]
 }
 </code></pre>
 <p>If not specified, this setting defaults to allowing unrestricted access:</p>
-<pre><code>'DEFAULT_PERMISSION_CLASSES': (
+<pre><code>'DEFAULT_PERMISSION_CLASSES': [
    'rest_framework.permissions.AllowAny',
-)
+]
 </code></pre>
 <p>You can also set the authentication policy on a per-view, or per-viewset basis,
 using the <code>APIView</code> class-based views.</p>
@@ -600,7 +479,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 class ExampleView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = [IsAuthenticated]
 
     def get(self, request, format=None):
         content = {
@@ -614,7 +493,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 @api_view(['GET'])
-@permission_classes((IsAuthenticated, ))
+@permission_classes([IsAuthenticated])
 def example_view(request, format=None):
     content = {
         'status': 'request was permitted'
@@ -622,6 +501,25 @@ def example_view(request, format=None):
     return Response(content)
 </code></pre>
 <p><strong>Note:</strong> when you set new permission classes through class attribute or decorators you're telling the view to ignore the default list set over the <strong>settings.py</strong> file.</p>
+<p>Provided they inherit from <code>rest_framework.permissions.BasePermission</code>, permissions can be composed using standard Python bitwise operators. For example, <code>IsAuthenticatedOrReadOnly</code> could be written:</p>
+<pre><code>from rest_framework.permissions import BasePermission, IsAuthenticated, SAFE_METHODS
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+class ReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS
+
+class ExampleView(APIView):
+    permission_classes = [IsAuthenticated|ReadOnly]
+
+    def get(self, request, format=None):
+        content = {
+            'status': 'request was permitted'
+        }
+        return Response(content)
+</code></pre>
+<p><strong>Note:</strong> it supports &amp; (and), | (or) and ~ (not).</p>
 <hr />
 <h1 id="api-reference"><a class="toclink" href="#api-reference">API Reference</a></h1>
 <h2 id="allowany"><a class="toclink" href="#allowany">AllowAny</a></h2>
@@ -662,8 +560,7 @@ def example_view(request, format=None):
 <p>Note that <code>DjangoObjectPermissions</code> <strong>does not</strong> require the <code>django-guardian</code> package, and should support other object-level backends equally well.</p>
 <p>As with <code>DjangoModelPermissions</code> you can use custom model permissions by overriding <code>DjangoObjectPermissions</code> and setting the <code>.perms_map</code> property.  Refer to the source code for details.</p>
 <hr />
-<p><strong>Note</strong>: If you need object level <code>view</code> permissions for <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> requests, you'll want to consider also adding the <code>DjangoObjectPermissionsFilter</code> class to ensure that list endpoints only return results including objects for which the user has appropriate view permissions.</p>
-<hr />
+<p><strong>Note</strong>: If you need object level <code>view</code> permissions for <code>GET</code>, <code>HEAD</code> and <code>OPTIONS</code> requests and are using django-guardian for your object-level permissions backend, you'll want to consider using the <code>DjangoObjectPermissionsFilter</code> class provided by the <a href="https://github.com/rpkilby/django-rest-framework-guardian"><code>djangorestframework-guardian</code> package</a>. It ensures that list endpoints only return results including objects for which the user has appropriate view permissions.</p>
 <hr />
 <h1 id="custom-permissions"><a class="toclink" href="#custom-permissions">Custom permissions</a></h1>
 <p>To implement a custom permission, override <code>BasePermission</code> and implement either, or both, of the following methods:</p>
@@ -679,9 +576,9 @@ else:
     # Check permissions for write request
 </code></pre>
 <hr />
-<p><strong>Note</strong>: The instance-level <code>has_object_permission</code> method will only be called if the view-level <code>has_permission</code> checks have already passed. Also note that in order for the instance-level checks to run, the view code should explicitly call <code>.check_object_permissions(request, obj)</code>. If you are using the generic views then this will be handled for you by default.</p>
+<p><strong>Note</strong>: The instance-level <code>has_object_permission</code> method will only be called if the view-level <code>has_permission</code> checks have already passed. Also note that in order for the instance-level checks to run, the view code should explicitly call <code>.check_object_permissions(request, obj)</code>. If you are using the generic views then this will be handled for you by default. (Function-based views will need to check object permissions explicitly, raising <code>PermissionDenied</code> on failure.)</p>
 <hr />
-<p>Custom permissions will raise a <code>PermissionDenied</code> exception if the test fails. To change the error message associated with the exception, implement a <code>message</code> attribute directly on your custom permission. Otherwise the <code>default_detail</code> attribute from <code>PermissionDenied</code> will be used.</p>
+<p>Custom permissions will raise a <code>PermissionDenied</code> exception if the test fails. To change the error message associated with the exception, implement a <code>message</code> attribute directly on your custom permission. Otherwise the <code>default_detail</code> attribute from <code>PermissionDenied</code> will be used. Similarly, to change the code identifier associated with the exception, implement a <code>code</code> attribute directly on your custom permission - otherwise the <code>default_code</code> attribute from <code>PermissionDenied</code> will be used.</p>
 <pre><code>from rest_framework import permissions
 
 class CustomerAccessPermission(permissions.BasePermission):
@@ -725,65 +622,97 @@ class BlacklistPermission(permissions.BasePermission):
 <hr />
 <h1 id="third-party-packages"><a class="toclink" href="#third-party-packages">Third party packages</a></h1>
 <p>The following third party packages are also available.</p>
+<h2 id="drf-access-policy"><a class="toclink" href="#drf-access-policy">DRF - Access Policy</a></h2>
+<p>The <a href="https://github.com/rsinger86/drf-access-policy">Django REST - Access Policy</a> package provides a way to define complex access rules in declarative policy classes that are attached to view sets or function-based views. The policies are defined in JSON in a format similar to AWS' Identity &amp; Access Management policies. </p>
 <h2 id="composed-permissions"><a class="toclink" href="#composed-permissions">Composed Permissions</a></h2>
 <p>The <a href="https://github.com/niwibe/djangorestframework-composed-permissions">Composed Permissions</a> package provides a simple way to define complex and multi-depth (with logic operators) permission objects, using small and reusable components.</p>
 <h2 id="rest-condition"><a class="toclink" href="#rest-condition">REST Condition</a></h2>
-<p>The <a href="https://github.com/caxap/rest_condition">REST Condition</a> package is another extension for building complex permissions in a simple and convenient way.  The extension allows you to combine permissions with logical operators.</p>
+<p>The <a href="https://github.com/caxap/rest_condition">REST Condition</a> package is another extension for building complex permissions in a simple and convenient way. The extension allows you to combine permissions with logical operators.</p>
 <h2 id="dry-rest-permissions"><a class="toclink" href="#dry-rest-permissions">DRY Rest Permissions</a></h2>
 <p>The <a href="https://github.com/Helioscene/dry-rest-permissions">DRY Rest Permissions</a> package provides the ability to define different permissions for individual default and custom actions. This package is made for apps with permissions that are derived from relationships defined in the app's data model. It also supports permission checks being returned to a client app through the API's serializer. Additionally it supports adding permissions to the default and custom list actions to restrict the data they retrieve per user.</p>
 <h2 id="django-rest-framework-roles"><a class="toclink" href="#django-rest-framework-roles">Django Rest Framework Roles</a></h2>
 <p>The <a href="https://github.com/computer-lab/django-rest-framework-roles">Django Rest Framework Roles</a> package makes it easier to parameterize your API over multiple types of users.</p>
-<h2 id="django-rest-framework-api-key"><a class="toclink" href="#django-rest-framework-api-key">Django Rest Framework API Key</a></h2>
-<p>The <a href="https://github.com/manosim/django-rest-framework-api-key">Django Rest Framework API Key</a> package allows you to ensure that every request made to the server requires an API key header. You can generate one from the django admin interface.</p>
-            
+<h2 id="django-rest-framework-api-key"><a class="toclink" href="#django-rest-framework-api-key">Django REST Framework API Key</a></h2>
+<p>The <a href="https://florimondmanca.github.io/djangorestframework-api-key/">Django REST Framework API Key</a> package provides permissions classes, models and helpers to add API key authorization to your API. It can be used to authorize internal or third-party backends and services (i.e. <em>machines</em>) which do not have a user account. API keys are stored securely using Django's password hashing infrastructure, and they can be viewed, edited and revoked at anytime in the Django admin.</p>
+<h2 id="django-rest-framework-role-filters"><a class="toclink" href="#django-rest-framework-role-filters">Django Rest Framework Role Filters</a></h2>
+<p>The <a href="https://github.com/allisson/django-rest-framework-role-filters">Django Rest Framework Role Filters</a> package provides simple filtering over multiple types of roles.</p></div>
+            </div>
+        </div>
 
-          </div> <!--/span-->
-        </div> <!--/row-->
-      </div> <!--/.fluid-container-->
-    </div> <!--/.body content-->
-    <div id="push"></div>
-  </div> <!--/.wrapper -->
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
-  <footer class="span12">
-    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
-    </p>
-  </footer>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
-  <script src="../../js/jquery-1.8.1-min.js"></script>
-  <script src="../../js/prettify-1.0.js"></script>
-  <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <script src="../../js/theme.js"></script>
-
-  <script>var base_url = '../..';</script>
-  
-  <script src="../../search/main.js" defer></script>
-  
-
-  <script>
-    var shiftWindow = function() {
-      scrollBy(0, -50)
-    };
-
-    if (location.hash) shiftWindow();
-    window.addEventListener("hashchange", shiftWindow);
-
-    $('.dropdown-menu').on('click touchstart', function(event) {
-      event.stopPropagation();
-    });
-
-    // Dynamically force sidenav/dropdown to no higher than browser window
-    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-
-    $(function() {
-      $(window).resize(function() {
-        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-      });
-    });
-  </script>
-</body>
-
+    </body>
 </html>

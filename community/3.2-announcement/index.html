@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/community/3.2-announcement/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Django REST framework 3.2 - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api-guide/requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/community/3.2-announcement.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#django-rest-framework-32" class="nav-link">Django REST framework 3.2</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#adminrenderer" class="nav-link">AdminRenderer</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#supported-versions" class="nav-link">Supported versions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#deprecations" class="nav-link">Deprecations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#modifications-to-list-behaviors" class="nav-link">Modifications to list behaviors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#whats-next" class="nav-link">What's next?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="django-rest-framework-32"><a class="toclink" href="#django-rest-framework-32">Django REST framework 3.2</a></h1>
+<p>The 3.2 release is the first version to include an admin interface for the browsable API.</p>
+<p><img alt="The AdminRenderer" src="../../img/admin.png" /></p>
+<p>This interface is intended to act as a more user-friendly interface to the API. It can be used either as a replacement to the existing <code>BrowsableAPIRenderer</code>, or used together with it, allowing you to switch between the two styles as required.</p>
+<p>We've also fixed a huge number of issues, and made numerous cleanups and improvements.</p>
+<p>Over the course of the 3.1.x series we've <a href="https://github.com/encode/django-rest-framework/issues?utf8=%E2%9C%93&amp;q=closed%3A%3E2015-03-05">resolved nearly 600 tickets</a> on our GitHub issue tracker. This means we're currently running at a rate of <strong>closing around 100 issues or pull requests per month</strong>.</p>
+<p>None of this would have been possible without the support of our wonderful Kickstarter backers. If you're looking for a job in Django development we'd strongly recommend taking <a href="https://www.django-rest-framework.org/community/kickstarter-announcement/#sponsors">a look through our sponsors</a> and finding out who's hiring.</p>
+<h2 id="adminrenderer"><a class="toclink" href="#adminrenderer">AdminRenderer</a></h2>
+<p>To include <code>AdminRenderer</code> simply add it to your settings:</p>
+<pre><code>REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.AdminRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer'
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+}
+</code></pre>
+<p>There are some limitations to the <code>AdminRenderer</code>, in particular it is not yet able to handle list or dictionary inputs, as we do not have any HTML form fields that support those.</p>
+<p>Also note that this is an initial release and we do not yet have a public API for modifying the behavior or documentation on overriding the templates.</p>
+<p>The idea is to get this released to users early, so we can start getting feedback and release a more fully featured version in 3.3.</p>
+<h2 id="supported-versions"><a class="toclink" href="#supported-versions">Supported versions</a></h2>
+<p>This release drops support for Django 1.4.</p>
+<p>Our supported Django versions are now 1.5.6+, 1.6.3+, 1.7 and 1.8.</p>
+<h2 id="deprecations"><a class="toclink" href="#deprecations">Deprecations</a></h2>
+<p>There are no new deprecations in 3.2, although a number of existing deprecations have now escalated in line with our deprecation policy.</p>
+<ul>
+<li><code>request.DATA</code> was put on the deprecation path in 3.0. It has now been removed and its usage will result in an error. Use the more pythonic style of <code>request.data</code> instead.</li>
+<li><code>request.QUERY_PARAMS</code> was put on the deprecation path in 3.0. It has now been removed and its usage will result in an error. Use the more pythonic style of <code>request.query_params</code> instead.</li>
+<li>The following <code>ModelSerializer.Meta</code> options have now been removed: <code>write_only_fields</code>, <code>view_name</code>, <code>lookup_field</code>. Use the more general <code>extra_kwargs</code> option instead.</li>
+</ul>
+<p>The following pagination view attributes and settings have been moved into attributes on the pagination class since 3.1. Their usage was formerly in 'pending deprecation', and has now escalated to 'deprecated'. They will continue to function but will raise errors.</p>
+<ul>
+<li><code>view.paginate_by</code> - Use <code>paginator.page_size</code> instead.</li>
+<li><code>view.page_query_param</code> - Use <code>paginator.page_query_param</code> instead.</li>
+<li><code>view.paginate_by_param</code> - Use <code>paginator.page_size_query_param</code> instead.</li>
+<li><code>view.max_paginate_by</code> - Use <code>paginator.max_page_size</code> instead.</li>
+<li><code>settings.PAGINATE_BY</code> - Use <code>paginator.page_size</code> instead.</li>
+<li><code>settings.PAGINATE_BY_PARAM</code> - Use <code>paginator.page_size_query_param</code> instead.</li>
+<li><code>settings.MAX_PAGINATE_BY</code> - Use <code>paginator.max_page_size</code> instead.</li>
+</ul>
+<h2 id="modifications-to-list-behaviors"><a class="toclink" href="#modifications-to-list-behaviors">Modifications to list behaviors</a></h2>
+<p>There are a couple of bug fixes that are worth calling out as they introduce differing behavior.</p>
+<p>These are a little subtle and probably won't affect most users, but are worth understanding before upgrading your project.</p>
+<h3 id="manytomany-fields-and-blanktrue"><a class="toclink" href="#manytomany-fields-and-blanktrue">ManyToMany fields and blank=True</a></h3>
+<p>We've now added an <code>allow_empty</code> argument, which can be used with <code>ListSerializer</code>, or with  <code>many=True</code> relationships. This is <code>True</code> by default, but can be set to <code>False</code> if you want to disallow empty lists as valid input.</p>
+<p>As a follow-up to this we are now able to properly mirror the behavior of Django's <code>ModelForm</code> with respect to how many-to-many fields are validated.</p>
+<p>Previously a many-to-many field on a model would map to a serializer field that would allow either empty or non-empty list inputs. Now, a many-to-many field will map to a serializer field that requires at least one input, unless the model field has <code>blank=True</code> set.</p>
+<p>Here's what the mapping looks like in practice:</p>
+<ul>
+<li><code>models.ManyToManyField()</code> → <code>serializers.PrimaryKeyRelatedField(many=True, allow_empty=False)</code></li>
+<li><code>models.ManyToManyField(blank=True)</code> → <code>serializers.PrimaryKeyRelatedField(many=True)</code></li>
+</ul>
+<p>The upshot is this: If you have many to many fields in your models, then make sure you've included the argument <code>blank=True</code> if you want to allow empty inputs in the equivalent <code>ModelSerializer</code> fields.</p>
+<h3 id="list-fields-and-allow_null"><a class="toclink" href="#list-fields-and-allow_null">List fields and allow_null</a></h3>
+<p>When using <code>allow_null</code> with <code>ListField</code> or a nested <code>many=True</code> serializer the previous behavior was to allow <code>null</code> values as items in the list. The behavior is now to allow <code>null</code> values instead of the list.</p>
+<p>For example, take the following field:</p>
+<pre><code>NestedSerializer(many=True, allow_null=True)
+</code></pre>
+<p>Previously the validation behavior would be:</p>
+<ul>
+<li><code>[{…}, null, {…}]</code> is <strong>valid</strong>.</li>
+<li><code>null</code> is <strong>invalid</strong>.</li>
+</ul>
+<p>Our validation behavior as of 3.2.0 is now:</p>
+<ul>
+<li><code>[{…}, null, {…}]</code> is <strong>invalid</strong>.</li>
+<li><code>null</code> is <strong>valid</strong>.</li>
+</ul>
+<p>If you want to allow <code>null</code> child items, you'll need to instead specify <code>allow_null</code> on the child class, using an explicit <code>ListField</code> instead of <code>many=True</code>. For example:</p>
+<pre><code>ListField(child=NestedSerializer(allow_null=True))
+</code></pre>
+<h2 id="whats-next"><a class="toclink" href="#whats-next">What's next?</a></h2>
+<p>The 3.3 release is currently planned for the start of October, and will be the last Kickstarter-funded release.</p>
+<p>This release is planned to include:</p>
+<ul>
+<li>Search and filtering controls in the browsable API and admin interface.</li>
+<li>Improvements and public API for the admin interface.</li>
+<li>Improvements and public API for our templated HTML forms and fields.</li>
+<li>Nested object and list support in HTML forms.</li>
+</ul>
+<p>Thanks once again to all our sponsors and supporters.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

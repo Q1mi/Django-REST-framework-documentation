@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/community/project-management/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Project management - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api-guide/requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/community/project-management.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#project-management" class="nav-link">Project management</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#maintenance-team" class="nav-link">Maintenance team</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#release-process" class="nav-link">Release process</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#translations" class="nav-link">Translations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#project-requirements" class="nav-link">Project requirements</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#project-ownership" class="nav-link">Project ownership</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="project-management"><a class="toclink" href="#project-management">Project management</a></h1>
+<blockquote>
+<p>"No one can whistle a symphony; it takes a whole orchestra to play it"</p>
+<p>&mdash; Halford E. Luccock</p>
+</blockquote>
+<p>This document outlines our project management processes for REST framework.</p>
+<p>The aim is to ensure that the project has a high
+<a href="https://en.wikipedia.org/wiki/Bus_factor">"bus factor"</a>, and can continue to remain well supported for the foreseeable future. Suggestions for improvements to our process are welcome.</p>
+<hr />
+<h2 id="maintenance-team"><a class="toclink" href="#maintenance-team">Maintenance team</a></h2>
+<p>We have a quarterly maintenance cycle where new members may join the maintenance team. We currently cap the size of the team at 5 members, and may encourage folks to step out of the team for a cycle to allow new members to participate.</p>
+<h4 id="current-team"><a class="toclink" href="#current-team">Current team</a></h4>
+<p>The <a href="https://github.com/encode/django-rest-framework/issues/2190">maintenance team for Q4 2015</a>:</p>
+<ul>
+<li><a href="https://github.com/encode/">@tomchristie</a></li>
+<li><a href="https://github.com/xordoquy/">@xordoquy</a> (Release manager.)</li>
+<li><a href="https://github.com/carltongibson/">@carltongibson</a></li>
+<li><a href="https://github.com/kevin-brown/">@kevin-brown</a></li>
+<li><a href="https://github.com/jpadilla/">@jpadilla</a></li>
+</ul>
+<h4 id="maintenance-cycles"><a class="toclink" href="#maintenance-cycles">Maintenance cycles</a></h4>
+<p>Each maintenance cycle is initiated by an issue being opened with the <code>Process</code> label.</p>
+<ul>
+<li>To be considered for a maintainer role simply comment against the issue.</li>
+<li>Existing members must explicitly opt-in to the next cycle by check-marking their name.</li>
+<li>The final decision on the incoming team will be made by <code>@tomchristie</code>.</li>
+</ul>
+<p>Members of the maintenance team will be added as collaborators to the repository.</p>
+<p>The following template should be used for the description of the issue, and serves as the formal process for selecting the team.</p>
+<pre><code>This issue is for determining the maintenance team for the *** period.
+
+Please see the [Project management](https://www.django-rest-framework.org/topics/project-management/) section of our documentation for more details.
+
+---
+
+#### Renewing existing members.
+
+The following people are the current maintenance team. Please checkmark your name if you wish to continue to have write permission on the repository for the *** period.
+
+- [ ] @***
+- [ ] @***
+- [ ] @***
+- [ ] @***
+- [ ] @***
+
+---
+
+#### New members.
+
+If you wish to be considered for this or a future date, please comment against this or subsequent issues.
+
+To modify this process for future maintenance cycles make a pull request to the [project management](https://www.django-rest-framework.org/topics/project-management/) documentation.
+</code></pre>
+<h4 id="responsibilities-of-team-members"><a class="toclink" href="#responsibilities-of-team-members">Responsibilities of team members</a></h4>
+<p>Team members have the following responsibilities.</p>
+<ul>
+<li>Close invalid or resolved tickets.</li>
+<li>Add triage labels and milestones to tickets.</li>
+<li>Merge finalized pull requests.</li>
+<li>Build and deploy the documentation, using <code>mkdocs gh-deploy</code>.</li>
+<li>Build and update the included translation packs.</li>
+</ul>
+<p>Further notes for maintainers:</p>
+<ul>
+<li>Code changes should come in the form of a pull request - do not push directly to master.</li>
+<li>Maintainers should typically not merge their own pull requests.</li>
+<li>Each issue/pull request should have exactly one label once triaged.</li>
+<li>Search for un-triaged issues with <a href="https://github.com/encode/django-rest-framework/issues?q=is%3Aopen+no%3Alabel">is:open no:label</a>.</li>
+</ul>
+<p>It should be noted that participating actively in the REST framework project clearly <strong>does not require being part of the maintenance team</strong>. Almost every import part of issue triage and project improvement can be actively worked on regardless of your collaborator status on the repository.</p>
+<hr />
+<h2 id="release-process"><a class="toclink" href="#release-process">Release process</a></h2>
+<p>The release manager is selected on every quarterly maintenance cycle.</p>
+<ul>
+<li>The manager should be selected by <code>@tomchristie</code>.</li>
+<li>The manager will then have the maintainer role added to PyPI package.</li>
+<li>The previous manager will then have the maintainer role removed from the PyPI package.</li>
+</ul>
+<p>Our PyPI releases will be handled by either the current release manager, or by <code>@tomchristie</code>. Every release should have an open issue tagged with the <code>Release</code> label and marked against the appropriate milestone.</p>
+<p>The following template should be used for the description of the issue, and serves as a release checklist.</p>
+<pre><code>Release manager is @***.
+Pull request is #***.
+
+During development cycle:
+
+- [ ] Upload the new content to be translated to [transifex](https://www.django-rest-framework.org/topics/project-management/#translations).
+
+
+Checklist:
+
+- [ ] Create pull request for [release notes](https://github.com/encode/django-rest-framework/blob/master/docs/topics/release-notes.md) based on the [*.*.* milestone](https://github.com/encode/django-rest-framework/milestones/***).
+- [ ] Update supported versions:
+    - [ ] `setup.py` `python_requires` list
+    - [ ] `setup.py` Python &amp; Django version trove classifiers
+    - [ ] `README` Python &amp; Django versions
+    - [ ] `docs` Python &amp; Django versions
+- [ ] Update the translations from [transifex](https://www.django-rest-framework.org/topics/project-management/#translations).
+- [ ] Ensure the pull request increments the version to `*.*.*` in [`restframework/__init__.py`](https://github.com/encode/django-rest-framework/blob/master/rest_framework/__init__.py).
+- [ ] Confirm with @tomchristie that release is finalized and ready to go.
+- [ ] Ensure that release date is included in pull request.
+- [ ] Merge the release pull request.
+- [ ] Push the package to PyPI with `./setup.py publish`.
+- [ ] Tag the release, with `git tag -a *.*.* -m 'version *.*.*'; git push --tags`.
+- [ ] Deploy the documentation with `mkdocs gh-deploy`.
+- [ ] Make a release announcement on the [discussion group](https://groups.google.com/forum/?fromgroups#!forum/django-rest-framework).
+- [ ] Make a release announcement on twitter.
+- [ ] Close the milestone on GitHub.
+
+To modify this process for future releases make a pull request to the [project management](https://www.django-rest-framework.org/topics/project-management/) documentation.
+</code></pre>
+<p>When pushing the release to PyPI ensure that your environment has been installed from our development <code>requirement.txt</code>, so that documentation and PyPI installs are consistently being built against a pinned set of packages.</p>
+<hr />
+<h2 id="translations"><a class="toclink" href="#translations">Translations</a></h2>
+<p>The maintenance team are responsible for managing the translation packs include in REST framework. Translating the source strings into multiple languages is managed through the <a href="https://www.transifex.com/projects/p/django-rest-framework/">transifex service</a>.</p>
+<h3 id="managing-transifex"><a class="toclink" href="#managing-transifex">Managing Transifex</a></h3>
+<p>The <a href="https://pypi.org/project/transifex-client/">official Transifex client</a> is used to upload and download translations to Transifex. The client is installed using pip:</p>
+<pre><code>pip install transifex-client
+</code></pre>
+<p>To use it you'll need a login to Transifex which has a password, and you'll need to have administrative access to the Transifex project. You'll need to create a <code>~/.transifexrc</code> file which contains your credentials.</p>
+<pre><code>[https://www.transifex.com]
+username = ***
+token = ***
+password = ***
+hostname = https://www.transifex.com
+</code></pre>
+<h3 id="upload-new-source-files"><a class="toclink" href="#upload-new-source-files">Upload new source files</a></h3>
+<p>When any user visible strings are changed, they should be uploaded to Transifex so that the translators can start to translate them. To do this, just run:</p>
+<pre><code># 1. Update the source django.po file, which is the US English version.
+cd rest_framework
+django-admin makemessages -l en_US
+# 2. Push the source django.po file to Transifex.
+cd ..
+tx push -s
+</code></pre>
+<p>When pushing source files, Transifex will update the source strings of a resource to match those from the new source file.</p>
+<p>Here's how differences between the old and new source files will be handled:</p>
+<ul>
+<li>New strings will be added.</li>
+<li>Modified strings will be added as well.</li>
+<li>Strings which do not exist in the new source file will be removed from the database, along with their translations. If that source strings gets re-added later then <a href="http://docs.transifex.com/guides/tm#let-tm-automatically-populate-translations">Transifex Translation Memory</a> will automatically include the translation string.</li>
+</ul>
+<h3 id="download-translations"><a class="toclink" href="#download-translations">Download translations</a></h3>
+<p>When a translator has finished translating their work needs to be downloaded from Transifex into the REST framework repository. To do this, run:</p>
+<pre><code># 3. Pull the translated django.po files from Transifex.
+tx pull -a --minimum-perc 10
+cd rest_framework
+# 4. Compile the binary .mo files for all supported languages.
+django-admin compilemessages
+</code></pre>
+<hr />
+<h2 id="project-requirements"><a class="toclink" href="#project-requirements">Project requirements</a></h2>
+<p>All our test requirements are pinned to exact versions, in order to ensure that our test runs are reproducible. We maintain the requirements in the <code>requirements</code> directory. The requirements files are referenced from the <code>tox.ini</code> configuration file, ensuring we have a single source of truth for package versions used in testing.</p>
+<p>Package upgrades should generally be treated as isolated pull requests. You can check if there are any packages available at a newer version, by using the <code>pip list --outdated</code>.</p>
+<hr />
+<h2 id="project-ownership"><a class="toclink" href="#project-ownership">Project ownership</a></h2>
+<p>The PyPI package is owned by <code>@tomchristie</code>. As a backup <code>@j4mie</code> also has ownership of the package.</p>
+<p>If <code>@tomchristie</code> ceases to participate in the project then <code>@j4mie</code> has responsibility for handing over ownership duties.</p>
+<h4 id="outstanding-management-ownership-issues"><a class="toclink" href="#outstanding-management-ownership-issues">Outstanding management &amp; ownership issues</a></h4>
+<p>The following issues still need to be addressed:</p>
+<ul>
+<li>Ensure <code>@jamie</code> has back-up access to the <code>django-rest-framework.org</code> domain setup and admin.</li>
+<li>Document ownership of the <a href="https://restframework.herokuapp.com/">live example</a> API.</li>
+<li>Document ownership of the <a href="https://groups.google.com/forum/#!forum/django-rest-framework">mailing list</a> and IRC channel.</li>
+<li>Document ownership and management of the security mailing list.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

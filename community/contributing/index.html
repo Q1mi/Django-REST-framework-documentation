@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/community/contributing/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Contributing to REST framework - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api-guide/requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../../api-guide/settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/community/contributing.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#contributing-to-rest-framework" class="nav-link">Contributing to REST framework</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#community" class="nav-link">Community</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#code-of-conduct" class="nav-link">Code of conduct</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#issues" class="nav-link">Issues</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#triaging-issues" class="nav-link">Triaging issues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#development" class="nav-link">Development</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#testing" class="nav-link">Testing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#pull-requests" class="nav-link">Pull requests</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#managing-compatibility-issues" class="nav-link">Managing compatibility issues</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#documentation" class="nav-link">Documentation</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#building-the-documentation" class="nav-link">Building the documentation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#language-style" class="nav-link">Language style</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#markdown-style" class="nav-link">Markdown style</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="contributing-to-rest-framework"><a class="toclink" href="#contributing-to-rest-framework">Contributing to REST framework</a></h1>
+<blockquote>
+<p>The world can only really be changed one piece at a time.  The art is picking that piece.</p>
+<p>&mdash; <a href="https://www.w3.org/People/Berners-Lee/FAQ.html">Tim Berners-Lee</a></p>
+</blockquote>
+<p>There are many ways you can contribute to Django REST framework.  We'd like it to be a community-led project, so please get involved and help shape the future of the project.</p>
+<h2 id="community"><a class="toclink" href="#community">Community</a></h2>
+<p>The most important thing you can do to help push the REST framework project forward is to be actively involved wherever possible.  Code contributions are often overvalued as being the primary way to get involved in a project, we don't believe that needs to be the case.</p>
+<p>If you use REST framework, we'd love you to be vocal about your experiences with it - you might consider writing a blog post about using REST framework, or publishing a tutorial about building a project with a particular JavaScript framework.  Experiences from beginners can be particularly helpful because you'll be in the best position to assess which bits of REST framework are more difficult to understand and work with.</p>
+<p>Other really great ways you can help move the community forward include helping to answer questions on the <a href="https://groups.google.com/forum/?fromgroups#!forum/django-rest-framework">discussion group</a>, or setting up an <a href="https://stackexchange.com/filters/66475/rest-framework">email alert on StackOverflow</a> so that you get notified of any new questions with the <code>django-rest-framework</code> tag.</p>
+<p>When answering questions make sure to help future contributors find their way around by hyperlinking wherever possible to related threads and tickets, and include backlinks from those items if relevant.</p>
+<h2 id="code-of-conduct"><a class="toclink" href="#code-of-conduct">Code of conduct</a></h2>
+<p>Please keep the tone polite &amp; professional.  For some users a discussion on the REST framework mailing list or ticket tracker may be their first engagement with the open source community.  First impressions count, so let's try to make everyone feel welcome.</p>
+<p>Be mindful in the language you choose.  As an example, in an environment that is heavily male-dominated, posts that start 'Hey guys,' can come across as unintentionally exclusive.  It's just as easy, and more inclusive to use gender neutral language in those situations.</p>
+<p>The <a href="https://www.djangoproject.com/conduct/">Django code of conduct</a> gives a fuller set of guidelines for participating in community forums.</p>
+<h1 id="issues"><a class="toclink" href="#issues">Issues</a></h1>
+<p>It's really helpful if you can make sure to address issues on the correct channel.  Usage questions should be directed to the <a href="https://groups.google.com/forum/?fromgroups#!forum/django-rest-framework">discussion group</a>.  Feature requests, bug reports and other issues should be raised on the GitHub <a href="https://github.com/encode/django-rest-framework/issues?state=open">issue tracker</a>.</p>
+<p>Some tips on good issue reporting:</p>
+<ul>
+<li>When describing issues try to phrase your ticket in terms of the <em>behavior</em> you think needs changing rather than the <em>code</em> you think need changing.</li>
+<li>Search the issue list first for related items, and make sure you're running the latest version of REST framework before reporting an issue.</li>
+<li>If reporting a bug, then try to include a pull request with a failing test case.  This will help us quickly identify if there is a valid issue, and make sure that it gets fixed more quickly if there is one.</li>
+<li>Feature requests will often be closed with a recommendation that they be implemented outside of the core REST framework library.  Keeping new feature requests implemented as third party libraries allows us to keep down the maintenance overhead of REST framework, so that the focus can be on continued stability, bugfixes, and great documentation.</li>
+<li>Closing an issue doesn't necessarily mean the end of a discussion.  If you believe your issue has been closed incorrectly, explain why and we'll consider if it needs to be reopened.</li>
+</ul>
+<h2 id="triaging-issues"><a class="toclink" href="#triaging-issues">Triaging issues</a></h2>
+<p>Getting involved in triaging incoming issues is a good way to start contributing.  Every single ticket that comes into the ticket tracker needs to be reviewed in order to determine what the next steps should be.  Anyone can help out with this, you just need to be willing to</p>
+<ul>
+<li>Read through the ticket - does it make sense, is it missing any context that would help explain it better?</li>
+<li>Is the ticket reported in the correct place, would it be better suited as a discussion on the discussion group?</li>
+<li>If the ticket is a bug report, can you reproduce it? Are you able to write a failing test case that demonstrates the issue and that can be submitted as a pull request?</li>
+<li>If the ticket is a feature request, do you agree with it, and could the feature request instead be implemented as a third party package?</li>
+<li>If a ticket hasn't had much activity and it addresses something you need, then comment on the ticket and try to find out what's needed to get it moving again.</li>
+</ul>
+<h1 id="development"><a class="toclink" href="#development">Development</a></h1>
+<p>To start developing on Django REST framework, first create a Fork from the
+<a href="https://github.com/encode/django-rest-framework">Django REST Framework repo</a> on GitHub.</p>
+<p>Then clone your fork. The clone command will look like this, with your GitHub
+username instead of YOUR-USERNAME:</p>
+<pre><code>git clone https://github.com/YOUR-USERNAME/Spoon-Knife
+</code></pre>
+<p>See GitHub's <a href="https://help.github.com/articles/fork-a-repo/"><em>Fork a Repo</em></a> Guide for more help.</p>
+<p>Changes should broadly follow the <a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> style conventions, and we recommend you set up your editor to automatically indicate non-conforming styles.</p>
+<h2 id="testing"><a class="toclink" href="#testing">Testing</a></h2>
+<p>To run the tests, clone the repository, and then:</p>
+<pre><code># Setup the virtual environment
+python3 -m venv env
+source env/bin/activate
+pip install django
+pip install -r requirements.txt
+
+# Run the tests
+./runtests.py
+</code></pre>
+<h3 id="test-options"><a class="toclink" href="#test-options">Test options</a></h3>
+<p>Run using a more concise output style.</p>
+<pre><code>./runtests.py -q
+</code></pre>
+<p>Run the tests using a more concise output style, no coverage, no flake8.</p>
+<pre><code>./runtests.py --fast
+</code></pre>
+<p>Don't run the flake8 code linting.</p>
+<pre><code>./runtests.py --nolint
+</code></pre>
+<p>Only run the flake8 code linting, don't run the tests.</p>
+<pre><code>./runtests.py --lintonly
+</code></pre>
+<p>Run the tests for a given test case.</p>
+<pre><code>./runtests.py MyTestCase
+</code></pre>
+<p>Run the tests for a given test method.</p>
+<pre><code>./runtests.py MyTestCase.test_this_method
+</code></pre>
+<p>Shorter form to run the tests for a given test method.</p>
+<pre><code>./runtests.py test_this_method
+</code></pre>
+<p>Note: The test case and test method matching is fuzzy and will sometimes run other tests that contain a partial string match to the given  command line input.</p>
+<h3 id="running-against-multiple-environments"><a class="toclink" href="#running-against-multiple-environments">Running against multiple environments</a></h3>
+<p>You can also use the excellent <a href="https://tox.readthedocs.io/en/latest/">tox</a> testing tool to run the tests against all supported versions of Python and Django.  Install <code>tox</code> globally, and then simply run:</p>
+<pre><code>tox
+</code></pre>
+<h2 id="pull-requests"><a class="toclink" href="#pull-requests">Pull requests</a></h2>
+<p>It's a good idea to make pull requests early on.  A pull request represents the start of a discussion, and doesn't necessarily need to be the final, finished submission.</p>
+<p>It's also always best to make a new branch before starting work on a pull request.  This means that you'll be able to later switch back to working on another separate issue without interfering with an ongoing pull requests.</p>
+<p>It's also useful to remember that if you have an outstanding pull request then pushing new commits to your GitHub repo will also automatically update the pull requests.</p>
+<p>GitHub's documentation for working on pull requests is <a href="https://help.github.com/articles/using-pull-requests">available here</a>.</p>
+<p>Always run the tests before submitting pull requests, and ideally run <code>tox</code> in order to check that your modifications are compatible on all supported versions of Python and Django.</p>
+<p>Once you've made a pull request take a look at the Travis build status in the GitHub interface and make sure the tests are running as you'd expect.</p>
+<p><img alt="Travis status" src="../../img/travis-status.png" /></p>
+<p><em>Above: Travis build notifications</em></p>
+<h2 id="managing-compatibility-issues"><a class="toclink" href="#managing-compatibility-issues">Managing compatibility issues</a></h2>
+<p>Sometimes, in order to ensure your code works on various different versions of Django, Python or third party libraries, you'll need to run slightly different code depending on the environment.  Any code that branches in this way should be isolated into the <code>compat.py</code> module, and should provide a single common interface that the rest of the codebase can use.</p>
+<h1 id="documentation"><a class="toclink" href="#documentation">Documentation</a></h1>
+<p>The documentation for REST framework is built from the <a href="https://daringfireball.net/projects/markdown/basics">Markdown</a> source files in <a href="https://github.com/encode/django-rest-framework/tree/master/docs">the docs directory</a>.</p>
+<p>There are many great Markdown editors that make working with the documentation really easy.  The <a href="http://mouapp.com/">Mou editor for Mac</a> is one such editor that comes highly recommended.</p>
+<h2 id="building-the-documentation"><a class="toclink" href="#building-the-documentation">Building the documentation</a></h2>
+<p>To build the documentation, install MkDocs with <code>pip install mkdocs</code> and then run the following command.</p>
+<pre><code>mkdocs build
+</code></pre>
+<p>This will build the documentation into the <code>site</code> directory.</p>
+<p>You can build the documentation and open a preview in a browser window by using the <code>serve</code> command.</p>
+<pre><code>mkdocs serve
+</code></pre>
+<h2 id="language-style"><a class="toclink" href="#language-style">Language style</a></h2>
+<p>Documentation should be in American English.  The tone of the documentation is very important - try to stick to a simple, plain, objective and well-balanced style where possible.</p>
+<p>Some other tips:</p>
+<ul>
+<li>Keep paragraphs reasonably short.</li>
+<li>Don't use abbreviations such as 'e.g.' but instead use the long form, such as 'For example'.</li>
+</ul>
+<h2 id="markdown-style"><a class="toclink" href="#markdown-style">Markdown style</a></h2>
+<p>There are a couple of conventions you should follow when working on the documentation.</p>
+<h5 id="1-headers"><a class="toclink" href="#1-headers">1. Headers</a></h5>
+<p>Headers should use the hash style.  For example:</p>
+<pre><code>### Some important topic
+</code></pre>
+<p>The underline style should not be used.  <strong>Don't do this:</strong></p>
+<pre><code>Some important topic
+====================
+</code></pre>
+<h5 id="2-links"><a class="toclink" href="#2-links">2. Links</a></h5>
+<p>Links should always use the reference style, with the referenced hyperlinks kept at the end of the document.</p>
+<pre><code>Here is a link to [some other thing][other-thing].
+
+More text...
+
+[other-thing]: http://example.com/other/thing
+</code></pre>
+<p>This style helps keep the documentation source consistent and readable.</p>
+<p>If you are hyperlinking to another REST framework document, you should use a relative link, and link to the <code>.md</code> suffix.  For example:</p>
+<pre><code>[authentication]: ../api-guide/authentication.md
+</code></pre>
+<p>Linking in this style means you'll be able to click the hyperlink in your Markdown editor to open the referenced document.  When the documentation is built, these links will be converted into regular links to HTML pages.</p>
+<h5 id="3-notes"><a class="toclink" href="#3-notes">3. Notes</a></h5>
+<p>If you want to draw attention to a note or warning, use a pair of enclosing lines, like so:</p>
+<pre><code>---
+
+**Note:** A useful documentation note.
+
+---
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

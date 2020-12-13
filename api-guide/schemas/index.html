@@ -1,976 +1,790 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/schemas/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Schemas - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Schemas - Django REST framework中文站点</title>
-  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/schemas/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Schemas">
-  <meta name="author" content="李文周">
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-  <!-- Le styles -->
-  <link href="../../css/prettify.css" rel="stylesheet">
-  <link href="../../css/bootstrap.css" rel="stylesheet">
-  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="../../css/default.css" rel="stylesheet">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="../fields/" class="dropdown-item">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18852272-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  <style>
-  #sidebarInclude img {
-      margin-bottom: 10px;
-  }
-  #sidebarInclude a.promo {
-      color: black;
-  }
-    @media (max-width: 767px) {
-      div.promo {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body onload="prettyPrint()" class="-page">
-
-  <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../format-suffixes_zh/">
-            Next <i class="icon-arrow-right icon-white"></i>
-          </a>
-          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../metadata_zh/">
-            <i class="icon-arrow-left icon-white"></i> Previous
-          </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
-          <div class="nav-collapse collapse">
-            
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-               
-              <li >
-                <a href="../..">主页</a>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown active">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../requests_zh/">Requests</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../responses_zh/">Responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../views_zh/">Views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../generic-views_zh/">Generic views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../viewsets_zh/">Viewsets</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../routers_zh/">Routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../parsers_zh/">Parsers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../renderers_zh/">Renderers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../serializers_zh/">Serializers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../fields_zh/">Serializer fields</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../relations/">Serializer relations</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../validators/">Validators</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../authentication_zh/">Authentication</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../permissions_zh/">Permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../throttling_zh/">Throttling</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../filtering_zh/">Filtering</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../pagination_zh/">Pagination</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../versioning_zh/">Versioning</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../content-negotiation_zh/">Content negotiation</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../metadata_zh/">Metadata</a>
-                  </li>
-                  
-                  <li class="active" >
-                    <a href="./">Schemas</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../format-suffixes_zh/">Format suffixes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../reverse_zh/">Returning URLs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../exceptions/">Exceptions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../status-codes_zh/">Status codes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../testing_zh/">Testing</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../settings/">Settings</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/api-clients/">API Clients</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/internationalization/">Internationalization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browsable-api/">The Browsable API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/contributing/">Contributing to REST framework</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/project-management/">Project management</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/funding/">Funding</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/release-notes/">Release Notes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/jobs/">Jobs</a>
-                  </li>
-                  
-                </ul>
-              </li>
-               
-
-            </ul>
-            
-          </div>
-          <!--/.nav-collapse -->
-
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../metadata/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../format-suffixes/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/schemas.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
-    <div class="body-content">
-      <div class="container-fluid">
-        <!-- Search Modal -->
-        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Documentation search</h3>
-          </div>
-
-          <div class="modal-body">
-            <form role="form" autocomplete="off">
-              <div class="form-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-              </div>
-            </form>
-            <div id="mkdocs-search-results"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3">
-            <div id="table-of-contents">
-              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
-                
-
-                
-                  <li class="main">
-                    <a href="#schemas">Schemas</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#representing-schemas-internally">Representing schemas internally</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#schema-output-formats">Schema output formats</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#schemas-vs-hypermedia">Schemas vs Hypermedia</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#adding-a-schema">Adding a schema</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#the-get_schema_view-shortcut">The get_schema_view shortcut</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#using-an-explicit-schema-view">Using an explicit schema view</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#explicit-schema-definition">Explicit schema definition</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#static-schema-file">Static schema file</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#schemas-as-documentation">Schemas as documentation</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#examples">Examples</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#alternate-schema-formats">Alternate schema formats</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#example">Example</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#api-reference">API Reference</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#schemagenerator">SchemaGenerator</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#core-api">Core API</a>
-                    </li>
-                  
-                
-
-                  <div class="promo">
-                    <hr />
-                    <div id="sidebarInclude" style="display: none;"></div>
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
-                      </div>
-                    </div>
-                  </div>
-              </ul>
-
-            </div>
-          </div>
-
-          <div id="main-content" class="span9">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/c">
-                    <span class="label label-info">c</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/h">
-                    <span class="label label-info">h</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
-                    <span class="label label-info">e</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/m">
-                    <span class="label label-info">m</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/a">
-                    <span class="label label-info">a</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
-                    <span class="label label-info">.</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
-                    <span class="label label-info">y</span>
-                  </a>
-                
-              
+            <li class="nav-item" data-level="1"><a href="#schema" class="nav-link">Schema</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#generating-an-openapi-schema" class="nav-link">Generating an OpenAPI Schema</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#customizing-schema-generation" class="nav-link">Customizing Schema Generation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+<div class="source-links">
 
-              <h1 id="schemas"><a class="toclink" href="#schemas">Schemas</a></h1>
+    <span class="label label-primary">schemas</span>
+
+</div>
+
+
+<h1 id="schema"><a class="toclink" href="#schema">Schema</a></h1>
 <blockquote>
 <p>A machine-readable [schema] describes what resources are available via the API, what their URLs are, how they are represented and what operations they support.</p>
-<p>&mdash; Heroku, <a href="https://blog.heroku.com/archives/2014/1/8/json_schema_for_heroku_platform_api">JSON Schema for the Heroku Platform API</a></p>
+<p>&mdash; Heroku, [JSON Schema for the Heroku Platform API][cite]</p>
 </blockquote>
 <p>API schemas are a useful tool that allow for a range of use cases, including
 generating reference documentation, or driving dynamic client libraries that
 can interact with your API.</p>
-<h2 id="representing-schemas-internally"><a class="toclink" href="#representing-schemas-internally">Representing schemas internally</a></h2>
-<p>REST framework uses <a href="http://www.coreapi.org/">Core API</a> in order to model schema information in
-a format-independent representation. This information can then be rendered
-into various different schema formats, or used to generate API documentation.</p>
-<p>When using Core API, a schema is represented as a <code>Document</code> which is the
-top-level container object for information about the API. Available API
-interactions are represented using <code>Link</code> objects. Each link includes a URL,
-HTTP method, and may include a list of <code>Field</code> instances, which describe any
-parameters that may be accepted by the API endpoint. The <code>Link</code> and <code>Field</code>
-instances may also include descriptions, that allow an API schema to be
-rendered into user documentation.</p>
-<p>Here's an example of an API description that includes a single <code>search</code>
-endpoint:</p>
-<pre><code>coreapi.Document(
-    title='Flight Search API',
-    url='https://api.example.org/',
-    content={
-        'search': coreapi.Link(
-            url='/search/',
-            action='get',
-            fields=[
-                coreapi.Field(
-                    name='from',
-                    required=True,
-                    location='query',
-                    description='City name or airport code.'
-                ),
-                coreapi.Field(
-                    name='to',
-                    required=True,
-                    location='query',
-                    description='City name or airport code.'
-                ),
-                coreapi.Field(
-                    name='date',
-                    required=True,
-                    location='query',
-                    description='Flight date in "YYYY-MM-DD" format.'
-                )
-            ],
-            description='Return flight availability and prices.'
-        )
-    }
-)
+<p>Django REST Framework provides support for automatic generation of
+<a href="https://github.com/OAI/OpenAPI-Specification">OpenAPI</a> schemas.</p>
+<h2 id="generating-an-openapi-schema"><a class="toclink" href="#generating-an-openapi-schema">Generating an OpenAPI Schema</a></h2>
+<h3 id="install-dependencies"><a class="toclink" href="#install-dependencies">Install dependencies</a></h3>
+<pre><code>pip install pyyaml uritemplate
 </code></pre>
-<h2 id="schema-output-formats"><a class="toclink" href="#schema-output-formats">Schema output formats</a></h2>
-<p>In order to be presented in an HTTP response, the internal representation
-has to be rendered into the actual bytes that are used in the response.</p>
-<p><a href="http://www.coreapi.org/specification/encoding/#core-json-encoding">Core JSON</a> is designed as a canonical format for use with Core API.
-REST framework includes a renderer class for handling this media type, which
-is available as <code>renderers.CoreJSONRenderer</code>.</p>
-<p>Other schema formats such as <a href="https://openapis.org/">Open API</a> ("Swagger"),
-<a href="http://json-schema.org/latest/json-schema-hypermedia.html">JSON HyperSchema</a>, or <a href="https://apiblueprint.org/">API Blueprint</a> can
-also be supported by implementing a custom renderer class.</p>
-<h2 id="schemas-vs-hypermedia"><a class="toclink" href="#schemas-vs-hypermedia">Schemas vs Hypermedia</a></h2>
-<p>It's worth pointing out here that Core API can also be used to model hypermedia
-responses, which present an alternative interaction style to API schemas.</p>
-<p>With an API schema, the entire available interface is presented up-front
-as a single endpoint. Responses to individual API endpoints are then typically
-presented as plain data, without any further interactions contained in each
-response.</p>
-<p>With Hypermedia, the client is instead presented with a document containing
-both data and available interactions. Each interaction results in a new
-document, detailing both the current state and the available interactions.</p>
-<p>Further information and support on building Hypermedia APIs with REST framework
-is planned for a future version.</p>
-<hr />
-<h1 id="adding-a-schema"><a class="toclink" href="#adding-a-schema">Adding a schema</a></h1>
-<p>You'll need to install the <code>coreapi</code> package in order to add schema support
-for REST framework.</p>
-<pre><code>pip install coreapi
+<ul>
+<li><code>pyyaml</code> is used to generate schema into YAML-based OpenAPI format.</li>
+<li><code>uritemplate</code> is used internally to get parameters in path.</li>
+</ul>
+<h3 id="generating-a-static-schema-with-the-generateschema-management-command"><a class="toclink" href="#generating-a-static-schema-with-the-generateschema-management-command">Generating a static schema with the <code>generateschema</code> management command</a></h3>
+<p>If your schema is static, you can use the <code>generateschema</code> management command:</p>
+<pre><code class="bash">./manage.py generateschema --file openapi-schema.yml
 </code></pre>
-<p>REST framework includes functionality for auto-generating a schema,
-or allows you to specify one explicitly. There are a few different ways to
-add a schema to your API, depending on exactly what you need.</p>
-<h2 id="the-get_schema_view-shortcut"><a class="toclink" href="#the-get_schema_view-shortcut">The get_schema_view shortcut</a></h2>
-<p>The simplest way to include a schema in your project is to use the
-<code>get_schema_view()</code> function.</p>
-<pre><code>schema_view = get_schema_view(title="Server Monitoring API")
+
+<p>Once you've generated a schema in this way you can annotate it with any
+additional information that cannot be automatically inferred by the schema
+generator.</p>
+<p>You might want to check your API schema into version control and update it
+with each new release, or serve the API schema from your site's static media.</p>
+<h3 id="generating-a-dynamic-schema-with-schemaview"><a class="toclink" href="#generating-a-dynamic-schema-with-schemaview">Generating a dynamic schema with <code>SchemaView</code></a></h3>
+<p>If you require a dynamic schema, because foreign key choices depend on database
+values, for example, you can route a <code>SchemaView</code> that will generate and serve
+your schema on demand.</p>
+<p>To route a <code>SchemaView</code>, use the <code>get_schema_view()</code> helper.</p>
+<p>In <code>urls.py</code>:</p>
+<pre><code class="python">from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
-    url('^$', schema_view),
-    ...
+    # ...
+    # Use the `get_schema_view()` helper to add a `SchemaView` to project URLs.
+    #   * `title` and `description` parameters are passed to `SchemaGenerator`.
+    #   * Provide view name for use with `reverse()`.
+    path('openapi', get_schema_view(
+        title=&quot;Your Project&quot;,
+        description=&quot;API for all things …&quot;,
+        version=&quot;1.0.0&quot;
+    ), name='openapi-schema'),
+    # ...
 ]
 </code></pre>
-<p>Once the view has been added, you'll be able to make API requests to retrieve
-the auto-generated schema definition.</p>
-<pre><code>$ http http://127.0.0.1:8000/ Accept:application/vnd.coreapi+json
-HTTP/1.0 200 OK
-Allow: GET, HEAD, OPTIONS
-Content-Type: application/vnd.coreapi+json
 
-{
-    "_meta": {
-        "title": "Server Monitoring API"
-    },
-    "_type": "document",
-    ...
-}
-</code></pre>
-<p>The arguments to <code>get_schema_view()</code> are:</p>
-<h4 id="title"><a class="toclink" href="#title"><code>title</code></a></h4>
-<p>May be used to provide a descriptive title for the schema definition.</p>
-<h4 id="url"><a class="toclink" href="#url"><code>url</code></a></h4>
-<p>May be used to pass a canonical URL for the schema.</p>
+<h4 id="get_schema_view"><a class="toclink" href="#get_schema_view"><code>get_schema_view()</code></a></h4>
+<p>The <code>get_schema_view()</code> helper takes the following keyword arguments:</p>
+<ul>
+<li><code>title</code>: May be used to provide a descriptive title for the schema definition.</li>
+<li><code>description</code>: Longer descriptive text.</li>
+<li><code>version</code>: The version of the API.</li>
+<li>
+<p><code>url</code>: May be used to pass a canonical base URL for the schema.</p>
 <pre><code>schema_view = get_schema_view(
     title='Server Monitoring API',
     url='https://www.example.org/api/'
 )
 </code></pre>
-<h4 id="urlconf"><a class="toclink" href="#urlconf"><code>urlconf</code></a></h4>
-<p>A string representing the import path to the URL conf that you want
-to generate an API schema for. This defaults to the value of Django's
-ROOT_URLCONF setting.</p>
+</li>
+<li>
+<p><code>urlconf</code>: A string representing the import path to the URL conf that you want
+   to generate an API schema for. This defaults to the value of Django's
+   <code>ROOT_URLCONF</code> setting.</p>
 <pre><code>schema_view = get_schema_view(
     title='Server Monitoring API',
     url='https://www.example.org/api/',
     urlconf='myproject.urls'
 )
 </code></pre>
-<h4 id="renderer_classes"><a class="toclink" href="#renderer_classes"><code>renderer_classes</code></a></h4>
-<p>May be used to pass the set of renderer classes that can be used to render the API root endpoint.</p>
-<pre><code>from rest_framework.renderers import CoreJSONRenderer
-from my_custom_package import APIBlueprintRenderer
+</li>
+<li>
+<p><code>patterns</code>: List of url patterns to limit the schema introspection to. If you
+  only want the <code>myproject.api</code> urls to be exposed in the schema:</p>
+<pre><code>schema_url_patterns = [
+    url(r'^api/', include('myproject.api.urls')),
+]
 
 schema_view = get_schema_view(
     title='Server Monitoring API',
     url='https://www.example.org/api/',
-    renderer_classes=[CoreJSONRenderer, APIBlueprintRenderer]
+    patterns=schema_url_patterns,
 )
 </code></pre>
-<h2 id="using-an-explicit-schema-view"><a class="toclink" href="#using-an-explicit-schema-view">Using an explicit schema view</a></h2>
-<p>If you need a little more control than the <code>get_schema_view()</code> shortcut gives you,
-then you can use the <code>SchemaGenerator</code> class directly to auto-generate the
-<code>Document</code> instance, and to return that from a view.</p>
-<p>This option gives you the flexibility of setting up the schema endpoint
-with whatever behaviour you want. For example, you can apply different
-permission, throttling, or authentication policies to the schema endpoint.</p>
-<p>Here's an example of using <code>SchemaGenerator</code> together with a view to
-return the schema.</p>
-<p><strong>views.py:</strong></p>
-<pre><code>from rest_framework.decorators import api_view, renderer_classes
-from rest_framework import renderers, response, schemas
-
-generator = schemas.SchemaGenerator(title='Bookings API')
-
-@api_view()
-@renderer_classes([renderers.CoreJSONRenderer])
-def schema_view(request):
-    schema = generator.get_schema(request)
-    return response.Response(schema)
-</code></pre>
-<p><strong>urls.py:</strong></p>
-<pre><code>urlpatterns = [
-    url('/', schema_view),
-    ...
-]
-</code></pre>
-<p>You can also serve different schemas to different users, depending on the
-permissions they have available. This approach can be used to ensure that
-unauthenticated requests are presented with a different schema to
-authenticated requests, or to ensure that different parts of the API are
-made visible to different users depending on their role.</p>
-<p>In order to present a schema with endpoints filtered by user permissions,
-you need to pass the <code>request</code> argument to the <code>get_schema()</code> method, like so:</p>
-<pre><code>@api_view()
-@renderer_classes([renderers.CoreJSONRenderer])
-def schema_view(request):
-    generator = schemas.SchemaGenerator(title='Bookings API')
-    return response.Response(generator.get_schema(request=request))
-</code></pre>
-<h2 id="explicit-schema-definition"><a class="toclink" href="#explicit-schema-definition">Explicit schema definition</a></h2>
-<p>An alternative to the auto-generated approach is to specify the API schema
-explicitly, by declaring a <code>Document</code> object in your codebase. Doing so is a
-little more work, but ensures that you have full control over the schema
-representation.</p>
-<pre><code>import coreapi
-from rest_framework.decorators import api_view, renderer_classes
-from rest_framework import renderers, response
-
-schema = coreapi.Document(
-    title='Bookings API',
-    content={
-        ...
-    }
-)
-
-@api_view()
-@renderer_classes([renderers.CoreJSONRenderer])
-def schema_view(request):
-    return response.Response(schema)
-</code></pre>
-<h2 id="static-schema-file"><a class="toclink" href="#static-schema-file">Static schema file</a></h2>
-<p>A final option is to write your API schema as a static file, using one
-of the available formats, such as Core JSON or Open API.</p>
-<p>You could then either:</p>
-<ul>
-<li>Write a schema definition as a static file, and <a href="https://docs.djangoproject.com/en/stable/howto/static-files/">serve the static file directly</a>.</li>
-<li>Write a schema definition that is loaded using <code>Core API</code>, and then
-  rendered to one of many available formats, depending on the client request.</li>
+</li>
+<li>
+<p><code>generator_class</code>: May be used to specify a <code>SchemaGenerator</code> subclass to be
+  passed to the <code>SchemaView</code>.</p>
+</li>
+<li><code>authentication_classes</code>: May be used to specify the list of authentication
+  classes that will apply to the schema endpoint. Defaults to
+  <code>settings.DEFAULT_AUTHENTICATION_CLASSES</code></li>
+<li><code>permission_classes</code>: May be used to specify the list of permission classes
+  that will apply to the schema endpoint. Defaults to
+  <code>settings.DEFAULT_PERMISSION_CLASSES</code>.</li>
+<li><code>renderer_classes</code>: May be used to pass the set of renderer classes that can
+  be used to render the API root endpoint.</li>
 </ul>
-<hr />
-<h1 id="schemas-as-documentation"><a class="toclink" href="#schemas-as-documentation">Schemas as documentation</a></h1>
-<p>One common usage of API schemas is to use them to build documentation pages.</p>
-<p>The schema generation in REST framework uses docstrings to automatically
-populate descriptions in the schema document.</p>
-<p>These descriptions will be based on:</p>
-<ul>
-<li>The corresponding method docstring if one exists.</li>
-<li>A named section within the class docstring, which can be either single line or multi-line.</li>
-<li>The class docstring.</li>
-</ul>
-<h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
-<p>An <code>APIView</code>, with an explicit method docstring.</p>
-<pre><code>class ListUsernames(APIView):
-    def get(self, request):
-        """
-        Return a list of all user names in the system.
-        """
-        usernames = [user.username for user in User.objects.all()]
-        return Response(usernames)
-</code></pre>
-<p>A <code>ViewSet</code>, with an explict action docstring.</p>
-<pre><code>class ListUsernames(ViewSet):
-    def list(self, request):
-        """
-        Return a list of all user names in the system.
-        """
-        usernames = [user.username for user in User.objects.all()]
-        return Response(usernames)
-</code></pre>
-<p>A generic view with sections in the class docstring, using single-line style.</p>
-<pre><code>class UserList(generics.ListCreateAPIView):
-    """
-    get: List all the users.
-    post: Create a new user.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (IsAdminUser,)
-</code></pre>
-<p>A generic viewset with sections in the class docstring, using multi-line style.</p>
-<pre><code>class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-
-    retrieve:
-    Return a user instance.
-
-    list:
-    Return all users, ordered by most recently joined.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-</code></pre>
-<hr />
-<h1 id="alternate-schema-formats"><a class="toclink" href="#alternate-schema-formats">Alternate schema formats</a></h1>
-<p>In order to support an alternate schema format, you need to implement a custom renderer
-class that handles converting a <code>Document</code> instance into a bytestring representation.</p>
-<p>If there is a Core API codec package that supports encoding into the format you
-want to use then implementing the renderer class can be done by using the codec.</p>
-<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<p>For example, the <code>openapi_codec</code> package provides support for encoding or decoding
-to the Open API ("Swagger") format:</p>
-<pre><code>from rest_framework import renderers
-from openapi_codec import OpenAPICodec
-
-class SwaggerRenderer(renderers.BaseRenderer):
-    media_type = 'application/openapi+json'
-    format = 'swagger'
-
-    def render(self, data, media_type=None, renderer_context=None):
-        codec = OpenAPICodec()
-        return codec.dump(data)
-</code></pre>
-<hr />
-<h1 id="api-reference"><a class="toclink" href="#api-reference">API Reference</a></h1>
-<h2 id="schemagenerator"><a class="toclink" href="#schemagenerator">SchemaGenerator</a></h2>
-<p>A class that deals with introspecting your API views, which can be used to
-generate a schema.</p>
-<p>Typically you'll instantiate <code>SchemaGenerator</code> with a single argument, like so:</p>
+<h2 id="customizing-schema-generation"><a class="toclink" href="#customizing-schema-generation">Customizing Schema Generation</a></h2>
+<p>You may customize schema generation at the level of the schema as a whole, or
+on a per-view basis.</p>
+<h3 id="schema-level-customization"><a class="toclink" href="#schema-level-customization">Schema Level Customization</a></h3>
+<p>In order to customize the top-level schema subclass
+<code>rest_framework.schemas.openapi.SchemaGenerator</code> and provide it as an argument
+to the <code>generateschema</code> command or <code>get_schema_view()</code> helper function.</p>
+<h4 id="schemagenerator"><a class="toclink" href="#schemagenerator">SchemaGenerator</a></h4>
+<p>A class that walks a list of routed URL patterns, requests the schema for each
+view and collates the resulting OpenAPI schema.</p>
+<p>Typically you'll instantiate <code>SchemaGenerator</code> with a <code>title</code> argument, like so:</p>
 <pre><code>generator = SchemaGenerator(title='Stock Prices API')
 </code></pre>
 <p>Arguments:</p>
 <ul>
-<li><code>title</code> <strong>required</strong> - The name of the API.</li>
-<li><code>url</code> - The root URL of the API schema. This option is not required unless the schema is included under path prefix.</li>
-<li><code>patterns</code> - A list of URLs to inspect when generating the schema. Defaults to the project's URL conf.</li>
-<li><code>urlconf</code> - A URL conf module name to use when generating the schema. Defaults to <code>settings.ROOT_URLCONF</code>.</li>
+<li><code>title</code> <strong>required</strong>: The name of the API.</li>
+<li><code>description</code>: Longer descriptive text.</li>
+<li><code>version</code>: The version of the API. Defaults to <code>0.1.0</code>.</li>
+<li><code>url</code>: The root URL of the API schema. This option is not required unless the schema is included under path prefix.</li>
+<li><code>patterns</code>: A list of URLs to inspect when generating the schema. Defaults to the project's URL conf.</li>
+<li><code>urlconf</code>: A URL conf module name to use when generating the schema. Defaults to <code>settings.ROOT_URLCONF</code>.</li>
 </ul>
-<h3 id="get_schemaself-request"><a class="toclink" href="#get_schemaself-request">get_schema(self, request)</a></h3>
-<p>Returns a <code>coreapi.Document</code> instance that represents the API schema.</p>
-<pre><code>@api_view
-@renderer_classes([renderers.CoreJSONRenderer])
-def schema_view(request):
-    generator = schemas.SchemaGenerator(title='Bookings API')
-    return Response(generator.get_schema())
+<h5 id="get_schemaself-request"><a class="toclink" href="#get_schemaself-request">get_schema(self, request)</a></h5>
+<p>Returns a dictionary that represents the OpenAPI schema:</p>
+<pre><code>generator = SchemaGenerator(title='Stock Prices API')
+schema = generator.get_schema()
 </code></pre>
-<p>The <code>request</code> argument is optional, and may be used if you want to apply per-user
-permissions to the resulting schema generation.</p>
-<h3 id="get_linksself-request"><a class="toclink" href="#get_linksself-request">get_links(self, request)</a></h3>
-<p>Return a nested dictionary containing all the links that should be included in the API schema.</p>
-<p>This is a good point to override if you want to modify the resulting structure of the generated schema,
-as you can build a new dictionary with a different layout.</p>
-<h3 id="get_linkself-path-method-view"><a class="toclink" href="#get_linkself-path-method-view">get_link(self, path, method, view)</a></h3>
-<p>Returns a <code>coreapi.Link</code> instance corresponding to the given view.</p>
-<p>You can override this if you need to provide custom behaviors for particular views.</p>
-<h3 id="get_descriptionself-path-method-view"><a class="toclink" href="#get_descriptionself-path-method-view">get_description(self, path, method, view)</a></h3>
-<p>Returns a string to use as the link description. By default this is based on the
-view docstring as described in the "Schemas as Documentation" section above.</p>
-<h3 id="get_encodingself-path-method-view"><a class="toclink" href="#get_encodingself-path-method-view">get_encoding(self, path, method, view)</a></h3>
-<p>Returns a string to indicate the encoding for any request body, when interacting
-with the given view. Eg. <code>'application/json'</code>. May return a blank string for views
-that do not expect a request body.</p>
-<h3 id="get_path_fieldsself-path-method-view"><a class="toclink" href="#get_path_fieldsself-path-method-view">get_path_fields(self, path, method, view):</a></h3>
-<p>Return a list of <code>coreapi.Link()</code> instances. One for each path parameter in the URL.</p>
-<h3 id="get_serializer_fieldsself-path-method-view"><a class="toclink" href="#get_serializer_fieldsself-path-method-view">get_serializer_fields(self, path, method, view)</a></h3>
-<p>Return a list of <code>coreapi.Link()</code> instances. One for each field in the serializer class used by the view.</p>
-<h3 id="get_pagination_fieldsself-path-method-view"><a class="toclink" href="#get_pagination_fieldsself-path-method-view">get_pagination_fields(self, path, method, view</a></h3>
-<p>Return a list of <code>coreapi.Link()</code> instances, as returned by the <code>get_schema_fields()</code> method on any pagination class used by the view.</p>
-<h3 id="get_filter_fieldsself-path-method-view"><a class="toclink" href="#get_filter_fieldsself-path-method-view">get_filter_fields(self, path, method, view)</a></h3>
-<p>Return a list of <code>coreapi.Link()</code> instances, as returned by the <code>get_schema_fields()</code> method of any filter classes used by the view.</p>
+<p>The <code>request</code> argument is optional, and may be used if you want to apply
+per-user permissions to the resulting schema generation.</p>
+<p>This is a good point to override if you want to customize the generated
+dictionary,  for example to add custom
+<a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#specification-extensions">specification extensions</a>.</p>
+<h3 id="per-view-customization"><a class="toclink" href="#per-view-customization">Per-View Customization</a></h3>
+<p>By default, view introspection is performed by an <code>AutoSchema</code> instance
+accessible via the <code>schema</code> attribute on <code>APIView</code>. This provides the
+appropriate <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#operationObject">Open API operation object</a> for the view,
+request method and path:</p>
+<pre><code>auto_schema = view.schema
+operation = auto_schema.get_operation(...)
+</code></pre>
+<p>In compiling the schema, <code>SchemaGenerator</code> calls <code>view.schema.get_operation()</code>
+for each view, allowed method, and path.</p>
 <hr />
-<h2 id="core-api"><a class="toclink" href="#core-api">Core API</a></h2>
-<p>This documentation gives a brief overview of the components within the <code>coreapi</code>
-package that are used to represent an API schema.</p>
-<p>Note that these classes are imported from the <code>coreapi</code> package, rather than
-from the <code>rest_framework</code> package.</p>
-<h3 id="document"><a class="toclink" href="#document">Document</a></h3>
-<p>Represents a container for the API schema.</p>
-<h4 id="title_1"><a class="toclink" href="#title_1"><code>title</code></a></h4>
-<p>A name for the API.</p>
-<h4 id="url_1"><a class="toclink" href="#url_1"><code>url</code></a></h4>
-<p>A canonical URL for the API.</p>
-<h4 id="content"><a class="toclink" href="#content"><code>content</code></a></h4>
-<p>A dictionary, containing the <code>Link</code> objects that the schema contains.</p>
-<p>In order to provide more structure to the schema, the <code>content</code> dictionary
-may be nested, typically to a second level. For example:</p>
-<pre><code>content={
-    "bookings": {
-        "list": Link(...),
-        "create": Link(...),
-        ...
-    },
-    "venues": {
-        "list": Link(...),
-        ...
-    },
-    ...
-}
+<p><strong>Note</strong>: For basic <code>APIView</code> subclasses, default introspection is essentially
+limited to the URL kwarg path parameters. For <code>GenericAPIView</code>
+subclasses, which includes all the provided class based views, <code>AutoSchema</code> will
+attempt to introspect serializer, pagination and filter fields, as well as
+provide richer path field descriptions. (The key hooks here are the relevant
+<code>GenericAPIView</code> attributes and methods: <code>get_serializer</code>, <code>pagination_class</code>,
+<code>filter_backends</code> and so on.)</p>
+<hr />
+<p>In order to customize the operation generation, you should provide an <code>AutoSchema</code> subclass, overriding <code>get_operation()</code> as you need:</p>
+<pre><code>    from rest_framework.views import APIView
+    from rest_framework.schemas.openapi import AutoSchema
+
+    class CustomSchema(AutoSchema):
+        def get_operation(...):
+            # Implement custom introspection here (or in other sub-methods)
+
+    class CustomView(APIView):
+        """APIView subclass with custom schema introspection."""
+        schema = CustomSchema()
 </code></pre>
-<h3 id="link"><a class="toclink" href="#link">Link</a></h3>
-<p>Represents an individual API endpoint.</p>
-<h4 id="url_2"><a class="toclink" href="#url_2"><code>url</code></a></h4>
-<p>The URL of the endpoint. May be a URI template, such as <code>/users/{username}/</code>.</p>
-<h4 id="action"><a class="toclink" href="#action"><code>action</code></a></h4>
-<p>The HTTP method associated with the endpoint. Note that URLs that support
-more than one HTTP method, should correspond to a single <code>Link</code> for each.</p>
-<h4 id="fields"><a class="toclink" href="#fields"><code>fields</code></a></h4>
-<p>A list of <code>Field</code> instances, describing the available parameters on the input.</p>
-<h4 id="description"><a class="toclink" href="#description"><code>description</code></a></h4>
-<p>A short description of the meaning and intended usage of the endpoint.</p>
-<h3 id="field"><a class="toclink" href="#field">Field</a></h3>
-<p>Represents a single input parameter on a given API endpoint.</p>
-<h4 id="name"><a class="toclink" href="#name"><code>name</code></a></h4>
-<p>A descriptive name for the input.</p>
-<h4 id="required"><a class="toclink" href="#required"><code>required</code></a></h4>
-<p>A boolean, indicated if the client is required to included a value, or if
-the parameter can be omitted.</p>
-<h4 id="location"><a class="toclink" href="#location"><code>location</code></a></h4>
-<p>Determines how the information is encoded into the request. Should be one of
-the following strings:</p>
-<p><strong>"path"</strong></p>
-<p>Included in a templated URI. For example a <code>url</code> value of <code>/products/{product_code}/</code> could be used together with a <code>"path"</code> field, to handle API inputs in a URL path such as <code>/products/slim-fit-jeans/</code>.</p>
-<p>These fields will normally correspond with <a href="https://docs.djangoproject.com/en/stable/topics/http/urls/#named-groups">named arguments in the project URL conf</a>.</p>
-<p><strong>"query"</strong></p>
-<p>Included as a URL query parameter. For example <code>?search=sale</code>. Typically for <code>GET</code> requests.</p>
-<p>These fields will normally correspond with pagination and filtering controls on a view.</p>
-<p><strong>"form"</strong></p>
-<p>Included in the request body, as a single item of a JSON object or HTML form. For example <code>{"colour": "blue", ...}</code>. Typically for <code>POST</code>, <code>PUT</code> and <code>PATCH</code> requests. Multiple <code>"form"</code> fields may be included on a single link.</p>
-<p>These fields will normally correspond with serializer fields on a view.</p>
-<p><strong>"body"</strong></p>
-<p>Included as the complete request body. Typically for <code>POST</code>, <code>PUT</code> and <code>PATCH</code> requests. No more than one <code>"body"</code> field may exist on a link. May not be used together with <code>"form"</code> fields.</p>
-<p>These fields will normally correspond with views that use <code>ListSerializer</code> to validate the request input, or with file upload views.</p>
-<h4 id="encoding"><a class="toclink" href="#encoding"><code>encoding</code></a></h4>
-<p><strong>"application/json"</strong></p>
-<p>JSON encoded request content. Corresponds to views using <code>JSONParser</code>.
-Valid only if either one or more <code>location="form"</code> fields, or a single
-<code>location="body"</code> field is included on the <code>Link</code>.</p>
-<p><strong>"multipart/form-data"</strong></p>
-<p>Multipart encoded request content. Corresponds to views using <code>MultiPartParser</code>.
-Valid only if one or more <code>location="form"</code> fields is included on the <code>Link</code>.</p>
-<p><strong>"application/x-www-form-urlencoded"</strong></p>
-<p>URL encoded request content. Corresponds to views using <code>FormParser</code>. Valid
-only if one or more <code>location="form"</code> fields is included on the <code>Link</code>.</p>
-<p><strong>"application/octet-stream"</strong></p>
-<p>Binary upload request content. Corresponds to views using <code>FileUploadParser</code>.
-Valid only if a <code>location="body"</code> field is included on the <code>Link</code>.</p>
-<h4 id="description_1"><a class="toclink" href="#description_1"><code>description</code></a></h4>
-<p>A short description of the meaning and intended usage of the input field.</p>
-            
+<p>This provides complete control over view introspection.</p>
+<p>You may disable schema generation for a view by setting <code>schema</code> to <code>None</code>:</p>
+<pre><code>class CustomView(APIView):
+    ...
+    schema = None  # Will not appear in schema
+</code></pre>
+<p>This also applies to extra actions for <code>ViewSet</code>s:</p>
+<pre><code>class CustomViewSet(viewsets.ModelViewSet):
 
-          </div> <!--/span-->
-        </div> <!--/row-->
-      </div> <!--/.fluid-container-->
-    </div> <!--/.body content-->
-    <div id="push"></div>
-  </div> <!--/.wrapper -->
+    @action(detail=True, schema=None)
+    def extra_action(self, request, pk=None):
+        ...
+</code></pre>
+<p>If you wish to provide a base <code>AutoSchema</code> subclass to be used throughout your
+project you may adjust <code>settings.DEFAULT_SCHEMA_CLASS</code>  appropriately.</p>
+<h3 id="grouping-operations-with-tags"><a class="toclink" href="#grouping-operations-with-tags">Grouping Operations With Tags</a></h3>
+<p>Tags can be used to group logical operations. Each tag name in the list MUST be unique. </p>
+<hr />
+<h4 id="django-rest-framework-generates-tags-automatically-with-the-following-logic"><a class="toclink" href="#django-rest-framework-generates-tags-automatically-with-the-following-logic">Django REST Framework generates tags automatically with the following logic:</a></h4>
+<p>Tag name will be first element from the path. Also, any <code>_</code> in path name will be replaced by a <code>-</code>.
+Consider below examples.</p>
+<p>Example 1: Consider a user management system. The following table will illustrate the tag generation logic.
+Here first element from the paths is: <code>users</code>. Hence tag wil be <code>users</code></p>
+<table>
+<thead>
+<tr>
+<th>Http Method</th>
+<th>Path</th>
+<th>Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUT, PATCH, GET(Retrieve), DELETE</td>
+<td>/users/{id}/</td>
+<td>['users']</td>
+</tr>
+<tr>
+<td>POST, GET(List)</td>
+<td>/users/</td>
+<td>['users']</td>
+</tr>
+</tbody>
+</table>
+<p>Example 2: Consider a restaurant management system. The System has restaurants. Each restaurant has branches.
+Consider REST APIs to deal with a branch of a particular restaurant.
+Here first element from the paths is: <code>restaurants</code>. Hence tag wil be <code>restaurants</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Http Method</th>
+<th>Path</th>
+<th>Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUT, PATCH, GET(Retrieve), DELETE:</td>
+<td>/restaurants/{restaurant_id}/branches/{branch_id}</td>
+<td>['restaurants']</td>
+</tr>
+<tr>
+<td>POST, GET(List):</td>
+<td>/restaurants/{restaurant_id}/branches/</td>
+<td>['restaurants']</td>
+</tr>
+</tbody>
+</table>
+<p>Example 3: Consider Order items for an e commerce company.</p>
+<table>
+<thead>
+<tr>
+<th>Http Method</th>
+<th>Path</th>
+<th>Tags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUT, PATCH, GET(Retrieve), DELETE</td>
+<td>/order_items/{id}/</td>
+<td>['order-items']</td>
+</tr>
+<tr>
+<td>POST, GET(List)</td>
+<td>/order_items/</td>
+<td>['order-items']</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="overriding-auto-generated-tags"><a class="toclink" href="#overriding-auto-generated-tags">Overriding auto generated tags:</a></h4>
+<p>You can override auto-generated tags by passing <code>tags</code> argument to the constructor of <code>AutoSchema</code>. <code>tags</code> argument must be a list or tuple of string.</p>
+<pre><code class="python">from rest_framework.schemas.openapi import AutoSchema
+from rest_framework.views import APIView
 
-  <footer class="span12">
-    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
-    </p>
-  </footer>
+class MyView(APIView):
+    schema = AutoSchema(tags=['tag1', 'tag2'])
+    ...
+</code></pre>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
-  <script src="../../js/jquery-1.8.1-min.js"></script>
-  <script src="../../js/prettify-1.0.js"></script>
-  <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <script src="../../js/theme.js"></script>
+<p>If you need more customization, you can override the <code>get_tags</code> method of <code>AutoSchema</code> class. Consider the following example:</p>
+<pre><code class="python">from rest_framework.schemas.openapi import AutoSchema
+from rest_framework.views import APIView
 
-  <script>var base_url = '../..';</script>
-  
-  <script src="../../search/main.js" defer></script>
-  
+class MySchema(AutoSchema):
+    ...
+    def get_tags(self, path, method):
+        if method == 'POST':
+            tags = ['tag1', 'tag2']
+        elif method == 'GET':
+            tags = ['tag2', 'tag3'] 
+        elif path == '/example/path/':
+            tags = ['tag3', 'tag4']
+        else:
+            tags = ['tag5', 'tag6', 'tag7']
 
-  <script>
-    var shiftWindow = function() {
-      scrollBy(0, -50)
-    };
+        return tags
 
-    if (location.hash) shiftWindow();
-    window.addEventListener("hashchange", shiftWindow);
+class MyView(APIView):
+    schema = MySchema()
+    ...
+</code></pre>
 
-    $('.dropdown-menu').on('click touchstart', function(event) {
-      event.stopPropagation();
-    });
+<h3 id="operationid"><a class="toclink" href="#operationid">OperationId</a></h3>
+<p>The schema generator generates an <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#fixed-fields-17">operationid</a> for each operation. This <code>operationId</code> is deduced from the model name, serializer name or view name. The operationId may looks like "listItems", "retrieveItem", "updateItem", etc..
+The <code>operationId</code> is camelCase by convention.</p>
+<p>If you have several views with the same model, the generator may generate duplicate operationId.
+In order to work around this, you can override the second part of the operationId: operation name.</p>
+<pre><code class="python">from rest_framework.schemas.openapi import AutoSchema
 
-    // Dynamically force sidenav/dropdown to no higher than browser window
-    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+class ExampleView(APIView):
+    &quot;&quot;&quot;APIView subclass with custom schema introspection.&quot;&quot;&quot;
+    schema = AutoSchema(operation_id_base=&quot;Custom&quot;)
+</code></pre>
 
-    $(function() {
-      $(window).resize(function() {
-        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-      });
-    });
-  </script>
-</body>
+<p>The previous example will generate the following operationId: "listCustoms", "retrieveCustom", "updateCustom", "partialUpdateCustom", "destroyCustom".
+You need to provide the singular form of he operation name. For the list operation, a "s" will be appended at the end of the operation.</p>
+<p>If you need more configuration over the <code>operationId</code> field, you can override the <code>get_operation_id_base</code> and <code>get_operation_id</code> methods from the <code>AutoSchema</code> class:</p>
+<pre><code class="python">class CustomSchema(AutoSchema):
+    def get_operation_id_base(self, path, method, action):
+        pass
 
+    def get_operation_id(self, path, method):
+        pass
+
+class MyView(APIView):
+   schema = AutoSchema(component_name=&quot;Ulysses&quot;)
+</code></pre>
+
+<h3 id="components"><a class="toclink" href="#components">Components</a></h3>
+<p>Since DRF 3.12, Schema uses the <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#componentsObject">OpenAPI Components</a>. This method defines components in the schema and <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#referenceObject">references them</a> inside request and response objects. By default, the component's name is deduced from the Serializer's name.</p>
+<p>Using OpenAPI's components provides the following advantages:</p>
+<ul>
+<li>The schema is more readable and lightweight.</li>
+<li>If you use the schema to generate an SDK (using <a href="https://github.com/OpenAPITools/openapi-generator">openapi-generator</a> or <a href="https://github.com/swagger-api/swagger-codegen">swagger-codegen</a>). The generator can name your SDK's models.</li>
+</ul>
+<h3 id="handling-components-schema-errors"><a class="toclink" href="#handling-components-schema-errors">Handling component's schema errors</a></h3>
+<p>You may get the following error while generating the schema:</p>
+<pre><code>&quot;Serializer&quot; is an invalid class name for schema generation.
+Serializer's class name should be unique and explicit. e.g. &quot;ItemSerializer&quot;.
+</code></pre>
+
+<p>This error occurs when the Serializer name is "Serializer". You should choose a component's name unique across your schema and different than "Serializer".</p>
+<p>You may also get the following warning:</p>
+<pre><code>Schema component &quot;ComponentName&quot; has been overriden with a different value.
+</code></pre>
+
+<p>This warning occurs when different components have the same name in one schema. Your component name should be unique across your project. This is likely an error that may lead to an invalid schema.</p>
+<p>You have two ways to solve the previous issues:</p>
+<ul>
+<li>You can rename your serializer with a unique name and another name than "Serializer".</li>
+<li>You can set the <code>component_name</code> kwarg parameter of the AutoSchema constructor (see below).</li>
+<li>You can override the <code>get_component_name</code> method of the AutoSchema class (see below).</li>
+</ul>
+<h4 id="set-a-custom-components-name-for-your-view"><a class="toclink" href="#set-a-custom-components-name-for-your-view">Set a custom component's name for your view</a></h4>
+<p>To override the component's name in your view, you can use the <code>component_name</code> parameter of the AutoSchema constructor:</p>
+<pre><code class="python">from rest_framework.schemas.openapi import AutoSchema
+
+class MyView(APIView):
+   schema = AutoSchema(component_name=&quot;Ulysses&quot;)
+</code></pre>
+
+<h4 id="override-the-default-implementation"><a class="toclink" href="#override-the-default-implementation">Override the default implementation</a></h4>
+<p>If you want to have more control and customization about how the schema's components are generated, you can override the <code>get_component_name</code> and <code>get_components</code> method from the AutoSchema class.</p>
+<pre><code class="python">from rest_framework.schemas.openapi import AutoSchema
+
+class CustomSchema(AutoSchema):
+    def get_components(self, path, method):
+        # Implement your custom implementation
+
+    def get_component_name(self, serializer):
+        # Implement your custom implementation
+
+class CustomView(APIView):
+    &quot;&quot;&quot;APIView subclass with custom schema introspection.&quot;&quot;&quot;
+    schema = CustomSchema()
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
 </html>

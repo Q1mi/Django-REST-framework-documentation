@@ -1,652 +1,537 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Q1mi">
+        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/fields/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Serializer fields - Django REST framework中文站点</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <title>Serializer fields - Django REST framework中文站点</title>
-  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/fields/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Serializer fields">
-  <meta name="author" content="李文周">
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-  <!-- Le styles -->
-  <link href="../../css/prettify.css" rel="stylesheet">
-  <link href="../../css/bootstrap.css" rel="stylesheet">
-  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="../../css/default.css" rel="stylesheet">
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">主页</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
+</li>
+                                    
+<li>
+    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../requests_zh/" class="dropdown-item">Requests</a>
+</li>
+                                    
+<li>
+    <a href="../responses_zh/" class="dropdown-item">Responses</a>
+</li>
+                                    
+<li>
+    <a href="../views_zh/" class="dropdown-item">Views</a>
+</li>
+                                    
+<li>
+    <a href="../generic-views_zh/" class="dropdown-item">Generic views</a>
+</li>
+                                    
+<li>
+    <a href="../viewsets_zh/" class="dropdown-item">Viewsets</a>
+</li>
+                                    
+<li>
+    <a href="../routers_zh/" class="dropdown-item">Routers</a>
+</li>
+                                    
+<li>
+    <a href="../parsers_zh/" class="dropdown-item">Parsers</a>
+</li>
+                                    
+<li>
+    <a href="../renderers_zh/" class="dropdown-item">Renderers</a>
+</li>
+                                    
+<li>
+    <a href="../serializers_zh/" class="dropdown-item">Serializers</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Serializer fields</a>
+</li>
+                                    
+<li>
+    <a href="../relations/" class="dropdown-item">Serializer relations</a>
+</li>
+                                    
+<li>
+    <a href="../validators/" class="dropdown-item">Validators</a>
+</li>
+                                    
+<li>
+    <a href="../authentication_zh/" class="dropdown-item">Authentication</a>
+</li>
+                                    
+<li>
+    <a href="../permissions_zh/" class="dropdown-item">Permissions</a>
+</li>
+                                    
+<li>
+    <a href="../throttling/" class="dropdown-item">Throttling</a>
+</li>
+                                    
+<li>
+    <a href="../filtering_zh/" class="dropdown-item">Filtering</a>
+</li>
+                                    
+<li>
+    <a href="../pagination/" class="dropdown-item">Pagination</a>
+</li>
+                                    
+<li>
+    <a href="../versioning_zh/" class="dropdown-item">Versioning</a>
+</li>
+                                    
+<li>
+    <a href="../content-negotiation/" class="dropdown-item">Content negotiation</a>
+</li>
+                                    
+<li>
+    <a href="../metadata/" class="dropdown-item">Metadata</a>
+</li>
+                                    
+<li>
+    <a href="../schemas/" class="dropdown-item">Schemas</a>
+</li>
+                                    
+<li>
+    <a href="../format-suffixes/" class="dropdown-item">Format suffixes</a>
+</li>
+                                    
+<li>
+    <a href="../reverse/" class="dropdown-item">Returning URLs</a>
+</li>
+                                    
+<li>
+    <a href="../exceptions/" class="dropdown-item">Exceptions</a>
+</li>
+                                    
+<li>
+    <a href="../status-codes/" class="dropdown-item">Status codes</a>
+</li>
+                                    
+<li>
+    <a href="../testing/" class="dropdown-item">Testing</a>
+</li>
+                                    
+<li>
+    <a href="../settings/" class="dropdown-item">Settings</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
+</li>
+                                    
+<li>
+    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
 
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-18852272-2']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script');
-      ga.type = 'text/javascript';
-      ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-  <style>
-  #sidebarInclude img {
-      margin-bottom: 10px;
-  }
-  #sidebarInclude a.promo {
-      color: black;
-  }
-    @media (max-width: 767px) {
-      div.promo {
-        display: none;
-      }
-    }
-  </style>
-</head>
-<body onload="prettyPrint()" class="-page">
-
-  <div class="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
-            Next <i class="icon-arrow-right icon-white"></i>
-          </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
-            <i class="icon-arrow-left icon-white"></i> Previous
-          </a>
-          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
-          <div class="nav-collapse collapse">
-            
-            <!-- Main navigation -->
-            <ul class="nav navbar-nav">
-               
-              <li >
-                <a href="../..">主页</a>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../requests_zh/">Requests</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../responses_zh/">Responses</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../views_zh/">Views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../generic-views_zh/">Generic views</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../viewsets_zh/">Viewsets</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../routers_zh/">Routers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../parsers_zh/">Parsers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../renderers_zh/">Renderers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../serializers_zh/">Serializers</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../fields_zh/">Serializer fields</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../relations/">Serializer relations</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../validators/">Validators</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../authentication_zh/">Authentication</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../permissions_zh/">Permissions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../throttling_zh/">Throttling</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../filtering_zh/">Filtering</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../pagination_zh/">Pagination</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../versioning_zh/">Versioning</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../content-negotiation_zh/">Content negotiation</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../metadata_zh/">Metadata</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../schemas/">Schemas</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../format-suffixes_zh/">Format suffixes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../reverse_zh/">Returning URLs</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../exceptions/">Exceptions</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../status-codes_zh/">Status codes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../testing_zh/">Testing</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../settings/">Settings</a>
-                  </li>
-                  
-                </ul>
-              </li>
-                
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  
-                  <li >
-                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/api-clients/">API Clients</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/internationalization/">Internationalization</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/browsable-api/">The Browsable API</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/third-party-packages/">Third Party Packages</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/tutorials-and-resources/">Tutorials and Resources</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/contributing/">Contributing to REST framework</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/project-management/">Project management</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.0-announcement/">3.0 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.1-announcement/">3.1 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.2-announcement/">3.2 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.3-announcement/">3.3 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.4-announcement/">3.4 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/3.5-announcement/">3.5 Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/kickstarter-announcement/">Kickstarter Announcement</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/mozilla-grant/">Mozilla Grant</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/funding/">Funding</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/release-notes/">Release Notes</a>
-                  </li>
-                  
-                  <li >
-                    <a href="../../topics/jobs/">Jobs</a>
-                  </li>
-                  
-                </ul>
-              </li>
-               
-
-            </ul>
-            
-          </div>
-          <!--/.nav-collapse -->
-
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../serializers_zh/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../relations/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/api-guide/fields.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
     </div>
 
-    <div class="body-content">
-      <div class="container-fluid">
-        <!-- Search Modal -->
-        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3 id="myModalLabel">Documentation search</h3>
-          </div>
-
-          <div class="modal-body">
-            <form role="form" autocomplete="off">
-              <div class="form-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-              </div>
-            </form>
-            <div id="mkdocs-search-results"></div>
-          </div>
-
-          <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-          </div>
-        </div>
-
-        <div class="row-fluid">
-          <div class="span3">
-            <div id="table-of-contents">
-              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
-                
-
-                
-                  <li class="main">
-                    <a href="#serializer-fields">Serializer fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#core-arguments">Core arguments</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#boolean-fields">Boolean fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#booleanfield">BooleanField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#nullbooleanfield">NullBooleanField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#string-fields">String fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#charfield">CharField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#emailfield">EmailField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#regexfield">RegexField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#slugfield">SlugField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#urlfield">URLField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#uuidfield">UUIDField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#filepathfield">FilePathField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#ipaddressfield">IPAddressField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#numeric-fields">Numeric fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#integerfield">IntegerField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#floatfield">FloatField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#decimalfield">DecimalField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#date-and-time-fields">Date and time fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#datetimefield">DateTimeField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#datefield">DateField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#timefield">TimeField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#durationfield">DurationField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#choice-selection-fields">Choice selection fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#choicefield">ChoiceField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#multiplechoicefield">MultipleChoiceField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#file-upload-fields">File upload fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#parsers-and-file-uploads">Parsers and file uploads.</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#filefield">FileField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#imagefield">ImageField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#composite-fields">Composite fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#listfield">ListField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#dictfield">DictField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#jsonfield">JSONField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#miscellaneous-fields">Miscellaneous fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#readonlyfield">ReadOnlyField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#hiddenfield">HiddenField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#modelfield">ModelField</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#serializermethodfield">SerializerMethodField</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#custom-fields">Custom fields</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#examples">Examples</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#third-party-packages">Third party packages</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#drf-compound-fields">DRF Compound Fields</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#drf-extra-fields">DRF Extra Fields</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#djangrestframework-recursive">djangrestframework-recursive</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#django-rest-framework-gis">django-rest-framework-gis</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#django-rest-framework-hstore">django-rest-framework-hstore</a>
-                    </li>
-                  
-                
-
-                  <div class="promo">
-                    <hr />
-                    <div id="sidebarInclude" style="display: none;"></div>
-                    <div class="my-qr">
-                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
-                      <div style="max-width: 160px;margin: 0 auto">
-                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
-                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
-                      </div>
-                      <div style="max-width: 160px;margin: 10px auto 0">
-                        <p style="text-align: center;margin-bottom: 5px">微信</p>
-                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
-                      </div>
-                    </div>
-                  </div>
-              </ul>
-
-            </div>
-          </div>
-
-          <div id="main-content" class="span9">
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
             
-              
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/f">
-                    <span class="label label-info">f</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/i">
-                    <span class="label label-info">i</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/e">
-                    <span class="label label-info">e</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/l">
-                    <span class="label label-info">l</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/d">
-                    <span class="label label-info">d</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/s">
-                    <span class="label label-info">s</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/.">
-                    <span class="label label-info">.</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/p">
-                    <span class="label label-info">p</span>
-                  </a>
-                
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/y">
-                    <span class="label label-info">y</span>
-                  </a>
-                
-              
+            <li class="nav-item" data-level="1"><a href="#serializer-fields" class="nav-link">Serializer fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#core-arguments" class="nav-link">Core arguments</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#boolean-fields" class="nav-link">Boolean fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#booleanfield" class="nav-link">BooleanField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#nullbooleanfield" class="nav-link">NullBooleanField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#string-fields" class="nav-link">String fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#charfield" class="nav-link">CharField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#emailfield" class="nav-link">EmailField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#regexfield" class="nav-link">RegexField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#slugfield" class="nav-link">SlugField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#urlfield" class="nav-link">URLField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#uuidfield" class="nav-link">UUIDField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#filepathfield" class="nav-link">FilePathField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#ipaddressfield" class="nav-link">IPAddressField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#numeric-fields" class="nav-link">Numeric fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#integerfield" class="nav-link">IntegerField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#floatfield" class="nav-link">FloatField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#decimalfield" class="nav-link">DecimalField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#date-and-time-fields" class="nav-link">Date and time fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#datetimefield" class="nav-link">DateTimeField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#datefield" class="nav-link">DateField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#timefield" class="nav-link">TimeField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#durationfield" class="nav-link">DurationField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#choice-selection-fields" class="nav-link">Choice selection fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#choicefield" class="nav-link">ChoiceField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#multiplechoicefield" class="nav-link">MultipleChoiceField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#file-upload-fields" class="nav-link">File upload fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#filefield" class="nav-link">FileField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#imagefield" class="nav-link">ImageField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#composite-fields" class="nav-link">Composite fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#listfield" class="nav-link">ListField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#dictfield" class="nav-link">DictField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hstorefield" class="nav-link">HStoreField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#jsonfield" class="nav-link">JSONField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#miscellaneous-fields" class="nav-link">Miscellaneous fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#readonlyfield" class="nav-link">ReadOnlyField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#hiddenfield" class="nav-link">HiddenField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#modelfield" class="nav-link">ModelField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#serializermethodfield" class="nav-link">SerializerMethodField</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#custom-fields" class="nav-link">Custom fields</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#examples" class="nav-link">Examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#third-party-packages" class="nav-link">Third party packages</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#drf-compound-fields" class="nav-link">DRF Compound Fields</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#drf-extra-fields" class="nav-link">DRF Extra Fields</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#djangorestframework-recursive" class="nav-link">djangorestframework-recursive</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-gis" class="nav-link">django-rest-framework-gis</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#django-rest-framework-hstore" class="nav-link">django-rest-framework-hstore</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+<div class="source-links">
 
-              <h1 id="serializer-fields"><a class="toclink" href="#serializer-fields">Serializer fields</a></h1>
+    <span class="label label-primary">fields.py</span>
+
+</div>
+
+
+<h1 id="serializer-fields"><a class="toclink" href="#serializer-fields">Serializer fields</a></h1>
 <blockquote>
 <p>Each field in a Form class is responsible not only for validating data, but also for "cleaning" it &mdash; normalizing it to a consistent format.</p>
 <p>&mdash; <a href="https://docs.djangoproject.com/en/stable/ref/forms/api/#django.forms.Form.cleaned_data">Django documentation</a></p>
@@ -669,16 +554,29 @@
 Set to false if this field is not required to be present during deserialization.</p>
 <p>Setting this to <code>False</code> also allows the object attribute or dictionary key to be omitted from output when serializing the instance. If the key is not present it will simply not be included in the output representation.</p>
 <p>Defaults to <code>True</code>.</p>
-<h3 id="allow_null"><a class="toclink" href="#allow_null"><code>allow_null</code></a></h3>
-<p>Normally an error will be raised if <code>None</code> is passed to a serializer field. Set this keyword argument to <code>True</code> if <code>None</code> should be considered a valid value.</p>
-<p>Defaults to <code>False</code></p>
 <h3 id="default"><a class="toclink" href="#default"><code>default</code></a></h3>
 <p>If set, this gives the default value that will be used for the field if no input value is supplied. If not set the default behaviour is to not populate the attribute at all.</p>
 <p>The <code>default</code> is not applied during partial update operations. In the partial update case only fields that are provided in the incoming data will have a validated value returned.</p>
-<p>May be set to a function or other callable, in which case the value will be evaluated each time it is used. When called, it will receive no arguments. If the callable has a <code>set_context</code> method, that will be called each time before getting the value with the field instance as only argument. This works the same way as for <a href="../validators/#using-set_context">validators</a>.</p>
+<p>May be set to a function or other callable, in which case the value will be evaluated each time it is used. When called, it will receive no arguments. If the callable has a <code>requires_context = True</code> attribute, then the serializer field will be passed as an argument.</p>
+<p>For example:</p>
+<pre><code>class CurrentUserDefault:
+    """
+    May be applied as a `default=...` value on a serializer field.
+    Returns the current user.
+    """
+    requires_context = True
+
+    def __call__(self, serializer_field):
+        return serializer_field.context['request'].user
+</code></pre>
+<p>When serializing the instance, default will be used if the object attribute or dictionary key is not present in the instance.</p>
 <p>Note that setting a <code>default</code> value implies that the field is not required. Including both the <code>default</code> and <code>required</code> keyword arguments is invalid and will raise an error.</p>
+<h3 id="allow_null"><a class="toclink" href="#allow_null"><code>allow_null</code></a></h3>
+<p>Normally an error will be raised if <code>None</code> is passed to a serializer field. Set this keyword argument to <code>True</code> if <code>None</code> should be considered a valid value.</p>
+<p>Note that, without an explicit <code>default</code>, setting this argument to <code>True</code> will imply a <code>default</code> value of <code>null</code> for serialization output, but does not imply a default for input deserialization.</p>
+<p>Defaults to <code>False</code></p>
 <h3 id="source"><a class="toclink" href="#source"><code>source</code></a></h3>
-<p>The name of the attribute that will be used to populate the field.  May be a method that only takes a <code>self</code> argument, such as <code>URLField(source='get_absolute_url')</code>, or may use dotted notation to traverse attributes, such as <code>EmailField(source='user.email')</code>.</p>
+<p>The name of the attribute that will be used to populate the field.  May be a method that only takes a <code>self</code> argument, such as <code>URLField(source='get_absolute_url')</code>, or may use dotted notation to traverse attributes, such as <code>EmailField(source='user.email')</code>. When serializing fields with dotted notation, it may be necessary to provide a <code>default</code> value if any object is not present or is empty during attribute traversal.</p>
 <p>The value <code>source='*'</code> has a special meaning, and is used to indicate that the entire object should be passed through to the field.  This can be useful for creating nested representations, or for fields which require access to the complete object in order to determine the output representation.</p>
 <p>Defaults to the name of the field.</p>
 <h3 id="validators"><a class="toclink" href="#validators"><code>validators</code></a></h3>
@@ -717,6 +615,14 @@ color_channel = serializers.ChoiceField(
 <h2 id="booleanfield"><a class="toclink" href="#booleanfield">BooleanField</a></h2>
 <p>A boolean representation.</p>
 <p>When using HTML encoded form input be aware that omitting a value will always be treated as setting a field to <code>False</code>, even if it has a <code>default=True</code> option specified. This is because HTML checkbox inputs represent the unchecked state by omitting the value, so REST framework treats omission as if it is an empty checkbox input.</p>
+<p>Note that Django 2.1 removed the <code>blank</code> kwarg from <code>models.BooleanField</code>.
+Prior to Django 2.1 <code>models.BooleanField</code> fields were always <code>blank=True</code>. Thus
+since Django 2.1 default <code>serializers.BooleanField</code> instances will be generated
+without the <code>required</code> kwarg (i.e. equivalent to <code>required=True</code>) whereas with
+previous versions of Django, default <code>BooleanField</code> instances will be generated
+with a <code>required=False</code> option.  If you want to control this behaviour manually,
+explicitly declare the <code>BooleanField</code> on the serializer class, or use the
+<code>extra_kwargs</code> option to set the <code>required</code> flag.</p>
 <p>Corresponds to <code>django.db.models.fields.BooleanField</code>.</p>
 <p><strong>Signature:</strong> <code>BooleanField()</code></p>
 <h2 id="nullbooleanfield"><a class="toclink" href="#nullbooleanfield">NullBooleanField</a></h2>
@@ -761,7 +667,7 @@ color_channel = serializers.ChoiceField(
 <p><strong>Signature:</strong> <code>UUIDField(format='hex_verbose')</code></p>
 <ul>
 <li><code>format</code>: Determines the representation format of the uuid value<ul>
-<li><code>'hex_verbose'</code> - The cannoncical hex representation, including hyphens: <code>"5ce0e9a5-5ffa-654b-cee0-1238041fb31a"</code></li>
+<li><code>'hex_verbose'</code> - The canonical hex representation, including hyphens: <code>"5ce0e9a5-5ffa-654b-cee0-1238041fb31a"</code></li>
 <li><code>'hex'</code> - The compact hex representation of the UUID, not including hyphens: <code>"5ce0e9a55ffa654bcee01238041fb31a"</code></li>
 <li><code>'int'</code> - A 128 bit integer representation of the UUID: <code>"123456789012312313134124512351145145114"</code></li>
 <li><code>'urn'</code> - RFC 4122 URN representation of the UUID: <code>"urn:uuid:5ce0e9a5-5ffa-654b-cee0-1238041fb31a"</code>
@@ -817,6 +723,7 @@ color_channel = serializers.ChoiceField(
 <li><code>max_value</code> Validate that the number provided is no greater than this value.</li>
 <li><code>min_value</code> Validate that the number provided is no less than this value.</li>
 <li><code>localize</code> Set to <code>True</code> to enable localization of input and output based on the current locale. This will also force <code>coerce_to_string</code> to <code>True</code>. Defaults to <code>False</code>. Note that data formatting is enabled if you have set <code>USE_L10N=True</code> in your settings file.</li>
+<li><code>rounding</code> Sets the rounding mode used when quantising to the configured precision. Valid values are <a href="https://docs.python.org/3/library/decimal.html#rounding-modes"><code>decimal</code> module rounding modes</a>. Defaults to <code>None</code>.</li>
 </ul>
 <h4 id="example-usage"><a class="toclink" href="#example-usage">Example usage</a></h4>
 <p>To validate numbers up to 999 with a resolution of 2 decimal places, you would use:</p>
@@ -832,13 +739,14 @@ color_channel = serializers.ChoiceField(
 <h2 id="datetimefield"><a class="toclink" href="#datetimefield">DateTimeField</a></h2>
 <p>A date and time representation.</p>
 <p>Corresponds to <code>django.db.models.fields.DateTimeField</code>.</p>
-<p><strong>Signature:</strong> <code>DateTimeField(format=api_settings.DATETIME_FORMAT, input_formats=None)</code></p>
+<p><strong>Signature:</strong> <code>DateTimeField(format=api_settings.DATETIME_FORMAT, input_formats=None, default_timezone=None)</code></p>
 <ul>
 <li><code>format</code> - A string representing the output format. If not specified, this defaults to the same value as the <code>DATETIME_FORMAT</code> settings key, which will be <code>'iso-8601'</code> unless set. Setting to a format string indicates that <code>to_representation</code> return values should be coerced to string output. Format strings are described below. Setting this value to <code>None</code> indicates that Python <code>datetime</code> objects should be returned by <code>to_representation</code>. In this case the datetime encoding will be determined by the renderer.</li>
 <li><code>input_formats</code> - A list of strings representing the input formats which may be used to parse the date.  If not specified, the <code>DATETIME_INPUT_FORMATS</code> setting will be used, which defaults to <code>['iso-8601']</code>.</li>
+<li><code>default_timezone</code> - A <code>pytz.timezone</code> representing the timezone. If not specified and the <code>USE_TZ</code> setting is enabled, this defaults to the <a href="https://docs.djangoproject.com/en/stable/topics/i18n/timezones/#default-time-zone-and-current-time-zone">current timezone</a>. If <code>USE_TZ</code> is disabled, then datetime objects will be naive.</li>
 </ul>
 <h4 id="datetimefield-format-strings"><a class="toclink" href="#datetimefield-format-strings"><code>DateTimeField</code> format strings.</a></h4>
-<p>Format strings may either be <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a> which explicitly specify the format, or the special string <code>'iso-8601'</code>, which indicates that <a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a> style datetimes should be used. (eg <code>'2013-01-29T12:34:56.000000Z'</code>)</p>
+<p>Format strings may either be <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a> which explicitly specify the format, or the special string <code>'iso-8601'</code>, which indicates that <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a> style datetimes should be used. (eg <code>'2013-01-29T12:34:56.000000Z'</code>)</p>
 <p>When a value of <code>None</code> is used for the format <code>datetime</code> objects will be returned by <code>to_representation</code> and the final output representation will determined by the renderer class.</p>
 <h4 id="auto_now-and-auto_now_add-model-fields"><a class="toclink" href="#auto_now-and-auto_now_add-model-fields"><code>auto_now</code> and <code>auto_now_add</code> model fields.</a></h4>
 <p>When using <code>ModelSerializer</code> or <code>HyperlinkedModelSerializer</code>, note that any model fields with <code>auto_now=True</code> or <code>auto_now_add=True</code> will use serializer fields that are <code>read_only=True</code> by default.</p>
@@ -858,7 +766,7 @@ color_channel = serializers.ChoiceField(
 <li><code>input_formats</code> - A list of strings representing the input formats which may be used to parse the date.  If not specified, the <code>DATE_INPUT_FORMATS</code> setting will be used, which defaults to <code>['iso-8601']</code>.</li>
 </ul>
 <h4 id="datefield-format-strings"><a class="toclink" href="#datefield-format-strings"><code>DateField</code> format strings</a></h4>
-<p>Format strings may either be <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a> which explicitly specify the format, or the special string <code>'iso-8601'</code>, which indicates that <a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a> style dates should be used. (eg <code>'2013-01-29'</code>)</p>
+<p>Format strings may either be <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a> which explicitly specify the format, or the special string <code>'iso-8601'</code>, which indicates that <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a> style dates should be used. (eg <code>'2013-01-29'</code>)</p>
 <h2 id="timefield"><a class="toclink" href="#timefield">TimeField</a></h2>
 <p>A time representation.</p>
 <p>Corresponds to <code>django.db.models.fields.TimeField</code></p>
@@ -868,14 +776,17 @@ color_channel = serializers.ChoiceField(
 <li><code>input_formats</code> - A list of strings representing the input formats which may be used to parse the date.  If not specified, the <code>TIME_INPUT_FORMATS</code> setting will be used, which defaults to <code>['iso-8601']</code>.</li>
 </ul>
 <h4 id="timefield-format-strings"><a class="toclink" href="#timefield-format-strings"><code>TimeField</code> format strings</a></h4>
-<p>Format strings may either be <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a> which explicitly specify the format, or the special string <code>'iso-8601'</code>, which indicates that <a href="http://www.w3.org/TR/NOTE-datetime">ISO 8601</a> style times should be used. (eg <code>'12:34:56.000000'</code>)</p>
+<p>Format strings may either be <a href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">Python strftime formats</a> which explicitly specify the format, or the special string <code>'iso-8601'</code>, which indicates that <a href="https://www.w3.org/TR/NOTE-datetime">ISO 8601</a> style times should be used. (eg <code>'12:34:56.000000'</code>)</p>
 <h2 id="durationfield"><a class="toclink" href="#durationfield">DurationField</a></h2>
 <p>A Duration representation.
 Corresponds to <code>django.db.models.fields.DurationField</code></p>
 <p>The <code>validated_data</code> for these fields will contain a <code>datetime.timedelta</code> instance.
 The representation is a string following this format <code>'[DD] [HH:[MM:]]ss[.uuuuuu]'</code>.</p>
-<p><strong>Note:</strong> This field is only available with Django versions &gt;= 1.8.</p>
-<p><strong>Signature:</strong> <code>DurationField()</code></p>
+<p><strong>Signature:</strong> <code>DurationField(max_value=None, min_value=None)</code></p>
+<ul>
+<li><code>max_value</code> Validate that the duration provided is no greater than this value.</li>
+<li><code>min_value</code> Validate that the duration provided is no less than this value.</li>
+</ul>
 <hr />
 <h1 id="choice-selection-fields"><a class="toclink" href="#choice-selection-fields">Choice selection fields</a></h1>
 <h2 id="choicefield"><a class="toclink" href="#choicefield">ChoiceField</a></h2>
@@ -927,9 +838,10 @@ Django's regular <a href="https://docs.djangoproject.com/en/stable/ref/settings/
 <h1 id="composite-fields"><a class="toclink" href="#composite-fields">Composite fields</a></h1>
 <h2 id="listfield"><a class="toclink" href="#listfield">ListField</a></h2>
 <p>A field class that validates a list of objects.</p>
-<p><strong>Signature</strong>: <code>ListField(child, min_length=None, max_length=None)</code></p>
+<p><strong>Signature</strong>: <code>ListField(child=&lt;A_FIELD_INSTANCE&gt;, allow_empty=True, min_length=None, max_length=None)</code></p>
 <ul>
 <li><code>child</code> - A field instance that should be used for validating the objects in the list. If this argument is not provided then objects in the list will not be validated.</li>
+<li><code>allow_empty</code> - Designates if empty lists are allowed.</li>
 <li><code>min_length</code> - Validates that the list contains no fewer than this number of elements.</li>
 <li><code>max_length</code> - Validates that the list contains no more than this number of elements.</li>
 </ul>
@@ -945,9 +857,10 @@ Django's regular <a href="https://docs.djangoproject.com/en/stable/ref/settings/
 <p>We can now reuse our custom <code>StringListField</code> class throughout our application, without having to provide a <code>child</code> argument to it.</p>
 <h2 id="dictfield"><a class="toclink" href="#dictfield">DictField</a></h2>
 <p>A field class that validates a dictionary of objects. The keys in <code>DictField</code> are always assumed to be string values.</p>
-<p><strong>Signature</strong>: <code>DictField(child)</code></p>
+<p><strong>Signature</strong>: <code>DictField(child=&lt;A_FIELD_INSTANCE&gt;, allow_empty=True)</code></p>
 <ul>
 <li><code>child</code> - A field instance that should be used for validating the values in the dictionary. If this argument is not provided then values in the mapping will not be validated.</li>
+<li><code>allow_empty</code> - Designates if empty dictionaries are allowed.</li>
 </ul>
 <p>For example, to create a field that validates a mapping of strings to strings, you would write something like this:</p>
 <pre><code>document = DictField(child=CharField())
@@ -956,11 +869,20 @@ Django's regular <a href="https://docs.djangoproject.com/en/stable/ref/settings/
 <pre><code>class DocumentField(DictField):
     child = CharField()
 </code></pre>
+<h2 id="hstorefield"><a class="toclink" href="#hstorefield">HStoreField</a></h2>
+<p>A preconfigured <code>DictField</code> that is compatible with Django's postgres <code>HStoreField</code>.</p>
+<p><strong>Signature</strong>: <code>HStoreField(child=&lt;A_FIELD_INSTANCE&gt;, allow_empty=True)</code></p>
+<ul>
+<li><code>child</code> - A field instance that is used for validating the values in the dictionary. The default child field accepts both empty strings and null values.</li>
+<li><code>allow_empty</code> - Designates if empty dictionaries are allowed.</li>
+</ul>
+<p>Note that the child field <strong>must</strong> be an instance of <code>CharField</code>, as the hstore extension stores values as strings.</p>
 <h2 id="jsonfield"><a class="toclink" href="#jsonfield">JSONField</a></h2>
 <p>A field class that validates that the incoming data structure consists of valid JSON primitives. In its alternate binary mode, it will represent and validate JSON-encoded binary strings.</p>
-<p><strong>Signature</strong>: <code>JSONField(binary)</code></p>
+<p><strong>Signature</strong>: <code>JSONField(binary, encoder)</code></p>
 <ul>
 <li><code>binary</code> - If set to <code>True</code> then the field will output and validate a JSON encoded string, rather than a primitive data structure. Defaults to <code>False</code>.</li>
+<li><code>encoder</code> - Use this JSON encoder to serialize input object. Defaults to <code>None</code>.</li>
 </ul>
 <hr />
 <h1 id="miscellaneous-fields"><a class="toclink" href="#miscellaneous-fields">Miscellaneous fields</a></h1>
@@ -972,7 +894,7 @@ Django's regular <a href="https://docs.djangoproject.com/en/stable/ref/settings/
 <pre><code>class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ('id', 'account_name', 'has_expired')
+        fields = ['id', 'account_name', 'has_expired']
 </code></pre>
 <h2 id="hiddenfield"><a class="toclink" href="#hiddenfield">HiddenField</a></h2>
 <p>A field class that does not take a value based on user input, but instead takes its value from a default value or callable.</p>
@@ -1012,10 +934,10 @@ class UserSerializer(serializers.ModelSerializer):
 <p>If you want to create a custom field, you'll need to subclass <code>Field</code> and then override either one or both of the <code>.to_representation()</code> and <code>.to_internal_value()</code> methods.  These two methods are used to convert between the initial datatype, and a primitive, serializable datatype. Primitive datatypes will typically be any of a number, string, boolean, <code>date</code>/<code>time</code>/<code>datetime</code> or <code>None</code>. They may also be any list or dictionary like object that only contains other primitive objects. Other types might be supported, depending on the renderer that you are using.</p>
 <p>The <code>.to_representation()</code> method is called to convert the initial datatype into a primitive, serializable datatype.</p>
 <p>The <code>to_internal_value()</code> method is called to restore a primitive datatype into its internal python representation. This method should raise a <code>serializers.ValidationError</code> if the data is invalid.</p>
-<p>Note that the <code>WritableField</code> class that was present in version 2.x no longer exists. You should subclass <code>Field</code> and override <code>to_internal_value()</code> if the field supports data input.</p>
 <h2 id="examples"><a class="toclink" href="#examples">Examples</a></h2>
+<h3 id="a-basic-custom-field"><a class="toclink" href="#a-basic-custom-field">A Basic Custom Field</a></h3>
 <p>Let's look at an example of serializing a class that represents an RGB color value:</p>
-<pre><code>class Color(object):
+<pre><code>class Color:
     """
     A color represented in the RGB colorspace.
     """
@@ -1028,8 +950,8 @@ class ColorField(serializers.Field):
     """
     Color objects are serialized into 'rgb(#, #, #)' notation.
     """
-    def to_representation(self, obj):
-        return "rgb(%d, %d, %d)" % (obj.red, obj.green, obj.blue)
+    def to_representation(self, value):
+        return "rgb(%d, %d, %d)" % (value.red, value.green, value.blue)
 
     def to_internal_value(self, data):
         data = data.strip('rgb(').rstrip(')')
@@ -1039,22 +961,22 @@ class ColorField(serializers.Field):
 <p>By default field values are treated as mapping to an attribute on the object.  If you need to customize how the field value is accessed and set you need to override <code>.get_attribute()</code> and/or <code>.get_value()</code>.</p>
 <p>As an example, let's create a field that can be used to represent the class name of the object being serialized:</p>
 <pre><code>class ClassNameField(serializers.Field):
-    def get_attribute(self, obj):
+    def get_attribute(self, instance):
         # We pass the object instance onto `to_representation`,
         # not just the field attribute.
-        return obj
+        return instance
 
-    def to_representation(self, obj):
+    def to_representation(self, value):
         """
-        Serialize the object's class name.
+        Serialize the value's class name.
         """
-        return obj.__class__.__name__
+        return value.__class__.__name__
 </code></pre>
-<h4 id="raising-validation-errors"><a class="toclink" href="#raising-validation-errors">Raising validation errors</a></h4>
+<h3 id="raising-validation-errors"><a class="toclink" href="#raising-validation-errors">Raising validation errors</a></h3>
 <p>Our <code>ColorField</code> class above currently does not perform any data validation.
 To indicate invalid data, we should raise a <code>serializers.ValidationError</code>, like so:</p>
 <pre><code>def to_internal_value(self, data):
-    if not isinstance(data, six.text_type):
+    if not isinstance(data, str):
         msg = 'Incorrect type. Expected a string, but got %s'
         raise ValidationError(msg % type(data).__name__)
 
@@ -1077,7 +999,7 @@ To indicate invalid data, we should raise a <code>serializers.ValidationError</c
 }
 
 def to_internal_value(self, data):
-    if not isinstance(data, six.text_type):
+    if not isinstance(data, str):
         self.fail('incorrect_type', input_type=type(data).__name__)
 
     if not re.match(r'^rgb\([0-9]+,[0-9]+,[0-9]+\)$', data):
@@ -1091,68 +1013,218 @@ def to_internal_value(self, data):
 
     return Color(red, green, blue)
 </code></pre>
-<p>This style keeps you error messages more cleanly separated from your code, and should be preferred.</p>
+<p>This style keeps your error messages cleaner and more separated from your code, and should be preferred.</p>
+<h3 id="using-source"><a class="toclink" href="#using-source">Using <code>source='*'</code></a></h3>
+<p>Here we'll take an example of a <em>flat</em> <code>DataPoint</code> model with <code>x_coordinate</code> and <code>y_coordinate</code> attributes.</p>
+<pre><code>class DataPoint(models.Model):
+    label = models.CharField(max_length=50)
+    x_coordinate = models.SmallIntegerField()
+    y_coordinate = models.SmallIntegerField()
+</code></pre>
+<p>Using a custom field and <code>source='*'</code> we can provide a nested representation of
+the coordinate pair:</p>
+<pre><code>class CoordinateField(serializers.Field):
+
+    def to_representation(self, value):
+        ret = {
+            "x": value.x_coordinate,
+            "y": value.y_coordinate
+        }
+        return ret
+
+    def to_internal_value(self, data):
+        ret = {
+            "x_coordinate": data["x"],
+            "y_coordinate": data["y"],
+        }
+        return ret
+
+
+class DataPointSerializer(serializers.ModelSerializer):
+    coordinates = CoordinateField(source='*')
+
+    class Meta:
+        model = DataPoint
+        fields = ['label', 'coordinates']
+</code></pre>
+<p>Note that this example doesn't handle validation. Partly for that reason, in a
+real project, the coordinate nesting might be better handled with a nested serializer
+using <code>source='*'</code>, with two <code>IntegerField</code> instances, each with their own <code>source</code>
+pointing to the relevant field.</p>
+<p>The key points from the example, though, are:</p>
+<ul>
+<li>
+<p><code>to_representation</code> is passed the entire <code>DataPoint</code> object and must map from that
+to the desired output.</p>
+<pre><code>&gt;&gt;&gt; instance = DataPoint(label='Example', x_coordinate=1, y_coordinate=2)
+&gt;&gt;&gt; out_serializer = DataPointSerializer(instance)
+&gt;&gt;&gt; out_serializer.data
+ReturnDict([('label', 'Example'), ('coordinates', {'x': 1, 'y': 2})])
+</code></pre>
+</li>
+<li>
+<p>Unless our field is to be read-only, <code>to_internal_value</code> must map back to a dict
+suitable for updating our target object. With <code>source='*'</code>, the return from
+<code>to_internal_value</code> will update the root validated data dictionary, rather than a single key.</p>
+<pre><code>&gt;&gt;&gt; data = {
+...     "label": "Second Example",
+...     "coordinates": {
+...         "x": 3,
+...         "y": 4,
+...     }
+... }
+&gt;&gt;&gt; in_serializer = DataPointSerializer(data=data)
+&gt;&gt;&gt; in_serializer.is_valid()
+True
+&gt;&gt;&gt; in_serializer.validated_data
+OrderedDict([('label', 'Second Example'),
+             ('y_coordinate', 4),
+             ('x_coordinate', 3)])
+</code></pre>
+</li>
+</ul>
+<p>For completeness lets do the same thing again but with the nested serializer
+approach suggested above:</p>
+<pre><code>class NestedCoordinateSerializer(serializers.Serializer):
+    x = serializers.IntegerField(source='x_coordinate')
+    y = serializers.IntegerField(source='y_coordinate')
+
+
+class DataPointSerializer(serializers.ModelSerializer):
+    coordinates = NestedCoordinateSerializer(source='*')
+
+    class Meta:
+        model = DataPoint
+        fields = ['label', 'coordinates']
+</code></pre>
+<p>Here the mapping between the target and source attribute pairs (<code>x</code> and
+<code>x_coordinate</code>, <code>y</code> and <code>y_coordinate</code>) is handled in the <code>IntegerField</code>
+declarations. It's our <code>NestedCoordinateSerializer</code> that takes <code>source='*'</code>.</p>
+<p>Our new <code>DataPointSerializer</code> exhibits the same behaviour as the custom field
+approach.</p>
+<p>Serializing:</p>
+<pre><code>&gt;&gt;&gt; out_serializer = DataPointSerializer(instance)
+&gt;&gt;&gt; out_serializer.data
+ReturnDict([('label', 'testing'),
+            ('coordinates', OrderedDict([('x', 1), ('y', 2)]))])
+</code></pre>
+<p>Deserializing:</p>
+<pre><code>&gt;&gt;&gt; in_serializer = DataPointSerializer(data=data)
+&gt;&gt;&gt; in_serializer.is_valid()
+True
+&gt;&gt;&gt; in_serializer.validated_data
+OrderedDict([('label', 'still testing'),
+             ('x_coordinate', 3),
+             ('y_coordinate', 4)])
+</code></pre>
+<p>But we also get the built-in validation for free:</p>
+<pre><code>&gt;&gt;&gt; invalid_data = {
+...     "label": "still testing",
+...     "coordinates": {
+...         "x": 'a',
+...         "y": 'b',
+...     }
+... }
+&gt;&gt;&gt; invalid_serializer = DataPointSerializer(data=invalid_data)
+&gt;&gt;&gt; invalid_serializer.is_valid()
+False
+&gt;&gt;&gt; invalid_serializer.errors
+ReturnDict([('coordinates',
+             {'x': ['A valid integer is required.'],
+              'y': ['A valid integer is required.']})])
+</code></pre>
+<p>For this reason, the nested serializer approach would be the first to try. You
+would use the custom field approach when the nested serializer becomes infeasible
+or overly complex.</p>
 <h1 id="third-party-packages"><a class="toclink" href="#third-party-packages">Third party packages</a></h1>
 <p>The following third party packages are also available.</p>
 <h2 id="drf-compound-fields"><a class="toclink" href="#drf-compound-fields">DRF Compound Fields</a></h2>
 <p>The <a href="https://drf-compound-fields.readthedocs.io">drf-compound-fields</a> package provides "compound" serializer fields, such as lists of simple values, which can be described by other fields rather than serializers with the <code>many=True</code> option. Also provided are fields for typed dictionaries and values that can be either a specific type or a list of items of that type.</p>
 <h2 id="drf-extra-fields"><a class="toclink" href="#drf-extra-fields">DRF Extra Fields</a></h2>
 <p>The <a href="https://github.com/Hipo/drf-extra-fields">drf-extra-fields</a> package provides extra serializer fields for REST framework, including <code>Base64ImageField</code> and <code>PointField</code> classes.</p>
-<h2 id="djangrestframework-recursive"><a class="toclink" href="#djangrestframework-recursive">djangrestframework-recursive</a></h2>
+<h2 id="djangorestframework-recursive"><a class="toclink" href="#djangorestframework-recursive">djangorestframework-recursive</a></h2>
 <p>the <a href="https://github.com/heywbj/django-rest-framework-recursive">djangorestframework-recursive</a> package provides a <code>RecursiveField</code> for serializing and deserializing recursive structures</p>
 <h2 id="django-rest-framework-gis"><a class="toclink" href="#django-rest-framework-gis">django-rest-framework-gis</a></h2>
 <p>The <a href="https://github.com/djangonauts/django-rest-framework-gis">django-rest-framework-gis</a> package provides geographic addons for django rest framework like a  <code>GeometryField</code> field and a GeoJSON serializer.</p>
 <h2 id="django-rest-framework-hstore"><a class="toclink" href="#django-rest-framework-hstore">django-rest-framework-hstore</a></h2>
-<p>The <a href="https://github.com/djangonauts/django-rest-framework-hstore">django-rest-framework-hstore</a> package provides an <code>HStoreField</code> to support <a href="https://github.com/djangonauts/django-hstore">django-hstore</a> <code>DictionaryField</code> model field.</p>
-            
+<p>The <a href="https://github.com/djangonauts/django-rest-framework-hstore">django-rest-framework-hstore</a> package provides an <code>HStoreField</code> to support <a href="https://github.com/djangonauts/django-hstore">django-hstore</a> <code>DictionaryField</code> model field.</p></div>
+            </div>
+        </div>
 
-          </div> <!--/span-->
-        </div> <!--/row-->
-      </div> <!--/.fluid-container-->
-    </div> <!--/.body content-->
-    <div id="push"></div>
-  </div> <!--/.wrapper -->
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
 
-  <footer class="span12">
-    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
-    </p>
-  </footer>
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
-  <!-- Le javascript
-  ================================================== -->
-  <!-- Placed at the end of the document so the pages load faster -->
-  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
-  <script src="../../js/jquery-1.8.1-min.js"></script>
-  <script src="../../js/prettify-1.0.js"></script>
-  <script src="../../js/bootstrap-2.1.1-min.js"></script>
-  <script src="../../js/theme.js"></script>
-
-  <script>var base_url = '../..';</script>
-  
-  <script src="../../search/main.js" defer></script>
-  
-
-  <script>
-    var shiftWindow = function() {
-      scrollBy(0, -50)
-    };
-
-    if (location.hash) shiftWindow();
-    window.addEventListener("hashchange", shiftWindow);
-
-    $('.dropdown-menu').on('click touchstart', function(event) {
-      event.stopPropagation();
-    });
-
-    // Dynamically force sidenav/dropdown to no higher than browser window
-    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-
-    $(function() {
-      $(window).resize(function() {
-        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
-      });
-    });
-  </script>
-</body>
-
+    </body>
 </html>
