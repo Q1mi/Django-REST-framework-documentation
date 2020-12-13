@@ -1,378 +1,464 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <meta name="author" content="Q1mi">
-        <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/community/contributing/">
-        <link rel="shortcut icon" href="../../img/favicon.ico">
-        <title>Contributing to REST framework - Django REST framework中文站点</title>
-        <link href="../../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../../css/font-awesome.min.css" rel="stylesheet">
-        <link href="../../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<html lang="zh-CN">
 
-        <script src="../../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
-    </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Contributing to REST framework - Django REST framework中文站点</title>
+  <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/community/contributing/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Contributing to REST framework">
+  <meta name="author" content="李文周">
 
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="../..">Django REST framework中文站点</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <!-- Le styles -->
+  <link href="../../css/prettify.css" rel="stylesheet">
+  <link href="../../css/bootstrap.css" rel="stylesheet">
+  <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="../../css/default.css" rel="stylesheet">
 
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
-                                <a href="../.." class="nav-link">主页</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../tutorial/quickstart_zh/" class="dropdown-item">Quickstart</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/1-serialization_zh/" class="dropdown-item">1 - Serialization</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/2-requests-and-responses_zh/" class="dropdown-item">2 - Requests and responses</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/3-class-based-views_zh/" class="dropdown-item">3 - Class based views</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/4-authentication-and-permissions_zh/" class="dropdown-item">4 - Authentication and permissions</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/" class="dropdown-item">5 - Relationships and hyperlinked APIs</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/6-viewsets-and-routers_zh/" class="dropdown-item">6 - Viewsets and routers</a>
-</li>
-                                    
-<li>
-    <a href="../../tutorial/7-schemas-and-client-libraries_zh/" class="dropdown-item">7 - Schemas and client libraries</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../api-guide/requests_zh/" class="dropdown-item">Requests</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/responses_zh/" class="dropdown-item">Responses</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/views_zh/" class="dropdown-item">Views</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/generic-views_zh/" class="dropdown-item">Generic views</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/viewsets_zh/" class="dropdown-item">Viewsets</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/routers_zh/" class="dropdown-item">Routers</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/parsers_zh/" class="dropdown-item">Parsers</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/renderers_zh/" class="dropdown-item">Renderers</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/serializers_zh/" class="dropdown-item">Serializers</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/fields/" class="dropdown-item">Serializer fields</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/relations/" class="dropdown-item">Serializer relations</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/validators/" class="dropdown-item">Validators</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/authentication_zh/" class="dropdown-item">Authentication</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/permissions_zh/" class="dropdown-item">Permissions</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/throttling/" class="dropdown-item">Throttling</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/filtering_zh/" class="dropdown-item">Filtering</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/pagination/" class="dropdown-item">Pagination</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/versioning_zh/" class="dropdown-item">Versioning</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/content-negotiation/" class="dropdown-item">Content negotiation</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/metadata/" class="dropdown-item">Metadata</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/schemas/" class="dropdown-item">Schemas</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/format-suffixes/" class="dropdown-item">Format suffixes</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/reverse/" class="dropdown-item">Returning URLs</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/exceptions/" class="dropdown-item">Exceptions</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/status-codes/" class="dropdown-item">Status codes</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/testing/" class="dropdown-item">Testing</a>
-</li>
-                                    
-<li>
-    <a href="../../api-guide/settings/" class="dropdown-item">Settings</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../../topics/documenting-your-api/" class="dropdown-item">Documenting your API</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/api-clients/" class="dropdown-item">API Clients</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/internationalization/" class="dropdown-item">Internationalization</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/ajax-csrf-cors_zh/" class="dropdown-item">AJAX, CSRF & CORS</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/html-and-forms/" class="dropdown-item">HTML & Forms</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/browser-enhancements/" class="dropdown-item">Browser Enhancements</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/browsable-api/" class="dropdown-item">The Browsable API</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/rest-hypermedia-hateoas/" class="dropdown-item">REST, Hypermedia & HATEOAS</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/third-party-packages.md" class="dropdown-item">Third Party Packages</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/tutorials-and-resources.md" class="dropdown-item">Tutorials and Resources</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/contributing.md" class="dropdown-item">Contributing to REST framework</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/project-management.md" class="dropdown-item">Project management</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/3.0-announcement.md" class="dropdown-item">3.0 Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/3.1-announcement.md" class="dropdown-item">3.1 Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/3.2-announcement.md" class="dropdown-item">3.2 Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/3.3-announcement.md" class="dropdown-item">3.3 Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/3.4-announcement.md" class="dropdown-item">3.4 Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/3.5-announcement.md" class="dropdown-item">3.5 Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/kickstarter-announcement.md" class="dropdown-item">Kickstarter Announcement</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/mozilla-grant.md" class="dropdown-item">Mozilla Grant</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/funding.md" class="dropdown-item">Funding</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/release-notes.md" class="dropdown-item">Release Notes</a>
-</li>
-                                    
-<li>
-    <a href="../../topics/jobs.md" class="dropdown-item">Jobs</a>
-</li>
-                                </ul>
-                            </li>
-                        </ul>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
-                            </a>
-                        </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/Q1mi/Django-REST-framework-documentation/edit/master/docs/community/contributing.md" class="nav-link"><i class="fa fa-github"></i> Edit on GitHub</a>
-                            </li>
-                    </ul>
-                </div>
-            </div>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-18852272-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+  <style>
+  #sidebarInclude img {
+      margin-bottom: 10px;
+  }
+  #sidebarInclude a.promo {
+      color: black;
+  }
+    @media (max-width: 767px) {
+      div.promo {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body onload="prettyPrint()" class="-page">
+
+  <div class="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+            Next <i class="icon-arrow-right icon-white"></i>
+          </a>
+          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+            <i class="icon-arrow-left icon-white"></i> Previous
+          </a>
+          <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="https://q1mi.github.io/Django-REST-framework-documentation/">Django REST framework 中文文档</a>
+          <div class="nav-collapse collapse">
+            
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+               
+              <li >
+                <a href="../..">主页</a>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">教程 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../tutorial/quickstart_zh/">Quickstart</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/1-serialization_zh/">1 - Serialization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/2-requests-and-responses_zh/">2 - Requests and responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/3-class-based-views_zh/">3 - Class based views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/4-authentication-and-permissions_zh/">4 - Authentication and permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/5-relationships-and-hyperlinked-apis_zh/">5 - Relationships and hyperlinked APIs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/6-viewsets-and-routers_zh/">6 - Viewsets and routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../tutorial/7-schemas-and-client-libraries_zh/">7 - Schemas and client libraries</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../api-guide/requests_zh/">Requests</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/responses_zh/">Responses</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/views_zh/">Views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/generic-views_zh/">Generic views</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/viewsets_zh/">Viewsets</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/routers_zh/">Routers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/parsers_zh/">Parsers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/renderers_zh/">Renderers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/serializers_zh/">Serializers</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/fields/">Serializer fields</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/relations/">Serializer relations</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/validators/">Validators</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/authentication_zh/">Authentication</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/permissions_zh/">Permissions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/throttling/">Throttling</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/filtering_zh/">Filtering</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/pagination/">Pagination</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/versioning_zh/">Versioning</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/content-negotiation/">Content negotiation</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/metadata/">Metadata</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/schemas/">Schemas</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/format-suffixes/">Format suffixes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/reverse/">Returning URLs</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/exceptions/">Exceptions</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/status-codes/">Status codes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/testing/">Testing</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../api-guide/settings/">Settings</a>
+                  </li>
+                  
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">主题 <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
+                  <li >
+                    <a href="../../topics/documenting-your-api/">Documenting your API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/api-clients/">API Clients</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/internationalization/">Internationalization</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/ajax-csrf-cors_zh/">AJAX, CSRF & CORS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/html-and-forms/">HTML & Forms</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browser-enhancements/">Browser Enhancements</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/browsable-api/">The Browsable API</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/third-party-packages.md">Third Party Packages</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/tutorials-and-resources.md">Tutorials and Resources</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/contributing.md">Contributing to REST framework</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/project-management.md">Project management</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.0-announcement.md">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.1-announcement.md">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.2-announcement.md">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.3-announcement.md">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.4-announcement.md">3.4 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/3.5-announcement.md">3.5 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/kickstarter-announcement.md">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/mozilla-grant.md">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/funding.md">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/release-notes.md">Release Notes</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../topics/jobs.md">Jobs</a>
+                  </li>
+                  
+                </ul>
+              </li>
+               
+
+            </ul>
+            
+          </div>
+          <!--/.nav-collapse -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="body-content">
+      <div class="container-fluid">
+        <!-- Search Modal -->
+        <div id="mkdocs_search_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3 id="myModalLabel">Documentation search</h3>
+          </div>
+
+          <div class="modal-body">
+            <form role="form" autocomplete="off">
+              <div class="form-group">
+                <input type="text" name="q" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+              </div>
+            </form>
+            <div id="mkdocs-search-results"></div>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
+        <div class="row-fluid">
+          <div class="span3">
+            <div id="table-of-contents">
+              <ul class="nav nav-list side-nav well sidebar-nav-fixed">
+                
 
-    
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
-        <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#contributing-to-rest-framework" class="nav-link">Contributing to REST framework</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#community" class="nav-link">Community</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#code-of-conduct" class="nav-link">Code of conduct</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#issues" class="nav-link">Issues</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#triaging-issues" class="nav-link">Triaging issues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#development" class="nav-link">Development</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#testing" class="nav-link">Testing</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#pull-requests" class="nav-link">Pull requests</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#managing-compatibility-issues" class="nav-link">Managing compatibility issues</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#documentation" class="nav-link">Documentation</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#building-the-documentation" class="nav-link">Building the documentation</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#language-style" class="nav-link">Language style</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#markdown-style" class="nav-link">Markdown style</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
+                
+                  <li class="main">
+                    <a href="#contributing-to-rest-framework">Contributing to REST framework</a>
+                  </li>
 
-<h1 id="contributing-to-rest-framework"><a class="toclink" href="#contributing-to-rest-framework">Contributing to REST framework</a></h1>
+                  
+                    <li>
+                      <a href="#community">Community</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#code-of-conduct">Code of conduct</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#issues">Issues</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#triaging-issues">Triaging issues</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#development">Development</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#testing">Testing</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#pull-requests">Pull requests</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#managing-compatibility-issues">Managing compatibility issues</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#documentation">Documentation</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#building-the-documentation">Building the documentation</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#language-style">Language style</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#markdown-style">Markdown style</a>
+                    </li>
+                  
+                
+
+                  <div class="promo">
+                    <hr />
+                    <div id="sidebarInclude" style="display: none;"></div>
+                    <div class="my-qr">
+                      <p style="color: #A30000;text-align: center;font-weight: bold">扫一扫 支持我</p>
+                      <div style="max-width: 160px;margin: 0 auto">
+                        <p style="text-align: center;margin-bottom: 5px;">支付宝</p>
+                        <img src="../../img/zfb_qr.jpg" alt="支付宝二维码">
+                      </div>
+                      <div style="max-width: 160px;margin: 10px auto 0">
+                        <p style="text-align: center;margin-bottom: 5px">微信</p>
+                        <img src="../../img/wx_qr.jpg" alt="微信二维码">
+                      </div>
+                    </div>
+                  </div>
+              </ul>
+
+            </div>
+          </div>
+
+          <div id="main-content" class="span9">
+            
+              
+
+              <h1 id="contributing-to-rest-framework"><a class="toclink" href="#contributing-to-rest-framework">Contributing to REST framework</a></h1>
 <blockquote>
 <p>The world can only really be changed one piece at a time.  The art is picking that piece.</p>
 <p>&mdash; <a href="https://www.w3.org/People/Berners-Lee/FAQ.html">Tim Berners-Lee</a></p>
@@ -512,84 +598,56 @@ More text...
 **Note:** A useful documentation note.
 
 ---
-</code></pre></div>
-            </div>
-        </div>
+</code></pre>
+            
 
-        <footer class="col-md-12">
-            <hr>
-            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
-        </footer>
-        <script>
-            var base_url = "../..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../../js/base.js" defer></script>
-        <script src="../../search/main.js" defer></script>
+          </div> <!--/span-->
+        </div> <!--/row-->
+      </div> <!--/.fluid-container-->
+    </div> <!--/.body content-->
+    <div id="push"></div>
+  </div> <!--/.wrapper -->
 
-        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
+  <footer class="span12">
+    <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.
+    </p>
+  </footer>
 
-    </body>
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script async src="https://fund.django-rest-framework.org/sidebar_include.js"></script>
+  <script src="../../js/jquery-1.8.1-min.js"></script>
+  <script src="../../js/prettify-1.0.js"></script>
+  <script src="../../js/bootstrap-2.1.1-min.js"></script>
+  <script src="../../js/theme.js"></script>
+
+  <script>var base_url = '../..';</script>
+  
+  <script src="../../search/main.js" defer></script>
+  
+
+  <script>
+    var shiftWindow = function() {
+      scrollBy(0, -50)
+    };
+
+    if (location.hash) shiftWindow();
+    window.addEventListener("hashchange", shiftWindow);
+
+    $('.dropdown-menu').on('click touchstart', function(event) {
+      event.stopPropagation();
+    });
+
+    // Dynamically force sidenav/dropdown to no higher than browser window
+    $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+
+    $(function() {
+      $(window).resize(function() {
+        $('.side-nav, .dropdown-menu').css('max-height', window.innerHeight - 130);
+      });
+    });
+  </script>
+</body>
+
 </html>
