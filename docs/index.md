@@ -18,6 +18,7 @@ QQ群号：930578836
 * [ScienceYuan](https://github.com/ScienceYuan)
 * [leveleven](https://github.com/leveleven)
 * [Liniian](https://github.com/Liniian)
+* [belingud](https://github.com/belingud)
 
 ## 以下章节已完成翻译
 
@@ -49,6 +50,7 @@ QQ群号：930578836
 * [Pagination](/Django-REST-framework-documentation/api-guide/pagination_zh/)
 * [Authentication](/Django-REST-framework-documentation/api-guide/authentication_zh/)
 * [Permissions](/Django-REST-framework-documentation/api-guide/permissions_zh/)
+* [Caching](/Django-REST-framework-documentation/api-guide/caching_zh/)
 * [Versioning](/Django-REST-framework-documentation/api-guide/versioning_zh/)
 * [Content negotiation](/Django-REST-framework-documentation/api-guide/content-negotiation_zh/)
 * [Format suffixes](/Django-REST-framework-documentation/api-guide/format-suffixes_zh/)

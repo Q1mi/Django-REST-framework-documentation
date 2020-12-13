@@ -39,6 +39,7 @@ pages:
     - 'Validators': 'api-guide/validators.md'
     - 'Authentication': 'api-guide/authentication_zh.md'
     - 'Permissions': 'api-guide/permissions_zh.md'
+    - 'Caching': 'api-guide/caching_zh.md'
     - 'Throttling': 'api-guide/throttling.md'
     - 'Filtering': 'api-guide/filtering_zh.md'
     - 'Pagination': 'api-guide/pagination.md'
