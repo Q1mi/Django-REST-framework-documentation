@@ -4,11 +4,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Requests - Django REST framework中文站点</title>
+  <title>Exceptions - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/requests_zh/" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/exceptions_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Requests">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Exceptions">
   <meta name="author" content="李文周">
 
   <!-- Le styles -->
@@ -58,10 +58,10 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../responses_zh/">
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../status-codes_zh/">
             Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../../tutorial/7-schemas-and-client-libraries_zh/">
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../reverse/">
             <i class="icon-arrow-left icon-white"></i> Previous
           </a>
           <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
@@ -123,8 +123,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   
-                  <li class="active" >
-                    <a href="./">Requests</a>
+                  <li >
+                    <a href="../requests_zh/">Requests</a>
                   </li>
                   
                   <li >
@@ -219,8 +219,8 @@
                     <a href="../reverse/">Returning URLs</a>
                   </li>
                   
-                  <li >
-                    <a href="../exceptions_zh/">Exceptions</a>
+                  <li class="active" >
+                    <a href="./">Exceptions</a>
                   </li>
                   
                   <li >
@@ -378,83 +378,81 @@
 
                 
                   <li class="main">
-                    <a href="#requests">Requests（请求）</a>
-                  </li>
-
-                  
-                
-                  <li class="main">
-                    <a href="#request-parsing">Request parsing（请求解析）</a>
+                    <a href="#exceptions">Exceptions</a>
                   </li>
 
                   
                     <li>
-                      <a href="#data">.data</a>
+                      <a href="#rest-framework-views">在REST framework views中的异常处理</a>
                     </li>
                   
                     <li>
-                      <a href="#query_params">.query_params</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#parsers">.parsers</a>
+                      <a href="#_1">自定义异常处理</a>
                     </li>
                   
                 
                   <li class="main">
-                    <a href="#content-negotiation">Content negotiation（内容协商）</a>
+                    <a href="#api">API 参考</a>
                   </li>
 
                   
                     <li>
-                      <a href="#accepted_renderer">.accepted_renderer</a>
+                      <a href="#apiexception">APIException</a>
                     </li>
                   
                     <li>
-                      <a href="#accepted_media_type">.accepted_media_type</a>
+                      <a href="#parseerror">ParseError</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#authenticationfailed">AuthenticationFailed</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#notauthenticated">NotAuthenticated</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#permissiondenied">PermissionDenied</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#notfound">NotFound</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#methodnotallowed">MethodNotAllowed</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#notacceptable">NotAcceptable</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#unsupportedmediatype">UnsupportedMediaType</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#throttled">Throttled</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#validationerror">ValidationError</a>
                     </li>
                   
                 
                   <li class="main">
-                    <a href="#authentication">Authentication（认证）</a>
+                    <a href="#generic-error-views">Generic Error Views</a>
                   </li>
 
                   
                     <li>
-                      <a href="#user">.user</a>
+                      <a href="#rest_frameworkexceptionsserver_error">rest_framework.exceptions.server_error</a>
                     </li>
                   
                     <li>
-                      <a href="#auth">.auth</a>
+                      <a href="#rest_frameworkexceptionsbad_request">rest_framework.exceptions.bad_request</a>
                     </li>
-                  
-                    <li>
-                      <a href="#authenticators">.authenticators</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#browser-enhancements">Browser enhancements（浏览器增强）</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#method">.method</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#content_type">.content_type</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#stream">.stream</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#standard-httprequest-attributeshttprequest">Standard HttpRequest attributes（标准HttpRequest属性）</a>
-                  </li>
-
                   
                 
 
@@ -481,76 +479,186 @@
           <div id="main-content" class="span9">
             
               
+                
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/exceptions.py">
+                    <span class="label label-info">exceptions.py</span>
+                  </a>
+                
+              
 
-              <h1 id="requests"><a class="toclink" href="#requests">Requests（请求）</a></h1>
+              <h1 id="exceptions"><a class="toclink" href="#exceptions">Exceptions</a></h1>
 <blockquote>
-<p>如果你正在做基于REST的Web服务...你最好忽略request.POST。</p>
-<p>&mdash; Malcom Tredinnick, <a href="https://groups.google.com/d/topic/django-developers/dxI4qVzrBY4/discussion">Django developers group</a></p>
+<p>异常... 让错误处理清晰地位于程序架构的中心位置或高层位置。</p>
+<p>&mdash; Doug Hellmann, <a href="https://doughellmann.com/blog/2009/06/19/python-exception-handling-techniques/">Python 异常处理方法</a></p>
 </blockquote>
-<p>REST framework的<code>Request</code>类扩展了标准的<code>HttpRequest</code>，添加对REST framework的灵活请求解析和请求身份验证的支持。</p>
-<hr />
-<h1 id="request-parsing"><a class="toclink" href="#request-parsing">Request parsing（请求解析）</a></h1>
-<p>REST framework的请求对象提供灵活的请求解析，允许你以与通常处理表单数据相同的方式使用JSON数据或其他媒体类型处理请求。</p>
-<h2 id="data"><a class="toclink" href="#data">.data</a></h2>
-<p><code>request.data</code> 返回请求正文的解析内容。这与标准的 <code>request.POST</code> 和 <code>request.FILES</code> 属性类似，除了下面的：</p>
+<h2 id="rest-framework-views"><a class="toclink" href="#rest-framework-views">在REST framework views中的异常处理</a></h2>
+<p>REST framework的视图能处理各种各样的异常，能处理并返回合适的错误响应。</p>
+<p>以下异常会被处理：</p>
 <ul>
-<li>它包括所有解析的内容, 包括 <em>文件或非文件</em> 输入。</li>
-<li>它支持解析除<code>POST</code>之外的HTTP方法的内容，这意味着你可以访问<code>PUT</code>和<code>PATCH</code>请求的内容。</li>
-<li>它支持REST framework灵活的请求解析，而不仅仅支持表单数据。 例如，你可以以与处理传入表单数据相同的方式处理传入的JSON数据。</li>
+<li>在REST framework内部产生的<code>APIException</code> 的子类异常。</li>
+<li>原生Django的<code>Http404</code> 异常.</li>
+<li>原生Django的<code>PermissionDenied</code> 异常.</li>
 </ul>
-<p>更多详细信息请参阅<a href="../parsers_zh/">parsers documentation</a>.</p>
-<h2 id="query_params"><a class="toclink" href="#query_params">.query_params</a></h2>
-<p><code>request.query_params</code>是<code>request.GET</code>的一个更准确的同义词。</p>
-<p>为了让你的代码清晰明了, 我们建议使用 <code>request.query_params</code> 而不是Django标准的<code>request.GET</code>。这样做有助于保持代码库更加正确和明了——任何HTTP方法类型可能包括查询参数，而不仅仅是<code>GET</code>请求。</p>
-<h2 id="parsers"><a class="toclink" href="#parsers">.parsers</a></h2>
-<p><code>APIView</code>类或<code>@api_view</code>装饰器将根据view中设置的<code>parser_classes</code>集合或基于<code>DEFAULT_PARSER_CLASSES</code>设置，确保此属性自动设置为<code>Parser</code>实例列表。</p>
-<p>你通常并不需要访问这个属性。</p>
+<p>在上述各类情况中，REST framework会返回一个带有合适状态码与content-type的响应。响应正文(Response body)会包含有关报错的任何额外信息。</p>
+<p>大多数报错响应都会在响应正文里包含一个<code>detail</code>。</p>
+<p>例如，下面的请求：</p>
+<pre><code>DELETE http://api.example.com/foo/bar HTTP/1.1
+Accept: application/json
+</code></pre>
+<p>就可能会收到一个报错响应，表示<code>DELETE</code>方法在该资源上不可使用。</p>
+<pre><code>HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+Content-Length: 42
+
+{"detail": "Method 'DELETE' not allowed."}
+</code></pre>
+<p>验证类的报错在处理上略有不同，他们会把字段名作为keys包含在响应正文中。验证类的报错如果并不是针对特定的字段，则会使用"non_field_error"或者是setting中<code>NON_FIELD_ERRORS_KEY</code>的值作为keys返回。</p>
+<p>一个验证类错误大概是这个样子：</p>
+<pre><code>HTTP/1.1 400 Bad Request
+Content-Type: application/json
+Content-Length: 94
+
+{"amount": ["A valid integer is required."], "description": ["This field may not be blank."]}
+</code></pre>
+<h2 id="_1"><a class="toclink" href="#_1">自定义异常处理</a></h2>
+<p>当然你也可以自己实现自定义异常处理，只需要创建一个异常处理函数即可，它要能够将你API views里引发的异常转换成响应对象。这样你就可以自己控制你API的报错响应的样式了。</p>
+<p>这个函数必须接受一对参数，第一个是需要处理的异常，第二个则是一个字典类型，这个字典需要包含一切额外相关信息，比如当前正在处理的view等。异常处理函数要么返回一个<code>Response</code>对象要么就直接返回<code>None</code>(比如异常无法正常处理的情况下)。如果处理函数返回了<code>None</code>，那么这个异常会继续向上报错，并由Django返回一个标准的HTTP 500的'server error'响应。</p>
+<p>举个例子，你可能想确保你所有的响应正文里都会包含该次请求的HTTP状态码，就像这样：</p>
+<pre><code>HTTP/1.1 405 Method Not Allowed
+Content-Type: application/json
+Content-Length: 62
+
+{"status_code": 405, "detail": "Method 'DELETE' not allowed."}
+</code></pre>
+<p>想要变成这样的响应，你可以写一个像下面这样的异常处理函数：</p>
+<pre><code>from rest_framework.views import exception_handler
+
+def custom_exception_handler(exc, context):
+    # 首先调用REST framework默认的异常处理，
+    # 以获得标准的错误响应。
+    response = exception_handler(exc, context)
+
+    # 接下来将HTTP状态码加到响应中。
+    if response is not None:
+        response.data['status_code'] = response.status_code
+
+    return response
+</code></pre>
+<p>这里默认的处理函数并没有用到参数context，但如果异常处理函数需要更多额外的信息就可以用到。比如需要当前处理异常的view的信息，就可以用<code>context['view']</code>来获取。</p>
+<p>异常处理函数还必须通过settings来配置，设置中的key是<code>EXCEPTION_HANDLER</code>，就像下面这样：</p>
+<pre><code>REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'my_project.my_app.utils.custom_exception_handler'
+}
+</code></pre>
+<p>如果没有特别指出，<code>'EXCEPTION_HANDLER'</code>设置默认使用REST framework提供的标准异常处理：</p>
+<pre><code>REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler'
+}
+</code></pre>
+<p>要注意的是异常处理只会由产生异常的响应调用。它无法处理view直接返回的响应，比如generic views在serializer验证出错时返回的响应<code>HTTP_400_BAD_REQUEST</code>。</p>
+<p>Note that the exception handler will only be called for responses generated by raised exceptions.  It will not be used for any responses returned directly by the view, such as the <code>HTTP_400_BAD_REQUEST</code> responses that are returned by the generic views when serializer validation fails.</p>
 <hr />
-<p><strong>Note:</strong> 如果客户端发送格式错误的内容，则访问<code>request.data</code>可能会引发<code>ParseError</code>。默认情况下REST framework的 <code>APIView</code>类或<code>@api_view</code>装饰器将捕获错误并返回<code>400 Bad Request</code>响应。</p>
-<p>如果客户端发送具有无法解析的呃逆荣类型的请求，则会引发 <code>UnsupportedMediaType</code> 异常, 默认情况下会捕获该异常并返回 <code>415 Unsupported Media Type</code> 响应。</p>
+<h1 id="api"><a class="toclink" href="#api">API 参考</a></h1>
+<h2 id="apiexception"><a class="toclink" href="#apiexception">APIException</a></h2>
+<p><strong>签名:</strong> <code>APIException()</code></p>
+<p>是所有<code>APIView</code>或者<code>@api_view</code>中产生的异常的<strong>基类</strong>。</p>
+<p>如果想自定义一个异常类，首先要继承<code>APIException</code>，然后在该异常类中设置<code>.status_code</code>, <code>.default_detail</code>以及<code>default_code</code>属性。</p>
+<p>举例，如果你的API依赖某个时不时会掉线的第三方服务，你可能想要自己实现一个异常"503 Service Unavailable"的HTTP响应码，你可以这么干：</p>
+<pre><code>from rest_framework.exceptions import APIException
+
+class ServiceUnavailable(APIException):
+    status_code = 503
+    default_detail = 'Service temporarily unavailable, try again later.'
+    default_code = 'service_unavailable'
+</code></pre>
+<h4 id="api_1"><a class="toclink" href="#api_1">检查 API 异常</a></h4>
+<p>有很多属性可以用来检查一个API异常的状态，你可以用这些属性来构建专属你项目的自定义异常。</p>
+<p>可用的属性和方法有：</p>
+<ul>
+<li><code>.detail</code> - 以文字形式返回报错的细节描述。</li>
+<li><code>.get_codes()</code> - 返回报错的标识码。</li>
+<li><code>.get_full_details()</code> - 返回报错的细节描述以及报错的标识码。</li>
+</ul>
+<p>大多数情况下，报错的细节的返回结果很简单：</p>
+<pre><code>&gt;&gt;&gt; print(exc.detail)
+You do not have permission to perform this action.
+&gt;&gt;&gt; print(exc.get_codes())
+permission_denied
+&gt;&gt;&gt; print(exc.get_full_details())
+{'message':'You do not have permission to perform this action.','code':'permission_denied'}
+</code></pre>
+<p>如果是验证类报错，那报错细节就会是一个列表或者字典：</p>
+<pre><code>&gt;&gt;&gt; print(exc.detail)
+{"name":"This field is required.","age":"A valid integer is required."}
+&gt;&gt;&gt; print(exc.get_codes())Zh
+{"name":"required","age":"invalid"}
+&gt;&gt;&gt; print(exc.get_full_details())
+{"name":{"message":"This field is required.","code":"required"},"age":{"message":"A valid integer is required.","code":"invalid"}}
+</code></pre>
+<h2 id="parseerror"><a class="toclink" href="#parseerror">ParseError</a></h2>
+<p><strong>签名:</strong> <code>ParseError(detail=None, code=None)</code></p>
+<p>在访问<code>request.data</code>时，如果请求中包含格式不正确的数据，则该异常会被抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"400 Bad Request"的响应。</p>
+<h2 id="authenticationfailed"><a class="toclink" href="#authenticationfailed">AuthenticationFailed</a></h2>
+<p><strong>签名:</strong> <code>AuthenticationFailed(detail=None, code=None)</code></p>
+<p>当请求包含错误的认证信息时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"401 Unauthenticated"的响应，但也有可能返回状态码为"403 Forbidden"的响应，这个主要取决于当前使用的认证模式。查看<a href="../authentication_zh/">authentication 文档</a>以了解更多细节。</p>
+<h2 id="notauthenticated"><a class="toclink" href="#notauthenticated">NotAuthenticated</a></h2>
+<p><strong>签名:</strong> <code>NotAuthenticated(detail=None, code=None)</code></p>
+<p>当未带认证信息的请求检查权限出错时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"401 Unauthenticated"的响应，但也有可能返回状态码为"403 Forbidden"的响应，这个主要取决于当前使用的认证模式。查看<a href="../authentication_zh/">authentication 文档</a>以了解更多细节。</p>
+<h2 id="permissiondenied"><a class="toclink" href="#permissiondenied">PermissionDenied</a></h2>
+<p><strong>签名:</strong> <code>PermissionDenied(detail=None, code=None)</code></p>
+<p>Raised when an authenticated request fails the permission checks.</p>
+<p>当一个带认证信息的请求检查权限出错时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"403 Forbidden"的响应。</p>
+<h2 id="notfound"><a class="toclink" href="#notfound">NotFound</a></h2>
+<p><strong>签名:</strong> <code>NotFound(detail=None, code=None)</code></p>
+<p>当给定URL的资源不存在的时候抛出。这个异常和Django标准的<code>Http404</code>异常等同。</p>
+<p>默认情况下该异常会返回HTTP状态码为"404 Not Found"的响应。</p>
+<h2 id="methodnotallowed"><a class="toclink" href="#methodnotallowed">MethodNotAllowed</a></h2>
+<p><strong>签名:</strong> <code>MethodNotAllowed(method, detail=None, code=None)</code></p>
+<p>当一个请求产生且没有view映射了该请求需要的对应方法来处理时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"405 Method Not Allowed"的响应。</p>
+<h2 id="notacceptable"><a class="toclink" href="#notacceptable">NotAcceptable</a></h2>
+<p><strong>签名:</strong> <code>NotAcceptable(detail=None, code=None)</code></p>
+<p>当一个带有<code>Accept</code>头的请求无法被任何当前可用的renderer满足时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"406 Not Acceptable"的响应。</p>
+<h2 id="unsupportedmediatype"><a class="toclink" href="#unsupportedmediatype">UnsupportedMediaType</a></h2>
+<p><strong>签名:</strong> <code>UnsupportedMediaType(media_type, detail=None, code=None)</code></p>
+<p>当没有解析器能够在访问<code>request.data</code>时处理其content type时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"415 Unsupported Media Type"的响应。</p>
+<h2 id="throttled"><a class="toclink" href="#throttled">Throttled</a></h2>
+<p><strong>签名:</strong> <code>Throttled(wait=None, detail=None, code=None)</code></p>
+<p>当访问的请求无法通过throttling检查时抛出。</p>
+<p>默认情况下该异常会返回HTTP状态码为"429 Too Many Requests"的响应。</p>
+<h2 id="validationerror"><a class="toclink" href="#validationerror">ValidationError</a></h2>
+<p><strong>签名:</strong> <code>ValidationError(detail, code=None)</code></p>
+<p>验证错误的异常要和其他<code>APIException</code>的类有所不同。</p>
+<ul>
+<li><code>detail</code>参数是必须的，而不是可选的。</li>
+<li><code>detail</code>参数可以用列表或者字典来存放错误信息，也可以使用嵌套的数据结构。</li>
+<li>依据习惯，为了区分它与Django内置的验证错误，你应当引入 serializers 模块并且用一个完全合格的<code>ValidationError</code> 。比如<code>raise serializers.ValidationError('This field must be an integer value.')</code>。</li>
+</ul>
+<p><code>ValidationError</code>类应当被serialzier, field validation和validator类使用。它可以在调用<code>serializer.is_valid</code>时抛出，当然前提是要附带有<code>raise_exception</code>关键字参数：</p>
+<pre><code>serializer.is_valid(raise_exception=True)
+</code></pre>
+<p>REST framework的generic views使用的是<code>raise_exception=True</code>标志，这意味着你可以在你的API里全局覆盖验证类错误响应的样式。要这么做，你需要像上文所述去自定义一个异常处理函数。</p>
+<p>默认情况下该异常会返回HTTP状态码为"400 Bad Request"的响应。</p>
 <hr />
-<h1 id="content-negotiation"><a class="toclink" href="#content-negotiation">Content negotiation（内容协商）</a></h1>
-<p>请求提供了一些属性允许你确定内容协商阶段的结果。这允许你实现具体的行为，例如为不同的媒体类型选择不用的序列化方案。</p>
-<h2 id="accepted_renderer"><a class="toclink" href="#accepted_renderer">.accepted_renderer</a></h2>
-<p>由内容协商阶段选择的render实例。</p>
-<h2 id="accepted_media_type"><a class="toclink" href="#accepted_media_type">.accepted_media_type</a></h2>
-<p>由内容协商阶段接受的媒体类型的字符串。</p>
-<hr />
-<h1 id="authentication"><a class="toclink" href="#authentication">Authentication（认证）</a></h1>
-<p>REST framework 提供了灵活的，每次请求的验证，让你能够：
-* 对API的不同部分使用不同的身份验证策略。
-* 支持使用多个身份验证策略。
-* 提供与传入请求相关联的用户和令牌信息。</p>
-<h2 id="user"><a class="toclink" href="#user">.user</a></h2>
-<p><code>request.user</code> 通常返回一个 <code>django.contrib.auth.models.User</code> 实例, 尽管该行为取决于所使用的的认证策略。</p>
-<p>如果请求未认证则 <code>request.user</code> 的默认值为 <code>django.contrib.auth.models.AnonymousUser</code>的一个实例。</p>
-<p>更多详细信息请查阅 <a href="../authentication/">authentication documentation</a>.</p>
-<h2 id="auth"><a class="toclink" href="#auth">.auth</a></h2>
-<p><code>request.auth</code> 返回任何其他身份验证上下文。 <code>request.auth</code> 的确切行为取决于所使用的的认证策略，但它通常可以是请求被认证的token的实例。</p>
-<p>如果请求未认证或者没有其他上下文，则 <code>request.auth</code> 的默认值为 <code>None</code>.</p>
-<p>更多详细信息请查阅 <a href="../authentication/">authentication documentation</a>.</p>
-<h2 id="authenticators"><a class="toclink" href="#authenticators">.authenticators</a></h2>
-<p><code>APIView</code> 类或 <code>@api_view</code> 装饰器将根据在view中设置的 <code>authentication_classes</code> 或基于<code>DEFAULT_AUTHENTICATORS</code> 设置，确保此属性自动设置为 <code>Authentication</code> 实例的列表。</p>
-<p>你通常并不需要访问此属性。</p>
-<hr />
-<h1 id="browser-enhancements"><a class="toclink" href="#browser-enhancements">Browser enhancements（浏览器增强）</a></h1>
-<p>REST framework 支持一些浏览器增强功能，例如基于浏览器的 <code>PUT</code>, <code>PATCH</code> 和 <code>DELETE</code> 表单。</p>
-<h2 id="method"><a class="toclink" href="#method">.method</a></h2>
-<p><code>request.method</code> 返回请求的HTTP方法的 <strong>大写</strong> 字符串表示形式。</p>
-<p>透明地支持基于浏览器的 <code>PUT</code>, <code>PATCH</code> 和 <code>DELETE</code> 表单。</p>
-<p>更多详细信息请查阅 <a href="../../topics/browser-enhancements/">browser enhancements documentation</a>.</p>
-<h2 id="content_type"><a class="toclink" href="#content_type">.content_type</a></h2>
-<p><code>request.content_type</code> 返回表示HTTP请求正文的媒体类型的字符串对象，如果未提供媒体类型，则返回空字符串。</p>
-<p>你通常不需要直接访问请求的内容类型，因为你通常将依赖于REST framework的默认请求解析行为。</p>
-<p>如果你确实需要访问请求的内容类型，你应该使用 <code>.content_type</code> 属性，而不是使用 <code>request.META.get('HTTP_CONTENT_TYPE')</code>, 因为它为基于浏览器的非表单内容提供了透明的支持。</p>
-<p>更多详细信息请查阅 <a href="../../topics/browser-enhancements/">browser enhancements documentation</a>.</p>
-<h2 id="stream"><a class="toclink" href="#stream">.stream</a></h2>
-<p><code>request.stream</code> 返回一个表示请求主体内容的流。</p>
-<p>你通常不需要直接访问请求的内容类型，因为你通常将依赖于REST framework的默认请求解析行为。</p>
-<hr />
-<h1 id="standard-httprequest-attributeshttprequest"><a class="toclink" href="#standard-httprequest-attributeshttprequest">Standard HttpRequest attributes（标准HttpRequest属性）</a></h1>
-<p>由于 REST framework 的 <code>Request</code> 扩展了 Django的 <code>HttpRequest</code>, 所以所有其他标准属性和方法也是可用的。例如 <code>request.META</code> 和 <code>request.session</code> 字典正常可用。</p>
-<p>请注意，由于实现原因， <code>Request</code> 类并不会从 <code>HttpRequest</code> 类继承, 而是使用合成扩展类。</p>
+<h1 id="generic-error-views"><a class="toclink" href="#generic-error-views">Generic Error Views</a></h1>
+<p>Django REST Framework提供两种合适的方法来生成通用的JSON格式的<code>500</code> Server Error和<code>400</code> Bad Request responses. (Django默认的报错views提供的是HTML格式的响应，一般来说不太适用于API-only的web后端。)</p>
+<p>请参考<a href="https://docs.djangoproject.com/en/dev/topics/http/views/#customizing-error-views">Django自定义错误view文档</a>来分别使用这两种方法。</p>
+<h2 id="rest_frameworkexceptionsserver_error"><a class="toclink" href="#rest_frameworkexceptionsserver_error"><code>rest_framework.exceptions.server_error</code></a></h2>
+<p>返回一个带有HTTP状态码<code>500</code>且content-type为<code>application/json</code>的响应。</p>
+<p>设置<code>handler500</code>如下：</p>
+<pre><code>handler500 = 'rest_framework.exceptions.server_error'
+</code></pre>
+<h2 id="rest_frameworkexceptionsbad_request"><a class="toclink" href="#rest_frameworkexceptionsbad_request"><code>rest_framework.exceptions.bad_request</code></a></h2>
+<p>返回一个带有HTTP状态码<code>400</code>且content-type为<code>application/json</code>的响应。</p>
+<p>设置<code>handler400</code>如下：</p>
+<pre><code>handler400 = 'rest_framework.exceptions.bad_request'
+</code></pre>
             
 
           </div> <!--/span-->
