@@ -1,4 +1,7 @@
-source: exceptions.py
+---
+source:
+    - exceptions.py
+---
 
 # Exceptions
 
@@ -35,7 +38,7 @@ Might receive an error response indicating that the `DELETE` method is not allow
 
 Validation errors are handled slightly differently, and will include the field names as the keys in the response. If the validation error was not specific to a particular field then it will use the "non_field_errors" key, or whatever string value has been set for the `NON_FIELD_ERRORS_KEY` setting.
 
-Any example validation error might look like this:
+An example validation error might look like this:
 
     HTTP/1.1 400 Bad Request
     Content-Type: application/json
@@ -230,5 +233,33 @@ The generic views use the `raise_exception=True` flag, which means that you can 
 
 By default this exception results in a response with the HTTP status code "400 Bad Request".
 
-[cite]: http://www.doughellmann.com/articles/how-tos/python-exception-handling/index.html
+
+---
+
+# Generic Error Views
+
+Django REST Framework provides two error views suitable for providing generic JSON `500` Server Error and
+`400` Bad Request responses. (Django's default error views provide HTML responses, which may not be appropriate for an
+API-only application.)
+
+Use these as per [Django's Customizing error views documentation][django-custom-error-views].
+
+## `rest_framework.exceptions.server_error`
+
+Returns a response with status code `500` and `application/json` content type.
+
+Set as `handler500`:
+
+    handler500 = 'rest_framework.exceptions.server_error'
+
+## `rest_framework.exceptions.bad_request`
+
+Returns a response with status code `400` and `application/json` content type.
+
+Set as `handler400`:
+
+    handler400 = 'rest_framework.exceptions.bad_request'
+
+[cite]: https://doughellmann.com/blog/2009/06/19/python-exception-handling-techniques/
 [authentication]: authentication.md
+[django-custom-error-views]: https://docs.djangoproject.com/en/dev/topics/http/views/#customizing-error-views
