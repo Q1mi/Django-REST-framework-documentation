@@ -571,12 +571,12 @@ serializer.data
 <p>此时，我们将模型实例转换为Python原生数据类型。要完成序列化过程，我们将数据转换成<code>json</code>。</p>
 <pre><code>content = JSONRenderer().render(serializer.data)
 content
-# '{"id": 2, "title": "", "code": "print \\"hello, world\\"\\n", "linenos": false, "language": "python", "style": "friendly"}'
+# b'{"id": 2, "title": "", "code": "print(\\"hello, world\\")\\n", "linenos": false, "language": "python", "style": "friendly"}'
 </code></pre>
 <p>反序列化是类似的。首先我们将一个流（stream）解析为Python原生数据类型...</p>
-<pre><code>from django.utils.six import BytesIO
+<pre><code>import io
 
-stream = BytesIO(content)
+stream = io.BytesIO(content)
 data = JSONParser().parse(stream)
 </code></pre>
 <p>...然后我们要将Python原生数据类型恢复成正常的对象实例。</p>
