@@ -2,6 +2,7 @@
 *.db
 *~
 .*
+.idea/
 
 /site/
 /htmlcov/

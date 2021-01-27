@@ -1,5 +1,8 @@
-source: mixins.py
-        generics.py
+---
+source:
+    - mixins.py
+    - generics.py
+---
 
 # Generic views
 
@@ -25,14 +28,14 @@ Typically when using the generic views, you'll override the view, and set severa
     class UserList(generics.ListCreateAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        permission_classes = (IsAdminUser,)
+        permission_classes = [IsAdminUser]
 
 For more complex cases you might also want to override various methods on the view class.  For example.
 
     class UserList(generics.ListCreateAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        permission_classes = (IsAdminUser,)
+        permission_classes = [IsAdminUser]
 
         def list(self, request):
             # Note the use of `get_queryset()` instead of `self.queryset`
@@ -69,7 +72,7 @@ The following attributes control the basic view behavior.
 
 The following attributes are used to control pagination when used with list views.
 
-* `pagination_class` - The pagination class that should be used when paginating list results. Defaults to the same value as the `DEFAULT_PAGINATION_CLASS` setting, which is `'rest_framework.pagination.PageNumberPagination'`.
+* `pagination_class` - The pagination class that should be used when paginating list results. Defaults to the same value as the `DEFAULT_PAGINATION_CLASS` setting, which is `'rest_framework.pagination.PageNumberPagination'`. Setting `pagination_class=None` will disable pagination on this view.
 
 **Filtering**:
 
@@ -113,19 +116,19 @@ For example:
 
 Note that if your API doesn't include any object level permissions, you may optionally exclude the `self.check_object_permissions`, and simply return the object from the `get_object_or_404` lookup.
 
-#### `filter_queryset(self, queryset)`       
+#### `filter_queryset(self, queryset)`
 
-Given a queryset, filter it with whichever filter backends are in use, returning a new queryset.   
+Given a queryset, filter it with whichever filter backends are in use, returning a new queryset.
 
-For example:       
+For example:
 
     def filter_queryset(self, queryset):
-        filter_backends = (CategoryFilter,)
+        filter_backends = [CategoryFilter]
 
         if 'geo_route' in self.request.query_params:
-            filter_backends = (GeoRouteFilter, CategoryFilter)
+            filter_backends = [GeoRouteFilter, CategoryFilter]
         elif 'geo_point' in self.request.query_params:
-            filter_backends = (GeoPointFilter, CategoryFilter)
+            filter_backends = [GeoPointFilter, CategoryFilter]
 
         for backend in list(filter_backends):
             queryset = backend().filter_queryset(self.request, queryset, view=self)
@@ -171,8 +174,6 @@ You can also use these hooks to provide additional validation, by raising a `Val
         if queryset.exists():
             raise ValidationError('You have already signed up')
         serializer.save(user=self.request.user)
-
-**Note**: These methods replace the old-style version 2.x `pre_save`, `post_save`, `pre_delete` and `post_delete` methods, which are no longer available.
 
 **Other methods**:
 
@@ -318,7 +319,7 @@ Often you'll want to use the existing generic views, but use some slightly custo
 
 For example, if you need to lookup objects based on multiple fields in the URL conf, you could create a mixin class like the following:
 
-    class MultipleFieldLookupMixin(object):
+    class MultipleFieldLookupMixin:
         """
         Apply this mixin to any view or viewset to get multiple field filtering
         based on a `lookup_fields` attribute, instead of the default single field filtering.
@@ -330,14 +331,16 @@ For example, if you need to lookup objects based on multiple fields in the URL c
             for field in self.lookup_fields:
                 if self.kwargs[field]: # Ignore empty fields.
                     filter[field] = self.kwargs[field]
-            return get_object_or_404(queryset, **filter)  # Lookup the object
+            obj = get_object_or_404(queryset, **filter)  # Lookup the object
+            self.check_object_permissions(self.request, obj)
+            return obj
 
 You can then simply apply this mixin to a view or viewset anytime you need to apply the custom behavior.
 
     class RetrieveUserView(MultipleFieldLookupMixin, generics.RetrieveAPIView):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-        lookup_fields = ('account', 'username')
+        lookup_fields = ['account', 'username']
 
 Using custom mixins is a good option if you have custom behavior that needs to be used.
 
@@ -373,10 +376,6 @@ If you need to generic PUT-as-create behavior you may want to include something 
 
 The following third party packages provide additional generic view implementations.
 
-## Django REST Framework bulk
-
-The [django-rest-framework-bulk package][django-rest-framework-bulk] implements generic view mixins as well as some common concrete generic views to allow to apply bulk operations via API requests.
-
 ## Django Rest Multiple Models
 
 [Django Rest Multiple Models][django-rest-multiple-models] provides a generic view (and mixin) for sending multiple serialized models and/or querysets via a single API request.
@@ -389,5 +388,4 @@ The [django-rest-framework-bulk package][django-rest-framework-bulk] implements 
 [RetrieveModelMixin]: #retrievemodelmixin
 [UpdateModelMixin]: #updatemodelmixin
 [DestroyModelMixin]: #destroymodelmixin
-[django-rest-framework-bulk]: https://github.com/miki725/django-rest-framework-bulk
-[django-rest-multiple-models]: https://github.com/Axiologue/DjangoRestMultipleModels
+[django-rest-multiple-models]: https://github.com/MattBroach/DjangoRestMultipleModels

@@ -1,63 +1,80 @@
+---
+源文件：
+    - fields.py
+---
 
-# 序列化器字段
+# 序列化字段
 
-> Form类中的每个字段不仅负责验证数据，还负责“清理”数据-将其标准化为一致的格式。
->
-> &mdash; [Django文档][cite]
+> 每一个Form类的字段不仅负责验证数据，同样需要“清理”数据 &mdash; 标准化为统一的格式。
+> &mdash; [Django documentation][cite]
 
-序列化器字段处理原始值和内部数据类型之间的转换。它们还处理验证输入值，以及从其父对象检索和设置值。
+序列化字段负责在原始数据和内部数据类型之间转换。它们同样负责校验输入的值，以及从父级对象查询和设置值。
 
 ---
 
-**注意** 序列化器字段是在`fields.py`中声明的, 但是按照惯例你应该使用 `from rest_framework import serializers`导入它们并将字段称为`serializers.<FieldName>`。
+**NOTE:** 序列化的字段在`fields.py`中定义，但是根据惯例，你应该使用`from rest_framework import serializers`然后使用`serializers.<FieldName>`来引用它们。
 
 ---
 
 ## 核心参数
 
-每个序列化程序字段类构造函数都至少接受这些参数。某些Field类采用其他特定于字段的参数，但应始终接受以下内容：
+每一个序列化字段类的构造函数都至少接收这些参数。一下字段类接口额外的，特定字段类型的参数，但是下面这些参数是一定会接收的。
 
 ### `read_only`
 
-只读字段包含在API输出中，但在创建或更新操作期间不应包含在输入中。错误地包含在串行器输入中的所有`read_only`字段都将被忽略。
+只读字段只能包含在API的输出中，但是不应该包含在创建或者更新的操作。任何错误的包含在序列化输入的只读字段都会被忽略。
 
-进行设置`True`以确保序列化表示形式时使用该字段，而在反序列化期间创建或更新实例时不使用该字段。
+将其设置为`True`确保序列化时使用这个字段，但是创建或者更新的反序列化操作时不会使用。
 
-默认为`False`
+默认是`False`
 
-### `write_only`
+### `Write_only`
 
-进行设置`True`以确保在更新或创建实例时可以使用该字段，但在序列化表示形式时不包括该字段。
-
-默认为`False`
+将其设置为`True`确保在创建或者更新的反序列化操作时使用，但是序列化时不适用这个字段。
 
 ### `required`
 
-如果反序列化期间未提供字段，通常会引发错误。如果反序列化过程中不需要此字段，则设置为false。
+如果在反序列化时候没有提供这个字段，通常会抛出一个错误。如果在反序列化操作中不需要这个字段，将其设置为`False`。
 
-将此设置为`False`还可以在序列化实例时从输出中省略对象属性或字典键。如果不存在该密钥，则它将不会直接包含在输出表示中。
+将其设置为`False`同样允许在序列化实例时忽略对象属性或者字段的键。如果这个键不存在，则该键根本不会出现在输出中。
 
-默认为`True`。
-
-### `allow_null`
-
-如果`None`传递给序列化器字段，通常会引发错误。将此关键字参数设置为`True`if `None`应该被视为有效值。
-
-默认为`False`
+默认是`True`
 
 ### `default`
 
-如果设置，则给出默认值，如果没有提供输入值，该默认值将用于该字段。如果未设置，则默认行为是根本不填充该属性。
+如果设置了这个参数，提供的默认值会在这个字段没有提供输入值的时候使用。如果没有设置，默认不填充这个属性。
 
-该`default`过程中部分更新操作不适用。在部分更新的情况下，仅传入数据中提供的字段将返回经过验证的值。
+部分更新操作不会接受`default`的值，部分更新情况下，仅返回输入数据中提供字段校验后的值。
 
-可以设置为一个函数或其他可调用的，在这种情况下，每次使用该值时都会对其求值。调用时，它将不接收任何参数。如果callable具有`set_context`方法，则每次在将字段实例作为唯一参数获取值之前都会被调用。这与[验证器](validators.md#using-set_context)的工作方式相同。
+可以设置为函数或其他可调用对象，这种情况下，每次使用该值都会对其评估。被调用时不接受参数，如果可调用的对象有`requires_context = True`属性，则序列化字段将作为参数传进可调用对象中。
 
-请注意，设置`default`值意味着该字段不是必需的。同时包含`default`和`required`关键字参数都是无效的，并且会引发错误。
+例如：
+
+```python
+class CurrentUserDefault:
+    """
+    可以作为序列化字段参数`default=...`的值。
+    返回当前用户
+    """
+    requires_context = True
+
+    def __call__(self, serializer_field):
+        return serializer_field.context['request'].user
+```
+
+当序列化实例时，如果实例或者字典没有对应的属性或键，会返回默认值。
+
+记住设置字段的`default`值，意味着这个字段不是必须的，同时包含`default`和`required`关键字参数都是无效的，并且会引发错误。
+
+### `allow_null`
+
+一般情况下，如果向序列化字段传递`None`是会抛出异常的。如果`None`可以作为值，将这个参数设置为`True`
+
+默认是`False`
 
 ### `source`
 
-将用于填充字段的属性的名称。可以是仅接受self参数的方法，例如`URLField(source='get_absolute_url')`，也可以使用点分符号遍历属性，例如`EmailField(source='user.email')`。
+用于填充这个字段的属性名称。可以是一个仅接受`self`参数的方法，例如`URLField(source='get_absolute_url')`，或者使用点分符遍历属性，例如`EmailField(source='user.email')`。当使用点分符序列化字段时，如果在属性遍历期间不存在任何对象或该对象为空，则可能需要提供“默认”值。
 
 该值`source='*'`具有特殊含义，用于指示应将整个对象传递给该字段。这对于创建嵌套表示或对于需要访问完整对象才能确定输出表示的字段很有用。
 
@@ -67,7 +84,7 @@
 
 验证器功能列表，应将其应用于输入字段输入，并引发验证错误或简单地返回。验证器函数通常应该提高`serializers.ValidationError`，但是`ValidationError`还支持Django的内置函数，以便与Django代码库或第三方Django软件包中定义的验证器兼容。
 
-### `error_messages`
+### `error_message`
 
 错误代码到错误消息的字典。
 
@@ -83,10 +100,12 @@
 
 该值应用于预先填充HTML表单字段的值。您可以将callable传递给它，就像处理任何常规Django一样`Field`：
 
-    import datetime
-    from rest_framework import serializers
-    class ExampleSerializer(serializers.Serializer):
-        day = serializers.DateField(initial=datetime.date.today)
+```python
+import datetime
+from rest_framework import serializers
+class ExampleSerializer(serializers.Serializer):
+    day = serializers.DateField(initial=datetime.date.today)
+```
 
 ### `style`
 
@@ -94,18 +113,20 @@
 
 这里的两个例子是`'input_type'`和`'base_template'`：
 
-    # Use <input type="password"> for the input.
-    password = serializers.CharField(
-        style={'input_type': 'password'}
-    )
+```python
+# Use <input type="password"> for the input.
+password = serializers.CharField(
+    style={'input_type': 'password'}
+)
 
-    # Use a radio input instead of a select input.
-    color_channel = serializers.ChoiceField(
-        choices=['red', 'green', 'blue'],
-        style={'base_template': 'radio.html'}
-    )
+# Use a radio input instead of a select input.
+color_channel = serializers.ChoiceField(
+    choices=['red', 'green', 'blue'],
+    style={'base_template': 'radio.html'}
+)
+```
 
-有关更多详细信息，请参见[HTML & Forms][html-and-forms]文档。
+有关更多详细信息，请参见 [HTML & Forms][html-and-forms] 文档。
 
 ---
 
@@ -113,17 +134,16 @@
 
 ## BooleanField
 
-表示布尔值
+布尔值的表示。
 
 使用HTML编码的表单输入时，请注意，即使省略了值，也将始终将其设置为`False`，即使该字段`default=True`指定了选项。这是因为HTML复选框输入通过忽略该值来表示未选中状态，因此REST框架将忽略视为其为空复选框输入。
 
-对应于`django.db.models.fields.BooleanField`.
+注意，Django2.1移除了`models.BooleanField`中的`blank`关键字参数。在Django 2.1之前，`models.BooleanField`字段始终为`blank = True`。所以从Django2.1开始，默认的`serializers.BooleanField`实例将被生成没有`required` 关键字参数的值（即等同于`required = True`）而之前版本的Django，将生成默认的BooleanField实例带有`required = False`选项。如果你想手动控制它的行为，在序列化程序类上显式声明`BooleanField`，或者使用`extra_kwargs`选项来设置`required`参数。
 
-**签名：** `BooleanField()`
 
 ## NullBooleanField
 
-表示布尔值，也接受`None`为有效值。
+表示布尔值，也接受None为有效值。
 
 对应于`django.db.models.fields.NullBooleanField`.
 
@@ -135,9 +155,9 @@
 
 ## CharField
 
-表示文本。（可选）验证文本是否短于`max_length`和长于`min_length`。
+表示文本。（可选）验证文本是否短于max_length和长于min_length。
 
-对应于`django.db.models.fields.CharField`或`django.db.models.fields.TextField`.
+对应于`django.db.models.fields.CharField`或`django.db.models.fields.TextField`。
 
 **签名：** `CharField(max_length=None, min_length=None, allow_blank=False, trim_whitespace=True)`
 
@@ -146,7 +166,7 @@
 - `allow_blank` - 如果设置为`True`，则应将空字符串视为有效值。如果设置为，`False`则认为空字符串无效，并将引发验证错误。默认为`False`。
 - `trim_whitespace` - 如果设置为，`True`则修剪前后的空白。默认为`True`。
 
-该`allow_null`选项也可用于字符串字段，尽管不建议使用`allow_blank`。设置`allow_blank=True`和`allow_null=True`都是有效的，但是这样做意味着对于字符串表示而言，将存在两种不同类型的空值，这可能导致数据不一致和细微的应用程序错误。
+该 `allow_null`选项也可用于字符串字段，尽管不建议使用`allow_blank`。设置`allow_blank=True`和`allow_null=True`都是有效的，但是这样做意味着对于字符串表示而言，将存在两种不同类型的空值，这可能导致数据不一致和细微的应用程序错误。
 
 ## EmailField
 
@@ -160,7 +180,7 @@
 
 表示文本形式，用于验证给定值是否与某个正则表达式匹配。
 
-对应于`django.forms.fields.RegexField`.
+对应于`django.forms.fields.RegexField`。
 
 **签名：** `RegexField(regex, max_length=None, min_length=None, allow_blank=False)`
 
@@ -170,7 +190,7 @@
 
 ## SlugField
 
-一个验证输入满足表达式`[a-zA-Z0-9_-]+`的`RegexField`字段。
+一个验证输入满足表达式`[a-zA-Z0-9_-]+`的RegexField字段。
 
 对应于`django.db.models.fields.SlugField`.
 
@@ -188,16 +208,17 @@
 
 确保输入为有效UUID字符串的字段。该`to_internal_value`方法将返回一个`uuid.UUID`实例。在输出时，该字段将返回标准连字符格式的字符串，例如：
 
-    "de305d54-75b4-431b-adb2-eb6b9e546013"
+```python
+"de305d54-75b4-431b-adb2-eb6b9e546013"
+```
 
 **签名：** `UUIDField(format='hex_verbose')`
 
-- `format`: 确定uuid值的表示格式
+- format: 确定uuid值的表示格式
     - `'hex_verbose'` - 规范的十六进制表示形式，包括连字符： `"5ce0e9a5-5ffa-654b-cee0-1238041fb31a"`
     - `'hex'` - UUID的紧凑十六进制表示形式，不包括连字符： `"5ce0e9a55ffa654bcee01238041fb31a"`
     - `'int'` - UUID的128位整数表示： `"123456789012312313134124512351145145114"`
-    - `'urn'` - UUID的RFC 4122 URN表示形式： `"urn:uuid:5ce0e9a5-5ffa-654b-cee0-1238041fb31a"`
-  更改`format`参数仅影响表示形式值。 所有格式均被`to_internal_value`接受。
+    - `'urn'` - UUID的RFC 4122 URN表示形式： `"urn:uuid:5ce0e9a5-5ffa-654b-cee0-1238041fb31a"` 更改`format`参数仅影响表示形式值。 所有格式均被`to_internal_value`接受。
 
 ## FilePathField
 
@@ -211,7 +232,7 @@
 - `match` - FilePathField将用于过滤文件名的正则表达式（作为字符串）。
 - `recursive` - 指定是否应包含路径的所有子目录。默认值为`False`。
 - `allow_files` - 指定是否应包含指定位置的文件。默认值为`True`。这个参数和下面的 `allow_folders` 必须有一个为 `True`。
-- `allow_folders` - 指定是否应包含指定位置的文件夹。默认值为`False`。 这个参数和上面的 `allow_files` 必须有一个为 `True`.
+- `allow_folders` - 指定是否应包含指定位置的文件夹。默认值为`False`。 这个参数和上面的 `allow_files` 必须有一个为 `True`。
 
 ## IPAddressField
 
@@ -224,9 +245,7 @@
 - `protocol` 将有效输入限制为指定的协议。接受的值是“两个”（默认），“ IPv4”或“ IPv6”。匹配不区分大小写。
 - `unpack_ipv4` 解压缩IPv4映射的地址，如:: ffff：192.0.2.1。如果启用此选项，则该地址将解压缩为192.0.2.1。默认设置为禁用。只能在协议设置为“ both”时使用。
 
----
-
-# Numeric fields
+# 数字字段
 
 ## IntegerField
 
@@ -264,8 +283,9 @@
 - `max_value` 验证提供的数字不大于此值。
 - `min_value` 验证提供的数字不小于此值。
 - `localize` 设置为`True`启用以基于当前语言环境本地化输入和输出。这也将迫使`coerce_to_string`到`True`。默认为`False`。请注意，如果你`USE_L10N=True`在设置文件中进行了设置，则会启用数据格式设置。
+- `rounding` 设置取值到配置精度的舍入模式。有效值是[`decimal` 模块的舍入模式][python-decimal-rounding-modes]。默认是`None`。
 
-#### 用法示例
+#### 使用示例
 
 要验证最大为999且分辨率为2位小数的数字，请使用：
 
@@ -279,11 +299,8 @@
 
 如果未设置，则默认为与`COERCE_DECIMAL_TO_STRING`设置相同的值，`True`除非另行设置。
 
-*此处原与文无关，2019.12.14日q1mi翻译于北京。*
+# 日期时间字段
 
----
-
-# Date and time fields
 
 ## DateTimeField
 
@@ -295,6 +312,7 @@
 
 * `format` - 代表输出格式的字符串。如果未指定，则默认为与`DATETIME_FORMAT`设置键相同的值，`'iso-8601'`除非设置，否则为默认值。设置为格式字符串表示`to_representation`应将返回值强制为字符串输出。格式字符串如下所述。将此值设置为`None`表示应由`to_representation`返回Python `datetime`对象。在这种情况下，日期时间编码将由渲染器确定。
 * `input_formats` - 表示可用于解析日期的输入格式的字符串列表。如果未指定，`DATETIME_INPUT_FORMATS`将使用该设置，默认为`['iso-8601']`。
+* `default_timezone` - 一个`pytz.timezone`表示的时区。如果没有指定，并且`USE_TZ`设置打开，这个参数的默认值是[当前时区][django-current-timezone]。如果`USE_TZ`没有打开，会使用原始的日期对象。
 
 #### `DateTimeField` format strings.
 
@@ -340,6 +358,8 @@
 * `format` - 代表输出格式的字符串。如果未指定，则默认为与`TIME_FORMAT`设置键相同的值，`'iso-8601'`除非设置，否则为默认值。设置为格式字符串表示`to_representation`应将返回值强制为字符串输出。格式字符串如下所述。将此值设置为`None`表示Python `time`对象应由`to_representation`返回。在这种情况下，时间编码将由渲染器确定。
 * `input_formats` - 表示可用于解析日期的输入格式的字符串列表。如果未指定，`TIME_INPUT_FORMATS`将使用该设置，默认为`['iso-8601']`
 
+
+
 #### `TimeField` format strings
 
 格式字符串可以是显式指定格式的[Python strftime 格式][strftime]，也可以是特殊字符串`'iso-8601'`，它指示应使用[ISO 8601][iso8601]样式时间。（例如`'12:34:56.000000'`）
@@ -351,9 +371,10 @@
 
 在这些字段的`validated_data`将包含一个`datetime.timedelta`实例。该表示形式是遵循此格式的字符串`'[DD] [HH:[MM:]]ss[.uuuuuu]'`。
 
-**注意：** 此字段仅适用于Django版本> = 1.8。
-
 **签名：** `DurationField()`
+
+- `max_value` 验证提供的间隔不大于这个值。
+- `min_value` 验证提供的间隔不小于这个值。
 
 ---
 
@@ -391,7 +412,7 @@
 
 # 文件上传字段
 
-#### Parsers and file uploads.
+#### 解析和文件上传
 
 `FileField` 和 `ImageField`类是仅适用于使用`MultiPartParser`或`FileUploadParser`的。大多数解析器（例如JSON）不支持文件上传。Django的常规[FILE_UPLOAD_HANDLERS]用于处理上传的文件。
 
@@ -455,6 +476,7 @@
 **签名**: `DictField(child)`
 
 - `child` - 应该用于验证字典中值的字段实例。如果未提供此参数，则将不验证映射中的值。
+- `allow_empty` - 指定是否允许空字典。
 
 例如，要创建一个验证字符串到字符串映射的字段，你可以编写如下代码：
 
@@ -465,6 +487,18 @@
     class DocumentField(DictField):
         child = CharField()
 
+## HStoreField
+
+预留的`DictField`兼容Django的postgres`HStoreField`字段。
+
+**签名：** `HStoreField(child=<A_FIELD_INSTANCE>, allow_empty=True)`
+
+- `child` - 应该用于验证字典中值的字段实例。如果未提供此参数，则将不验证映射中的值。
+- `allow_empty` - 指定是否允许空字典。
+
+注意子字段**必须**是`CharField`的实例，因为hstore的扩展存储值为字符串。
+
+
 ## JSONField
 
 一个字段类，用于验证传入的数据结构是否包含有效的JSON原语。在其备用二进制模式下，它将表示并验证JSON编码的二进制字符串。
@@ -472,10 +506,12 @@
 **签名**: `JSONField(binary)`
 
 - `binary` - 如果设置为`True`则该字段将输出并验证JSON编码的字符串，而不是原始数据结构。默认为`False`。
+- `encoder` - 使用这个编码器序列化输入的对象。默认是`None`。
 
 ---
 
-# Miscellaneous fields
+
+# 杂项字段
 
 ## ReadOnlyField
 
@@ -550,13 +586,14 @@
 
 `to_internal_value()`调用该方法可将原始数据类型恢复为其内部python表示形式。如果数据无效，则此方法应抛出一个 `serializers.ValidationError`。
 
-请注意，`WritableField`版本2.x中存在的类不再存在。如果该字段支持数据输入，则应继承`Field`并重写`to_internal_value()`。
 
 ## 示例
 
+### 基础自定义字段
+
 让我们看一个序列化代表RGB颜色值的类的示例：
 
-    class Color(object):
+    class Color:
         """
         A color represented in the RGB colorspace.
         """
@@ -569,8 +606,8 @@
         """
         Color objects are serialized into 'rgb(#, #, #)' notation.
         """
-        def to_representation(self, obj):
-            return "rgb(%d, %d, %d)" % (obj.red, obj.green, obj.blue)
+        def to_representation(self, value):
+            return "rgb(%d, %d, %d)" % (value.red, value.green, value.blue)
 
         def to_internal_value(self, data):
             data = data.strip('rgb(').rstrip(')')
@@ -582,24 +619,25 @@
 例如，让我们创建一个字段，该字段可用来表示要序列化的对象的类名：
 
     class ClassNameField(serializers.Field):
-        def get_attribute(self, obj):
+        def get_attribute(self, instance):
             # We pass the object instance onto `to_representation`,
             # not just the field attribute.
-            return obj
+            return instance
 
-        def to_representation(self, obj):
+        def to_representation(self, value):
             """
-            Serialize the object's class name.
+            Serialize the value's class name.
             """
-            return obj.__class__.__name__
+            return value.__class__.__name__
 
-#### Raising validation errors
+
+#### 抛出验证异常
 
 我们上面的`ColorField`类目前不执行任何数据验证。
 为了指示无效数据，我们应该引发一个`serializers.ValidationError`，如下所示：
 
     def to_internal_value(self, data):
-        if not isinstance(data, six.text_type):
+        if not isinstance(data, str):
             msg = 'Incorrect type. Expected a string, but got %s'
             raise ValidationError(msg % type(data).__name__)
 
@@ -623,7 +661,7 @@
     }
 
     def to_internal_value(self, data):
-        if not isinstance(data, six.text_type):
+        if not isinstance(data, str):
             self.fail('incorrect_type', input_type=type(data).__name__)
 
         if not re.match(r'^rgb\([0-9]+,[0-9]+,[0-9]+\)$', data):
@@ -638,6 +676,121 @@
         return Color(red, green, blue)
 
 这种样式使您的错误消息与代码更清晰地分开，因此应首选。
+
+### 使用`source='*'`
+
+这里我们来看一个例子，一个 _平面_ 的`DataPoint`模型，有`x_coordinate`和`y_coordinate`字段。
+
+    class DataPoint(models.Model):
+        label = models.CharField(max_length=50)
+        x_coordinate = models.SmallIntegerField()
+        y_coordinate = models.SmallIntegerField()
+
+使用自定义字段和`source='*'`，我们可以生成坐标对的嵌套表示：
+
+    class CoordinateField(serializers.Field):
+
+        def to_representation(self, value):
+            ret = {
+                "x": value.x_coordinate,
+                "y": value.y_coordinate
+            }
+            return ret
+
+        def to_internal_value(self, data):
+            ret = {
+                "x_coordinate": data["x"],
+                "y_coordinate": data["y"],
+            }
+            return ret
+
+
+    class DataPointSerializer(serializers.ModelSerializer):
+        coordinates = CoordinateField(source='*')
+
+        class Meta:
+            model = DataPoint
+            fields = ['label', 'coordinates']
+
+注意这个例子不能进行验证。部分因为这个原因，在真实的项目中，使用有`source='*'`参数的序列化器和两个有自己的`source`参数指向关联的字段的`IntegerField`实例来表示嵌套坐标更好。
+
+* `to_representation` 传入整个`DataPoint`对象，必须将其映射到所需的输出。
+
+        >>> instance = DataPoint(label='Example', x_coordinate=1, y_coordinate=2)
+        >>> out_serializer = DataPointSerializer(instance)
+        >>> out_serializer.data
+        ReturnDict([('label', 'Example'), ('coordinates', {'x': 1, 'y': 2})])
+
+* 除非我们的字段时只读的，`to_internal_value`必须映射回适合更新目标对象的字典。使用`source='*'`，`to_internal_value`的返回可以更新验证的数据字典，而不是单个键。
+
+        >>> data = {
+        ...     "label": "Second Example",
+        ...     "coordinates": {
+        ...         "x": 3,
+        ...         "y": 4,
+        ...     }
+        ... }
+        >>> in_serializer = DataPointSerializer(data=data)
+        >>> in_serializer.is_valid()
+        True
+        >>> in_serializer.validated_data
+        OrderedDict([('label', 'Second Example'),
+                     ('y_coordinate', 4),
+                     ('x_coordinate', 3)])
+
+为了完整性，让我们再次做同样的事情，但使用上面建议的嵌套序列化程序方法：
+
+    class NestedCoordinateSerializer(serializers.Serializer):
+        x = serializers.IntegerField(source='x_coordinate')
+        y = serializers.IntegerField(source='y_coordinate')
+
+
+    class DataPointSerializer(serializers.ModelSerializer):
+        coordinates = NestedCoordinateSerializer(source='*')
+
+        class Meta:
+            model = DataPoint
+            fields = ['label', 'coordinates']
+
+这里在`IntegerField`声明中处理目标和源属性对(`x`和`x_coherate`，`y`和`y_cocoate`)之间的映射。它就是接受`source=‘*’`的`NestedConsulateSerializer`。
+
+我们的新`DataPointSerializer`与自定义字段方法行为相同。
+
+序列化：
+
+    >>> out_serializer.data
+    ReturnDict([('label', 'testing'),
+                ('coordinates', OrderedDict([('x', 1), ('y', 2)]))])
+
+反序列化：
+
+    >>> in_serializer = DataPointSerializer(data=data)
+    >>> in_serializer.is_valid()
+    True
+    >>> in_serializer.validated_data
+    OrderedDict([('label', 'still testing'),
+                 ('x_coordinate', 3),
+                 ('y_coordinate', 4)])
+
+我们同样有内置的验证器：
+
+    >>> invalid_data = {
+    ...     "label": "still testing",
+    ...     "coordinates": {
+    ...         "x": 'a',
+    ...         "y": 'b',
+    ...     }
+    ... }
+    >>> invalid_serializer = DataPointSerializer(data=invalid_data)
+    >>> invalid_serializer.is_valid()
+    False
+    >>> invalid_serializer.errors
+    ReturnDict([('coordinates',
+                 {'x': ['A valid integer is required.'],
+                  'y': ['A valid integer is required.']})])
+
+因此，嵌套序列化程序方法将是第一个尝试的方法。当嵌套的序列化程序变得不可行或过于复杂时，您可以使用自定义字段方法。
+
 
 # 第三方包
 
