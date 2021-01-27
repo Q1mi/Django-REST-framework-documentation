@@ -19,6 +19,7 @@ QQ群号：930578836
 * [leveleven](https://github.com/leveleven)
 * [Liniian](https://github.com/Liniian)
 * [belingud](https://github.com/belingud)
+* [Core00077](https://github.com/Core00077)
 
 ## 以下章节已完成翻译
 
@@ -56,6 +57,7 @@ QQ群号：930578836
 * [Format suffixes](/Django-REST-framework-documentation/api-guide/format-suffixes_zh/)
 * [Metadata](/Django-REST-framework-documentation/api-guide/metadata_zh/)
 * [Returning URLs](/Django-REST-framework-documentation/api-guide/reverse_zh/)
+* [Exceptions](/Django-REST-framework-documentation/api-guide/exceptions_zh/)
 * [Status codes](/Django-REST-framework-documentation/api-guide/status-codes_zh/)
 * [Testing](/Django-REST-framework-documentation/api-guide/testing_zh/)
 
