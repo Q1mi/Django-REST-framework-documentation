@@ -152,13 +152,13 @@
 
     content = JSONRenderer().render(serializer.data)
     content
-    # '{"id": 2, "title": "", "code": "print \\"hello, world\\"\\n", "linenos": false, "language": "python", "style": "friendly"}'
+    # b'{"id": 2, "title": "", "code": "print(\\"hello, world\\")\\n", "linenos": false, "language": "python", "style": "friendly"}'
 
 反序列化是类似的。首先我们将一个流（stream）解析为Python原生数据类型...
 
-    from django.utils.six import BytesIO
+    import io
 
-    stream = BytesIO(content)
+    stream = io.BytesIO(content)
     data = JSONParser().parse(stream)
 
 ...然后我们要将Python原生数据类型恢复成正常的对象实例。
