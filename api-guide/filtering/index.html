@@ -274,64 +274,99 @@
                     <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
                   </li>
                   
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
                   <li >
-                    <a href="../../topics/third-party-packages.md">Third Party Packages</a>
+                    <a href="../../community/tutorials-and-resources/">Tutorials and Resources</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/tutorials-and-resources.md">Tutorials and Resources</a>
+                    <a href="../../community/third-party-packages/">Third Party Packages</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/contributing.md">Contributing to REST framework</a>
+                    <a href="../../community/contributing/">Contributing to REST framework</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/project-management.md">Project management</a>
+                    <a href="../../community/project-management/">Project management</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.0-announcement.md">3.0 Announcement</a>
+                    <a href="../../community/release-notes/">Release Notes</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.1-announcement.md">3.1 Announcement</a>
+                    <a href="../../community/3.12-announcement/">3.12 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.2-announcement.md">3.2 Announcement</a>
+                    <a href="../../community/3.11-announcement/">3.11 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.3-announcement.md">3.3 Announcement</a>
+                    <a href="../../community/3.10-announcement/">3.10 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.4-announcement.md">3.4 Announcement</a>
+                    <a href="../../community/3.9-announcement/">3.9 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.5-announcement.md">3.5 Announcement</a>
+                    <a href="../../community/3.8-announcement/">3.8 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/kickstarter-announcement.md">Kickstarter Announcement</a>
+                    <a href="../../community/3.7-announcement/">3.7 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/mozilla-grant.md">Mozilla Grant</a>
+                    <a href="../../community/3.6-announcement/">3.6 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/funding.md">Funding</a>
+                    <a href="../../community/3.5-announcement/">3.5 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/release-notes.md">Release Notes</a>
+                    <a href="../../community/3.4-announcement/">3.4 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/jobs.md">Jobs</a>
+                    <a href="../../community/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/jobs/">Jobs</a>
                   </li>
                   
                 </ul>
@@ -532,7 +567,7 @@ class PurchaseList(generics.ListAPIView):
 <h2 id="filtering-against-the-url"><a class="toclink" href="#filtering-against-the-url">Filtering against the URL</a></h2>
 <p>Another style of filtering might involve restricting the queryset based on some part of the URL.</p>
 <p>For example if your URL config contained an entry like this:</p>
-<pre><code>url('^purchases/(?P&lt;username&gt;.+)/$', PurchaseList.as_view()),
+<pre><code>re_path('^purchases/(?P&lt;username&gt;.+)/$', PurchaseList.as_view()),
 </code></pre>
 <p>You could then write a view that returned a purchase queryset filtered by the username portion of the URL:</p>
 <pre><code>class PurchaseList(generics.ListAPIView):
@@ -611,8 +646,15 @@ class UserListView(generics.ListAPIView):
 <h2 id="djangofilterbackend"><a class="toclink" href="#djangofilterbackend">DjangoFilterBackend</a></h2>
 <p>The <a href="https://django-filter.readthedocs.io/en/latest/index.html"><code>django-filter</code></a> library includes a <code>DjangoFilterBackend</code> class which
 supports highly customizable field filtering for REST framework.</p>
-<p>To use <code>DjangoFilterBackend</code>, first install <code>django-filter</code>. Then add <code>django_filters</code> to Django's <code>INSTALLED_APPS</code></p>
+<p>To use <code>DjangoFilterBackend</code>, first install <code>django-filter</code>.</p>
 <pre><code>pip install django-filter
+</code></pre>
+<p>Then add <code>'django_filters'</code> to Django's <code>INSTALLED_APPS</code>:</p>
+<pre><code>INSTALLED_APPS = [
+    ...
+    'django_filters',
+    ...
+]
 </code></pre>
 <p>You should now either add the filter backend to your settings:</p>
 <pre><code>REST_FRAMEWORK = {

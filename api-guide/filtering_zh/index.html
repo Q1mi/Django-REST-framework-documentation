@@ -274,64 +274,99 @@
                     <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
                   </li>
                   
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
                   <li >
-                    <a href="../../topics/third-party-packages.md">Third Party Packages</a>
+                    <a href="../../community/tutorials-and-resources/">Tutorials and Resources</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/tutorials-and-resources.md">Tutorials and Resources</a>
+                    <a href="../../community/third-party-packages/">Third Party Packages</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/contributing.md">Contributing to REST framework</a>
+                    <a href="../../community/contributing/">Contributing to REST framework</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/project-management.md">Project management</a>
+                    <a href="../../community/project-management/">Project management</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.0-announcement.md">3.0 Announcement</a>
+                    <a href="../../community/release-notes/">Release Notes</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.1-announcement.md">3.1 Announcement</a>
+                    <a href="../../community/3.12-announcement/">3.12 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.2-announcement.md">3.2 Announcement</a>
+                    <a href="../../community/3.11-announcement/">3.11 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.3-announcement.md">3.3 Announcement</a>
+                    <a href="../../community/3.10-announcement/">3.10 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.4-announcement.md">3.4 Announcement</a>
+                    <a href="../../community/3.9-announcement/">3.9 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.5-announcement.md">3.5 Announcement</a>
+                    <a href="../../community/3.8-announcement/">3.8 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/kickstarter-announcement.md">Kickstarter Announcement</a>
+                    <a href="../../community/3.7-announcement/">3.7 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/mozilla-grant.md">Mozilla Grant</a>
+                    <a href="../../community/3.6-announcement/">3.6 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/funding.md">Funding</a>
+                    <a href="../../community/3.5-announcement/">3.5 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/release-notes.md">Release Notes</a>
+                    <a href="../../community/3.4-announcement/">3.4 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/jobs.md">Jobs</a>
+                    <a href="../../community/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../../community/jobs/">Jobs</a>
                   </li>
                   
                 </ul>
@@ -599,25 +634,32 @@ class UserListView(generics.ListAPIView):
 </code></pre>
 
 <p>现在，你需要将filter backend 添加到你django project的settings中：</p>
-<pre><code>REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-}
+<pre><code>    REST_FRAMEWORK = {
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    }
 </code></pre>
 
 <p>或者你也可以将filter backend添加到一个单独的view或viewSet中：</p>
-<pre><code>from django_filters.rest_framework import DjangoFilterBackend
+<pre><code>    from django_filters.rest_framework import DjangoFilterBackend
 
-class UserListView(generics.ListAPIView):
-    ...
-    filter_backends = (DjangoFilterBackend,)
+    class UserListView(generics.ListAPIView):
+        ...
+        filter_backends = [DjangoFilterBackend]
 </code></pre>
 
-<p>如果你正在使用 browsable API或 admin API，你还需要安装<code>django-crispy-forms</code>，通过使用Bootstarp3渲染来提高filter form在浏览器中的展示效果。</p>
-<pre><code>pip install django-crispy-forms
+<p>如果只需要简单的根据是否相等的过滤，则可以在视图或视图集上设置<code>filterset_fields</code>属性，列出要过滤的字段集合。</p>
+<pre><code>class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'in_stock']
 </code></pre>
 
-<p>安装完成后，将<code>crispy-forms</code>添加到你Django project的<code>INSTALLED_APPS</code>中，browsable API将为<code>DjangoFilterBackend</code>提供一个像下面这样的filter control：<br />
-<img alt="django filter" src="../img/django-filter.png" /></p>
+<p>这将自动为给定的字段创建一个<code>FilterSet</code>类，并允许你发出如下请求：</p>
+<pre><code>http://example.com/api/products?category=clothing&amp;in_stock=True
+</code></pre>
+
+<p>对于更高级的过滤要求，你可以指定视图应使用的<code>FilterSet</code>类。你可以在<a href="https://django-filter.readthedocs.io/en/latest/index.html">django-filter</a>文档中阅读有关FilterSets的更多信息。还建议你阅读有关<a href="https://django-filter.readthedocs.io/en/latest/guide/rest_framework.html">DRF集成</a>的部分。</p>
 <h2 id="specifying-filter-fields"><a class="toclink" href="#specifying-filter-fields">Specifying filter fields（指定筛选字段）</a></h2>
 <p>如果你的需求都是些简单相等类型的筛选，那么你可以在你的view或viewSet里面设置一个<code>filter_fields</code>属性，列出所有你想依靠筛选的字段集合。</p>
 <pre><code>class ProductList(generics.ListAPIView):

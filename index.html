@@ -274,64 +274,99 @@
                     <a href="topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
                   </li>
                   
+                </ul>
+              </li>
+                
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
                   <li >
-                    <a href="topics/third-party-packages.md">Third Party Packages</a>
+                    <a href="community/tutorials-and-resources/">Tutorials and Resources</a>
                   </li>
                   
                   <li >
-                    <a href="topics/tutorials-and-resources.md">Tutorials and Resources</a>
+                    <a href="community/third-party-packages/">Third Party Packages</a>
                   </li>
                   
                   <li >
-                    <a href="topics/contributing.md">Contributing to REST framework</a>
+                    <a href="community/contributing/">Contributing to REST framework</a>
                   </li>
                   
                   <li >
-                    <a href="topics/project-management.md">Project management</a>
+                    <a href="community/project-management/">Project management</a>
                   </li>
                   
                   <li >
-                    <a href="topics/3.0-announcement.md">3.0 Announcement</a>
+                    <a href="community/release-notes/">Release Notes</a>
                   </li>
                   
                   <li >
-                    <a href="topics/3.1-announcement.md">3.1 Announcement</a>
+                    <a href="community/3.12-announcement/">3.12 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/3.2-announcement.md">3.2 Announcement</a>
+                    <a href="community/3.11-announcement/">3.11 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/3.3-announcement.md">3.3 Announcement</a>
+                    <a href="community/3.10-announcement/">3.10 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/3.4-announcement.md">3.4 Announcement</a>
+                    <a href="community/3.9-announcement/">3.9 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/3.5-announcement.md">3.5 Announcement</a>
+                    <a href="community/3.8-announcement/">3.8 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/kickstarter-announcement.md">Kickstarter Announcement</a>
+                    <a href="community/3.7-announcement/">3.7 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/mozilla-grant.md">Mozilla Grant</a>
+                    <a href="community/3.6-announcement/">3.6 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/funding.md">Funding</a>
+                    <a href="community/3.5-announcement/">3.5 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/release-notes.md">Release Notes</a>
+                    <a href="community/3.4-announcement/">3.4 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="topics/jobs.md">Jobs</a>
+                    <a href="community/3.3-announcement/">3.3 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="community/jobs/">Jobs</a>
                   </li>
                   
                 </ul>
@@ -418,19 +453,19 @@
                   
                 
                   <li class="">
-                    <a href="#requirements">Requirements</a>
+                    <a href="#_5">要求</a>
                   </li>
 
                   
                 
                   <li class="">
-                    <a href="#installation">Installation</a>
+                    <a href="#_6">安装</a>
                   </li>
 
                   
                 
                   <li class="">
-                    <a href="#example">Example</a>
+                    <a href="#_7">举个例子</a>
                   </li>
 
                   
@@ -525,48 +560,47 @@
 <ul>
 <li><a href="/Django-REST-framework-documentation/topics/ajax-csrf-cors_zh/">ajax-csrf-cors</a></li>
 </ul>
-<h2 id="requirements"><a class="toclink" href="#requirements">Requirements</a></h2>
-<p>REST framework requires the following:</p>
+<h2 id="_5"><a class="toclink" href="#_5">要求</a></h2>
+<p>REST framework 需要满足以下要求:</p>
 <ul>
 <li>Python (3.5, 3.6, 3.7, 3.8, 3.9)</li>
 <li>Django (2.2, 3.0, 3.1)</li>
 </ul>
-<p>We <strong>highly recommend</strong> and only officially support the latest patch release of
-each Python and Django series.</p>
-<p>The following packages are optional:</p>
+<p>我们<strong>强烈推荐</strong>且仅官方支持Python和Django的每个系列(大版本)的最新版本。</p>
+<p>以下包为可选项：</p>
 <ul>
-<li>[PyYAML][pyyaml], [uritemplate][uriteemplate] (5.1+, 3.0.0+) - Schema generation support.</li>
-<li>[Markdown][markdown] (3.0.0+) - Markdown support for the browsable API.</li>
-<li>[Pygments][pygments] (2.4.0+) - Add syntax highlighting to Markdown processing.</li>
-<li>[django-filter][django-filter] (1.0.1+) - Filtering support.</li>
-<li>[django-guardian][django-guardian] (1.1.1+) - Object level permissions support.</li>
+<li><a href="https://pypi.org/project/PyYAML/">PyYAML</a>, <a href="https://pypi.org/project/uritemplate/">uritemplate</a> (5.1+, 3.0.0+) - Schema生成支持。</li>
+<li><a href="https://pypi.org/project/Markdown/">Markdown</a> (3.0.0+) - 为browsable API 提供Markdown支持。</li>
+<li><a href="https://pypi.org/project/Pygments/">Pygments</a> (2.4.0+) - 为Markdown处理提供语法高亮。</li>
+<li><a href="https://pypi.org/project/django-filter/">django-filter</a> (1.0.1+) - Filtering支持。</li>
+<li><a href="https://github.com/django-guardian/django-guardian">django-guardian</a> (1.1.1+) - 对象级别的权限支持。</li>
 </ul>
-<h2 id="installation"><a class="toclink" href="#installation">Installation</a></h2>
-<p>Install using <code>pip</code>, including any optional packages you want...</p>
+<h2 id="_6"><a class="toclink" href="#_6">安装</a></h2>
+<p>用 <code>pip</code>来安装，可以包括任何你想安装的可选包…</p>
 <pre><code>pip install djangorestframework
-pip install markdown       # Markdown support for the browsable API.
-pip install django-filter  # Filtering support
+pip install markdown       # 为browsable API 提供Markdown支持。
+pip install django-filter  # Filtering支持。
 </code></pre>
-<p>...or clone the project from github.</p>
+<p>...或者直接从github clone该项目。</p>
 <pre><code>git clone https://github.com/encode/django-rest-framework
 </code></pre>
-<p>Add <code>'rest_framework'</code> to your <code>INSTALLED_APPS</code> setting.</p>
+<p>在<code>INSTALLED_APPS</code>中添加 <code>'rest_framework'</code> 项。</p>
 <pre><code>INSTALLED_APPS = [
     ...
     'rest_framework',
 ]
 </code></pre>
-<p>If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views.  Add the following to your root <code>urls.py</code> file.</p>
+<p>如果你正打算用browsable API，你可能也想用REST framework的登录注销视图。把下面的代码添加到你根目录的<code>urls.py</code>文件。</p>
 <pre><code>urlpatterns = [
     ...
     path('api-auth/', include('rest_framework.urls'))
 ]
 </code></pre>
-<p>Note that the URL path can be whatever you want.</p>
-<h2 id="example"><a class="toclink" href="#example">Example</a></h2>
-<p>Let's take a look at a quick example of using REST framework to build a simple model-backed API.</p>
-<p>We'll create a read-write API for accessing information on the users of our project.</p>
-<p>Any global settings for a REST framework API are kept in a single configuration dictionary named <code>REST_FRAMEWORK</code>.  Start off by adding the following to your <code>settings.py</code> module:</p>
+<p>请注意，URL路径可以随意改。</p>
+<h2 id="_7"><a class="toclink" href="#_7">举个例子</a></h2>
+<p>让我们来看看一个用REST framework构建的简单的模型支撑的API后端案例。</p>
+<p>我们会创建一个读写API来访问我们项目的用户信息。</p>
+<p>REST framework API的所有全局设定都会放在一个叫<code>REST_FRAMEWORK</code>的配置词典里。首先把下面的内容添加到你的<code>settings.py</code>模块中：</p>
 <pre><code>REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
@@ -575,38 +609,38 @@ pip install django-filter  # Filtering support
     ]
 }
 </code></pre>
-<p>Don't forget to make sure you've also added <code>rest_framework</code> to your <code>INSTALLED_APPS</code>.</p>
-<p>We're ready to create our API now.
-Here's our project's root <code>urls.py</code> module:</p>
+<p>不要忘了你还要<code>rest_framework</code>添加到你的<code>INSTALLED_APPS</code>里。</p>
+<p>这样我们就可以开始创建我们的API了。</p>
+<p>这是我们根目录的<code>urls.py</code>模块：</p>
 <pre><code>from django.urls import path, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 
-# Serializers define the API representation.
+# 序列化器是用来定义API的表示形式。
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ['url', 'username', 'email', 'is_staff']
 
-# ViewSets define the view behavior.
+# ViewSets定义视图的行为。
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
-# Routers provide an easy way of automatically determining the URL conf.
+# 路由器提供一个简单自动的方法来决定URL的配置。
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
-# Wire up our API using automatic URL routing.
-# Additionally, we include login URLs for the browsable API.
+# 通过URL自动路由来给我们的API布局。
+# 此外，我们还要把登录的URL包含进来。
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 </code></pre>
-<p>You can now open the API in your browser at <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>, and view your new 'users' API. If you use the login control in the top right corner you'll also be able to add, create and delete users from the system.</p>
+<p>现在你可以在浏览器中打开<a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>，查看你的'user' API了。如果你用了右上角的登录控制，那你还可以在系统中添加、创建并删除用户。</p>
 <h2 id="quickstart"><a class="toclink" href="#quickstart">Quickstart</a></h2>
-<p>Can't wait to get started? The [quickstart guide][quickstart] is the fastest way to get up and running, and building APIs with REST framework.</p>
+<p>迫不及待想上手了？<a href="tutorial/quickstart_zh/">快速入门指南</a>是你上手、运行并构建REST framewrok API的最快方法。</p>
             
 
           </div> <!--/span-->

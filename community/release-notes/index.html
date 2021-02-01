@@ -58,10 +58,10 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../3.12-announcement/">
             Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../project-management/">
             <i class="icon-arrow-left icon-white"></i> Previous
           </a>
           <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
@@ -274,64 +274,99 @@
                     <a href="../../topics/rest-hypermedia-hateoas/">REST, Hypermedia & HATEOAS</a>
                   </li>
                   
+                </ul>
+              </li>
+                
+              <li class="dropdown active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Community <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  
                   <li >
-                    <a href="../../topics/third-party-packages.md">Third Party Packages</a>
+                    <a href="../tutorials-and-resources/">Tutorials and Resources</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/tutorials-and-resources.md">Tutorials and Resources</a>
+                    <a href="../third-party-packages/">Third Party Packages</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/contributing.md">Contributing to REST framework</a>
+                    <a href="../contributing/">Contributing to REST framework</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/project-management.md">Project management</a>
+                    <a href="../project-management/">Project management</a>
+                  </li>
+                  
+                  <li class="active" >
+                    <a href="./">Release Notes</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.0-announcement.md">3.0 Announcement</a>
+                    <a href="../3.12-announcement/">3.12 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.1-announcement.md">3.1 Announcement</a>
+                    <a href="../3.11-announcement/">3.11 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.2-announcement.md">3.2 Announcement</a>
+                    <a href="../3.10-announcement/">3.10 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.3-announcement.md">3.3 Announcement</a>
+                    <a href="../3.9-announcement/">3.9 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.4-announcement.md">3.4 Announcement</a>
+                    <a href="../3.8-announcement/">3.8 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/3.5-announcement.md">3.5 Announcement</a>
+                    <a href="../3.7-announcement/">3.7 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/kickstarter-announcement.md">Kickstarter Announcement</a>
+                    <a href="../3.6-announcement/">3.6 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/mozilla-grant.md">Mozilla Grant</a>
+                    <a href="../3.5-announcement/">3.5 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/funding.md">Funding</a>
+                    <a href="../3.4-announcement/">3.4 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/release-notes.md">Release Notes</a>
+                    <a href="../3.3-announcement/">3.3 Announcement</a>
                   </li>
                   
                   <li >
-                    <a href="../../topics/jobs.md">Jobs</a>
+                    <a href="../3.2-announcement/">3.2 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../3.1-announcement/">3.1 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../3.0-announcement/">3.0 Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../kickstarter-announcement/">Kickstarter Announcement</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../mozilla-grant/">Mozilla Grant</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../funding/">Funding</a>
+                  </li>
+                  
+                  <li >
+                    <a href="../jobs/">Jobs</a>
                   </li>
                   
                 </ul>
@@ -392,6 +427,10 @@
                   
                     <li>
                       <a href="#upgrading">Upgrading</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#312x-series">3.12.x series</a>
                     </li>
                   
                     <li>
@@ -496,11 +535,79 @@
 <pre><code>pip show djangorestframework
 </code></pre>
 <hr />
+<h2 id="312x-series"><a class="toclink" href="#312x-series">3.12.x series</a></h2>
+<h3 id="3122"><a class="toclink" href="#3122">3.12.2</a></h3>
+<p>Date: 13th October 2020</p>
+<ul>
+<li>Fix issue if <code>rest_framework.authtoken.models</code> is imported, but <code>rest_framework.authtoken</code> is not in INSTALLED_APPS. [#7571]</li>
+<li>Ignore subclasses of BrowsableAPIRenderer in OpenAPI schema. [#7497]</li>
+<li>Narrower exception catching in serilizer fields, to ensure that any errors in broken <code>get_queryset()</code> methods are not masked. [#7480]</li>
+</ul>
+<h3 id="3121"><a class="toclink" href="#3121">3.12.1</a></h3>
+<p>Date: 28th September 2020</p>
+<ul>
+<li>Add <code>TokenProxy</code> migration. [#7557]</li>
+</ul>
+<h3 id="3120"><a class="toclink" href="#3120">3.12.0</a></h3>
+<p>Date: 28th September 2020</p>
+<ul>
+<li>Add <code>--file</code> option to <code>generateschema</code> command. [#7130]</li>
+<li>Support <code>tags</code> for OpenAPI schema generation. See <a href="https://www.django-rest-framework.org/api-guide/schemas/#grouping-operations-with-tags">the schema docs</a>. [#7184]</li>
+<li>Support customising the operation ID for schema generation. See <a href="https://www.django-rest-framework.org/api-guide/schemas/#operationid">the schema docs</a>. [#7190]</li>
+<li>Support OpenAPI components for schema generation. See <a href="https://www.django-rest-framework.org/api-guide/schemas/#components">the schema docs</a>. [#7124]</li>
+<li>The following methods on <code>AutoSchema</code> become public API: <code>get_path_parameters</code>, <code>get_pagination_parameters</code>, <code>get_filter_parameters</code>, <code>get_request_body</code>, <code>get_responses</code>, <code>get_serializer</code>, <code>get_paginator</code>, <code>map_serializer</code>, <code>map_field</code>, <code>map_choice_field</code>, <code>map_field_validators</code>, <code>allows_filters</code>. See <a href="https://www.django-rest-framework.org/api-guide/schemas/#autoschema">the schema docs</a></li>
+<li>Add support for Django 3.1's database-agnositic <code>JSONField</code>. [#7467]</li>
+<li><code>SearchFilter</code> now supports nested search on <code>JSONField</code> and <code>HStoreField</code> model fields. [#7121]</li>
+<li><code>SearchFilter</code> now supports searching on <code>annotate()</code> fields. [#6240]</li>
+<li>The authtoken model no longer exposes the <code>pk</code> in the admin URL. [#7341]</li>
+<li>Add <code>__repr__</code> for Request instances. [#7239]</li>
+<li>UTF-8 decoding with Latin-1 fallback for basic auth credentials. [#7193]</li>
+<li>CharField treats surrogate characters as a validation failure. [#7026]</li>
+<li>Don't include callables as default values in schemas. [#7105]</li>
+<li>Improve <code>ListField</code> schema output to include all available child information. [#7137]</li>
+<li>Allow <code>default=False</code> to be included for <code>BooleanField</code> schema outputs. [#7165]</li>
+<li>Include <code>"type"</code> information in <code>ChoiceField</code> schema outputs. [#7161]</li>
+<li>Include <code>"type": "object"</code> on schema objects. [#7169]</li>
+<li>Don't include component in schema output for DELETE requests. [#7229]</li>
+<li>Fix schema types for <code>DecimalField</code>. [#7254]</li>
+<li>Fix schema generation for <code>ObtainAuthToken</code> view. [#7211]</li>
+<li>Support passing <code>context=...</code> to view <code>.get_serializer()</code> methods. [#7298]</li>
+<li>Pass custom code to <code>PermissionDenied</code> if permission class has one set. [#7306]</li>
+<li>Include "example" in schema pagination output. [#7275]</li>
+<li>Default status code of 201 on schema output for POST requests. [#7206]</li>
+<li>Use camelCase for operation IDs in schema output. [#7208]</li>
+<li>Warn if duplicate operation IDs exist in schema output. [#7207]</li>
+<li>Improve handling of decimal type when mapping <code>ChoiceField</code> to a schema output. [#7264]</li>
+<li>Disable YAML aliases for OpenAPI schema outputs. [#7131]</li>
+<li>Fix action URL names for APIs included under a namespaced URL. [#7287]</li>
+<li>Update jQuery version from 3.4 to 3.5. [#7313]</li>
+<li>Fix <code>UniqueTogether</code> handling when serializer fields use <code>source=...</code>. [#7143]</li>
+<li>HTTP <code>HEAD</code> requests now set <code>self.action</code> correctly on a ViewSet instance. [#7223]</li>
+<li>Return a valid OpenAPI schema for the case where no API schema paths exist. [#7125]</li>
+<li>Include tests in package distribution. [#7145]</li>
+<li>Allow type checkers to support annotations like <code>ModelSerializer[Author]</code>. [#7385]</li>
+<li>Don't include invalid <code>charset=None</code> portion in the request <code>Content-Type</code> header when using APIClient. [#7400]</li>
+<li>Fix <code>\Z</code>/<code>\z</code> tokens in OpenAPI regexs. [#7389]</li>
+<li>Fix <code>PrimaryKeyRelatedField</code> and <code>HyperlinkedRelatedField</code> when source field is actually a property. [#7142]</li>
+<li><code>Token.generate_key</code> is now a class method. [#7502]</li>
+<li><code>@action</code> warns if method is wrapped in a decorator that does not preserve information using <code>@functools.wraps</code>. [#7098]</li>
+</ul>
+<hr />
 <h2 id="311x-series"><a class="toclink" href="#311x-series">3.11.x series</a></h2>
+<h3 id="3112"><a class="toclink" href="#3112">3.11.2</a></h3>
+<p><strong>Date</strong>: 30th September 2020</p>
+<ul>
+<li><strong>Security</strong>: Drop <code>urlize_quoted_links</code> template tag in favour of Django's built-in <code>urlize</code>. Removes a XSS vulnerability for some kinds of content in the browsable API.</li>
+</ul>
+<h3 id="3111"><a class="toclink" href="#3111">3.11.1</a></h3>
+<p><strong>Date</strong>: 5th August 2020</p>
+<ul>
+<li>Fix compat with Django 3.1</li>
+</ul>
 <h3 id="3110"><a class="toclink" href="#3110">3.11.0</a></h3>
 <p><strong>Date</strong>: 12th December 2019</p>
 <ul>
-<li>Drop <code>.set_context</code> API <a href="../3.11-announcement#validator-default-context">in favour of a <code>requires_context</code> marker</a>.</li>
+<li>Drop <code>.set_context</code> API <a href="../3.11-announcement/#validator-default-context">in favour of a <code>requires_context</code> marker</a>.</li>
 <li>Changed default widget for TextField with choices to select box. <a href="https://github.com/encode/django-rest-framework/issues/6892">#6892</a></li>
 <li>Supported nested writes on non-relational fields, such as JSONField. <a href="https://github.com/encode/django-rest-framework/issues/6916">#6916</a></li>
 <li>Include request/response media types in OpenAPI schemas, based on configured parsers/renderers. <a href="https://github.com/encode/django-rest-framework/issues/6865">#6865</a></li>
@@ -632,7 +739,7 @@ Be sure to upgrade to Python 3 before upgrading to Django REST Framework 3.10.</
 <li>Fixed Javascript <code>e.indexOf</code> is not a function error <a href="https://github.com/encode/django-rest-framework/issues/5982">#5982</a></li>
 <li>Fix schemas for extra actions <a href="https://github.com/encode/django-rest-framework/issues/5992">#5992</a></li>
 <li>Improved get_error_detail to use error_dict/error_list <a href="https://github.com/encode/django-rest-framework/issues/5785">#5785</a></li>
-<li>Imprvied URLs in Admin renderer <a href="https://github.com/encode/django-rest-framework/issues/5988">#5988</a></li>
+<li>Improved URLs in Admin renderer <a href="https://github.com/encode/django-rest-framework/issues/5988">#5988</a></li>
 <li>Add "Community" section to docs, minor cleanup <a href="https://github.com/encode/django-rest-framework/issues/5993">#5993</a></li>
 <li>Moved guardian imports out of compat <a href="https://github.com/encode/django-rest-framework/issues/6054">#6054</a></li>
 <li>Deprecate the <code>DjangoObjectPermissionsFilter</code> class, moved to the <code>djangorestframework-guardian</code> package. <a href="https://github.com/encode/django-rest-framework/issues/6075">#6075</a></li>
