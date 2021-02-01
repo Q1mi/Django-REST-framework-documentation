@@ -173,29 +173,36 @@ pip install django-filter
 现在，你需要将filter backend 添加到你django project的settings中：
 
 ```
-REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
-}
+    REST_FRAMEWORK = {
+        'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    }
 ```
 
 或者你也可以将filter backend添加到一个单独的view或viewSet中：
 
 ```
-from django_filters.rest_framework import DjangoFilterBackend
+    from django_filters.rest_framework import DjangoFilterBackend
 
-class UserListView(generics.ListAPIView):
-    ...
-    filter_backends = (DjangoFilterBackend,)
+    class UserListView(generics.ListAPIView):
+        ...
+        filter_backends = [DjangoFilterBackend]
 ```
 
-如果你正在使用 browsable API或 admin API，你还需要安装`django-crispy-forms`，通过使用Bootstarp3渲染来提高filter form在浏览器中的展示效果。
+如果只需要简单的根据是否相等的过滤，则可以在视图或视图集上设置`filterset_fields`属性，列出要过滤的字段集合。
 
 ```
-pip install django-crispy-forms
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category', 'in_stock']
 ```
+这将自动为给定的字段创建一个`FilterSet`类，并允许你发出如下请求：
+```
+http://example.com/api/products?category=clothing&in_stock=True
+```
+对于更高级的过滤要求，你可以指定视图应使用的`FilterSet`类。你可以在[django-filter](https://django-filter.readthedocs.io/en/latest/index.html)文档中阅读有关FilterSets的更多信息。还建议你阅读有关[DRF集成](https://django-filter.readthedocs.io/en/latest/guide/rest_framework.html)的部分。
 
-安装完成后，将`crispy-forms`添加到你Django project的`INSTALLED_APPS`中，browsable API将为`DjangoFilterBackend`提供一个像下面这样的filter control：  
-![django filter](../img/django-filter.png)
 
 ## Specifying filter fields（指定筛选字段）
 
