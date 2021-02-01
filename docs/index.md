@@ -65,59 +65,58 @@ QQ群号：930578836
 
 * [ajax-csrf-cors](/Django-REST-framework-documentation/topics/ajax-csrf-cors_zh/)
 
-## Requirements
+## 要求
 
-REST framework requires the following:
+REST framework 需要满足以下要求:
 
 * Python (3.5, 3.6, 3.7, 3.8, 3.9)
 * Django (2.2, 3.0, 3.1)
 
-We **highly recommend** and only officially support the latest patch release of
-each Python and Django series.
+我们**强烈推荐**且仅官方支持Python和Django的每个系列(大版本)的最新版本。
 
-The following packages are optional:
+以下包为可选项：
 
-* [PyYAML][pyyaml], [uritemplate][uriteemplate] (5.1+, 3.0.0+) - Schema generation support.
-* [Markdown][markdown] (3.0.0+) - Markdown support for the browsable API.
-* [Pygments][pygments] (2.4.0+) - Add syntax highlighting to Markdown processing.
-* [django-filter][django-filter] (1.0.1+) - Filtering support.
-* [django-guardian][django-guardian] (1.1.1+) - Object level permissions support.
+* [PyYAML][pyyaml], [uritemplate][uriteemplate] (5.1+, 3.0.0+) - Schema生成支持。
+* [Markdown][markdown] (3.0.0+) - 为browsable API 提供Markdown支持。
+* [Pygments][pygments] (2.4.0+) - 为Markdown处理提供语法高亮。
+* [django-filter][django-filter] (1.0.1+) - Filtering支持。
+* [django-guardian][django-guardian] (1.1.1+) - 对象级别的权限支持。
 
-## Installation
+## 安装
 
-Install using `pip`, including any optional packages you want...
+用 `pip`来安装，可以包括任何你想安装的可选包…
 
     pip install djangorestframework
-    pip install markdown       # Markdown support for the browsable API.
-    pip install django-filter  # Filtering support
+    pip install markdown       # 为browsable API 提供Markdown支持。
+    pip install django-filter  # Filtering支持。
 
-...or clone the project from github.
+...或者直接从github clone该项目。
 
     git clone https://github.com/encode/django-rest-framework
 
-Add `'rest_framework'` to your `INSTALLED_APPS` setting.
+在`INSTALLED_APPS`中添加 `'rest_framework'` 项。
 
     INSTALLED_APPS = [
         ...
         'rest_framework',
     ]
 
-If you're intending to use the browsable API you'll probably also want to add REST framework's login and logout views.  Add the following to your root `urls.py` file.
+如果你正打算用browsable API，你可能也想用REST framework的登录注销视图。把下面的代码添加到你根目录的`urls.py`文件。
 
     urlpatterns = [
         ...
         path('api-auth/', include('rest_framework.urls'))
     ]
 
-Note that the URL path can be whatever you want.
+请注意，URL路径可以随意改。
 
-## Example
+## 举个例子
 
-Let's take a look at a quick example of using REST framework to build a simple model-backed API.
+让我们来看看一个用REST framework构建的简单的模型支撑的API后端案例。
 
-We'll create a read-write API for accessing information on the users of our project.
+我们会创建一个读写API来访问我们项目的用户信息。
 
-Any global settings for a REST framework API are kept in a single configuration dictionary named `REST_FRAMEWORK`.  Start off by adding the following to your `settings.py` module:
+REST framework API的所有全局设定都会放在一个叫`REST_FRAMEWORK`的配置词典里。首先把下面的内容添加到你的`settings.py`模块中：
 
     REST_FRAMEWORK = {
         # Use Django's standard `django.contrib.auth` permissions,
@@ -127,39 +126,48 @@ Any global settings for a REST framework API are kept in a single configuration 
         ]
     }
 
-Don't forget to make sure you've also added `rest_framework` to your `INSTALLED_APPS`.
+不要忘了你还要`rest_framework`添加到你的`INSTALLED_APPS`里。
 
-We're ready to create our API now.
-Here's our project's root `urls.py` module:
+这样我们就可以开始创建我们的API了。
+
+这是我们根目录的`urls.py`模块：
 
     from django.urls import path, include
     from django.contrib.auth.models import User
     from rest_framework import routers, serializers, viewsets
-
-    # Serializers define the API representation.
+    
+    # 序列化器是用来定义API的表示形式。
     class UserSerializer(serializers.HyperlinkedModelSerializer):
         class Meta:
             model = User
             fields = ['url', 'username', 'email', 'is_staff']
-
-    # ViewSets define the view behavior.
+    
+    # ViewSets定义视图的行为。
     class UserViewSet(viewsets.ModelViewSet):
         queryset = User.objects.all()
         serializer_class = UserSerializer
-
-    # Routers provide an easy way of automatically determining the URL conf.
+    
+    # 路由器提供一个简单自动的方法来决定URL的配置。
     router = routers.DefaultRouter()
     router.register(r'users', UserViewSet)
-
-    # Wire up our API using automatic URL routing.
-    # Additionally, we include login URLs for the browsable API.
+    
+    # 通过URL自动路由来给我们的API布局。
+    # 此外，我们还要把登录的URL包含进来。
     urlpatterns = [
         path('', include(router.urls)),
         path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
     ]
 
-You can now open the API in your browser at [http://127.0.0.1:8000/](http://127.0.0.1:8000/), and view your new 'users' API. If you use the login control in the top right corner you'll also be able to add, create and delete users from the system.
+现在你可以在浏览器中打开[http://127.0.0.1:8000/](http://127.0.0.1:8000/)，查看你的'user' API了。如果你用了右上角的登录控制，那你还可以在系统中添加、创建并删除用户。
 
 ## Quickstart
 
-Can't wait to get started? The [quickstart guide][quickstart] is the fastest way to get up and running, and building APIs with REST framework.
+迫不及待想上手了？[快速入门指南][quickstart]是你上手、运行并构建REST framewrok API的最快方法。
+
+[pyyaml]: https://pypi.org/project/PyYAML/
+[uriteemplate]: https://pypi.org/project/uritemplate/
+[markdown]: https://pypi.org/project/Markdown/
+[pygments]: https://pypi.org/project/Pygments/
+[django-filter]: https://pypi.org/project/django-filter/
+[django-guardian]: https://github.com/django-guardian/django-guardian
+[quickstart]: tutorial/quickstart_zh.md
