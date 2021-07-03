@@ -36,7 +36,7 @@ nav:
     - 'Serializers': 'api-guide/serializers_zh.md'
     - 'Serializer fields': 'api-guide/fields_zh.md'
     - 'Serializer relations': 'api-guide/relations.md'
-    - 'Validators': 'api-guide/validators.md'
+    - 'Validators': 'api-guide/validators_zh.md'
     - 'Authentication': 'api-guide/authentication_zh.md'
     - 'Permissions': 'api-guide/permissions_zh.md'
     - 'Caching': 'api-guide/caching_zh.md'

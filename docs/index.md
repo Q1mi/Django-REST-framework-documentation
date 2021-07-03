@@ -46,6 +46,7 @@ QQ群号：930578836
 * [Renderers](/Django-REST-framework-documentation/api-guide/renderers_zh/)
 * [Serializers](/Django-REST-framework-documentation/api-guide/serializers_zh/)
 * [Serializer fields](/Django-REST-framework-documentation/api-guide/fields_zh/)
+* [Validators](/Django-REST-framework-documentation/api-guide/validators_zh/)
 * [Throttling](/Django-REST-framework-documentation/api-guide/throttling_zh/)
 * [Filtering](/Django-REST-framework-documentation/api-guide/filtering_zh/)
 * [Pagination](/Django-REST-framework-documentation/api-guide/pagination_zh/)
