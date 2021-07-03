@@ -4,11 +4,11 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Requests - Django REST framework中文站点</title>
+  <title>Validators - Django REST framework中文站点</title>
   <link href="../../img/favicon.ico" rel="icon" type="image/x-icon">
-  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/requests/" />
+  <link rel="canonical" href="https://q1mi.github.io/Django-REST-framework-documentation/api-guide/validators_zh/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Requests">
+  <meta name="description" content="Django, API, DRF, 中文文档, rest_framework, django-rest-framework, REST, Validators">
   <meta name="author" content="李文周">
 
   <!-- Le styles -->
@@ -58,10 +58,10 @@
       <div class="navbar-inner">
         <div class="container-fluid">
           <a class="repo-link btn btn-primary btn-small" href="https://github.com/encode/django-rest-framework/tree/master">GitHub</a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="next" >
+          <a class="repo-link btn btn-inverse btn-small " rel="next" href="../authentication_zh/">
             Next <i class="icon-arrow-right icon-white"></i>
           </a>
-          <a class="repo-link btn btn-inverse btn-small disabled" rel="prev" >
+          <a class="repo-link btn btn-inverse btn-small " rel="prev" href="../relations/">
             <i class="icon-arrow-left icon-white"></i> Previous
           </a>
           <a id="search_modal_show" class="repo-link btn btn-inverse btn-small" href="#mkdocs_search_modal" data-toggle="modal" data-target="#mkdocs_search_modal"><i class="icon-search icon-white"></i> Search</a>
@@ -119,7 +119,7 @@
                 </ul>
               </li>
                 
-              <li class="dropdown">
+              <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">API指南 <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   
@@ -167,8 +167,8 @@
                     <a href="../relations/">Serializer relations</a>
                   </li>
                   
-                  <li >
-                    <a href="../validators_zh/">Validators</a>
+                  <li class="active" >
+                    <a href="./">Validators</a>
                   </li>
                   
                   <li >
@@ -413,83 +413,85 @@
 
                 
                   <li class="main">
-                    <a href="#requests">Requests</a>
+                    <a href="#_1">验证器</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#rest-framework">REST framework中的验证器</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#uniquevalidator">UniqueValidator</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#uniquetogethervalidator">UniqueTogetherValidator</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#uniquefordatevalidator">UniqueForDateValidator</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#uniqueformonthvalidator">UniqueForMonthValidator</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#uniqueforyearvalidator">UniqueForYearValidator</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_6">高级字段默认值</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#currentuserdefault">CurrentUserDefault</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#createonlydefault">CreateOnlyDefault</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_7">验证器的限制</a>
+                  </li>
+
+                  
+                    <li>
+                      <a href="#_8">可选字段</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_9">更新级联序列化器</a>
+                    </li>
+                  
+                    <li>
+                      <a href="#_10">调试复杂案例</a>
+                    </li>
+                  
+                
+                  <li class="main">
+                    <a href="#_11">自定义验证器</a>
                   </li>
 
                   
                 
                   <li class="main">
-                    <a href="#request-parsing">Request parsing</a>
+                    <a href="#_12">基于函数</a>
                   </li>
 
                   
                     <li>
-                      <a href="#data">.data</a>
+                      <a href="#_13">字段级别的验证器</a>
                     </li>
                   
                     <li>
-                      <a href="#query_params">.query_params</a>
+                      <a href="#_14">基于类</a>
                     </li>
-                  
-                    <li>
-                      <a href="#parsers">.parsers</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#content-negotiation">Content negotiation</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#accepted_renderer">.accepted_renderer</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#accepted_media_type">.accepted_media_type</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#authentication">Authentication</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#user">.user</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#auth">.auth</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#authenticators">.authenticators</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#browser-enhancements">Browser enhancements</a>
-                  </li>
-
-                  
-                    <li>
-                      <a href="#method">.method</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#content_type">.content_type</a>
-                    </li>
-                  
-                    <li>
-                      <a href="#stream">.stream</a>
-                    </li>
-                  
-                
-                  <li class="main">
-                    <a href="#standard-httprequest-attributes">Standard HttpRequest attributes</a>
-                  </li>
-
                   
                 
 
@@ -517,85 +519,215 @@
             
               
                 
-                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/request.py">
-                    <span class="label label-info">request.py</span>
+                  <a class="github" href="https://github.com/encode/django-rest-framework/tree/master/rest_framework/validators.py">
+                    <span class="label label-info">validators.py</span>
                   </a>
                 
               
 
-              <h1 id="requests"><a class="toclink" href="#requests">Requests</a></h1>
+              <h1 id="_1"><a class="toclink" href="#_1">验证器</a></h1>
 <blockquote>
-<p>If you're doing REST-based web service stuff ... you should ignore request.POST.</p>
-<p>&mdash; Malcom Tredinnick, <a href="https://groups.google.com/d/topic/django-developers/dxI4qVzrBY4/discussion">Django developers group</a></p>
+<p>验证器对于在不同类型的字段之间重用验证逻辑非常有用。</p>
+<p>&mdash; <a href="https://docs.djangoproject.com/en/stable/ref/validators/">Django documentation</a></p>
 </blockquote>
-<p>REST framework's <code>Request</code> class extends the standard <code>HttpRequest</code>, adding support for REST framework's flexible request parsing and request authentication.</p>
-<hr />
-<h1 id="request-parsing"><a class="toclink" href="#request-parsing">Request parsing</a></h1>
-<p>REST framework's Request objects provide flexible request parsing that allows you to treat requests with JSON data or other media types in the same way that you would normally deal with form data.</p>
-<h2 id="data"><a class="toclink" href="#data">.data</a></h2>
-<p><code>request.data</code> returns the parsed content of the request body.  This is similar to the standard <code>request.POST</code> and <code>request.FILES</code> attributes except that:</p>
+<p>在使用REST framework过程中，你大部分时间会使用默认的验证器，或者在序列化器或字段类上显式的书写验证方法。</p>
+<p>然而，有时候你会想要把你的验证逻辑放到可重用的组件里面去，可以在代码库中更方便的使用。你可以用验证函数或者验证类来实现。</p>
+<h2 id="rest-framework"><a class="toclink" href="#rest-framework">REST framework中的验证器</a></h2>
+<p>Django REST framework序列化程序中的验证器的处理方式和Django中的<code>ModelForm</code>类中的验证方式不太相同。</p>
+<p><code>ModelForm</code>的验证器部分作用在表单中，部分作用在模型实例中。在Django REST framework中的验证器完全作用在序列化类中。这有一下几个优势：</p>
 <ul>
-<li>It includes all parsed content, including <em>file and non-file</em> inputs.</li>
-<li>It supports parsing the content of HTTP methods other than <code>POST</code>, meaning that you can access the content of <code>PUT</code> and <code>PATCH</code> requests.</li>
-<li>It supports REST framework's flexible request parsing, rather than just supporting form data.  For example you can handle incoming JSON data in the same way that you handle incoming form data.</li>
+<li>他让代码的关注点更分离，让你的代码行为更加显而易见。</li>
+<li>在快捷<code>ModelSerializer</code>类和精确类<code>Serializer</code>之间的切换更加容易。每个在<code>ModelSerializer</code>类中使用的方法替换起来都很简单。</li>
+<li>打印序列化实例的<code>repr</code>信息会确切的显示使用了什么验证规则。在模型实例上没有调用任何额外的隐藏验证行为。</li>
 </ul>
-<p>For more details see the <a href="../parsers/">parsers documentation</a>.</p>
-<h2 id="query_params"><a class="toclink" href="#query_params">.query_params</a></h2>
-<p><code>request.query_params</code> is a more correctly named synonym for <code>request.GET</code>.</p>
-<p>For clarity inside your code, we recommend using <code>request.query_params</code> instead of the Django's standard <code>request.GET</code>. Doing so will help keep your codebase more correct and obvious - any HTTP method type may include query parameters, not just <code>GET</code> requests.</p>
-<h2 id="parsers"><a class="toclink" href="#parsers">.parsers</a></h2>
-<p>The <code>APIView</code> class or <code>@api_view</code> decorator will ensure that this property is automatically set to a list of <code>Parser</code> instances, based on the <code>parser_classes</code> set on the view or based on the <code>DEFAULT_PARSER_CLASSES</code> setting.</p>
-<p>You won't typically need to access this property.</p>
+<p>当你使用<code>ModelSerializer</code>时，所有这些都会自动为你处理。如果你想弃用他使用<code>Serializer</code>类来替代，那你需要定义确切的每个验证规则。</p>
+<h4 id="_2"><a class="toclink" href="#_2">例子</a></h4>
+<p>作为如何使用Django REST framework中验证器的例子，我们将要使用一个有唯一约束字段的模型类。</p>
+<pre><code>class CustomerReportRecord(models.Model):
+    time_raised = models.DateTimeField(default=timezone.now, editable=False)
+    reference = models.CharField(unique=True, max_length=20)
+    description = models.TextField()
+</code></pre>
+<p>这里有一个基础的<code>ModelSerializer</code>可以用来创建和更新<code>CustomerReportRecord</code>示例：</p>
+<pre><code>class CustomerReportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerReportRecord
+</code></pre>
+<p>如果我们使用<code>manage.py shell</code>打开Django命令行，我们可以看到：</p>
+<pre><code>&gt;&gt;&gt; from project.example.serializers import CustomerReportSerializer
+&gt;&gt;&gt; serializer = CustomerReportSerializer()
+&gt;&gt;&gt; print(repr(serializer))
+CustomerReportSerializer():
+    id = IntegerField(label='ID', read_only=True)
+    time_raised = DateTimeField(read_only=True)
+    reference = CharField(max_length=20, validators=[&lt;UniqueValidator(queryset=CustomerReportRecord.objects.all())&gt;])
+    description = CharField(style={'type': 'textarea'})
+</code></pre>
+<p>有趣的点在<code>reference</code>字段。我们可以看到唯一约束在序列化器的字段中被一个验证器强制执行了。</p>
+<p>正因这种确切的风格，REST framework包含了一些Django核心不具备的验证器类。这些类的详细信息如下。</p>
 <hr />
-<p><strong>Note:</strong> If a client sends malformed content, then accessing <code>request.data</code> may raise a <code>ParseError</code>.  By default REST framework's <code>APIView</code> class or <code>@api_view</code> decorator will catch the error and return a <code>400 Bad Request</code> response.</p>
-<p>If a client sends a request with a content-type that cannot be parsed then a <code>UnsupportedMediaType</code> exception will be raised, which by default will be caught and return a <code>415 Unsupported Media Type</code> response.</p>
-<hr />
-<h1 id="content-negotiation"><a class="toclink" href="#content-negotiation">Content negotiation</a></h1>
-<p>The request exposes some properties that allow you to determine the result of the content negotiation stage. This allows you to implement behaviour such as selecting a different serialization schemes for different media types.</p>
-<h2 id="accepted_renderer"><a class="toclink" href="#accepted_renderer">.accepted_renderer</a></h2>
-<p>The renderer instance that was selected by the content negotiation stage.</p>
-<h2 id="accepted_media_type"><a class="toclink" href="#accepted_media_type">.accepted_media_type</a></h2>
-<p>A string representing the media type that was accepted by the content negotiation stage.</p>
-<hr />
-<h1 id="authentication"><a class="toclink" href="#authentication">Authentication</a></h1>
-<p>REST framework provides flexible, per-request authentication, that gives you the ability to:</p>
+<h2 id="uniquevalidator"><a class="toclink" href="#uniquevalidator">UniqueValidator</a></h2>
+<p>这个验证器可以用来强制执行模型字段的<code>unqieru=True</code>约束。
+他只需要一个必须的参数，和一个<code>message</code>参数：</p>
 <ul>
-<li>Use different authentication policies for different parts of your API.</li>
-<li>Support the use of multiple authentication policies.</li>
-<li>Provide both user and token information associated with the incoming request.</li>
+<li><code>queryset</code> <em>必要参数</em> - 这是应该对其强制执行唯一性检查的结果集。</li>
+<li><code>message</code> - 当验证器失败时应该使用的错误信息。</li>
+<li><code>lookup</code> - 用于查找现存的实例中有验证值的查询。默认是<code>'exact'</code>。</li>
 </ul>
-<h2 id="user"><a class="toclink" href="#user">.user</a></h2>
-<p><code>request.user</code> typically returns an instance of <code>django.contrib.auth.models.User</code>, although the behavior depends on the authentication policy being used.</p>
-<p>If the request is unauthenticated the default value of <code>request.user</code> is an instance of <code>django.contrib.auth.models.AnonymousUser</code>.</p>
-<p>For more details see the <a href="../authentication/">authentication documentation</a>.</p>
-<h2 id="auth"><a class="toclink" href="#auth">.auth</a></h2>
-<p><code>request.auth</code> returns any additional authentication context.  The exact behavior of <code>request.auth</code> depends on the authentication policy being used, but it may typically be an instance of the token that the request was authenticated against.</p>
-<p>If the request is unauthenticated, or if no additional context is present, the default value of <code>request.auth</code> is <code>None</code>.</p>
-<p>For more details see the <a href="../authentication/">authentication documentation</a>.</p>
-<h2 id="authenticators"><a class="toclink" href="#authenticators">.authenticators</a></h2>
-<p>The <code>APIView</code> class or <code>@api_view</code> decorator will ensure that this property is automatically set to a list of <code>Authentication</code> instances, based on the <code>authentication_classes</code> set on the view or based on the <code>DEFAULT_AUTHENTICATORS</code> setting.</p>
-<p>You won't typically need to access this property.</p>
+<p>这个验证器应该使用在<code>序列化器字段</code>中，类似于：</p>
+<pre><code>from rest_framework.validators import UniqueValidator
+
+slug = SlugField(
+    max_length=100,
+    validators=[UniqueValidator(queryset=BlogPost.objects.all())]
+)
+</code></pre>
+<h2 id="uniquetogethervalidator"><a class="toclink" href="#uniquetogethervalidator">UniqueTogetherValidator</a></h2>
+<p>这个验证器可以用来强制执行模型实例的<code>unqieru=True</code>约束。
+她有两个必要参数，和一个客人参数<code>message</code>：</p>
+<ul>
+<li><code>queryset</code> <em>必要参数</em> - 这是应该对其强制执行唯一性检查的结果集。</li>
+<li><code>fields</code> <em>必要参数</em> - 一个需要联合唯一字段的列表或者元组。他们必须是序列化类中的字段。</li>
+<li><code>message</code> - 当验证器失败时应该使用的错误信息。</li>
+</ul>
+<p>这个验证器应该使用在<code>序列化器类</code>中，类似于：</p>
+<pre><code>from rest_framework.validators import UniqueTogetherValidator
+
+class ExampleSerializer(serializers.Serializer):
+    # ...
+    class Meta:
+        # ToDo项目属于一个父列表，并且被一个定义的`position`字段排序。
+        # 同一个列表中不能共有同一个位置。
+        validators = [
+            UniqueTogetherValidator(
+                queryset=ToDoItem.objects.all(),
+                fields=['list', 'position']
+            )
+        ]
+</code></pre>
 <hr />
-<p><strong>Note:</strong> You may see a <code>WrappedAttributeError</code> raised when calling the <code>.user</code> or <code>.auth</code> properties. These errors originate from an authenticator as a standard <code>AttributeError</code>, however it's necessary that they be re-raised as a different exception type in order to prevent them from being suppressed by the outer property access. Python will not recognize that the <code>AttributeError</code> originates from the authenticator and will instead assume that the request object does not have a <code>.user</code> or <code>.auth</code> property. The authenticator will need to be fixed.</p>
+<p><strong>提示</strong> <code>UniqueTogetherValidator</code>类始终施加一个隐式约束，即它应用的所有字段始终被视为必需的。具有<code>default</code>值的字段是个例外，因为即使在用户输入中省略了这些字段，它们也总是提供一个默认值。</p>
 <hr />
-<h1 id="browser-enhancements"><a class="toclink" href="#browser-enhancements">Browser enhancements</a></h1>
-<p>REST framework supports a few browser enhancements such as browser-based <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code> forms.</p>
-<h2 id="method"><a class="toclink" href="#method">.method</a></h2>
-<p><code>request.method</code> returns the <strong>uppercased</strong> string representation of the request's HTTP method.</p>
-<p>Browser-based <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code> forms are transparently supported.</p>
-<p>For more information see the <a href="../../topics/browser-enhancements/">browser enhancements documentation</a>.</p>
-<h2 id="content_type"><a class="toclink" href="#content_type">.content_type</a></h2>
-<p><code>request.content_type</code>, returns a string object representing the media type of the HTTP request's body, or an empty string if no media type was provided.</p>
-<p>You won't typically need to directly access the request's content type, as you'll normally rely on REST framework's default request parsing behavior.</p>
-<p>If you do need to access the content type of the request you should use the <code>.content_type</code> property in preference to using <code>request.META.get('HTTP_CONTENT_TYPE')</code>, as it provides transparent support for browser-based non-form content.</p>
-<p>For more information see the <a href="../../topics/browser-enhancements/">browser enhancements documentation</a>.</p>
-<h2 id="stream"><a class="toclink" href="#stream">.stream</a></h2>
-<p><code>request.stream</code> returns a stream representing the content of the request body.</p>
-<p>You won't typically need to directly access the request's content, as you'll normally rely on REST framework's default request parsing behavior.</p>
+<h2 id="uniquefordatevalidator"><a class="toclink" href="#uniquefordatevalidator">UniqueForDateValidator</a></h2>
+<h2 id="uniqueformonthvalidator"><a class="toclink" href="#uniqueformonthvalidator">UniqueForMonthValidator</a></h2>
+<h2 id="uniqueforyearvalidator"><a class="toclink" href="#uniqueforyearvalidator">UniqueForYearValidator</a></h2>
+<p>这些验证器可以用来对模型实例强制执行<code>unique_for_date</code>，<code>unique_for_month</code>和<code>unique_for_year</code>约束。他们接受如下参数：</p>
+<ul>
+<li><code>queryset</code> <em>必要参数</em> - 这是应该对其强制执行唯一性检查的结果集。</li>
+<li><code>field</code> <em>必要参数</em> - 将根据其验证给定日期范围中的唯一性的字段名。这必须是序列化类中的字段。</li>
+<li><code>date_field</code> <em>必要参数</em> - 将用于确定唯一性约束的日期范围的字段名称这必须是序列化类中的字段。</li>
+<li><code>message</code> - 当验证器失败时应该使用的错误信息。</li>
+</ul>
+<p>这个验证器应该使用在<code>序列化器类</code>中，类似于：</p>
+<pre><code>from rest_framework.validators import UniqueForYearValidator
+
+class ExampleSerializer(serializers.Serializer):
+    # ...
+    class Meta:
+        # 博客发布应该有一个当前年份唯一的别名
+        validators = [
+            UniqueForYearValidator(
+                queryset=BlogPostItem.objects.all(),
+                field='slug',
+                date_field='published'
+            )
+        ]
+</code></pre>
+<p>用于验证的日期字段始终需要出现在序列化程序类上。你不能简单地依赖模型类<code>default=.</code>，因为用于默认值的值只有在验证运行之后才会生成。</p>
+<p>根据你希望API的行为方式，你可能需要使用几种样式。如果你使用的是<code>Model Serializer</code>，你可能只会依赖 REST framework生成的默认值，但如果使用的是<code>Serializer</code>或只是想要更明确的控制，请使用下面演示的样式。</p>
+<h4 id="_3"><a class="toclink" href="#_3">使用一个可写的日期字段</a></h4>
+<p>如果你希望日期字段时可以写的，唯一需要注意的事情是你需要确保传入的数据中是可用的，或者设置一个<code>default</code>参数，或者设置<code>required=True</code></p>
+<pre><code>published = serializers.DateTimeField(required=True)
+</code></pre>
+<h3 id="_4"><a class="toclink" href="#_4">使用只读日期字段</a></h3>
+<p>如果你希望是可见的，但是不可被用户编辑，那就设置<code>read_only=True</code>另外设置<code>default=...</code>参数</p>
+<pre><code>published = serializers.DateTimeField(read_only=True, default=timezone.now)
+</code></pre>
+<h4 id="_5"><a class="toclink" href="#_5">使用隐藏日期字段</a></h4>
+<p>如果你希望日期字段完全中用户不可见，那么使用<code>HiddenField</code>。这个字段类型不接受用户输入，取而代之的是在序列化器中的<code>validated_data</code>中始终返回他的默认值。</p>
+<pre><code>published = serializers.HiddenField(default=timezone.now)
+</code></pre>
 <hr />
-<h1 id="standard-httprequest-attributes"><a class="toclink" href="#standard-httprequest-attributes">Standard HttpRequest attributes</a></h1>
-<p>As REST framework's <code>Request</code> extends Django's <code>HttpRequest</code>, all the other standard attributes and methods are also available.  For example the <code>request.META</code> and <code>request.session</code> dictionaries are available as normal.</p>
-<p>Note that due to implementation reasons the <code>Request</code> class does not inherit from <code>HttpRequest</code> class, but instead extends the class using composition.</p>
+<p><strong>注意</strong>：<code>UniqueFor&lt;Range&gt;Validator</code>类会强加一个隐式约束，他们应用的字段总是必须的。除了有<code>default</code>值的字段，因为他们总会提供一个返回值，即使用户没有输入。</p>
+<h1 id="_6"><a class="toclink" href="#_6">高级字段默认值</a></h1>
+<p>在序列化器中跨多个字段应用的序列化器，有时可能需要一个不由API客户端提供的字段，但这<em>是</em>可以作为验证期的输入的。</p>
+<p>你可以希望应用与这种验证期两种模式包括：</p>
+<ul>
+<li>使用<code>HiddenField</code>。这个字段会在<code>validated_data</code>中体现，但是<em>不会</em>在序列化器输出时使用。</li>
+<li>使用设置了<code>read_only=True</code>的标准字段，同时包含<code>default=…</code>参数。这个字段<em>将会</em>在序列化器输出中使用，但是不会被用户直接设置。</li>
+</ul>
+<p>REST framework包含一系列默认值在上下文中很有用。</p>
+<h4 id="currentuserdefault"><a class="toclink" href="#currentuserdefault">CurrentUserDefault</a></h4>
+<p>一个可以用来代表当前用户的默认类。为了使用他，在实例化序列化器时，'request'必须包含在上下文(context)的字典中</p>
+<pre><code>owner = serializers.HiddenField(
+    default=serializers.CurrentUserDefault()
+)
+</code></pre>
+<h4 id="createonlydefault"><a class="toclink" href="#createonlydefault">CreateOnlyDefault</a></h4>
+<p>一个<em>仅在创建操作中设置默认值</em>的默认类。在更新操作中会被省略。</p>
+<p>他只接收一个参数，可以是一个默认值或者在创建操作中可调用。</p>
+<pre><code>created_at = serializers.DateTimeField(
+    default=serializers.CreateOnlyDefault(timezone.now)
+)
+</code></pre>
+<hr />
+<h1 id="_7"><a class="toclink" href="#_7">验证器的限制</a></h1>
+<p>一些模棱两可的情况下你需要精确自定义验证器，而不是使用<code>ModelSerializer</code>默认序列化类生成的。</p>
+<p>这时候你可以希望关闭自动生成的验证器，可以通过给序列化器的<code>Meta.validators</code>参数指定一个空列表。</p>
+<h2 id="_8"><a class="toclink" href="#_8">可选字段</a></h2>
+<p>在默认的“联合唯一”验证器强制要求所有的字段是<code>required=True</code>。一些情况下，你可能希望对确切的字段使用<code>required=False</code>，这种情况下验证器所期望的行为是模棱两可的。</p>
+<p>这种情况下你需要在序列化器中排除这个验证器，取而代之你需要在<code>.validate()</code>方法或者在视图中精确控制验证逻辑。</p>
+<p>例如：</p>
+<pre><code>class BillingRecordSerializer(serializers.ModelSerializer):
+    def validate(self, attrs):
+        # 在这里或者在视图中，使用自定义的验证器。
+
+    class Meta:
+        fields = ['client', 'date', 'amount']
+        extra_kwargs = {'client': {'required': False}}
+        validators = []  # 移除默认的“联合唯一”约束。
+</code></pre>
+<h2 id="_9"><a class="toclink" href="#_9">更新级联序列化器</a></h2>
+<p>当对存在的对象使用更新时，唯一性验证器将会在唯一性检查中排除当前实例。当前的实例在唯一性检查的上下文中是可用的，因为他在序列化器中作为一个属性存在，在最初实例化是作为<code>instance=...</code>参数传入。</p>
+<p>在这种情况下更新操作在<em>级联</em>的序列化器中是不能排除的，因为这个对象是不可用的。</p>
+<p>重申，你可能明确希望从序列化器中移除验证器，在<code>.validate()</code>方法或者视图中明确编码验证器的约束。</p>
+<h2 id="_10"><a class="toclink" href="#_10">调试复杂案例</a></h2>
+<p>如果你无法确定一个<code>ModelSerializer</code>类会如何生成，一个点子是使用<code>manage.py shell</code>，打印出序列化器的实例，这样你就可以看到字段和验证器是如何自动生成的。</p>
+<pre><code>&gt;&gt;&gt; serializer = MyComplexModelSerializer()
+&gt;&gt;&gt; print(serializer)
+class MyComplexModelSerializer:
+    my_fields = ...
+</code></pre>
+<p>同时考虑到复杂案例通常在你的序列化类中更明确会更好，而不是使用默认的<code>ModelSerializer</code>类来自动生成。这会让你写更多的代码，但是行为结果更加可视。</p>
+<hr />
+<h1 id="_11"><a class="toclink" href="#_11">自定义验证器</a></h1>
+<p>你可以使用Django存在的验证器，或者自己自定义验证器。</p>
+<h1 id="_12"><a class="toclink" href="#_12">基于函数</a></h1>
+<p>一个验证器可以是一个可调用对象，在验证失败是抛出<code>serializers.ValidationError</code>异常。</p>
+<pre><code>def even_number(value):
+    if value % 2 != 0:
+        raise serializers.ValidationError('This field must be an even number.')
+</code></pre>
+<h4 id="_13"><a class="toclink" href="#_13">字段级别的验证器</a></h4>
+<p>你可以使用<code>.validate_&lt;field_name&gt;</code>的规则，在<code>Serializer</code>的子类中自定义字段级别的验证器方法，这部分的文档在<a href="https://www.django-rest-framework.org/api-guide/serializers/#field-level-validation">Serializer docs</a></p>
+<h2 id="_14"><a class="toclink" href="#_14">基于类</a></h2>
+<p>使用<code>__call__</code>方法来些基于类的验证器。基于类的验证器可以让你参数化并且可以重复使用。</p>
+<pre><code>class MultipleOf:
+    def __init__(self, base):
+        self.base = base
+
+    def __call__(self, value):
+        if value % self.base != 0:
+            message = 'This field must be a multiple of %d.' % self.base
+            raise serializers.ValidationError(message)
+</code></pre>
+<h4 id="_15"><a class="toclink" href="#_15">访问上下文</a></h4>
+<p>在一些高级的案例中，你可能希望验证器将序列化器字段作为附加上下文使用。你可以通过在验证器上设置 <code>requires_context = True</code> 属性来实现。 <code>_call_</code> 方法将使用 <code>serializer_field</code> 或 <code>serializer</code> 作为附加参数被调用。</p>
+<pre><code>requires_context = True
+
+def __call__(self, value, serializer_field):
+    ...
+</code></pre>
             
 
           </div> <!--/span-->
